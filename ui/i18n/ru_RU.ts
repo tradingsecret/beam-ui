@@ -2475,5 +2475,21 @@ Your version is: %2. Please, check for updates.</source>
         <source>Random node</source>
         <translation type="unfinished"></translation>
     </message>
+    <message id="unlink-title">
+        <source>UNLINK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-back">
+        <source>back</source>
+        <translation type="unfinished">back</translation>
+    </message>
+    <message id="unlink-confirm-button">
+        <source>unlink</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-notice">
+        <source>Please notice that unlinking funds may take up to few days to proceed.</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

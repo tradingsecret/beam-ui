@@ -18,6 +18,7 @@ Control {
     property string receivingIncoming
     property string secondCurrencyLabel
     property string secondCurrencyRateValue
+    signal unlinkButtonClicked()
 
     property var onOpenExternal: null
     signal copyValueText()
@@ -174,6 +175,28 @@ Control {
                 Layout.fillWidth: true
             }
 
+            Image {
+                id: unlinkButton
+                source:  "qrc:/assets/icon-unlink.svg"
+                width:   16
+                height:  16
+                Layout.rightMargin: 20
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: control.unlinkButtonClicked()
+                }
+            }
+
+            Rectangle {
+                color:   Qt.rgba(255, 255, 255, 0.1)
+                width:   1
+                height:  45
+                visible: parseFloat(locked) > 0 || parseFloat(receiving) > 0 || parseFloat(sending)
+                Layout.rightMargin: 20
+            }
+
             BeamAmount {
                 id:                lockedAmount
                 amount:            locked
@@ -204,14 +227,7 @@ Control {
             Layout.preferredWidth: parent.width / 2
             visible: parseFloat(receiving) > 0 || parseFloat(sending) > 0
 
-            Rectangle {
-                color:   Qt.rgba(255, 255, 255, 0.1)
-                width:   1
-                height:  45
-            }
-
             BeamAmount {
-                Layout.leftMargin: 20
                 amount:            sending
                 currencySymbol:    BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
                 secondCurrencyLabel:        control.secondCurrencyLabel
