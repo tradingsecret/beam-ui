@@ -2504,5 +2504,9 @@ Your version is: %2. Please, check for updates.</source>
         <source>Fee:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message id="unlink-amount-title">
+        <source>AMOUNT</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

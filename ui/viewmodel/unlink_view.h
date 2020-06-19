@@ -21,7 +21,37 @@ class UnlinkViewModel: public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QString  totalUTXO          READ getTotalUTXO                                    NOTIFY availableChanged)
-    Q_PROPERTY(QString  secondCurrencyLabel         READ getSecondCurrencyLabel                 NOTIFY secondCurrencyLabelChanged)
-    Q_PROPERTY(QString  secondCurrencyRateValue     READ getSecondCurrencyRateValue             NOTIFY secondCurrencyRateChanged)
+    Q_PROPERTY(QString  totalToUnlink           READ getTotalToUnlink                                 NOTIFY availableChanged)
+    Q_PROPERTY(QString  unlinkAmount            READ getUnlinkAmount            /*WRITE setUnlinkAmount*/ NOTIFY unlinkAmountChanged)
+    Q_PROPERTY(QString  change                  READ getChange                                        NOTIFY availableChanged)
+    Q_PROPERTY(unsigned int  feeGrothes         READ getFeeGrothes              /*WRITE setFeeGrothes*/   NOTIFY feeGrothesChanged)
+    Q_PROPERTY(QString  available               READ getAvailable                                     NOTIFY availableChanged)
+    Q_PROPERTY(QString  secondCurrencyLabel     READ getSecondCurrencyLabel                           NOTIFY secondCurrencyLabelChanged)
+    Q_PROPERTY(QString  secondCurrencyRateValue READ getSecondCurrencyRateValue                       NOTIFY secondCurrencyRateChanged)
+
+public:
+    UnlinkViewModel();
+    ~UnlinkViewModel();
+    QString getTotalToUnlink();
+    QString getUnlinkAmount();
+    QString getChange();
+    unsigned int getFeeGrothes();
+    QString getAvailable();
+    QString getSecondCurrencyLabel();
+    QString getSecondCurrencyRateValue();
+
+signals:
+    void availableChanged();
+    void unlinkAmountChanged();
+    void feeGrothesChanged();
+    void secondCurrencyLabelChanged();
+    void secondCurrencyRateChanged();
+
+private:
+    beam::Amount _unlinkAmountGrothes = 100000000;
+    beam::Amount _feeGrothes = 100000000;
+    beam::Amount _changeGrothes = 100000000;
+
+    WalletModel& _walletModel;
+    ExchangeRatesManager _exchangeRatesManager;
 };

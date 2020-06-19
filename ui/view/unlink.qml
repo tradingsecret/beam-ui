@@ -73,31 +73,39 @@ ColumnLayout {
 
     RowLayout  {
         Layout.fillWidth: true
+        Layout.alignment:    Qt.AlignTop
         spacing:    10
 
         //
         // Left column
         //
         ColumnLayout {
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                color: "green"
+            Layout.fillWidth: true
+
+            AmountInput {
+                //% "AMOUNT"
+                title:            qsTrId("unlink-amount-title")
+                id:               sendAmountInput
+                amountIn:         viewModel.sendAmount
+                secondCurrencyRateValue:    viewModel.secondCurrencyRateValue
+                secondCurrencyLabel:        viewModel.secondCurrencyLabel
+                setMaxAvailableAmount:      function() { console.log("viewModel.setMaxAvailableAmount();"); }
+                hasFee:           true
+                showAddAll:       true
+                color:            Style.accent_outgoing
+                // error:            showInsufficientBalanceWarning
+                //                   //% "Insufficient funds: you would need %1 to complete the transaction"
+                //                   ? qsTrId("send-founds-fail").arg(Utils.uiStringToLocale(viewModel.missing))
+                //                   : ""
             }
         }
         //
         // Right column
         //
         ColumnLayout {
-            // Rectangle {
-            //     Layout.fillWidth: true
-            //     Layout.fillHeight: true
-            //     color: "red"
-            // }
+            Layout.minimumWidth: parent.width / 2
             GridLayout {
-                //Layout.topMargin:    50
-                Layout.alignment:    Qt.AlignTop
-                Layout.minimumWidth: 400
+                Layout.minimumWidth: parent.width
                 columnSpacing:       20
                 rowSpacing:          10
                 columns:             2
@@ -126,8 +134,8 @@ ColumnLayout {
                     Layout.alignment:       Qt.AlignTop
                     Layout.topMargin:       30
                     Layout.rightMargin:     25
-                    error:                  showInsufficientBalanceWarning
-                    amount:                 viewModel.totalUTXO
+                    // error:                  showInsufficientBalanceWarning
+                    amount:                 viewModel.totalToUnlink
                     currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
                     secondCurrencyLabel:    viewModel.secondCurrencyLabel
                     secondCurrencyRateValue: viewModel.secondCurrencyRateValue
@@ -146,8 +154,8 @@ ColumnLayout {
                 {
                     Layout.alignment:       Qt.AlignTop
                     Layout.rightMargin:     25
-                    error:                  showInsufficientBalanceWarning
-                    amount:                 viewModel.sendAmount
+                    // error:                  showInsufficientBalanceWarning
+                    amount:                 viewModel.unlinkAmount
                     currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
                     secondCurrencyLabel:    viewModel.secondCurrencyLabel
                     secondCurrencyRateValue: viewModel.secondCurrencyRateValue
@@ -165,7 +173,7 @@ ColumnLayout {
                 {
                     Layout.alignment:       Qt.AlignTop
                     Layout.rightMargin:     25
-                    error:                  showInsufficientBalanceWarning
+                    // error:                  showInsufficientBalanceWarning
                     amount:                 viewModel.change
                     currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
                     secondCurrencyLabel:    viewModel.secondCurrencyLabel
@@ -185,9 +193,9 @@ ColumnLayout {
                 {
                     Layout.alignment:       Qt.AlignTop
                     Layout.rightMargin:     25
-                    error:                  showInsufficientBalanceWarning
-                    amount:                 viewModel.change
-                    currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
+                    // error:                  showInsufficientBalanceWarning
+                    amount:                 viewModel.feeGrothes
+                    currencySymbol:         qsTrId("general-groth")
                     secondCurrencyLabel:    viewModel.secondCurrencyLabel
                     secondCurrencyRateValue: viewModel.secondCurrencyRateValue
                 }
@@ -206,7 +214,7 @@ ColumnLayout {
                     Layout.alignment:       Qt.AlignTop
                     Layout.rightMargin:     25
                     Layout.bottomMargin:    30
-                    error:                  showInsufficientBalanceWarning
+                    // error:                  showInsufficientBalanceWarning
                     amount:                 viewModel.available
                     currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
                     secondCurrencyLabel:    viewModel.secondCurrencyLabel
