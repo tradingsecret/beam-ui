@@ -11,6 +11,10 @@ ColumnLayout {
     // callbacks set by parent
     property var onClosed: undefined
 
+    UnlinkViewModel {
+        id: viewModel
+    }
+
     RowLayout {
         Layout.fillWidth: true
         Layout.topMargin: 105
@@ -85,10 +89,129 @@ ColumnLayout {
         // Right column
         //
         ColumnLayout {
-            Rectangle {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-                color: "red"
+            // Rectangle {
+            //     Layout.fillWidth: true
+            //     Layout.fillHeight: true
+            //     color: "red"
+            // }
+            GridLayout {
+                //Layout.topMargin:    50
+                Layout.alignment:    Qt.AlignTop
+                Layout.minimumWidth: 400
+                columnSpacing:       20
+                rowSpacing:          10
+                columns:             2
+
+                Rectangle {
+                    x:      0
+                    y:      0
+                    width:  parent.width
+                    height: parent.height
+                    radius: 10
+                    color:  Style.background_second
+                }
+
+                SFText {
+                    Layout.alignment:       Qt.AlignTop
+                    Layout.topMargin:       30
+                    Layout.leftMargin:      25
+                    font.pixelSize:         14
+                    color:                  Style.content_secondary
+                    //% "Available to unlink:"
+                    text:                   qsTrId("unlink-available")
+                }
+
+                BeamAmount
+                {
+                    Layout.alignment:       Qt.AlignTop
+                    Layout.topMargin:       30
+                    Layout.rightMargin:     25
+                    error:                  showInsufficientBalanceWarning
+                    amount:                 viewModel.totalUTXO
+                    currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
+                    secondCurrencyLabel:    viewModel.secondCurrencyLabel
+                    secondCurrencyRateValue: viewModel.secondCurrencyRateValue
+                }
+
+                SFText {
+                    Layout.alignment:       Qt.AlignTop
+                    Layout.leftMargin:      25
+                    font.pixelSize:         14
+                    color:                  Style.content_secondary
+                    //% "Amount to unlink:"
+                    text:                   qsTrId("unlink-amount")
+                }
+
+                BeamAmount
+                {
+                    Layout.alignment:       Qt.AlignTop
+                    Layout.rightMargin:     25
+                    error:                  showInsufficientBalanceWarning
+                    amount:                 viewModel.sendAmount
+                    currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
+                    secondCurrencyLabel:    viewModel.secondCurrencyLabel
+                    secondCurrencyRateValue: viewModel.secondCurrencyRateValue
+                }
+
+                SFText {
+                    Layout.alignment:       Qt.AlignTop
+                    Layout.leftMargin:      25
+                    font.pixelSize:         14
+                    color:                  Style.content_secondary
+                    text:                   qsTrId("general-change") + ":"
+                }
+
+                BeamAmount
+                {
+                    Layout.alignment:       Qt.AlignTop
+                    Layout.rightMargin:     25
+                    error:                  showInsufficientBalanceWarning
+                    amount:                 viewModel.change
+                    currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
+                    secondCurrencyLabel:    viewModel.secondCurrencyLabel
+                    secondCurrencyRateValue: viewModel.secondCurrencyRateValue
+                }
+
+                SFText {
+                    Layout.alignment:       Qt.AlignTop
+                    Layout.leftMargin:      25
+                    font.pixelSize:         14
+                    color:                  Style.content_secondary
+                    //% "Fee:"
+                    text:                   qsTrId("unlink-fee")
+                }
+
+                BeamAmount
+                {
+                    Layout.alignment:       Qt.AlignTop
+                    Layout.rightMargin:     25
+                    error:                  showInsufficientBalanceWarning
+                    amount:                 viewModel.change
+                    currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
+                    secondCurrencyLabel:    viewModel.secondCurrencyLabel
+                    secondCurrencyRateValue: viewModel.secondCurrencyRateValue
+                }
+
+                SFText {
+                    Layout.alignment:       Qt.AlignTop
+                    Layout.leftMargin:      25
+                    Layout.bottomMargin:    30
+                    font.pixelSize:         14
+                    color:                  Style.content_secondary
+                    text:                   qsTrId("general-remaining-label") + ":"
+                }
+
+                BeamAmount
+                {
+                    Layout.alignment:       Qt.AlignTop
+                    Layout.rightMargin:     25
+                    Layout.bottomMargin:    30
+                    error:                  showInsufficientBalanceWarning
+                    amount:                 viewModel.available
+                    currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
+                    secondCurrencyLabel:    viewModel.secondCurrencyLabel
+                    secondCurrencyRateValue: viewModel.secondCurrencyRateValue
+                }
             }
         }
     }

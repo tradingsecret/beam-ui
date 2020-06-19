@@ -547,10 +547,6 @@
         <source>Insufficient funds: you would need %1 to complete the transaction</source>
         <translation>Onvoldoende saldo: u heeft %1 nodig om de transactie te voltooien</translation>
     </message>
-    <message id="send-remaining-label">
-        <source>Remaining</source>
-        <translation>Resterende</translation>
-    </message>
     <message id="start-restore-confirm-button">
         <source>I agree</source>
         <translation>Ik ga akkoord</translation>
@@ -2487,6 +2483,22 @@ Your version is: %2. Please, check for updates.</source>
     </message>
     <message id="unlink-notice">
         <source>Please notice that unlinking funds may take up to few days to proceed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="general-remaining-label">
+        <source>Remaining</source>
+        <translation type="unfinished">Resterende</translation>
+    </message>
+    <message id="unlink-available">
+        <source>Available to unlink:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-amount">
+        <source>Amount to unlink:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-fee">
+        <source>Fee:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

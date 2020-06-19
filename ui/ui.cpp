@@ -42,6 +42,7 @@
 #include "viewmodel/send_swap_view.h"
 #include "viewmodel/el_seed_validator.h"
 #include "viewmodel/currencies.h"
+#include "viewmodel/unlink_view.h"
 #include "model/app_model.h"
 #include "viewmodel/qml_globals.h"
 #include "viewmodel/helpers/list_model.h"
@@ -254,6 +255,7 @@ int main (int argc, char* argv[])
             qmlRegisterType<ExchangeRatesManager>("Beam.Wallet", 1, 0, "ExchangeRatesManager");
             
             qmlRegisterType<SortFilterProxyModel>("Beam.Wallet", 1, 0, "SortFilterProxyModel");
+            qmlRegisterType<UnlinkViewModel>("Beam.Wallet", 1, 0, "UnlinkViewModel");
 
             engine.load(QUrl("qrc:/root.qml"));
 

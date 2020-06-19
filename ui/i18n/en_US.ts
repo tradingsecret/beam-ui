@@ -546,10 +546,6 @@
         <source>Insufficient funds: you would need %1 to complete the transaction</source>
         <translation>Insufficient funds: you would need %1 to complete the transaction</translation>
     </message>
-    <message id="send-remaining-label">
-        <source>Remaining</source>
-        <translation>Remaining</translation>
-    </message>
     <message id="start-restore-confirm-button">
         <source>I agree</source>
         <translation>I agree</translation>
@@ -2462,6 +2458,22 @@ Your version is: %2. Please, check for updates.</translation>
     <message id="unlink-notice">
         <source>Please notice that unlinking funds may take up to few days to proceed.</source>
         <translation>Please notice that unlinking funds may take up to few days to proceed.</translation>
+    </message>
+    <message id="general-remaining-label">
+        <source>Remaining</source>
+        <translation>Remaining</translation>
+    </message>
+    <message id="unlink-available">
+        <source>Available to unlink:</source>
+        <translation>Available to unlink:</translation>
+    </message>
+    <message id="unlink-amount">
+        <source>Amount to unlink:</source>
+        <translation>Amount to unlink:</translation>
+    </message>
+    <message id="unlink-fee">
+        <source>Fee:</source>
+        <translation>Fee:</translation>
     </message>
 </context>
 </TS>

@@ -316,7 +316,7 @@ ColumnLayout {
                     font.pixelSize:         14
                     color:                  Style.content_secondary
                     //% "Remaining"
-                    text:                   qsTrId("send-remaining-label") + ":"
+                    text:                   qsTrId("general-remaining-label") + ":"
                 }
 
                 BeamAmount

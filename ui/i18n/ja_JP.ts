@@ -547,10 +547,6 @@
         <source>Insufficient funds: you would need %1 to complete the transaction</source>
         <translation>残高不足：トランザクションを完了する為にはあと %1が必要です</translation>
     </message>
-    <message id="send-remaining-label">
-        <source>Remaining</source>
-        <translation>残高</translation>
-    </message>
     <message id="start-restore-confirm-button">
         <source>I agree</source>
         <translation>同意する</translation>
@@ -2489,6 +2485,22 @@ Your version is: %2. Please, check for updates.</source>
     </message>
     <message id="unlink-notice">
         <source>Please notice that unlinking funds may take up to few days to proceed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="general-remaining-label">
+        <source>Remaining</source>
+        <translation type="unfinished">残高</translation>
+    </message>
+    <message id="unlink-available">
+        <source>Available to unlink:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-amount">
+        <source>Amount to unlink:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-fee">
+        <source>Fee:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

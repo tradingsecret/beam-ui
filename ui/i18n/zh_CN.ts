@@ -550,10 +550,6 @@
         <source>Insufficient funds: you would need %1 to complete the transaction</source>
         <translation>资金不足：您需要%1来完成交易</translation>
     </message>
-    <message id="send-remaining-label">
-        <source>Remaining</source>
-        <translation>剩余</translation>
-    </message>
     <message id="start-restore-confirm-button">
         <source>I agree</source>
         <translation>我同意</translation>
@@ -2505,6 +2501,22 @@ Your version is: %2. Please, check for updates.</source>
     </message>
     <message id="unlink-notice">
         <source>Please notice that unlinking funds may take up to few days to proceed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="general-remaining-label">
+        <source>Remaining</source>
+        <translation type="unfinished">剩余</translation>
+    </message>
+    <message id="unlink-available">
+        <source>Available to unlink:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-amount">
+        <source>Amount to unlink:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-fee">
+        <source>Fee:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

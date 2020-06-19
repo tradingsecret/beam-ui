@@ -547,10 +547,6 @@
         <source>Insufficient funds: you would need %1 to complete the transaction</source>
         <translation>자금이 부족합니다 : 거래를 완료하려면 %1 만큼의 자금이 필요합니다</translation>
     </message>
-    <message id="send-remaining-label">
-        <source>Remaining</source>
-        <translation>남아있는</translation>
-    </message>
     <message id="start-restore-confirm-button">
         <source>I agree</source>
         <translation>동의합니다</translation>
@@ -2489,6 +2485,22 @@ Your version is: %2. Please, check for updates.</source>
     </message>
     <message id="unlink-notice">
         <source>Please notice that unlinking funds may take up to few days to proceed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="general-remaining-label">
+        <source>Remaining</source>
+        <translation type="unfinished">남아있는</translation>
+    </message>
+    <message id="unlink-available">
+        <source>Available to unlink:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-amount">
+        <source>Amount to unlink:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-fee">
+        <source>Fee:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
