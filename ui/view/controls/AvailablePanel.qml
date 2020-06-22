@@ -18,6 +18,8 @@ Control {
     property string receivingIncoming
     property string secondCurrencyLabel
     property string secondCurrencyRateValue
+    property string linked
+    property string unlinked
     signal unlinkButtonClicked()
 
     property var onOpenExternal: null
@@ -46,6 +48,64 @@ Control {
     rightPadding:  20
     topPadding:    8
     bottomPadding: 12
+
+    Control {
+        id:            unlinkedTip
+        visible:       amountArea.containsMouse && parseFloat(unlinked) > 0
+        x:             availableAmount.x + availableAmount.parent.x + availableAmount.parent.parent.x + availableAmount.width / 2 - unlinkedTip.width / 2
+        y:             availableAmount.y + availableAmount.parent.y + availableAmount.height + 15
+
+        leftPadding:   14
+        rightPadding:  14
+        topPadding:    13
+        bottomPadding: 13
+
+        background: Rectangle {
+            anchors.fill: parent
+            color:  Qt.rgba(255, 255, 255, 0.15)
+            radius: 10
+        }
+
+        contentItem:  GridLayout {
+            columnSpacing: 15
+            rowSpacing:    10
+            columns:       2
+            rows:          2
+
+            SFText {
+                font.pixelSize: 12
+                font.styleName: "Light"
+                font.weight:    Font.Light
+                color:          Qt.rgba(Style.content_main.r, Style.content_main.g, Style.content_main.b, 0.5)
+                //% "Linked"
+                text:           qsTrId("available-panel-linked")
+            }
+
+            BeamAmount {
+                amount:            parseFloat(linked) ? linked : "-"
+                currencySymbol:    BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
+                spacing:           15
+                lightFont:         false
+                fontSize:          12
+            }
+            SFText {
+                font.pixelSize: 12
+                font.styleName: "Light"
+                font.weight:    Font.Light
+                color:          Qt.rgba(Style.content_main.r, Style.content_main.g, Style.content_main.b, 0.5)
+                //% "Unlinked"
+                text:           qsTrId("available-panel-unlinked")
+            }
+
+            BeamAmount {
+                amount:            unlinked
+                currencySymbol:    BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
+                spacing:           15
+                lightFont:         false
+                fontSize:          12
+            }
+        }
+    }
 
     Control {
         id:            lockedTip
@@ -157,6 +217,7 @@ Control {
         RowLayout{
             Layout.preferredWidth: parseFloat(receiving) > 0 || parseFloat(sending) > 0 ? parent.width / 2 : parent.width
             BeamAmount {
+                id:                availableAmount
                 amount:            available
                 currencySymbol:    BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
                 secondCurrencyLabel:        control.secondCurrencyLabel
@@ -169,6 +230,12 @@ Control {
                 copyMenuEnabled:   true
                 //% "Available"
                 caption:           qsTrId("available-panel-available")
+                showDrop:          parseFloat(unlinked)
+                MouseArea {
+                    id: amountArea
+                    anchors.fill: parent
+                    hoverEnabled: true
+                }
             }
 
             Item {
@@ -180,7 +247,6 @@ Control {
                 source:  "qrc:/assets/icon-unlink.svg"
                 width:   16
                 height:  16
-                Layout.rightMargin: 20
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
@@ -195,6 +261,7 @@ Control {
                 height:  45
                 visible: parseFloat(locked) > 0 || parseFloat(receiving) > 0 || parseFloat(sending)
                 Layout.rightMargin: 20
+                Layout.leftMargin: 20
             }
 
             BeamAmount {
@@ -211,7 +278,7 @@ Control {
                 visible:           parseFloat(locked) > 0
                 showDrop:          true
 
-                 MouseArea {
+                MouseArea {
                     id: lockedArea
                     anchors.fill: parent
                     hoverEnabled: true
@@ -220,6 +287,7 @@ Control {
 
             Item {
                 Layout.fillWidth: true
+                visible: parseFloat(locked) > 0 || parseFloat(receiving) > 0 || parseFloat(sending)
             }
         }
 

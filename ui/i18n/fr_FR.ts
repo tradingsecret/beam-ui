@@ -2508,5 +2508,13 @@ Your version is: %2. Please, check for updates.</source>
         <source>AMOUNT</source>
         <translation type="unfinished"></translation>
     </message>
+    <message id="available-panel-linked">
+        <source>Linked</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="available-panel-unlinked">
+        <source>Unlinked</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

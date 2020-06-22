@@ -52,6 +52,8 @@ public:
     beam::Height getCurrentHeight() const;
     beam::Timestamp getCurrentHeightTimestamp() const;
     beam::Block::SystemState::ID getCurrentStateID() const;
+    beam::Amount getLinked() const;
+    beam::Amount getUnlinked() const;
 
 signals:
     void walletStatus(const beam::wallet::WalletStatus& status);
@@ -89,6 +91,9 @@ signals:
     
     void exchangeRatesUpdate(const std::vector<beam::wallet::ExchangeRate>&);
     void notificationsChanged(beam::wallet::ChangeAction, const std::vector<beam::wallet::Notification>&);
+
+    void linkedChanged();
+    void unlinkedChanged();
 
 private:
     void onStatus(const beam::wallet::WalletStatus& status) override;

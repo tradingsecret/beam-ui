@@ -345,6 +345,16 @@ beam::Block::SystemState::ID WalletModel::getCurrentStateID() const
     return m_status.stateID;
 }
 
+beam::Amount WalletModel::getLinked() const
+{
+    return m_status.linked;
+}
+
+beam::Amount WalletModel::getUnlinked() const
+{
+    return m_status.unlinked;
+}
+
 void WalletModel::setStatus(const beam::wallet::WalletStatus& status)
 {
     if (m_status.available != status.available)
@@ -388,6 +398,18 @@ void WalletModel::setStatus(const beam::wallet::WalletStatus& status)
         m_status.stateID = status.stateID;
         m_status.update = status.update;
         emit stateIDChanged();
+    }
+
+    if (m_status.linked != status.linked)
+    {
+        m_status.linked = status.linked;
+        emit linkedChanged();
+    }
+
+    if (m_status.unlinked != status.unlinked)
+    {
+        m_status.unlinked = status.unlinked;
+        emit unlinkedChanged();
     }
 }
 

@@ -154,12 +154,21 @@ Item {
                 available:         viewModel.beamAvailable
                 locked:            viewModel.beamLocked
                 lockedMaturing:    viewModel.beamLockedMaturing
+                linked:            viewModel.beamLinked
+                unlinked:          viewModel.beamUnlinked
                 sending:           viewModel.beamSending
                 receiving:         viewModel.beamReceiving
                 receivingChange:   viewModel.beamReceivingChange
                 receivingIncoming: viewModel.beamReceivingIncoming
                 secondCurrencyLabel:        viewModel.secondCurrencyLabel
                 secondCurrencyRateValue:    viewModel.secondCurrencyRateValue
+                onUnlinkButtonClicked : {
+                    walletStackView.push(
+                        Qt.createComponent("unlink.qml"),
+                        {
+                            "onClosed": onClosed
+                        });
+                }
             }
 
             Item {
