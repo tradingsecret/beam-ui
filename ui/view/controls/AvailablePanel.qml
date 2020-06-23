@@ -75,8 +75,6 @@ Control {
 
             SFText {
                 font.pixelSize: 12
-                font.styleName: "Light"
-                font.weight:    Font.Light
                 color:          Qt.rgba(Style.content_main.r, Style.content_main.g, Style.content_main.b, 0.5)
                 //% "Linked"
                 text:           qsTrId("available-panel-linked")
@@ -91,8 +89,6 @@ Control {
             }
             SFText {
                 font.pixelSize: 12
-                font.styleName: "Light"
-                font.weight:    Font.Light
                 color:          Qt.rgba(Style.content_main.r, Style.content_main.g, Style.content_main.b, 0.5)
                 //% "Unlinked"
                 text:           qsTrId("available-panel-unlinked")
@@ -135,8 +131,6 @@ Control {
 
             SFText {
                 font.pixelSize: 12
-                font.styleName: "Light"
-                font.weight:    Font.Light
                 color:          Style.content_main
                 //% "Maturing"
                 text:           qsTrId("available-panel-maturing")
@@ -154,8 +148,6 @@ Control {
 
             SFText {
                 font.pixelSize: 12
-                font.styleName: "Light"
-                font.weight:    Font.Light
                 color:          Style.content_main
                 //% "Unlinking with Lelantus"
                 text:           qsTrId("available-panel-unlinking")
