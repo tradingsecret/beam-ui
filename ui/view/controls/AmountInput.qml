@@ -69,152 +69,169 @@ ColumnLayout {
     property var      setMaxAvailableAmount:    {} // callback function to set amount from viewmodel
     property bool     showSecondCurrency:       control.secondCurrencyLabel != "" && control.secondCurrencyLabel != control.currencyLabel
     readonly property bool  isExchangeRateAvailable:    control.secondCurrencyRateValue != "0"
+    property bool     isLelantusStyle: false
 
-    SFText {
-        font.pixelSize:   14
-        font.styleName:   "Bold"
-        font.weight:      Font.Bold
-        color:            Style.content_main
-        text:             control.title
-    }
-
-    RowLayout {
-        Layout.fillWidth: true
-
-        SFTextInput {
-            id:               ainput
-            Layout.fillWidth: true
-            font.pixelSize:   36
-            font.styleName:   "Light"
-            font.weight:      Font.Light
-            color:            error.length ? Style.validator_error : control.color
-            backgroundColor:  error.length ? Style.validator_error : Style.content_main
-            validator:        RegExpValidator {regExp: /^(([1-9][0-9]{0,7})|(1[0-9]{8})|(2[0-4][0-9]{7})|(25[0-3][0-9]{6})|(0))(\.[0-9]{0,7}[1-9])?$/}
-            selectByMouse:    true
-            text:             formatDisplayedAmount()
-            readOnly:         control.readOnlyA
-
-            onTextChanged: {
-                // if nothing then "0", remove insignificant zeroes and "." in floats
-                errmsg.text = "";
-                if (ainput.focus) {
-                    control.amount = text ? text.replace(/\.0*$|(\.\d*[1-9])0+$/,'$1') : "0"
-                }
-            }
-
-            onFocusChanged: {
-                text = formatDisplayedAmount()
-                if (focus) cursorPosition = positionAt(ainput.getMousePos().x, ainput.getMousePos().y)
-            }
-
-            function formatDisplayedAmount() {
-                return control.amountIn == "0" ? "" : (ainput.focus ? control.amountIn : Utils.uiStringToLocale(control.amountIn))
-            }
-
-            Connections {
-                target: control
-                onAmountInChanged: {
-                    if (!ainput.focus) {
-                        ainput.text = ainput.formatDisplayedAmount()
-                    }
-                }
-            }
-        }
-
+    ColumnLayout {
+        // Layout.fillWidth: true
+        // Layout.topMargin: 20
+        // Layout.bottomMargin: 20
+        // Layout.leftMargin: 20
+        // Layout.rightMargin: 20
+        // Rectangle {
+        //     x:      0
+        //     y:      0
+        //     width:  parent.width
+        //     height: parent.height
+        //     radius: 10
+        //     color:  Style.background_second
+        // }
+        
         SFText {
-            Layout.topMargin:   22
-            font.pixelSize:     24
-            font.letterSpacing: 0.6
-            color:              control.currColor
-            text:               control.currencyLabel
-            visible:            !multi
-        }
-
-        CustomComboBox {
-            id:                  currCombo
-            Layout.topMargin:    22
-            Layout.minimumWidth: 95
-            spacing:             0
-            fontPixelSize:       24
-            fontLetterSpacing:   0.6
-            currentIndex:        control.currency
-            color:               control.currColor
-            visible:             multi
-            model:               Utils.currenciesList()
-
-            onActivated: {
-                if (multi) control.currency = index
-                if (resetAmount) control.amount = 0
-            }
+            font.pixelSize:   14
+            font.styleName:   "Bold"
+            font.weight:      Font.Bold
+            color:            Style.content_main
+            text:             control.title
         }
 
         RowLayout {
-            id:                  addAllButton
-            Layout.alignment:    Qt.AlignBottom
-            Layout.bottomMargin: 7
-            Layout.leftMargin:   25
-            visible:             control.showAddAll
+            Layout.fillWidth: true
 
-            function addAll(){
-                ainput.focus = false;                
-                if (control.setMaxAvailableAmount) {
-                    control.setMaxAvailableAmount();
+            SFTextInput {
+                id:               ainput
+                Layout.fillWidth: true
+                font.pixelSize:   36
+                font.styleName:   "Light"
+                font.weight:      Font.Light
+                color:            error.length ? Style.validator_error : control.color
+                backgroundColor:  error.length ? Style.validator_error : Style.content_main
+                validator:        RegExpValidator {regExp: /^(([1-9][0-9]{0,7})|(1[0-9]{8})|(2[0-4][0-9]{7})|(25[0-3][0-9]{6})|(0))(\.[0-9]{0,7}[1-9])?$/}
+                selectByMouse:    true
+                text:             formatDisplayedAmount()
+                readOnly:         control.readOnlyA
+
+                onTextChanged: {
+                    // if nothing then "0", remove insignificant zeroes and "." in floats
+                    errmsg.text = "";
+                    if (ainput.focus) {
+                        control.amount = text ? text.replace(/\.0*$|(\.\d*[1-9])0+$/,'$1') : "0"
+                    }
                 }
-            }
 
-            SvgImage {
-                Layout.maximumHeight: 16
-                Layout.maximumWidth:  16
-                source: "qrc:/assets/icon-send-blue-copy-2.svg"
-                MouseArea {
-                    anchors.fill: parent
-                    acceptedButtons: Qt.LeftButton
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        addAllButton.addAll();
+                onFocusChanged: {
+                    text = formatDisplayedAmount()
+                    if (focus) cursorPosition = positionAt(ainput.getMousePos().x, ainput.getMousePos().y)
+                }
+
+                function formatDisplayedAmount() {
+                    return control.amountIn == "0" ? "" : (ainput.focus ? control.amountIn : Utils.uiStringToLocale(control.amountIn))
+                }
+
+                Connections {
+                    target: control
+                    onAmountInChanged: {
+                        if (!ainput.focus) {
+                            ainput.text = ainput.formatDisplayedAmount()
+                        }
                     }
                 }
             }
 
             SFText {
-                font.pixelSize:   14
-                font.styleName:   "Bold";
-                font.weight:      Font.Bold
-                color:            control.color
-                //% "add all"
-                text:             qsTrId("amount-input-add-all")
-                MouseArea {
-                    anchors.fill: parent
-                    acceptedButtons: Qt.LeftButton
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: {
-                        addAllButton.addAll();
+                Layout.topMargin:   22
+                font.pixelSize:     24
+                font.letterSpacing: 0.6
+                color:              control.currColor
+                text:               control.currencyLabel
+                visible:            !multi
+            }
+
+            CustomComboBox {
+                id:                  currCombo
+                Layout.topMargin:    22
+                Layout.minimumWidth: 95
+                spacing:             0
+                fontPixelSize:       24
+                fontLetterSpacing:   0.6
+                currentIndex:        control.currency
+                color:               control.currColor
+                visible:             multi
+                model:               Utils.currenciesList()
+
+                onActivated: {
+                    if (multi) control.currency = index
+                    if (resetAmount) control.amount = 0
+                }
+            }
+
+            RowLayout {
+                id:                  addAllButton
+                Layout.alignment:    Qt.AlignBottom
+                Layout.bottomMargin: 7
+                Layout.leftMargin:   25
+                visible:             control.showAddAll
+
+                function addAll(){
+                    ainput.focus = false;                
+                    if (control.setMaxAvailableAmount) {
+                        control.setMaxAvailableAmount();
+                    }
+                }
+
+                SvgImage {
+                    Layout.maximumHeight: 16
+                    Layout.maximumWidth:  16
+                    source: "qrc:/assets/icon-send-blue-copy-2.svg"
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.LeftButton
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: {
+                            addAllButton.addAll();
+                        }
+                    }
+                }
+
+                SFText {
+                    font.pixelSize:   14
+                    font.styleName:   "Bold";
+                    font.weight:      Font.Bold
+                    color:            control.color
+                    //% "add all"
+                    text:             qsTrId("amount-input-add-all")
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.LeftButton
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: {
+                            addAllButton.addAll();
+                        }
                     }
                 }
             }
         }
-    }
 
-    Item {
-        Layout.fillWidth: true
-        SFText {
-            id:              errmsg
-            color:           Style.validator_error
-            font.pixelSize:  12
-            font.styleName:  "Italic"
-            width:           parent.width
-            visible:         error.length
-        }
-        SFText {
-            id:             amountSecondCurrencyText
-            visible:        control.showSecondCurrency && !errmsg.visible && !showTotalFee  // show only on send side
-            font.pixelSize: 14
-            opacity:        isExchangeRateAvailable ? 0.5 : 0.7
-            color:          isExchangeRateAvailable ? Style.content_secondary : Style.accent_fail
-            text:           isExchangeRateAvailable
-                            ? getAmountInSecondCurrency()
-                            //% "Exchange rate to %1 is not available"
-                            : qsTrId("general-exchange-rate-not-available").arg(control.secondCurrencyLabel)
+        Item {
+            Layout.fillWidth: true
+            SFText {
+                id:              errmsg
+                color:           Style.validator_error
+                font.pixelSize:  12
+                font.styleName:  "Italic"
+                width:           parent.width
+                visible:         error.length
+            }
+            SFText {
+                id:             amountSecondCurrencyText
+                visible:        control.showSecondCurrency && !errmsg.visible && !showTotalFee  // show only on send side
+                font.pixelSize: 14
+                opacity:        isExchangeRateAvailable ? 0.5 : 0.7
+                color:          isExchangeRateAvailable ? Style.content_secondary : Style.accent_fail
+                text:           isExchangeRateAvailable
+                                ? getAmountInSecondCurrency()
+                                //% "Exchange rate to %1 is not available"
+                                : qsTrId("general-exchange-rate-not-available").arg(control.secondCurrencyLabel)
+            }
         }
     }
 

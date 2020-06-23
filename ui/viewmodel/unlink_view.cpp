@@ -19,8 +19,10 @@
 UnlinkViewModel::UnlinkViewModel() :
     _walletModel(*AppModel::getInstance().getWallet())
 {
+    connect(&_walletModel, SIGNAL(changeCalculated(beam::Amount)), SLOT(onChangeCalculated(beam::Amount)));
     connect(&_exchangeRatesManager, SIGNAL(rateUnitChanged()), SIGNAL(secondCurrencyLabelChanged()));
     connect(&_exchangeRatesManager, SIGNAL(activeRateChanged()), SIGNAL(secondCurrencyRateChanged()));
+    _unlinkAmountTotal = _walletModel.getLinked();
 }
 
 UnlinkViewModel::~UnlinkViewModel()
@@ -28,29 +30,52 @@ UnlinkViewModel::~UnlinkViewModel()
 
 }
 
-QString UnlinkViewModel::getTotalToUnlink()
+QString UnlinkViewModel::getTotalToUnlink() const
 {
-    return beamui::AmountToUIString(_unlinkAmountGrothes);
+    return beamui::AmountToUIString(_unlinkAmountTotal);
 }
 
-QString UnlinkViewModel::getUnlinkAmount()
+QString UnlinkViewModel::getUnlinkAmount() const
 {
-    return beamui::AmountToUIString(_unlinkAmountGrothes);
+    return beamui::AmountToUIString(_unlinkAmount);
 }
 
-QString UnlinkViewModel::getChange()
+void UnlinkViewModel::setUnlinkAmount(QString value)
+{
+    beam::Amount amount = beamui::UIStringToAmount(value);
+    if (amount != _unlinkAmount)
+    {
+        _unlinkAmount = amount;
+        LOG_DEBUG() << "Send amount: " << _unlinkAmount << " Coins: " << (long double)_unlinkAmount / beam::Rules::Coin;
+        _walletModel.getAsync()->calcChange(_unlinkAmount + _feeGrothes);
+        emit unlinkAmountChanged();
+    }
+}
+
+QString UnlinkViewModel::getChange() const
 {
     return beamui::AmountToUIString(_changeGrothes);
 }
 
-unsigned int UnlinkViewModel::getFeeGrothes()
+unsigned int UnlinkViewModel::getFeeGrothes() const
 {
     return _feeGrothes;
 }
 
-QString UnlinkViewModel::getAvailable()
+void UnlinkViewModel::setFeeGrothes(unsigned int value)
 {
-    return beamui::AmountToUIString(_walletModel.getAvailable());
+    if (value != _feeGrothes)
+    {
+        _feeGrothes = value;
+        _walletModel.getAsync()->calcChange(_unlinkAmount + _feeGrothes);
+        emit feeGrothesChanged();
+        // emit canSendChanged();
+    }
+}
+
+QString UnlinkViewModel::getRemaining()
+{
+    return beamui::AmountToUIString(_unlinkAmountTotal - _unlinkAmount - _feeGrothes);
 }
 
 QString UnlinkViewModel::getSecondCurrencyLabel()
@@ -62,4 +87,20 @@ QString UnlinkViewModel::getSecondCurrencyRateValue()
 {
     auto rate = _exchangeRatesManager.getRate(beam::wallet::ExchangeRate::Currency::Beam);
     return beamui::AmountToUIString(rate);
+}
+
+void UnlinkViewModel::setMaxAvailableAmount()
+{
+    setUnlinkAmount(getMaxToUnlink());
+}
+
+void UnlinkViewModel::onChangeCalculated(beam::Amount change)
+{
+    _changeGrothes = change;
+    emit remainingChanged();
+}
+
+QString UnlinkViewModel::getMaxToUnlink() const
+{
+    return beamui::AmountToUIString(_unlinkAmountTotal - _feeGrothes);
 }

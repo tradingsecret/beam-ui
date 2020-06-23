@@ -21,36 +21,47 @@ class UnlinkViewModel: public QObject
 {
     Q_OBJECT
 
-    Q_PROPERTY(QString  totalToUnlink           READ getTotalToUnlink                                 NOTIFY availableChanged)
-    Q_PROPERTY(QString  unlinkAmount            READ getUnlinkAmount            /*WRITE setUnlinkAmount*/ NOTIFY unlinkAmountChanged)
-    Q_PROPERTY(QString  change                  READ getChange                                        NOTIFY availableChanged)
-    Q_PROPERTY(unsigned int  feeGrothes         READ getFeeGrothes              /*WRITE setFeeGrothes*/   NOTIFY feeGrothesChanged)
-    Q_PROPERTY(QString  available               READ getAvailable                                     NOTIFY availableChanged)
-    Q_PROPERTY(QString  secondCurrencyLabel     READ getSecondCurrencyLabel                           NOTIFY secondCurrencyLabelChanged)
-    Q_PROPERTY(QString  secondCurrencyRateValue READ getSecondCurrencyRateValue                       NOTIFY secondCurrencyRateChanged)
+    Q_PROPERTY(QString  totalToUnlink           READ getTotalToUnlink                                  NOTIFY remainingChanged)
+    Q_PROPERTY(QString  unlinkAmount            READ getUnlinkAmount            WRITE setUnlinkAmount  NOTIFY unlinkAmountChanged)
+    Q_PROPERTY(QString  change                  READ getChange                                         NOTIFY remainingChanged)
+    Q_PROPERTY(unsigned int  feeGrothes         READ getFeeGrothes              WRITE setFeeGrothes    NOTIFY feeGrothesChanged)
+    Q_PROPERTY(QString  remaining               READ getRemaining                                      NOTIFY remainingChanged)
+    Q_PROPERTY(QString  secondCurrencyLabel     READ getSecondCurrencyLabel                            NOTIFY secondCurrencyLabelChanged)
+    Q_PROPERTY(QString  secondCurrencyRateValue READ getSecondCurrencyRateValue                        NOTIFY secondCurrencyRateChanged)
 
 public:
     UnlinkViewModel();
     ~UnlinkViewModel();
-    QString getTotalToUnlink();
-    QString getUnlinkAmount();
-    QString getChange();
-    unsigned int getFeeGrothes();
-    QString getAvailable();
+    QString getTotalToUnlink() const;
+    QString getUnlinkAmount() const;
+    void setUnlinkAmount(QString value);
+    QString getChange() const;
+    unsigned int getFeeGrothes() const;
+    void setFeeGrothes(unsigned int value);
+    QString getRemaining();
     QString getSecondCurrencyLabel();
     QString getSecondCurrencyRateValue();
 
+public:
+    Q_INVOKABLE void setMaxAvailableAmount();
+
+public slots:
+    void onChangeCalculated(beam::Amount change);
+
 signals:
-    void availableChanged();
+    void remainingChanged();
     void unlinkAmountChanged();
     void feeGrothesChanged();
     void secondCurrencyLabelChanged();
     void secondCurrencyRateChanged();
 
 private:
-    beam::Amount _unlinkAmountGrothes = 100000000;
-    beam::Amount _feeGrothes = 100000000;
-    beam::Amount _changeGrothes = 100000000;
+    QString getMaxToUnlink() const;
+
+    beam::Amount _unlinkAmount = 0;
+    beam::Amount _unlinkAmountTotal = 0;
+    beam::Amount _feeGrothes = 0;
+    beam::Amount _changeGrothes = 0;
 
     WalletModel& _walletModel;
     ExchangeRatesManager _exchangeRatesManager;
