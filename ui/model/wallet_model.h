@@ -54,6 +54,7 @@ public:
     beam::Block::SystemState::ID getCurrentStateID() const;
     beam::Amount getLinked() const;
     beam::Amount getUnlinked() const;
+    beam::Amount getShielded() const;
 
 signals:
     void walletStatus(const beam::wallet::WalletStatus& status);
@@ -94,6 +95,7 @@ signals:
 
     void linkedChanged();
     void unlinkedChanged();
+    void shieldedChanged();
 
 private:
     void onStatus(const beam::wallet::WalletStatus& status) override;

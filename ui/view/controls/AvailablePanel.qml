@@ -20,6 +20,7 @@ Control {
     property string secondCurrencyRateValue
     property string linked
     property string unlinked
+    property string lockedShielded
     signal unlinkButtonClicked()
 
     property var onOpenExternal: null
@@ -129,14 +130,17 @@ Control {
             rowSpacing:    10
             columns:       2
             rows:          2
+            property bool showMaturing: parseFloat(lockedMaturing) > 0
+            property bool showShielded: parseFloat(lockedShielded) > 0
 
             SFText {
                 font.pixelSize: 12
                 font.styleName: "Light"
                 font.weight:    Font.Light
-                color:          Qt.rgba(Style.content_main.r, Style.content_main.g, Style.content_main.b, 0.5)
+                color:          Style.content_main
                 //% "Maturing"
                 text:           qsTrId("available-panel-maturing")
+                visible:        parent.showMaturing
             }
 
             BeamAmount {
@@ -145,6 +149,26 @@ Control {
                 spacing:           15
                 lightFont:         false
                 fontSize:          12
+                visible:           parent.showMaturing
+            }
+
+            SFText {
+                font.pixelSize: 12
+                font.styleName: "Light"
+                font.weight:    Font.Light
+                color:          Style.content_main
+                //% "Unlinking with Lelantus"
+                text:           qsTrId("available-panel-unlinking")
+                visible:        parent.showShielded
+            }
+
+            BeamAmount {
+                amount:            lockedShielded
+                currencySymbol:    BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
+                spacing:           15
+                lightFont:         false
+                fontSize:          12
+                visible:           parent.showShielded
             }
         }
     }
@@ -259,7 +283,7 @@ Control {
                 color:   Qt.rgba(255, 255, 255, 0.1)
                 width:   1
                 height:  45
-                visible: parseFloat(locked) > 0 || parseFloat(receiving) > 0 || parseFloat(sending)
+                visible: parseFloat(locked) > 0 || parseFloat(receiving) > 0 || parseFloat(sending) > 0
                 Layout.rightMargin: 20
                 Layout.leftMargin: 20
             }
@@ -287,7 +311,7 @@ Control {
 
             Item {
                 Layout.fillWidth: true
-                visible: parseFloat(locked) > 0 || parseFloat(receiving) > 0 || parseFloat(sending)
+                visible: parseFloat(locked) > 0 || parseFloat(receiving) > 0 || parseFloat(sending) > 0
             }
         }
 

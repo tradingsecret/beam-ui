@@ -156,6 +156,7 @@ Item {
                 lockedMaturing:    viewModel.beamLockedMaturing
                 linked:            viewModel.beamLinked
                 unlinked:          viewModel.beamUnlinked
+                lockedShielded:    viewModel.beamLockedShielded
                 sending:           viewModel.beamSending
                 receiving:         viewModel.beamReceiving
                 receivingChange:   viewModel.beamReceivingChange

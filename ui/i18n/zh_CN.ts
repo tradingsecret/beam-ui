@@ -2531,5 +2531,9 @@ Your version is: %2. Please, check for updates.</source>
         <source>Unlinked</source>
         <translation type="unfinished"></translation>
     </message>
+    <message id="available-panel-unlinking">
+        <source>Unlinking with Lelantus</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

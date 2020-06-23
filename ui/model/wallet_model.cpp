@@ -355,6 +355,11 @@ beam::Amount WalletModel::getUnlinked() const
     return m_status.unlinked;
 }
 
+beam::Amount WalletModel::getShielded() const
+{
+    return m_status.shielded;
+}
+
 void WalletModel::setStatus(const beam::wallet::WalletStatus& status)
 {
     if (m_status.available != status.available)
@@ -410,6 +415,12 @@ void WalletModel::setStatus(const beam::wallet::WalletStatus& status)
     {
         m_status.unlinked = status.unlinked;
         emit unlinkedChanged();
+    }
+
+    if (m_status.shielded != status.shielded)
+    {
+        m_status.shielded = status.shielded;
+        emit shieldedChanged();
     }
 }
 

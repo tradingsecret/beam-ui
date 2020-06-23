@@ -58,6 +58,7 @@ WalletViewModel::WalletViewModel()
             this, SLOT(onTxHistoryExportedToCsv(const QString&)));
     connect(&_model, SIGNAL(linkedChanged()), this, SIGNAL(beamLinkedChanged()));
     connect(&_model, SIGNAL(unlinkedChanged()), this, SIGNAL(beamUnlinkedChanged()));
+    connect(&_model, SIGNAL(shieldedChanged()), this, SIGNAL(beamLockedShieldedChanged()));
 
     connect(&_exchangeRatesManager, SIGNAL(rateUnitChanged()), SIGNAL(secondCurrencyLabelChanged()));
     connect(&_exchangeRatesManager, SIGNAL(activeRateChanged()), SIGNAL(secondCurrencyRateChanged()));
@@ -226,9 +227,14 @@ QString WalletViewModel::beamUnlinked() const
     return beamui::AmountToUIString(_model.getUnlinked());
 }
 
+QString WalletViewModel::beamLockedShielded() const
+{
+    return beamui::AmountToUIString(_model.getShielded());
+}
+
 QString WalletViewModel::beamLocked() const
 {
-    return beamLockedMaturing();
+    return beamui::AmountToUIString(_model.getMaturing() + _model.getShielded());
 }
 
 QString WalletViewModel::beamLockedMaturing() const

@@ -40,6 +40,7 @@ class WalletViewModel : public QObject
     Q_PROPERTY(QAbstractItemModel* transactions      READ getTransactions            NOTIFY transactionsChanged)
     Q_PROPERTY(QString beamLinked                    READ beamLinked                 NOTIFY beamLinkedChanged)
     Q_PROPERTY(QString beamUnlinked                  READ beamUnlinked               NOTIFY beamUnlinkedChanged)
+    Q_PROPERTY(QString beamLockedShielded            READ beamLockedShielded         NOTIFY beamLockedShieldedChanged)
 
 public:
     WalletViewModel();
@@ -53,6 +54,7 @@ public:
     QString beamReceivingIncoming() const;
     QString beamLinked() const;
     QString beamUnlinked() const;
+    QString beamLockedShielded() const;
 
     QString getSecondCurrencyLabel() const;
     QString getSecondCurrencyRateValue() const;
@@ -87,6 +89,7 @@ signals:
 
     void beamLinkedChanged();
     void beamUnlinkedChanged();
+    void beamLockedShieldedChanged();
 
 private:
     WalletModel& _model;
