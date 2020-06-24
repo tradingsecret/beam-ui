@@ -5,8 +5,6 @@ import "controls"
 
 ColumnLayout {
     id: unlinkView
-    Layout.fillWidth:    true
-    Layout.fillHeight:   true
 
     // callbacks set by parent
     property var onClosed: undefined
@@ -18,9 +16,9 @@ ColumnLayout {
     RowLayout {
         Layout.fillWidth: true
         Layout.topMargin: 105
-        Layout.bottomMargin: 30
         Layout.preferredHeight: 16
         Layout.maximumHeight: 16
+
         Item {
             Layout.fillWidth:  true
             Layout.fillHeight: true
@@ -72,8 +70,7 @@ ColumnLayout {
     }
 
     RowLayout  {
-        Layout.fillWidth: true
-        Layout.alignment:    Qt.AlignTop
+        Layout.topMargin: 30
         spacing:    10
 
         //
@@ -81,7 +78,17 @@ ColumnLayout {
         //
         ColumnLayout {
             Layout.fillWidth: true
-            Layout.alignment:       Qt.AlignTop
+            Layout.alignment: Qt.AlignTop
+
+            Item {
+                Layout.fillWidth: true
+                height: 10
+            }
+
+            SFText {
+                Layout.fillWidth: true
+                text: "test"
+            }
 
             AmountInput {
                 //% "AMOUNT"
@@ -115,11 +122,9 @@ ColumnLayout {
         // Right column
         //
         ColumnLayout {
-            Layout.minimumWidth: parent.width / 2
-            Layout.alignment:       Qt.AlignTop
+            Layout.fillWidth: true
             GridLayout {
-                Layout.minimumWidth: parent.width
-                columnSpacing:       20
+                Layout.fillWidth: true
                 rowSpacing:          10
                 columns:             2
 
@@ -133,7 +138,7 @@ ColumnLayout {
                 }
 
                 SFText {
-                    Layout.alignment:       Qt.AlignTop
+                    Layout.fillWidth: true
                     Layout.topMargin:       20
                     Layout.leftMargin:      30
                     font.pixelSize:         14
@@ -144,9 +149,8 @@ ColumnLayout {
 
                 BeamAmount
                 {
-                    Layout.alignment:       Qt.AlignTop
+                    Layout.fillWidth: true
                     Layout.topMargin:       20
-                    Layout.rightMargin:     25
                     // error:                  showInsufficientBalanceWarning
                     amount:                 viewModel.totalToUnlink
                     currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
@@ -155,7 +159,6 @@ ColumnLayout {
                 }
 
                 SFText {
-                    Layout.alignment:       Qt.AlignTop
                     Layout.leftMargin:      30
                     font.pixelSize:         14
                     color:                  Style.content_secondary
@@ -165,8 +168,6 @@ ColumnLayout {
 
                 BeamAmount
                 {
-                    Layout.alignment:       Qt.AlignTop
-                    Layout.rightMargin:     25
                     // error:                  showInsufficientBalanceWarning
                     amount:                 viewModel.unlinkAmount
                     currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
@@ -175,7 +176,6 @@ ColumnLayout {
                 }
 
                 SFText {
-                    Layout.alignment:       Qt.AlignTop
                     Layout.leftMargin:      30
                     font.pixelSize:         14
                     color:                  Style.content_secondary
@@ -184,8 +184,6 @@ ColumnLayout {
 
                 BeamAmount
                 {
-                    Layout.alignment:       Qt.AlignTop
-                    Layout.rightMargin:     25
                     // error:                  showInsufficientBalanceWarning
                     amount:                 viewModel.change
                     currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
@@ -194,7 +192,6 @@ ColumnLayout {
                 }
 
                 SFText {
-                    Layout.alignment:       Qt.AlignTop
                     Layout.leftMargin:      30
                     font.pixelSize:         14
                     color:                  Style.content_secondary
@@ -204,8 +201,6 @@ ColumnLayout {
 
                 BeamAmount
                 {
-                    Layout.alignment:       Qt.AlignTop
-                    Layout.rightMargin:     25
                     // error:                  showInsufficientBalanceWarning
                     amount:                 viewModel.feeGrothes
                     currencySymbol:         qsTrId("general-groth")
@@ -214,9 +209,8 @@ ColumnLayout {
                 }
 
                 SFText {
-                    Layout.alignment:       Qt.AlignTop
                     Layout.leftMargin:      30
-                    Layout.bottomMargin:    21
+                    Layout.bottomMargin:    20
                     font.pixelSize:         14
                     color:                  Style.content_secondary
                     text:                   qsTrId("general-remaining-label") + ":"
@@ -224,9 +218,7 @@ ColumnLayout {
 
                 BeamAmount
                 {
-                    Layout.alignment:       Qt.AlignTop
-                    Layout.rightMargin:     25
-                    Layout.bottomMargin:    21
+                    Layout.bottomMargin:    20
                     // error:                  showInsufficientBalanceWarning
                     amount:                 viewModel.remaining
                     currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
@@ -238,8 +230,7 @@ ColumnLayout {
     }
 
     RowLayout {
-        Layout.fillWidth: true
-        Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        Layout.alignment: Qt.AlignHCenter
         Layout.topMargin: 30
         SFText {
             font.pixelSize:  14
@@ -251,8 +242,7 @@ ColumnLayout {
     }
 
     RowLayout {
-        Layout.fillWidth: true
-        Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        Layout.alignment: Qt.AlignHCenter
         Layout.topMargin: 10
         SFText {
             font.pixelSize:  14
@@ -261,19 +251,15 @@ ColumnLayout {
         }
     }
 
-    RowLayout {
-        Layout.fillWidth: true
-        Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+    PrimaryButton {
+        Layout.alignment: Qt.AlignHCenter
         Layout.topMargin: 20
-        Layout.bottomMargin: 150
-        PrimaryButton {
-            Layout.preferredHeight: 38
-            //% "unlink"
-            text: qsTrId("unlink-confirm-button")
-            icon.source: "qrc:/assets/icon-unlink-black.svg"
-            onClicked: {
-                console.log("unlink accepted");
-            }
+        Layout.preferredHeight: 38
+        //% "unlink"
+        text: qsTrId("unlink-confirm-button")
+        icon.source: "qrc:/assets/icon-unlink-black.svg"
+        onClicked: {
+            console.log("unlink accepted");
         }
     }
 
