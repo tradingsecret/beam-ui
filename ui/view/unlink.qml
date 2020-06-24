@@ -69,28 +69,20 @@ ColumnLayout {
         }
     }
 
-    RowLayout  {
+    RowLayout {
         Layout.topMargin: 30
         spacing:    10
+        Layout.preferredWidth: parent.implicitWidth
 
         //
         // Left column
         //
         ColumnLayout {
-            Layout.fillWidth: true
+            Layout.preferredWidth: parent.width / 2
             Layout.alignment: Qt.AlignTop
 
-            Item {
-                Layout.fillWidth: true
-                height: 10
-            }
-
-            SFText {
-                Layout.fillWidth: true
-                text: "test"
-            }
-
             AmountInput {
+                Layout.fillWidth: true
                 //% "AMOUNT"
                 title:            qsTrId("unlink-amount-title")
                 id:               unlinkAmountInput
@@ -122,9 +114,9 @@ ColumnLayout {
         // Right column
         //
         ColumnLayout {
-            Layout.fillWidth: true
+            Layout.preferredWidth: parent.width / 2
             GridLayout {
-                Layout.fillWidth: true
+                Layout.preferredWidth: parent.width
                 rowSpacing:          10
                 columns:             2
 
@@ -139,6 +131,7 @@ ColumnLayout {
 
                 SFText {
                     Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop
                     Layout.topMargin:       20
                     Layout.leftMargin:      30
                     font.pixelSize:         14
@@ -159,6 +152,7 @@ ColumnLayout {
                 }
 
                 SFText {
+                    Layout.alignment: Qt.AlignTop
                     Layout.leftMargin:      30
                     font.pixelSize:         14
                     color:                  Style.content_secondary
@@ -176,6 +170,7 @@ ColumnLayout {
                 }
 
                 SFText {
+                    Layout.alignment: Qt.AlignTop
                     Layout.leftMargin:      30
                     font.pixelSize:         14
                     color:                  Style.content_secondary
@@ -192,6 +187,7 @@ ColumnLayout {
                 }
 
                 SFText {
+                    Layout.alignment: Qt.AlignTop
                     Layout.leftMargin:      30
                     font.pixelSize:         14
                     color:                  Style.content_secondary
@@ -209,6 +205,7 @@ ColumnLayout {
                 }
 
                 SFText {
+                    Layout.alignment: Qt.AlignTop
                     Layout.leftMargin:      30
                     Layout.bottomMargin:    20
                     font.pixelSize:         14
