@@ -8,6 +8,11 @@ ColumnLayout {
 
     // callbacks set by parent
     property var onClosed: undefined
+    property var onAccepted: undefined
+
+    readonly property bool showInsufficientBalanceWarning:
+        !viewModel.isEnough &&
+        !(viewModel.isZeroBalance && (viewModel.unlinkAmount == "" || viewModel.unlinkAmount == "0"))
 
     UnlinkViewModel {
         id: viewModel
@@ -102,10 +107,10 @@ ColumnLayout {
                 minimalFee: 1000
                 //% "Unlinking fee"
                 feeTitle: qsTrId("unlink-fee-label").toUpperCase()
-                // error:            showInsufficientBalanceWarning
-                //                   //% "Insufficient funds: you would need %1 to complete the transaction"
-                //                   ? qsTrId("send-founds-fail").arg(Utils.uiStringToLocale(viewModel.missing))
-                //                   : ""
+                error:            showInsufficientBalanceWarning
+                                  //% "Insufficient funds: you would need %1 to complete the transaction"
+                                  ? qsTrId("send-founds-fail").arg(Utils.uiStringToLocale(viewModel.missing))
+                                  : ""
             }
             Binding {
                 target:   viewModel
@@ -156,7 +161,7 @@ ColumnLayout {
                 {
                     Layout.fillWidth: true
                     Layout.topMargin:       20
-                    // error:                  showInsufficientBalanceWarning
+                    error:                  showInsufficientBalanceWarning
                     amount:                 viewModel.totalToUnlink
                     currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
                     secondCurrencyLabel:    viewModel.secondCurrencyLabel
@@ -174,7 +179,7 @@ ColumnLayout {
 
                 BeamAmount
                 {
-                    // error:                  showInsufficientBalanceWarning
+                    error:                  showInsufficientBalanceWarning
                     amount:                 viewModel.unlinkAmount
                     currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
                     secondCurrencyLabel:    viewModel.secondCurrencyLabel
@@ -191,7 +196,7 @@ ColumnLayout {
 
                 BeamAmount
                 {
-                    // error:                  showInsufficientBalanceWarning
+                    error:                  showInsufficientBalanceWarning
                     amount:                 viewModel.change
                     currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
                     secondCurrencyLabel:    viewModel.secondCurrencyLabel
@@ -209,7 +214,7 @@ ColumnLayout {
 
                 BeamAmount
                 {
-                    // error:                  showInsufficientBalanceWarning
+                    error:                  showInsufficientBalanceWarning
                     amount:                 viewModel.feeGrothes
                     currencySymbol:         qsTrId("general-groth")
                     secondCurrencyLabel:    viewModel.secondCurrencyLabel
@@ -228,7 +233,7 @@ ColumnLayout {
                 BeamAmount
                 {
                     Layout.bottomMargin:    20
-                    // error:                  showInsufficientBalanceWarning
+                    error:                  showInsufficientBalanceWarning
                     amount:                 viewModel.remaining
                     currencySymbol:         BeamGlobals.getCurrencyLabel(Currency.CurrBeam)
                     secondCurrencyLabel:    viewModel.secondCurrencyLabel
@@ -267,6 +272,7 @@ ColumnLayout {
         //% "Unlink"
         text: qsTrId("general-unlink")
         icon.source: "qrc:/assets/icon-unlink-black.svg"
+        enabled: viewModel.canSend
         onClicked: {                
                 const dialogComponent = Qt.createComponent("send_confirm.qml");
                 const dialogObject = dialogComponent.createObject(unlinkView,
@@ -282,6 +288,7 @@ ColumnLayout {
 
                 function acceptedCallback() {
                     console.log("unlink accepted");
+                    unlinkView.onAccepted();
                     // viewModel.sendMoney();
                 }
             }

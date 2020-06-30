@@ -15,6 +15,7 @@
 
 #include "model/app_model.h"
 #include "ui_helpers.h"
+#include "qml_globals.h"
 
 UnlinkViewModel::UnlinkViewModel() :
     _walletModel(*AppModel::getInstance().getWallet())
@@ -49,6 +50,7 @@ void UnlinkViewModel::setUnlinkAmount(QString value)
         LOG_DEBUG() << "Send amount: " << _unlinkAmount << " Coins: " << (long double)_unlinkAmount / beam::Rules::Coin;
         _walletModel.getAsync()->calcChange(_unlinkAmount + _feeGrothes);
         emit unlinkAmountChanged();
+        emit canSendChanged();
     }
 }
 
@@ -69,13 +71,13 @@ void UnlinkViewModel::setFeeGrothes(unsigned int value)
         _feeGrothes = value;
         _walletModel.getAsync()->calcChange(_unlinkAmount + _feeGrothes);
         emit feeGrothesChanged();
-        // emit canSendChanged();
+        emit canSendChanged();
     }
 }
 
 QString UnlinkViewModel::getRemaining()
 {
-    return beamui::AmountToUIString(_unlinkAmountTotal - _unlinkAmount - _feeGrothes);
+    return beamui::AmountToUIString(isEnough() ? _unlinkAmountTotal - _unlinkAmount - _feeGrothes : 0);
 }
 
 QString UnlinkViewModel::getSecondCurrencyLabel()
@@ -89,6 +91,26 @@ QString UnlinkViewModel::getSecondCurrencyRateValue()
     return beamui::AmountToUIString(rate);
 }
 
+QString UnlinkViewModel::getMissing() const
+{
+    return beamui::AmountToUIString(_unlinkAmount + _feeGrothes - _unlinkAmountTotal);
+}
+
+bool UnlinkViewModel::isZeroBalance() const
+{
+    return _unlinkAmountTotal == 0;
+}
+
+bool UnlinkViewModel::isEnough() const
+{
+    return _unlinkAmountTotal >= _unlinkAmount + _feeGrothes + _changeGrothes;
+}
+
+bool UnlinkViewModel::canSend() const
+{
+    return _unlinkAmount > 0 && isEnough() && QMLGlobals::isLelantusFeeOK(_feeGrothes);
+}
+
 void UnlinkViewModel::setMaxAvailableAmount()
 {
     setUnlinkAmount(getMaxToUnlink());
@@ -98,6 +120,8 @@ void UnlinkViewModel::onChangeCalculated(beam::Amount change)
 {
     _changeGrothes = change;
     emit remainingChanged();
+    emit isEnoughChanged();
+    emit canSendChanged();
 }
 
 QString UnlinkViewModel::getMaxToUnlink() const

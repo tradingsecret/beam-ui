@@ -167,6 +167,7 @@ int QMLGlobals::maxCommentLength()
     return 1024;
 }
 
+// static
 bool QMLGlobals::isFeeOK(uint32_t fee, Currency currency)
 {
     switch (currency)
@@ -179,6 +180,12 @@ bool QMLGlobals::isFeeOK(uint32_t fee, Currency currency)
         assert(false);
         return false;
     }
+}
+
+// static
+bool QMLGlobals::isLelantusFeeOK(uint32_t fee)
+{
+    return fee >= minFeeBeam() * 10;
 }
 
 uint32_t QMLGlobals::minFeeBeam()
@@ -198,6 +205,7 @@ bool QMLGlobals::isPasswordValid(const QString& value)
     return AppModel::getInstance().checkWalletPassword(secretPass);
 }
 
+// static
 int QMLGlobals::getMinFeeOrRate(Currency currency)
 {
     switch (currency) {
@@ -414,6 +422,7 @@ unsigned int QMLGlobals::getDefaultFee(Currency currency)
     }
 }
 
+// static
 bool QMLGlobals::isSwapFeeOK(unsigned int amount, unsigned int fee, Currency currency)
 {
     switch (currency) {

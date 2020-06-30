@@ -28,6 +28,10 @@ class UnlinkViewModel: public QObject
     Q_PROPERTY(QString  remaining               READ getRemaining                                      NOTIFY remainingChanged)
     Q_PROPERTY(QString  secondCurrencyLabel     READ getSecondCurrencyLabel                            NOTIFY secondCurrencyLabelChanged)
     Q_PROPERTY(QString  secondCurrencyRateValue READ getSecondCurrencyRateValue                        NOTIFY secondCurrencyRateChanged)
+    Q_PROPERTY(QString  missing                 READ getMissing                                        NOTIFY remainingChanged)
+    Q_PROPERTY(bool     isZeroBalance           READ isZeroBalance                                     NOTIFY remainingChanged)
+    Q_PROPERTY(bool     isEnough                READ isEnough                                          NOTIFY isEnoughChanged)
+    Q_PROPERTY(bool     canSend                 READ canSend                                           NOTIFY canSendChanged)
 
 public:
     UnlinkViewModel();
@@ -41,6 +45,10 @@ public:
     QString getRemaining();
     QString getSecondCurrencyLabel();
     QString getSecondCurrencyRateValue();
+    QString getMissing() const;
+    bool isZeroBalance() const;
+    bool isEnough() const;
+    bool canSend() const;
 
 public:
     Q_INVOKABLE void setMaxAvailableAmount();
@@ -54,6 +62,8 @@ signals:
     void feeGrothesChanged();
     void secondCurrencyLabelChanged();
     void secondCurrencyRateChanged();
+    void isEnoughChanged();
+    void canSendChanged();
 
 private:
     QString getMaxToUnlink() const;

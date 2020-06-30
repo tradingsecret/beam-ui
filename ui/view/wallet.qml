@@ -167,7 +167,8 @@ Item {
                     walletStackView.push(
                         Qt.createComponent("unlink.qml"),
                         {
-                            "onClosed": onClosed
+                            "onClosed": onClosed,
+                            "onAccepted": onAccepted
                         });
                 }
             }

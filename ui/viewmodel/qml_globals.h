@@ -37,6 +37,7 @@ public:
 
     // Currency utils
     static bool isFeeOK(unsigned int fee, Currency currency);
+    static bool isLelantusFeeOK(uint32_t fee);
     static bool isSwapFeeOK(unsigned int amount, unsigned int fee, Currency currency);
     static int  getMinFeeOrRate(Currency currency);
     Q_INVOKABLE static QString calcTotalFee(Currency currency, unsigned int feeRate);
