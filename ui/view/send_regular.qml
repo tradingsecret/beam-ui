@@ -73,7 +73,6 @@ ColumnLayout {
             Layout.alignment: Qt.AlignTop
             Layout.leftMargin: 25
             Layout.fillWidth: true
-            Layout.preferredWidth: 100
 
             SFText {
                 font.pixelSize:  14
@@ -194,9 +193,9 @@ ColumnLayout {
             Layout.rightMargin: 35
             Layout.fillWidth: true
             Layout.fillHeight: true
-            Layout.preferredWidth: 100
 
             AmountInput {
+                Layout.preferredWidth: parent.width
                 //% "Send"
                 title:            qsTrId("send-title")
                 id:               sendAmountInput
@@ -211,6 +210,8 @@ ColumnLayout {
                                   //% "Insufficient funds: you would need %1 to complete the transaction"
                                   ? qsTrId("send-founds-fail").arg(Utils.uiStringToLocale(viewModel.missing))
                                   : ""
+                // enableDoubleFrame:  true
+                // feeFieldFillWidth: true
             }
 
             Binding {

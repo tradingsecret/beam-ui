@@ -72,19 +72,15 @@ Update your settings and try again."
         text:       qsTrId("swap-na-message")
     }
 
-    Item {
-        Layout.fillWidth:    true
+    SFText {
         Layout.topMargin:    75
-        //Layout.bottomMargin: 50
-
-        SFText {
-            x:                   parent.width / 2 - width / 2
-            font.pixelSize:      18
-            font.styleName:      "Bold"; font.weight: Font.Bold
-            color:               Style.content_main
-            //% "Create a Swap Offer"
-            text:                qsTrId("wallet-receive-swap-title")
-        }
+        Layout.alignment: Qt.AlignHCenter
+        x:                   parent.width / 2 - width / 2
+        font.pixelSize:      18
+        font.styleName:      "Bold"; font.weight: Font.Bold
+        color:               Style.content_main
+        //% "Create a Swap Offer"
+        text:                qsTrId("wallet-receive-swap-title")
     }
 
     Item {
@@ -103,18 +99,26 @@ Update your settings and try again."
         ScrollBar.vertical.policy:   ScrollBar.AsNeeded
 
         ColumnLayout {
-            width: scrollView.availableWidth
+            Layout.fillWidth: true
 
-            Grid {
+            RowLayout {
                 Layout.fillWidth: true
-                columnSpacing:    10
-                columns:          3
+                Layout.topMargin: 35
+                spacing:    10
 
+                property double inputColumnWidth: thisView.width / 2 - 25
+
+                //
+                // Left column
+                //
                 ColumnLayout {
-                    width: parent.width / 2 - parent.columnSpacing / 2 - 20
+                    Layout.fillWidth: true
+                    Layout.preferredWidth: parent.inputColumnWidth
+                    Layout.alignment: Qt.AlignTop
 
                     AmountInput {
-                        Layout.topMargin: 35
+                        Layout.fillWidth: true
+                        Layout.preferredWidth: parent.width
                         //% "Send amount"
                         title:            qsTrId("sent-amount-label")
                         id:               sentAmountInput
@@ -231,44 +235,52 @@ please review your settings and try again"
                     }
                 }  // ColumnLayout
 
-                ColumnLayout {
-                    Item {
-                        height: 75
-                    }
-                    SvgImage {
-                        Layout.maximumHeight: 26
-                        Layout.maximumWidth: 26
-                        source: "qrc:/assets/icon-swap-currencies.svg"
-                        MouseArea {
-                            anchors.fill: parent
-                            acceptedButtons: Qt.LeftButton
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: {
-                                var rateWasInFocus = false;
-                                if (rateInput.focus) {
-                                    rateWasInFocus = true;
-                                    rateInput.focus = false;
-                                }
-                                var sentCurency = sentAmountInput.currency;
-                                sentAmountInput.currency = receiveAmountInput.currency;
-                                receiveAmountInput.currency = sentCurency;
-                                if (rateWasInFocus) {
-                                    rateInput.focus = true;
-                                }
-                                rateRow.checkReceive();
+                //
+                // Middle column
+                //
+                SvgImage {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop
+                    Layout.preferredWidth: 26
+                    Layout.maximumHeight: 26
+                    Layout.maximumWidth: 26
+                    Layout.topMargin: 40
+                    source: "qrc:/assets/icon-swap-currencies.svg"
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.LeftButton
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: {
+                            var rateWasInFocus = false;
+                            if (rateInput.focus) {
+                                rateWasInFocus = true;
+                                rateInput.focus = false;
                             }
+                            var sentCurency = sentAmountInput.currency;
+                            sentAmountInput.currency = receiveAmountInput.currency;
+                            receiveAmountInput.currency = sentCurency;
+                            if (rateWasInFocus) {
+                                rateInput.focus = true;
+                            }
+                            rateRow.checkReceive();
                         }
                     }
                 }
 
+                //
+                // Right column
+                //
                 ColumnLayout {
-                    width: parent.width / 2 - parent.columnSpacing / 2 - 20
+                    Layout.fillWidth: true
+                    Layout.preferredWidth: parent.inputColumnWidth
+                    Layout.alignment: Qt.AlignTop
 
                     //
                     // Receive Amount
                     //
                     AmountInput {
-                        Layout.topMargin: 35
+                        Layout.fillWidth: true
+                        Layout.preferredWidth: parent.width
                         //% "Receive amount"
                         title:            qsTrId("receive-amount-swap-label")
                         id:               receiveAmountInput
@@ -529,7 +541,7 @@ please review your settings and try again"
                         }
                     }
                 }  // ColumnLayout
-            }
+            }  // GridLayout
 
             ColumnLayout {
                 Layout.fillWidth: true

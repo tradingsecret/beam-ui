@@ -72,17 +72,20 @@ ColumnLayout {
     RowLayout {
         Layout.topMargin: 30
         spacing:    10
-        Layout.preferredWidth: parent.implicitWidth
+        Layout.fillWidth: true
+        Layout.preferredWidth: unlinkView.width
 
         //
         // Left column
         //
         ColumnLayout {
+            Layout.fillWidth: true
             Layout.preferredWidth: parent.width / 2
             Layout.alignment: Qt.AlignTop
 
             AmountInput {
                 Layout.fillWidth: true
+                Layout.preferredWidth: parent.width
                 //% "AMOUNT"
                 title:            qsTrId("unlink-amount-title")
                 id:               unlinkAmountInput
@@ -93,7 +96,8 @@ ColumnLayout {
                 hasFee:           true
                 showAddAll:       true
                 color:            Style.accent_outgoing
-                isLelantusStyle:  true
+                enableDoubleFrame:  true
+                feeFieldFillWidth: true
                 // error:            showInsufficientBalanceWarning
                 //                   //% "Insufficient funds: you would need %1 to complete the transaction"
                 //                   ? qsTrId("send-founds-fail").arg(Utils.uiStringToLocale(viewModel.missing))
@@ -114,9 +118,13 @@ ColumnLayout {
         // Right column
         //
         ColumnLayout {
+            Layout.fillWidth: true
             Layout.preferredWidth: parent.width / 2
+            Layout.alignment: Qt.AlignTop
             GridLayout {
+                Layout.fillWidth: true
                 Layout.preferredWidth: parent.width
+                Layout.alignment: Qt.AlignTop
                 rowSpacing:          10
                 columns:             2
 
