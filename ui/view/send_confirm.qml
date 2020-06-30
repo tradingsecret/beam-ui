@@ -18,6 +18,7 @@ ConfirmationDialog {
     property var    onAcceptedCallback: undefined
     property alias  addressText:        addressLabel.text
     property bool   swapMode:           false
+    property bool   unlinkMode:         false
     property int    currency:           Currency.CurrBeam
     property string amount:             "0"
     property string fee:                "0"
@@ -25,23 +26,52 @@ ConfirmationDialog {
     property string secondCurrencyLabel:        ""
     readonly property bool      showSecondCurrency: secondCurrencyLabel != ""
     readonly property string    currencyLabel:  BeamGlobals.getCurrencyLabel(sendViewConfirm.currency)
-    readonly property string    feeLabel:       !sendViewConfirm.swapMode
-                                                //% "Transaction fee"
-                                                ? (qsTrId("general-fee") + ":")
-                                                : (sendViewConfirm.currency == Currency.CurrBeam
-                                                    //% "BEAM Transaction fee"
-                                                    ? (qsTrId("beam-transaction-fee") + ":")
-                                                    //% "%1 Transaction fee rate"
-                                                    : qsTrId("general-fee-rate").arg(currencyLabel))
     property Item   defaultFocusItem:   BeamGlobals.needPasswordToSpend() ? requirePasswordInput : cancelButton
 
-    okButtonText: sendViewConfirm.swapMode ?
-                    //% "Swap"
-                    qsTrId("general-swap"):
-                    //% "Send"
-                    qsTrId("general-send")
-    okButtonColor:           Style.accent_outgoing
-    okButtonIconSource:      "qrc:/assets/icon-send-blue.svg"
+    function getAcceptButtonTitle() {
+        if (sendViewConfirm.swapMode) {
+            //% "Swap"
+            return qsTrId("general-swap");
+        } else if (sendViewConfirm.unlinkMode) {
+            //% "Unlink"
+            return qsTrId("general-unlink");
+        } else {
+            //% "Send"
+            return qsTrId("general-send")
+        }
+    }
+
+    function getTitle() {
+        if (sendViewConfirm.swapMode) {
+            //% "Confirm atomic swap"
+            return qsTrId("send-swap-confirmation-title");
+        } else if (sendViewConfirm.unlinkMode) {
+            //% "Unlinking details"
+            return qsTrId("unlink-confirmation-title");
+        } else {
+            //% "Confirm transaction details"
+            return qsTrId("send-confirmation-title")
+        }
+    }
+
+    function getFeeLabel() {
+        if (sendViewConfirm.unlinkMode) {
+            //% "Unlinking fee"
+            return qsTrId("unlink-fee-label") + ":";
+        }
+        return !sendViewConfirm.swapMode
+            //% "Transaction fee"
+            ? (qsTrId("general-fee") + ":")
+            : (sendViewConfirm.currency == Currency.CurrBeam
+                //% "BEAM Transaction fee"
+                ? (qsTrId("beam-transaction-fee") + ":")
+                //% "%1 Transaction fee rate"
+                : qsTrId("general-fee-rate").arg(sendViewConfirm.currencyLabel));
+    }
+
+    okButtonText: getAcceptButtonTitle()
+    okButtonColor:           unlinkMode ? Style.active : Style.accent_outgoing
+    okButtonIconSource:      unlinkMode ? "qrc:/assets/icon-unlink-black.svg" : "qrc:/assets/icon-send-blue.svg"
     okButtonEnable:          BeamGlobals.needPasswordToSpend() ? requirePasswordInput.text.length : true
     cancelButtonIconSource:  "qrc:/assets/icon-cancel-white.svg"
 
@@ -107,11 +137,7 @@ ConfirmationDialog {
                 font.styleName: "Bold";
                 font.weight: Font.Bold
                 color: Style.content_main
-                text: sendViewConfirm.swapMode ?
-                    //% "Confirm atomic swap"
-                    qsTrId("send-swap-confirmation-title") :
-                    //% "Confirm transaction details"
-                    qsTrId("send-confirmation-title")
+                text: sendViewConfirm.getTitle()
             }
 
             GridLayout {
@@ -123,7 +149,6 @@ ConfirmationDialog {
                 columnSpacing: 14
                 rowSpacing: 12
                 columns: 2
-                rows: 5
 
                 //
                 // Recipient/Address
@@ -137,6 +162,7 @@ ConfirmationDialog {
                     //% "Recipient"
                     text: qsTrId("send-confirmation-recipient-label") + ":"
                     verticalAlignment: Text.AlignTop
+                    visible: !sendViewConfirm.unlinkMode
                 }
 
                 SFText {
@@ -148,13 +174,13 @@ ConfirmationDialog {
                     maximumLineCount: 2
                     font.pixelSize: 14
                     color: Style.content_main
+                    visible: !sendViewConfirm.unlinkMode
                 }
 
                 //
                 // Amount
                 //
                 SFText {
-                    Layout.row: 2
                     Layout.fillWidth: false
                     Layout.fillHeight: true
                     Layout.minimumHeight: 16
@@ -174,7 +200,7 @@ ConfirmationDialog {
                         id: amountLabel
                         Layout.minimumHeight: 29
                         font.pixelSize: 24
-                        color: Style.accent_outgoing
+                        color: sendViewConfirm.unlinkMode? Style.active : Style.accent_outgoing
                         text: [
                                 Utils.uiStringToLocale(sendViewConfirm.amount),
                                 sendViewConfirm.currencyLabel
@@ -193,13 +219,12 @@ ConfirmationDialog {
                 // Fee
                 //
                 SFText {
-                    Layout.row: 3
                     Layout.fillWidth: false
                     Layout.fillHeight: true
                     Layout.minimumHeight: 16
                     font.pixelSize: 14
                     color: Style.content_disabled
-                    text: sendViewConfirm.feeLabel
+                    text: sendViewConfirm.getFeeLabel()
                     verticalAlignment: Text.AlignTop
                 }
 
@@ -231,22 +256,25 @@ ConfirmationDialog {
                 SFText {
                     id: requirePasswordLabel
                     visible: BeamGlobals.needPasswordToSpend()
-                    Layout.row: 4
                     Layout.columnSpan: 2
-                    Layout.topMargin: 50
+                    Layout.topMargin: sendViewConfirm.unlinkMode ? 30 : 50
                     horizontalAlignment: Text.AlignHCenter
                     Layout.fillWidth: true
                     Layout.minimumHeight: 16
                     font.pixelSize: 14
                     color: Style.content_main
-                    //% "To broadcast your transaction please enter your password"
-                    text: qsTrId("send-confirmation-pwd-require-message")
+                    
+                    text: sendViewConfirm.unlinkMode ?
+                        //% "Enter password to confirm"
+                        qsTrId("unlink-confirmation-pwd-require-message")
+                        :
+                        //% "To broadcast your transaction please enter your password"
+                        qsTrId("send-confirmation-pwd-require-message")
                 }
 
                 SFTextInput {
                     id: requirePasswordInput
                     visible: BeamGlobals.needPasswordToSpend()
-                    Layout.row: 5
                     Layout.columnSpan: 2
                     Layout.fillWidth: true
                     focus: true
@@ -260,8 +288,7 @@ ConfirmationDialog {
 
                 SFText {
                     id: requirePasswordError
-                    visible: BeamGlobals.needPasswordToSpend()
-                    Layout.row: 6
+                    visible: BeamGlobals.needPasswordToSpend() && (text.length > 0)
                     Layout.columnSpan: 2
                     height: 16
                     width: parent.width
@@ -273,7 +300,6 @@ ConfirmationDialog {
                 // Wait online message
                 //
                 SFText {
-                    Layout.row: 7
                     Layout.columnSpan: 2
                     Layout.topMargin: 15
                     horizontalAlignment: Text.AlignHCenter
@@ -293,6 +319,7 @@ ConfirmationDialog {
                         :
                         //% "For the transaction to complete, the recipient must get online within the next 12 hours and you should get online within 2 hours afterwards."
                         qsTrId("send-confirmation-pwd-text-online-time")
+                    visible: !sendViewConfirm.unlinkMode
                 }
             }
         }

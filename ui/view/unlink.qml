@@ -86,8 +86,8 @@ ColumnLayout {
             AmountInput {
                 Layout.fillWidth: true
                 Layout.preferredWidth: parent.width
-                //% "AMOUNT"
-                title:            qsTrId("unlink-amount-title")
+                //% "Amount"
+                title:            qsTrId("general-amount").toUpperCase()
                 id:               unlinkAmountInput
                 amountIn:         viewModel.unlinkAmount
                 secondCurrencyRateValue:    viewModel.secondCurrencyRateValue
@@ -100,8 +100,8 @@ ColumnLayout {
                 feeFieldFillWidth: true
                 fee: 1000
                 minimalFee: 1000
-                //% "UNLINKING FEE"
-                feeTitle: qsTrId("unlink-fee-title")
+                //% "Unlinking fee"
+                feeTitle: qsTrId("unlink-fee-label").toUpperCase()
                 // error:            showInsufficientBalanceWarning
                 //                   //% "Insufficient funds: you would need %1 to complete the transaction"
                 //                   ? qsTrId("send-founds-fail").arg(Utils.uiStringToLocale(viewModel.missing))
@@ -264,12 +264,27 @@ ColumnLayout {
         Layout.alignment: Qt.AlignHCenter
         Layout.topMargin: 20
         Layout.preferredHeight: 38
-        //% "unlink"
-        text: qsTrId("unlink-confirm-button")
+        //% "Unlink"
+        text: qsTrId("general-unlink")
         icon.source: "qrc:/assets/icon-unlink-black.svg"
-        onClicked: {
-            console.log("unlink accepted");
-        }
+        onClicked: {                
+                const dialogComponent = Qt.createComponent("send_confirm.qml");
+                const dialogObject = dialogComponent.createObject(unlinkView,
+                    {
+                        unlinkMode: true,
+                        currency: Currency.CurrBeam,
+                        amount: viewModel.unlinkAmount,
+                        fee: viewModel.feeGrothes,
+                        onAcceptedCallback: acceptedCallback,
+                        secondCurrencyRate: viewModel.secondCurrencyRateValue,
+                        secondCurrencyLabel: viewModel.secondCurrencyLabel
+                    }).open();
+
+                function acceptedCallback() {
+                    console.log("unlink accepted");
+                    // viewModel.sendMoney();
+                }
+            }
     }
 
     Item {

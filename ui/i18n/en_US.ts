@@ -2451,10 +2451,6 @@ Your version is: %2. Please, check for updates.</translation>
         <source>back</source>
         <translation>back</translation>
     </message>
-    <message id="unlink-confirm-button">
-        <source>unlink</source>
-        <translation>unlink</translation>
-    </message>
     <message id="unlink-notice">
         <source>Please notice that unlinking funds may take up to few days to proceed.</source>
         <translation>Please notice that unlinking funds may take up to few days to proceed.</translation>
@@ -2475,10 +2471,6 @@ Your version is: %2. Please, check for updates.</translation>
         <source>Fee:</source>
         <translation>Fee:</translation>
     </message>
-    <message id="unlink-amount-title">
-        <source>AMOUNT</source>
-        <translation>AMOUNT</translation>
-    </message>
     <message id="available-panel-linked">
         <source>Linked</source>
         <translation>Linked</translation>
@@ -2491,9 +2483,21 @@ Your version is: %2. Please, check for updates.</translation>
         <source>Unlinking with Lelantus</source>
         <translation>Unlinking with Lelantus</translation>
     </message>
-    <message id="unlink-fee-title">
-        <source>UNLINKING FEE</source>
-        <translation>UNLINKING FEE</translation>
+    <message id="general-unlink">
+        <source>Unlink</source>
+        <translation>Unlink</translation>
+    </message>
+    <message id="unlink-confirmation-title">
+        <source>Unlinking details</source>
+        <translation>Unlinking details</translation>
+    </message>
+    <message id="unlink-confirmation-pwd-require-message">
+        <source>Enter password to confirm</source>
+        <translation>Enter password to confirm</translation>
+    </message>
+    <message id="unlink-fee-label">
+        <source>Unlinking fee</source>
+        <translation>Unlinking fee</translation>
     </message>
 </context>
 </TS>

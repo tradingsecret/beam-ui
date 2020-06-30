@@ -2480,10 +2480,6 @@ Your version is: %2. Please, check for updates.</source>
         <source>back</source>
         <translation type="unfinished">back</translation>
     </message>
-    <message id="unlink-confirm-button">
-        <source>unlink</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="unlink-notice">
         <source>Please notice that unlinking funds may take up to few days to proceed.</source>
         <translation type="unfinished"></translation>
@@ -2504,10 +2500,6 @@ Your version is: %2. Please, check for updates.</source>
         <source>Fee:</source>
         <translation type="unfinished"></translation>
     </message>
-    <message id="unlink-amount-title">
-        <source>AMOUNT</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="available-panel-linked">
         <source>Linked</source>
         <translation type="unfinished"></translation>
@@ -2520,8 +2512,20 @@ Your version is: %2. Please, check for updates.</source>
         <source>Unlinking with Lelantus</source>
         <translation type="unfinished"></translation>
     </message>
-    <message id="unlink-fee-title">
-        <source>UNLINKING FEE</source>
+    <message id="general-unlink">
+        <source>Unlink</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-confirmation-title">
+        <source>Unlinking details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-fee-label">
+        <source>Unlinking fee</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="unlink-confirmation-pwd-require-message">
+        <source>Enter password to confirm</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
