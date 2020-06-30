@@ -12,8 +12,9 @@ Control {
     property bool    readOnly:  false
     property int     minFee:    0
     property int     fee:       0
-    property string  feeLabel:  undefined
+    property string  feeLabel:  ""
     property string  color:     Style.content_main
+    property string  feeLabelColor:     Style.content_main
     readonly property bool isValid: control.fee >= control.minFee
     property alias underlineVisible: feeInput.underlineVisible
     property int inputPreferredWidth: 150
@@ -62,9 +63,9 @@ Control {
 
             SFText {
                 font.pixelSize: 14
-                color:          Style.content_main
+                color:          control.feeLabelColor
                 text:           control.feeLabel
-                visible:        (control.feeLabel || "").length
+                visible:        control.feeLabel.length
             }
 
             Item {

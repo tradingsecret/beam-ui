@@ -95,9 +95,13 @@ ColumnLayout {
                 setMaxAvailableAmount:      function() { viewModel.setMaxAvailableAmount(); }
                 hasFee:           true
                 showAddAll:       true
-                color:            Style.accent_outgoing
+                color:            Style.active
                 enableDoubleFrame:  true
                 feeFieldFillWidth: true
+                fee: 1000
+                minimalFee: 1000
+                //% "UNLINKING FEE"
+                feeTitle: qsTrId("unlink-fee-title")
                 // error:            showInsufficientBalanceWarning
                 //                   //% "Insufficient funds: you would need %1 to complete the transaction"
                 //                   ? qsTrId("send-founds-fail").arg(Utils.uiStringToLocale(viewModel.missing))

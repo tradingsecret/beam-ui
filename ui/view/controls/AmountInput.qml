@@ -9,6 +9,9 @@ Control {
     id: control
 
     function getFeeTitle() {
+        if (control.feeTitle.length) {
+            return control.feeTitle;
+        }
         if (control.currency == Currency.CurrBeam) {
             return control.currFeeTitle ?
                 //% "BEAM Transaction fee"
@@ -44,6 +47,16 @@ Control {
             control.secondCurrencyLabel) + " " + control.secondCurrencyLabel;
     }
 
+    function getSendAllIcon()
+    {
+        if (control.color == Style.accent_outgoing)
+            return "qrc:/assets/icon-send-purple.svg";
+        else if (control.color == Style.active)
+            return "qrc:/assets/icon-send-bright-teal.svg";
+        else
+            return "qrc:/assets/icon-send-blue.svg";
+    }
+
     readonly property bool     isValidFee:     hasFee ? feeInput.isValid : true
     readonly property bool     isValid:        error.length == 0 && isValidFee
     readonly property string   currencyLabel:  BeamGlobals.getCurrencyLabel(control.currency)
@@ -72,6 +85,8 @@ Control {
     readonly property bool  isExchangeRateAvailable:    control.secondCurrencyRateValue != "0"
     property bool     enableDoubleFrame: false
     property bool     feeFieldFillWidth: false
+    property string   feeTitle: ""
+    property int      minimalFee: 0
 
     contentItem: ColumnLayout {
         Layout.fillWidth: true
@@ -97,7 +112,8 @@ Control {
                     font.pixelSize:   14
                     font.styleName:   "Bold"
                     font.weight:      Font.Bold
-                    color:            Style.content_main
+                    font.letterSpacing: enableDoubleFrame? 3.11 : 1
+                    color:            enableDoubleFrame ? Style.content_secondary : Style.content_main
                     text:             control.title
                 }
 
@@ -187,7 +203,7 @@ Control {
                         Layout.leftMargin:   25
                         Layout.maximumHeight: 16
                         Layout.maximumWidth:  16
-                        source: "qrc:/assets/icon-send-blue-copy-2.svg"
+                        source: control.getSendAllIcon()
                         visible:             control.showAddAll
                         MouseArea {
                             anchors.fill: parent
@@ -275,7 +291,8 @@ Control {
                         font.pixelSize:   14
                         font.styleName:   "Bold"
                         font.weight:      Font.Bold
-                        color:            Style.content_main
+                        font.letterSpacing: enableDoubleFrame? 3.11 : 1
+                        color:            enableDoubleFrame ? Style.content_secondary : Style.content_main
                         text:             getFeeTitle()
                     }
                     FeeInput {
@@ -284,8 +301,9 @@ Control {
                         fillWidth: !showTotalFee && feeFieldFillWidth
                         inputPreferredWidth: !showTotalFee && feeFieldFillWidth ? -1 : feeInput.inputPreferredWidth//parent.width
                         fee:              control.fee
-                        minFee:           BeamGlobals.getMinimalFee(control.currency)
+                        minFee:           control.minimalFee ? control.minimalFee : BeamGlobals.getMinimalFee(control.currency)
                         feeLabel:         BeamGlobals.getFeeRateLabel(control.currency)
+                        feeLabelColor:    enableDoubleFrame ? Style.content_secondary : Style.content_main
                         color:            control.color
                         readOnly:         control.readOnlyF
                         showSecondCurrency:         control.showSecondCurrency

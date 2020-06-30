@@ -2491,5 +2491,9 @@ Your version is: %2. Please, check for updates.</translation>
         <source>Unlinking with Lelantus</source>
         <translation>Unlinking with Lelantus</translation>
     </message>
+    <message id="unlink-fee-title">
+        <source>UNLINKING FEE</source>
+        <translation>UNLINKING FEE</translation>
+    </message>
 </context>
 </TS>

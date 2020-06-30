@@ -2518,5 +2518,9 @@ Your version is: %2. Please, check for updates.</source>
         <source>Unlinking with Lelantus</source>
         <translation type="unfinished"></translation>
     </message>
+    <message id="unlink-fee-title">
+        <source>UNLINKING FEE</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>
