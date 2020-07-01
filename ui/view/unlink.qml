@@ -17,6 +17,11 @@ ColumnLayout {
 
     UnlinkViewModel {
         id: viewModel
+
+        onUnlinkVerified: {
+            console.log("unlink accepted");
+            unlinkView.onAccepted();
+        }
     }
 
     RowLayout {
@@ -270,7 +275,7 @@ ColumnLayout {
         //% "Unlink"
         text: qsTrId("general-unlink")
         icon.source: "qrc:/assets/icon-unlink-black.svg"
-        enabled: viewModel.canSend
+        enabled: viewModel.canUnlink
         onClicked: {                
                 const dialogComponent = Qt.createComponent("send_confirm.qml");
                 const dialogObject = dialogComponent.createObject(unlinkView,
@@ -285,9 +290,7 @@ ColumnLayout {
                     }).open();
 
                 function acceptedCallback() {
-                    console.log("unlink accepted");
-                    unlinkView.onAccepted();
-                    // viewModel.sendMoney();
+                    viewModel.unlink();
                 }
             }
     }

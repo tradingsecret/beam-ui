@@ -31,7 +31,7 @@ class UnlinkViewModel: public QObject
     Q_PROPERTY(QString  missing                 READ getMissing                                        NOTIFY remainingChanged)
     Q_PROPERTY(bool     isZeroBalance           READ isZeroBalance                                     NOTIFY remainingChanged)
     Q_PROPERTY(bool     isEnough                READ isEnough                                          NOTIFY isEnoughChanged)
-    Q_PROPERTY(bool     canSend                 READ canSend                                           NOTIFY canSendChanged)
+    Q_PROPERTY(bool     canUnlink               READ canUnlink                                         NOTIFY canUnlinkChanged)
 
 public:
     UnlinkViewModel();
@@ -48,13 +48,14 @@ public:
     QString getMissing() const;
     bool isZeroBalance() const;
     bool isEnough() const;
-    bool canSend() const;
+    bool canUnlink() const;
 
 public:
     Q_INVOKABLE void setMaxAvailableAmount();
+    Q_INVOKABLE void unlink();
 
-public slots:
-    void onChangeCalculated(beam::Amount change);
+// public slots:
+//     void onChangeCalculated(beam::Amount change);
 
 signals:
     void remainingChanged();
@@ -63,11 +64,17 @@ signals:
     void secondCurrencyLabelChanged();
     void secondCurrencyRateChanged();
     void isEnoughChanged();
-    void canSendChanged();
+    void canUnlinkChanged();
+    void unlinkVerified();
 
 private:
     QString getMaxToUnlink() const;
 
+private slots:
+    void onChangeCalculated(beam::Amount change);
+    void onGeneratedNewAddress(const beam::wallet::WalletAddress& walletAddr);
+
+private:
     beam::Amount _unlinkAmount = 0;
     beam::Amount _unlinkAmountTotal = 0;
     beam::Amount _feeGrothes = 0;
@@ -75,4 +82,7 @@ private:
 
     WalletModel& _walletModel;
     ExchangeRatesManager _exchangeRatesManager;
+
+    beam::wallet::WalletID _walletID;
+    beam::wallet::TxParameters _txParameters;
 };

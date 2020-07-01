@@ -16,13 +16,23 @@
 #include "model/app_model.h"
 #include "ui_helpers.h"
 #include "qml_globals.h"
+#include "wallet/transactions/lelantus/unlink_transaction.h"
+
+#include <qdebug.h>
 
 UnlinkViewModel::UnlinkViewModel() :
-    _walletModel(*AppModel::getInstance().getWallet())
+    _walletModel(*AppModel::getInstance().getWallet()),
+    _walletID(beam::Zero)
 {
     connect(&_walletModel, SIGNAL(changeCalculated(beam::Amount)), SLOT(onChangeCalculated(beam::Amount)));
+    connect(&_walletModel,
+            SIGNAL(generatedNewAddress(const beam::wallet::WalletAddress&)),
+            SLOT(onGeneratedNewAddress(const beam::wallet::WalletAddress&)));
+    connect(&_walletModel, SIGNAL(sendMoneyVerified()), SIGNAL(unlinkVerified()));
     connect(&_exchangeRatesManager, SIGNAL(rateUnitChanged()), SIGNAL(secondCurrencyLabelChanged()));
     connect(&_exchangeRatesManager, SIGNAL(activeRateChanged()), SIGNAL(secondCurrencyRateChanged()));
+
+    _walletModel.getAsync()->generateNewAddress();
     _unlinkAmountTotal = _walletModel.getLinked();
 }
 
@@ -50,7 +60,7 @@ void UnlinkViewModel::setUnlinkAmount(QString value)
         LOG_DEBUG() << "Send amount: " << _unlinkAmount << " Coins: " << (long double)_unlinkAmount / beam::Rules::Coin;
         _walletModel.getAsync()->calcChange(_unlinkAmount + _feeGrothes);
         emit unlinkAmountChanged();
-        emit canSendChanged();
+        emit canUnlinkChanged();
     }
 }
 
@@ -71,7 +81,7 @@ void UnlinkViewModel::setFeeGrothes(unsigned int value)
         _feeGrothes = value;
         _walletModel.getAsync()->calcChange(_unlinkAmount + _feeGrothes);
         emit feeGrothesChanged();
-        emit canSendChanged();
+        emit canUnlinkChanged();
     }
 }
 
@@ -106,9 +116,9 @@ bool UnlinkViewModel::isEnough() const
     return _unlinkAmountTotal >= _unlinkAmount + _feeGrothes + _changeGrothes;
 }
 
-bool UnlinkViewModel::canSend() const
+bool UnlinkViewModel::canUnlink() const
 {
-    return _unlinkAmount > 0 && isEnough() && QMLGlobals::isLelantusFeeOK(_feeGrothes);
+    return _walletID != beam::Zero && _unlinkAmount > 0 && isEnough() && QMLGlobals::isLelantusFeeOK(_feeGrothes);
 }
 
 void UnlinkViewModel::setMaxAvailableAmount()
@@ -116,15 +126,36 @@ void UnlinkViewModel::setMaxAvailableAmount()
     setUnlinkAmount(getMaxToUnlink());
 }
 
-void UnlinkViewModel::onChangeCalculated(beam::Amount change)
+void UnlinkViewModel::unlink()
 {
-    _changeGrothes = change;
+    if (!canUnlink()) return;
+
+    auto parameters = beam::wallet::lelantus::CreateUnlinkFundsTransactionParameters(_walletID)
+        .SetParameter(beam::wallet::TxParameterID::Amount, _unlinkAmount)
+        .SetParameter(beam::wallet::TxParameterID::Fee, _feeGrothes);
+
+    _walletModel.getAsync()->startTransaction(std::move(parameters));
+
+    _unlinkAmount = 0;
+    _unlinkAmountTotal = _walletModel.getLinked();
     emit remainingChanged();
-    emit isEnoughChanged();
-    emit canSendChanged();
 }
 
 QString UnlinkViewModel::getMaxToUnlink() const
 {
     return beamui::AmountToUIString(_unlinkAmountTotal - _feeGrothes);
+}
+
+void UnlinkViewModel::onChangeCalculated(beam::Amount change)
+{
+    _changeGrothes = change;
+    emit remainingChanged();
+    emit isEnoughChanged();
+    emit canUnlinkChanged();
+}
+
+void UnlinkViewModel::onGeneratedNewAddress(const beam::wallet::WalletAddress& walletAddr)
+{
+    _walletID = walletAddr.m_walletID;
+    emit canUnlinkChanged();
 }
