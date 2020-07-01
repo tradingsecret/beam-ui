@@ -10,6 +10,7 @@ ColumnLayout {
     property var onClosed: undefined
     property var onAccepted: undefined
 
+    property var defaultFocusItem: unlinkAmountInput.amountInput
     readonly property bool showInsufficientBalanceWarning:
         !viewModel.isEnough &&
         !(viewModel.isZeroBalance && (viewModel.unlinkAmount == "" || viewModel.unlinkAmount == "0"))
@@ -78,19 +79,17 @@ ColumnLayout {
         Layout.topMargin: 30
         spacing:    10
         Layout.fillWidth: true
-        Layout.preferredWidth: unlinkView.width
 
         //
         // Left column
         //
         ColumnLayout {
             Layout.fillWidth: true
-            Layout.preferredWidth: parent.width / 2
+            Layout.preferredWidth: 1
             Layout.alignment: Qt.AlignTop
 
             AmountInput {
                 Layout.fillWidth: true
-                Layout.preferredWidth: parent.width
                 //% "Amount"
                 title:            qsTrId("general-amount").toUpperCase()
                 id:               unlinkAmountInput
@@ -128,11 +127,10 @@ ColumnLayout {
         //
         ColumnLayout {
             Layout.fillWidth: true
-            Layout.preferredWidth: parent.width / 2
+            Layout.preferredWidth: 1
             Layout.alignment: Qt.AlignTop
             GridLayout {
                 Layout.fillWidth: true
-                Layout.preferredWidth: parent.width
                 Layout.alignment: Qt.AlignTop
                 rowSpacing:          10
                 columns:             2

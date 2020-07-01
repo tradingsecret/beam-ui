@@ -142,6 +142,7 @@ ConfirmationDialog {
 
             GridLayout {
                 Layout.fillWidth: true
+                Layout.minimumWidth: sendViewConfirm.footer.width - 64 - 18 * 2
                 Layout.fillHeight: true
                 Layout.leftMargin: 18
                 Layout.rightMargin: 18
@@ -276,6 +277,7 @@ ConfirmationDialog {
                     id: requirePasswordInput
                     visible: BeamGlobals.needPasswordToSpend()
                     Layout.columnSpan: 2
+                    Layout.alignment: Qt.AlignHCenter
                     Layout.fillWidth: true
                     focus: true
                     activeFocusOnTab: true
