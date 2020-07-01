@@ -298,6 +298,11 @@ void SwapCoinSettingsItem::setFeeRate(int value)
     }
 }
 
+int SwapCoinSettingsItem::getMinFeeRate() const
+{
+    return m_settings->GetMinFeeRate();
+}
+
 QString SwapCoinSettingsItem::getNodeUser() const
 {
     return m_nodeUser;
@@ -1121,6 +1126,16 @@ void SettingsViewModel::undoChanges()
 void SettingsViewModel::reportProblem()
 {
     m_settings.reportProblem();
+}
+
+bool SettingsViewModel::exportData() const
+{
+    return AppModel::getInstance().exportData();
+}
+
+bool SettingsViewModel::importData() const
+{
+    return AppModel::getInstance().importData();
 }
 
 void SettingsViewModel::changeWalletPassword(const QString& pass)

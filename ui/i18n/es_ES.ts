@@ -2066,10 +2066,6 @@ despliegue la clave en el nodo en el que confía completamente.</translation>
         <oldsource>Wallet version</oldsource>
         <translation type="unfinished">Versión del wallet</translation>
     </message>
-    <message id="settings-notifications-news">
-        <source>News</source>
-        <translation>Noticias</translation>
-    </message>
     <message id="settings-notifications-tx-status">
         <source>Transaction status</source>
         <translation>Estado de la transacción</translation>
@@ -2342,10 +2338,6 @@ Your version is: %2. Please, check for updates.</source>
         <source>12 hours</source>
         <translation type="unfinished">12 horas</translation>
     </message>
-    <message id="settings-notifications-address-expiration">
-        <source>Address expiration</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="settings-wallet-title">
         <source>Wallet</source>
         <translation type="unfinished">Wallet</translation>
@@ -2361,10 +2353,6 @@ Your version is: %2. Please, check for updates.</source>
     </message>
     <message id="settings-remove-wallet">
         <source>Remove current wallet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="settings-wallet-verification">
-        <source>Complete wallet verification</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="settings-clear-local-data">

@@ -66,6 +66,7 @@ class SwapCoinSettingsItem : public QObject
     Q_PROPERTY(QString  showAddressesDialogTitle READ getShowAddressesDialogTitle             CONSTANT)
     Q_PROPERTY(QString  title                    READ getTitle                                NOTIFY titleChanged)
     Q_PROPERTY(int      feeRate                  READ getFeeRate      WRITE setFeeRate        NOTIFY feeRateChanged)
+    Q_PROPERTY(int      minFeeRate               READ getMinFeeRate                           CONSTANT)
     // node settings
     Q_PROPERTY(QString  nodeUser     READ getNodeUser     WRITE setNodeUser       NOTIFY nodeUserChanged)
     Q_PROPERTY(QString  nodePass     READ getNodePass     WRITE setNodePass       NOTIFY nodePassChanged)
@@ -101,6 +102,7 @@ public:
 
     int getFeeRate() const;
     void setFeeRate(int value);
+    int getMinFeeRate() const;
     QString getNodeUser() const;
     void setNodeUser(const QString& value);
     QString getNodePass() const;
@@ -289,11 +291,14 @@ public:
     Q_INVOKABLE void openFolder(const QString& path);
     Q_INVOKABLE bool checkWalletPassword(const QString& password) const;
     Q_INVOKABLE QString getOwnerKey(const QString& password) const;
+    Q_INVOKABLE bool exportData() const;
+    Q_INVOKABLE bool importData() const;
 
 public slots:
     void applyChanges();
     void undoChanges();
 	void reportProblem();
+
     void changeWalletPassword(const QString& pass);
     void onNodeStarted();
     void onNodeStopped();

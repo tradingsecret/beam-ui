@@ -31,6 +31,15 @@ Control {
             Layout.alignment: Qt.AlignTop
             height: header.height
 
+            MouseArea {
+                visible: control.folded || !headerContent
+                anchors.fill: parent
+                cursorShape:  Qt.PointingHandCursor
+                onClicked: {
+                    control.folded = !control.folded;
+                }
+            }
+
             RowLayout {
                 id:      header
                 width:   parent.width
@@ -39,49 +48,45 @@ Control {
                 Item {
                     width:   statusIndicator.radius
                     visible: hasStatusIndicatior
+
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape:  Qt.PointingHandCursor
+                        onClicked: {
+                            control.folded = !control.folded;
+                        }
+                    }
                 }
 
                 ExternalNodeStatus {
                     id:               statusIndicator
                     Layout.alignment: Qt.AlignVCenter
                     visible:          hasStatusIndicatior
+
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape:  Qt.PointingHandCursor
+                        onClicked: {
+                            control.folded = !control.folded;
+                        }
+                    }
                 }
 
                 Item {
                     width: control.spacing
                     visible: hasStatusIndicatior
-                }
 
-                ColumnLayout
-                {
-                    SFText {
-                        horizontalAlignment: Text.AlignLeft
-                        verticalAlignment:   Text.AlignVCenter
-                        text:  control.title
-                        color: Qt.rgba(Style.content_main.r, Style.content_main.g, Style.content_main.b, 0.5)
-                        Layout.fillWidth: true
-
-                        font {
-                            styleName:      "Medium"
-                            weight:         Font.Medium
-                            pixelSize:      14
-                            letterSpacing:  3.11
-                            capitalization: Font.AllUppercase
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape:  Qt.PointingHandCursor
+                        onClicked: {
+                            control.folded = !control.folded;
                         }
                     }
                 }
 
-                Control {
-                    visible:           !control.folded
-                    Layout.fillWidth:  true
-                    contentItem:       headerContent
-                }
-
                 SFText {
-                    text: "^"
-                    horizontalAlignment: Text.AlignRight
-                    verticalAlignment:   Text.AlignVCenter
-                    rotation: control.folded ? "180" : 0
+                    text:  control.title
                     color: Qt.rgba(Style.content_main.r, Style.content_main.g, Style.content_main.b, 0.5)
 
                     font {
@@ -91,6 +96,29 @@ Control {
                         letterSpacing:  3.11
                         capitalization: Font.AllUppercase
                     }
+
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape:  Qt.PointingHandCursor
+                        onClicked: {
+                            control.folded = !control.folded;
+                        }
+                    }
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                Control {
+                    visible:      !control.folded
+                    contentItem:  headerContent
+                    rightPadding: 20
+                }
+
+                Image {
+                    id: originalSizeImage
+                    source: control.folded ? "qrc:/assets/icon-grey-arrow-down.svg" : "qrc:/assets/icon-grey-arrow-up.svg"
 
                     MouseArea {
                         anchors.fill: parent

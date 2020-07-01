@@ -12,6 +12,7 @@ ColumnLayout {
     Layout.fillWidth: true
     state: "general"
     property string linkStyle: "<style>a:link {color: '#00f6d2'; text-decoration: none;}</style>"
+    property bool swapMode: false
 
     SettingsViewModel {
         id: viewModel
@@ -143,6 +144,7 @@ ColumnLayout {
                         getAddressesElectrum:     modelData.getAddressesElectrum
                         mainSettingsViewModel:    viewModel
                         hasStatusIndicatior:      true
+                        folded:                   swapMode ? modelData.isConnected : true
 
                         //
                         // Node
@@ -152,6 +154,7 @@ ColumnLayout {
                         username:            modelData.nodeUser
                         password:            modelData.nodePass
                         feeRate:             modelData.feeRate
+                        minFeeRate:          modelData.minFeeRate
 
                         //
                         // Electrum
