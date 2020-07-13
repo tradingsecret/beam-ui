@@ -1,6 +1,6 @@
 git:
   depth: false
-  submodule: false
+  submodules: false
 
 matrix:
   include:
