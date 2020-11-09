@@ -455,7 +455,8 @@ if(LINUX)
 elseif(APPLE)
     add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
         COMMAND macdeployqt 
-            \"$<TARGET_FILE_DIR:${TARGET_NAME}>\"
+            \"$<TARGET_FILE_DIR:${TARGET_NAME}>/$<TARGET_FILE_NAME:${TARGET_NAME}\"
+            --qmldir "${CMAKE_CURRENT_SOURCE_DIR}"
             -always-overwrite
         COMMENT "Deploying Qt..."
     )
