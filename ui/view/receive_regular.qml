@@ -211,7 +211,7 @@ ColumnLayout {
                                 font.italic:        true
                                 font.pixelSize:     14
                                 wrapMode:           Text.WordWrap
-                                //% "Connect to integrated or own node to enable sending max privacy transactions"
+                                //% "Connect to integrated or own node to enable receiving max privacy and offline transactions"
                                 text:               qsTrId("wallet-receive-max-privacy-unsupported")
                             }
                             
@@ -381,6 +381,7 @@ ColumnLayout {
                         onClosed: receiveView.onClosed()
                     }
                     TokenInfoPanel {
+                        property bool isShieldedSupported: statusbarModel.isConnectionTrusted && statusbarModel.isOnline
                         Layout.fillWidth:     true
                         //% "Offline address"
                         title:                qsTrId("wallet-receive-offline-address")
@@ -397,7 +398,7 @@ ColumnLayout {
                         token:                viewModel.offlineToken
                         showQrCode:           false
                         isValidToken:         receiveView.isValid()
-                        visible:              !viewModel.isShieldedTx && viewModel.offlineToken.length > 0
+                        visible:              !viewModel.isShieldedTx && viewModel.offlineToken.length > 0 && isShieldedSupported
                         ignoreStoredVouchers: true
                         onTokenCopied: {
                             viewModel.saveOfflineAddress();
