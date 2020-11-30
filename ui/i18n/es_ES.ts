@@ -2449,7 +2449,8 @@ much longer for a transaction to complete.</translation>
         <translation type="unfinished">Key keeper out of slots</translation>
     </message>
     <message id="tx-failure-shielded-coin-fee">
-        <source>Cannot extract shielded coin, fee is to big.</source>
+        <source>Cannot extract shielded coin, fee is too big.</source>
+        <oldsource>Cannot extract shielded coin, fee is to big.</oldsource>
         <translation type="unfinished">Cannot extract shielded coin, fee is to big.</translation>
     </message>
     <message id="tx-failure-assets-disabled-receiver">
@@ -2511,7 +2512,8 @@ Your version is: %2. Please, check for updates.</translation>
         <translation>Dirección permanente</translation>
     </message>
     <message id="wallet-send-one-time-note">
-        <source>One-time use address (expire in 12 hours after succesfull transaction).</source>
+        <source>One-time use address (expire in 12 hours after successfull transaction).</source>
+        <oldsource>One-time use address (expire in 12 hours after succesfull transaction).</oldsource>
         <translation type="unfinished">One-time use address (expire in 12 hours after succesfull transaction).</translation>
     </message>
     <message id="wallet-send-max-privacy-note-address-offline">
@@ -2527,7 +2529,8 @@ Your version is: %2. Please, check for updates.</translation>
         <translation>Fondos insuficientes: usted necesitaría un 1% para completar la transacción</translation>
     </message>
     <message id="max-pivacy-fee-fail">
-        <source>For the best privacy Max privacy coins were selected. Min transaction fee is %1 %2</source>
+        <source>For the best privacy, Max privacy coins were selected. Min transaction fee is %1 %2</source>
+        <oldsource>For the best privacy Max privacy coins were selected. Min transaction fee is %1 %2</oldsource>
         <translation type="unfinished">For the best privacy Max privacy coins were selected. Min transaction fee is %1 %2</translation>
     </message>
     <message id="send-amount-label">
@@ -2779,6 +2782,62 @@ max privacy</translation>
 offline</source>
         <translation type="unfinished">failed
 offline</translation>
+    </message>
+    <message id="available-panel-maturing-details">
+        <source>More details</source>
+        <translation type="unfinished">Más detalles</translation>
+    </message>
+    <message id="max-privacy-dialog-header">
+        <source>Max privacy</source>
+        <translation type="unfinished">Máxima privacidad</translation>
+    </message>
+    <message id="max-privacy-dialog-locked">
+        <source>Locked</source>
+        <translation type="unfinished">Bloqueado</translation>
+    </message>
+    <message id="max-privacy-dialog-amount">
+        <source>Amount</source>
+        <translation type="unfinished">Cantidad</translation>
+    </message>
+    <message id="max-privacy-dialog-unlock-time">
+        <source>Latest unlocked time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="settings-privacy-mp-anonymity-set">
+        <source>Anonymity set for Max privacy transactions</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="settings-privacy-mp-notice">
+        <source>Received coins can be spent immediately.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="settings-privacy-mp-time-limit">
+        <source>Max privacy lock time limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="settings-privacy-mp-time-limit-72">
+        <source>72h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="settings-privacy-mp-time-limit-60">
+        <source>60h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="settings-privacy-mp-time-limit-48">
+        <source>48h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="settings-privacy-mp-time-limit-36">
+        <source>36h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="settings-privacy-mp-time-limit-24">
+        <source>24h</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message id="remote-node-lelantus-warning">
+        <source>To support Max privacy and offline transactions please connect to integrated node or to own node configured with your owner key.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
