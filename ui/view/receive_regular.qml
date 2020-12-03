@@ -415,9 +415,26 @@ ColumnLayout {
             // Footers
             //
             SFText {
+                property string mpLockTimeLimit: viewModel.mpTimeLimit
                 Layout.alignment:      Qt.AlignHCenter
                 Layout.preferredWidth: 428
                 Layout.topMargin:      30
+                font.pixelSize:        14
+                font.italic:           true
+                color:                 Style.content_disabled
+                wrapMode:              Text.WordWrap
+                horizontalAlignment:   Text.AlignHCenter
+                text: mpLockTimeLimit != "0" ?
+                    /*% "Max Privacy transaction can last at most %1 hours"*/
+                    qsTrId("wallet-receive-addr-message-mp").arg(mpLockTimeLimit) :
+                    /*% "Max Privacy transaction can last indefinitely"*/
+                    qsTrId("wallet-receive-addr-message-mp-no-limit")
+                visible:               viewModel.isShieldedTx
+            }
+
+            SFText {
+                Layout.alignment:      Qt.AlignHCenter
+                Layout.preferredWidth: 428
                 font.pixelSize:        14
                 font.italic:           true
                 color:                 Style.content_disabled

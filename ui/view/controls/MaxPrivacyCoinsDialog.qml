@@ -3,6 +3,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.0
 import Beam.Wallet 1.0
+import "../utils.js" as Utils
 import "."
 
 Dialog {
@@ -14,6 +15,7 @@ Dialog {
 
     UtxoViewModel {
         id: viewModel
+        maturingMaxPrivacy: true
     }
     
     width: 460
@@ -27,6 +29,11 @@ Dialog {
         radius: 10
         color: Style.background_popup
         anchors.fill: parent            
+    }
+
+    onClosed : {
+        tableView.sortIndicatorOrder = Qt.AscendingOrder;
+        tableView.sortIndicatorColumn = 1;
     }
 
     contentItem: ColumnLayout {
@@ -79,14 +86,14 @@ Dialog {
             backgroundVisible: false
             sortIndicatorVisible: true
             sortIndicatorColumn: 1
-            sortIndicatorOrder: Qt.DescendingOrder
+            sortIndicatorOrder: Qt.AscendingOrder
             headerColor: Style.background_main_top
             mainBackgroundRect: dialog.background 
             model: SortFilterProxyModel {
                 sortOrder: tableView.sortIndicatorOrder
                 sortCaseSensitivity: Qt.CaseInsensitive
                 sortRole: tableView.getColumn(tableView.sortIndicatorColumn).role + "Sort"
-                source: viewModel.mpMaturingUtxos
+                source: viewModel.allUtxos
                 filterSyntax: SortFilterProxyModel.Wildcard
                 filterCaseSensitivity: Qt.CaseInsensitive
             }
@@ -101,14 +108,14 @@ Dialog {
             }
 
             TableViewColumn {
-                role: "maturityPercentage"
+                role: "maturityTimeLeft"
                 //% "Latest unlocked time"
                 title: qsTrId("max-privacy-dialog-unlock-time")
                 width: contentItem.width / 2
                 resizable: false
                 movable: false
                 delegate: TableItem {
-                    text:           styleData.value + "%"
+                    text:           Utils.formatHours(styleData.value)
                     elide:          styleData.elideMode
                 }
             }

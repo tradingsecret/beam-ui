@@ -14,7 +14,8 @@
 #pragma once
 
 #include <QObject>
-#include "wallet/client/wallet_client.h"
+// #include "wallet/client/wallet_client.h"
+#include "model/wallet_model.h"
 #include "utxo_view_status.h"
 #include "utxo_view_type.h"
 
@@ -36,11 +37,13 @@ public:
     virtual QString getAmount() const = 0;
     virtual QString maturity() const = 0;
     virtual QString maturityPercentage() const = 0;
+    virtual QString maturityTimeLeft() const = 0;
     virtual UtxoViewStatus::EnStatus status() const = 0;
     virtual UtxoViewType::EnType type() const = 0;
 
     virtual beam::Amount rawAmount() const = 0;
     virtual beam::Height rawMaturity() const = 0;
+    virtual uint16_t rawMaturityTimeLeft() const = 0;
 };
 
 class UtxoItem : public BaseUtxoItem
@@ -55,11 +58,13 @@ public:
     QString getAmount() const override;
     QString maturity() const override;
     QString maturityPercentage() const override;
+    QString maturityTimeLeft() const override;
     UtxoViewStatus::EnStatus status() const override;
     UtxoViewType::EnType type() const override;
 
     beam::Amount rawAmount() const override;
     beam::Height rawMaturity() const override;
+    uint16_t rawMaturityTimeLeft() const override;
     const beam::wallet::Coin::ID& get_ID() const;
 private:
     beam::wallet::Coin _coin;
@@ -77,12 +82,15 @@ public:
     QString getAmount() const override;
     QString maturity() const override;
     QString maturityPercentage() const override;
+    QString maturityTimeLeft() const override;
     UtxoViewStatus::EnStatus status() const override;
     UtxoViewType::EnType type() const override;
 
     beam::Amount rawAmount() const override;
     beam::Height rawMaturity() const override;
+    uint16_t rawMaturityTimeLeft() const override;
 private:
+    WalletModel& _walletModel;
     beam::wallet::ShieldedCoin _coin;
     beam::TxoID _shieldedCount = std::numeric_limits<beam::TxoID>::max();
 };

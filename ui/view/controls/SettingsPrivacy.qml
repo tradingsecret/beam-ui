@@ -106,63 +106,86 @@ SettingsFoldable {
             }
         }
 
-        SFText {
-            //% "Anonymity set for Max privacy transactions"
-            text: qsTrId("settings-privacy-mp-anonymity-set")
-            wrapMode:   Text.WordWrap
-            color: Style.content_main
-            font.pixelSize: 14
+        RowLayout {
+            Layout.fillWidth:       true
+            ColumnLayout {
+                SFText {
+                    Layout.fillWidth: true
+                    //% "Anonymity set for Max privacy transactions"
+                    text: qsTrId("settings-privacy-mp-anonymity-set")
+                    wrapMode:   Text.WordWrap
+                    color: Style.content_main
+                    font.pixelSize: 14
+                }
+                SFText {
+                    //% "Received coins can be spent immediately."
+                    text: "(" + qsTrId("settings-privacy-mp-notice") + ")"
+                    wrapMode:   Text.WordWrap
+                    color: Style.content_secondary
+                    font.pixelSize: 10
+                }
+            }
+
+            ColumnLayout {
+                CustomComboBox {
+                    id: mpAnonymitySet
+                    fontPixelSize: 14
+                    Layout.preferredWidth: 100
+                    currentIndex: viewModel.maxPrivacyAnonymitySet
+                    enabled: false
+                    model: [
+                        "64k",
+                        "32k",
+                        "16k",
+                        "8k",
+                        "4k",
+                        "2k",
+                    ]
+                    onActivated: {
+                        viewModel.maxPrivacyAnonymitySet = mpAnonymitySet.currentIndex
+                    }
+                }
+            }
         }
 
-        SFText {
-            Layout.topMargin: -40
-            //% "Received coins can be spent immediately."
-            text: "(" + qsTrId("settings-privacy-mp-notice") + ")"
-            wrapMode:   Text.WordWrap
-            color: Style.content_secondary
-            font.pixelSize: 10
-        }
+        RowLayout {
+            Layout.fillWidth:       true
+            ColumnLayout {
+                SFText {
+                    Layout.fillWidth: true
+                    //% "Max privacy longest transaction time"
+                    text: qsTrId("settings-privacy-mp-time-limit")
+                    wrapMode:   Text.WordWrap
+                    color: Style.content_main
+                    font.pixelSize: 14
+                }
+            }
 
-        CustomComboBox {
-            id: mpAnonymitySet
-            fontPixelSize: 14
-            Layout.preferredWidth: 150
-            currentIndex: 0
-            model: [
-                "64k",
-                "48k",
-                "32k",
-                "16k",
-                "8k",
-                "2k",
-            ]
-        }
-
-        SFText {
-            //% "Max privacy lock time limit"
-            text: qsTrId("settings-privacy-mp-time-limit")
-            wrapMode:   Text.WordWrap
-            color: Style.content_main
-            font.pixelSize: 14
-        }
-
-        CustomComboBox {
-            id: mpLockTimeLimit
-            fontPixelSize: 14
-            Layout.preferredWidth: 150
-            currentIndex: 0
-            model: [
-                //% "72h"
-                qsTrId("settings-privacy-mp-time-limit-72"),
-                //% "60h"
-                qsTrId("settings-privacy-mp-time-limit-60"),
-                //% "48h"
-                qsTrId("settings-privacy-mp-time-limit-48"),
-                //% "36h"
-                qsTrId("settings-privacy-mp-time-limit-36"),
-                //% "24h"
-                qsTrId("settings-privacy-mp-time-limit-24"),
-            ]
+            ColumnLayout {
+                CustomComboBox {
+                    id: mpLockTimeLimit
+                    fontPixelSize: 14
+                    Layout.preferredWidth: 100
+                    currentIndex: viewModel.maxPrivacyLockTimeLimit
+                    model: [
+                        //% "No limit"
+                        qsTrId("settings-privacy-mp-time-no-limit"),
+                        //% "72h"
+                        qsTrId("settings-privacy-mp-time-limit-72"),
+                        //% "60h"
+                        qsTrId("settings-privacy-mp-time-limit-60"),
+                        //% "48h"
+                        qsTrId("settings-privacy-mp-time-limit-48"),
+                        //% "36h"
+                        qsTrId("settings-privacy-mp-time-limit-36"),
+                        //% "24h"
+                        qsTrId("settings-privacy-mp-time-limit-24"),
+                    ]
+                    onActivated: {
+                        viewModel.maxPrivacyLockTimeLimit = mpLockTimeLimit.currentIndex
+                    }
+                }
+            }
         }
 
         LinkButton {

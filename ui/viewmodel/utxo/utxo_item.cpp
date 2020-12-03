@@ -13,6 +13,7 @@
 // limitations under the License.
 
 #include "utxo_item.h"
+#include "model/app_model.h"
 #include "viewmodel/ui_helpers.h"
 #include "wallet/core/common.h"
 
@@ -60,6 +61,11 @@ QString UtxoItem::maturity() const
 QString UtxoItem::maturityPercentage() const
 {
     return QString{ "100" };
+}
+
+QString UtxoItem::maturityTimeLeft() const
+{
+    return QString::number(rawMaturityTimeLeft());
 }
 
 UtxoViewStatus::EnStatus UtxoItem::status() const
@@ -114,9 +120,22 @@ beam::Height UtxoItem::rawMaturity() const
     return _coin.get_Maturity();
 }
 
+uint16_t UtxoItem::rawMaturityTimeLeft() const
+{
+    auto walletModel = AppModel::getInstance().getWallet();
+    if (walletModel->getCurrentHeight() < _coin.get_Maturity())
+    {
+        auto blocksLeft = _coin.get_Maturity() - walletModel->getCurrentHeight();
+        return blocksLeft / 60;
+    }
+
+    return 0;
+}
+
 // ShieldedCoinItem
 ShieldedCoinItem::ShieldedCoinItem(const beam::wallet::ShieldedCoin& coin, const TxoID& shieldedCount)
-    : _coin{ coin },
+    : _walletModel{*AppModel::getInstance().getWallet()},
+      _coin{ coin },
       _shieldedCount(shieldedCount)
 {
 
@@ -146,13 +165,22 @@ QString ShieldedCoinItem::getAmount() const
 
 QString ShieldedCoinItem::maturity() const
 {
+    if (!_coin.IsMaturityValid())
+        return QString{ "-" };
     return QString::number(rawMaturity());
 }
 
 QString ShieldedCoinItem::maturityPercentage() const
 {
-    ShieldedCoin::UnlinkStatus us(_coin, _shieldedCount); 
-    return QString::number(us.m_Progress);
+    ShieldedCoin::UnlinkStatus us(_coin, _shieldedCount);
+    const auto* packedMessage = ShieldedTxo::User::ToPackedMessage(_coin.m_CoinID.m_User);
+    auto mpAnonymitySet = packedMessage->m_MaxPrivacyMinAnonymitySet;
+    return QString::number(mpAnonymitySet ? us.m_Progress * 64 / mpAnonymitySet : us.m_Progress);
+}
+
+QString ShieldedCoinItem::maturityTimeLeft() const
+{
+    return QString::number(rawMaturityTimeLeft());
 }
 
 UtxoViewStatus::EnStatus ShieldedCoinItem::status() const
@@ -191,4 +219,36 @@ beam::Amount ShieldedCoinItem::rawAmount() const
 beam::Height ShieldedCoinItem::rawMaturity() const
 {
     return _coin.m_confirmHeight;
+}
+
+uint16_t ShieldedCoinItem::rawMaturityTimeLeft() const
+{
+    auto timeLimit = _walletModel.getMPLockTimeLimit();
+
+    uint16_t hoursLeftByBlocksU = 0;
+    if (timeLimit)
+    {
+        auto stateID =_walletModel.getCurrentStateID();
+        auto hoursLeftByBlocks = (_coin.m_confirmHeight + timeLimit * 60 - stateID.m_Height) / 60.;
+        hoursLeftByBlocksU = static_cast<uint16_t>(hoursLeftByBlocks > 1 ? floor(hoursLeftByBlocks) : ceil (hoursLeftByBlocks));
+    }
+
+    auto shieldedPer24h = _walletModel.getShieldedPer24h();
+    if (shieldedPer24h)
+    {
+        auto outputsAddedAfterMyCoin = _shieldedCount -_coin.m_TxoID;
+        const auto* packedMessage = ShieldedTxo::User::ToPackedMessage(_coin.m_CoinID.m_User);
+        auto mpAnonymitySet = packedMessage->m_MaxPrivacyMinAnonymitySet;
+        auto maxWindowBacklog = mpAnonymitySet ? Rules::get().Shielded.MaxWindowBacklog * mpAnonymitySet / 64 : Rules::get().Shielded.MaxWindowBacklog;
+        auto outputsLeftForMP = maxWindowBacklog - outputsAddedAfterMyCoin;
+        auto hoursLeft = outputsLeftForMP / static_cast<double>(shieldedPer24h) * 24;
+        uint16_t hoursLeftU = static_cast<uint16_t>(hoursLeft > 1 ? floor(hoursLeft) : ceil (hoursLeft));
+        if (timeLimit)
+        {
+            hoursLeftU = std::min(hoursLeftU, hoursLeftByBlocksU);
+        }
+        return hoursLeftU;
+    }
+
+    return timeLimit ? hoursLeftByBlocksU : std::numeric_limits<uint16_t>::max();
 }

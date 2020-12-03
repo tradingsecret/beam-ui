@@ -2449,7 +2449,7 @@ much longer for a transaction to complete.</translation>
     </message>
     <message id="tx-failure-shielded-coin-fee">
         <source>Cannot extract shielded coin, fee is too big.</source>
-        <translation type="unfinished">Cannot extract shielded coin, fee is to big.</translation>
+        <translation>Cannot extract shielded coin, fee is to big.</translation>
     </message>
     <message id="tx-failure-assets-disabled-receiver">
         <source>Asset transactions are disabled in the receiver wallet</source>
@@ -2511,7 +2511,7 @@ Your version is: %2. Please, check for updates.</translation>
     </message>
     <message id="wallet-send-one-time-note">
         <source>One-time use address (expire in 12 hours after successfull transaction).</source>
-        <translation type="unfinished">One-time use address (expire in 12 hours after succesfull transaction).</translation>
+        <translation>One-time use address (expire in 12 hours after succesfull transaction).</translation>
     </message>
     <message id="wallet-send-max-privacy-note-address-offline">
         <source>Offline address. Payments left: %1</source>
@@ -2527,7 +2527,7 @@ Your version is: %2. Please, check for updates.</translation>
     </message>
     <message id="max-pivacy-fee-fail">
         <source>For the best privacy, Max privacy coins were selected. Min transaction fee is %1 %2</source>
-        <translation type="unfinished">For the best privacy Max privacy coins were selected. Min transaction fee is %1 %2</translation>
+        <translation>For the best privacy Max privacy coins were selected. Min transaction fee is %1 %2</translation>
     </message>
     <message id="send-amount-label">
         <source>Amount to send</source>
@@ -2808,8 +2808,8 @@ offline</translation>
         <translation>Received coins can be spent immediately.</translation>
     </message>
     <message id="settings-privacy-mp-time-limit">
-        <source>Max privacy lock time limit</source>
-        <translation>Max privacy lock time limit</translation>
+        <source>Max privacy longest transaction time</source>
+        <translation>Max privacy longest transaction time</translation>
     </message>
     <message id="settings-privacy-mp-time-limit-72">
         <source>72h</source>
@@ -2833,7 +2833,39 @@ offline</translation>
     </message>
     <message id="remote-node-lelantus-warning">
         <source>To support Max privacy and offline transactions please connect to integrated node or to own node configured with your owner key.</source>
-        <translation type="unfinished"></translation>
+        <translation>To support Max privacy and offline transactions please connect to integrated node or to own node configured with your owner key.</translation>
+    </message>
+    <message id="time-hour">
+        <source>hour</source>
+        <extracomment>time &quot;hour&quot; string</extracomment>
+        <translation>hour</translation>
+    </message>
+    <message id="time-hours">
+        <source>hours</source>
+        <extracomment>time &quot;hours&quot; string</extracomment>
+        <translation>hours</translation>
+    </message>
+    <message id="time-day">
+        <source>day</source>
+        <extracomment>time &quot;day&quot; string</extracomment>
+        <translation>day</translation>
+    </message>
+    <message id="time-days">
+        <source>days</source>
+        <extracomment>time &quot;days&quot; string</extracomment>
+        <translation>days</translation>
+    </message>
+    <message id="settings-privacy-mp-time-no-limit">
+        <source>No limit</source>
+        <translation>No limit</translation>
+    </message>
+    <message id="wallet-receive-addr-message-mp">
+        <source>Max Privacy transaction can last at most %1 hours</source>
+        <translation>Max Privacy transaction can last at most %1 hours</translation>
+    </message>
+    <message id="wallet-receive-addr-message-mp-no-limit">
+        <source>Max Privacy transaction can last indefinitely</source>
+        <translation>Max Privacy transaction can last indefinitely</translation>
     </message>
 </context>
 </TS>
