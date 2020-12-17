@@ -28,11 +28,10 @@ AbstractColors {
 
     property color active :               "#DC97DC" // bright-teal
     property color passive:               "#d6d9e0"  // silver
-
     property color caps_warning:          "#000000"
 
     property string linkStyle:   "<style>a:link {color: '#DC97DC'; text-decoration: none;}</style>"
-    property string explorerUrl: "https://testnet.explorer.beam.mw/"
+    property string explorerUrl: "https://beamx.explorer.beam.mw/"
     property string faucetUrl:   "https://faucet.beamprivacy.community/"
     property string appsUrl:     "http://3.136.182.25:80/app/appslist.json"
 
