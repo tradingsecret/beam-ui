@@ -26,9 +26,10 @@ AbstractColors {
     property color separator:             "#342e41"
     property color table_header:          "#3e384a"
 
-    property color active :               "#DC97DC" // bright-teal
-    property color passive:               "#d6d9e0"  // silver
+    property color active :               "#DC97DC"
+    property color passive:               "#d6d9e0"
     property color caps_warning:          "#000000"
+    property color online:                "#00f6d2"
 
     property string linkStyle:   "<style>a:link {color: '#DC97DC'; text-decoration: none;}</style>"
     property string explorerUrl: "https://beamx.explorer.beam.mw/"
