@@ -51,6 +51,6 @@ AbstractColors {
     property color swapCurrencyStateIndicator:  "#ff746b"
     property color swapDisconnectNode:          "#f9605b"
 
-    property int appsGradientOffset: -130
-    property int appsGradientTop: 100
+    property int appsGradientOffset: -174
+    property int appsGradientTop: 56
 }
