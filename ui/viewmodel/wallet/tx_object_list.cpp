@@ -236,7 +236,8 @@ QHash<int, QByteArray> TxObjectList::roleNames() const
         { static_cast<int>(Roles::IsReceived), "isReceived"},
         { static_cast<int>(Roles::IsPublicOffline), "isPublicOffline"},
         { static_cast<int>(Roles::IsMaxPrivacy), "isMaxPrivacy"},
-        { static_cast<int>(Roles::IsContractTx), "isContractTx"}
+        { static_cast<int>(Roles::IsContractTx), "isContractTx"},
+        { static_cast<int>(Roles::AssetFilter), "assetFilter"}
     };
     return roles;
 }
@@ -387,6 +388,20 @@ QVariant TxObjectList::data(const QModelIndex &index, int role) const
                 return _amgr.getIcon(assetID);
             }
             return _amgr.getIcon(beam::Asset::s_BeamID);
+        }
+        case Roles::AssetFilter:
+        {
+            const auto& alist = value->getAssetsList();
+
+            QString r;
+            for(const auto aid: alist) {
+                if (!r.isEmpty()) {
+                    r += ",";
+                }
+                r += QString::number(aid);
+            }
+
+            return r;
         }
         default:
             return QVariant();

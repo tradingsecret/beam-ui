@@ -69,6 +69,7 @@ public:
         IsPublicOffline,
         IsMaxPrivacy,
         IsContractTx,
+        AssetFilter,
     };
 
     Q_ENUM(Roles)

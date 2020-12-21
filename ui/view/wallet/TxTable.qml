@@ -15,6 +15,8 @@ Control {
         id: tableViewModel
     }
 
+    property int selectedAsset: -1
+
     state: "all"
     states: [
         State {
@@ -182,13 +184,20 @@ Control {
 
             model: SortFilterProxyModel {
                 id: txProxyModel
+
                 source: SortFilterProxyModel {
                     id: searchProxyModel
-                    source: tableViewModel.transactions
                     filterRole: "search"
                     filterString: searchBox.text
                     filterSyntax: SortFilterProxyModel.Wildcard
                     filterCaseSensitivity: Qt.CaseInsensitive
+
+                    source: SortFilterProxyModel {
+                        filterRole:   "assetFilter"
+                        filterString: control.selectedAsset < 0 ? "" : ["\\b", control.selectedAsset, "\\b"].join("")
+                        filterSyntax: SortFilterProxyModel.RegExp
+                        source: tableViewModel.transactions
+                    }
                 }
 
                 sortOrder: transactionsTable.sortIndicatorOrder
