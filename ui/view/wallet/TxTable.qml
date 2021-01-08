@@ -366,11 +366,11 @@ Control {
                 resizable: false
 
                 delegate: Item { Item {
-                    width: model && model.isContractTx ? parent.width * 2 : parent.width
+                    width: model && (model.isContractTx || model.isDexTx) ? parent.width * 2 : parent.width
                     height: transactionsTable.rowHeight
 
                     TableItem {
-                        text:   model ? (model.isContractTx ? model.comment : model.addressFrom) : ""
+                        text:   model ? (model.isContractTx || model.isDexTx ? model.comment : model.addressFrom) : ""
                         elide:  Text.ElideRight
                         color:  Style.content_main
                     }
@@ -386,7 +386,7 @@ Control {
                 resizable: false
 
                 delegate: Item {
-                    visible: model && !model.isContractTx
+                    visible: model && !model.isContractTx && !model.isDexTx
                     Item {
                         width: parent.width
                         height: transactionsTable.rowHeight

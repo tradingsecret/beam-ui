@@ -70,6 +70,7 @@ public:
         IsMaxPrivacy,
         IsContractTx,
         AssetFilter,
+        IsDexTx,
     };
 
     Q_ENUM(Roles)
