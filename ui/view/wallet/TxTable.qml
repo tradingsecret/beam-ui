@@ -152,10 +152,11 @@ Control {
                 transactionsTable.model.modelReset.connect(function(){
                     if (root.openedTxID != "") {
                         var index = tableViewModel.transactions.index(0, 0);
-                        var indexList = tableViewModel.transactions.match(index, TxObjectList.Roles.TxID, root.openedTxID);
+                        var indexList = tableViewModel.transactions.match(index, TxObjectList.Roles.TxID, root.openedTxID)
                         if (indexList.length > 0) {
-                            index = searchProxyModel.mapFromSource(indexList[0]);
-                            index = txProxyModel.mapFromSource(index);
+                            index = assetFilterProxy.mapFromSource(indexList[0])
+                            index = searchProxyModel.mapFromSource(index)
+                            index = txProxyModel.mapFromSource(index)
                             transactionsTable.positionViewAtRow(index.row, ListView.Beginning)
                         }
                     }
@@ -193,6 +194,7 @@ Control {
                     filterCaseSensitivity: Qt.CaseInsensitive
 
                     source: SortFilterProxyModel {
+                        id: assetFilterProxy
                         filterRole:   "assetFilter"
                         filterString: control.selectedAsset < 0 ? "" : ["\\b", control.selectedAsset, "\\b"].join("")
                         filterSyntax: SortFilterProxyModel.RegExp
