@@ -87,7 +87,7 @@ jobs:
         git clone https://github.com/BeamMW/boost_prebuild_${{matrix.os}}.git ${{runner.workspace}}/boost_prebuild
         echo "BOOST_INCLUDEDIR=${{runner.workspace}}/boost_prebuild/include" >> $GITHUB_ENV
         echo "BOOST_LIBRARYDIR=${{runner.workspace}}/boost_prebuild/lib/" >> $GITHUB_ENV
-
+        echo "NOW::$(date +'%Y.%m.%d')" >> $GITHUB_ENV
 ###############################################################################
 # Configure CMake
 ###############################################################################
@@ -227,7 +227,7 @@ jobs:
        args: --acl public-read
       env:
        SOURCE_DIR: ui/
-       DEST_DIR: ${GITHUB_REF##*/}/{{env.BEAM_TARGET_SUFFIX}}/test/
+       DEST_DIR: ${GITHUB_REF##*/}/${{env.NOW}}/test/
        AWS_REGION: ${{ secrets.AWS_REGION }}
        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
