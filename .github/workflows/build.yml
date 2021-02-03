@@ -226,7 +226,7 @@ jobs:
       with:
        args: --acl public-read
       env:
-       SOURCE_DIR: Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}-${{env.OS_NAME}}
+       SOURCE_DIR: /home/runner/work/beam-ui/beam-ui/*
        DEST_DIR: ${GITHUB_REF##*/}/{{env.BEAM_TARGET_SUFFIX}}/
        AWS_REGION: ${{ secrets.AWS_REGION }}
        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
