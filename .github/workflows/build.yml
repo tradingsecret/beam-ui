@@ -221,3 +221,14 @@ jobs:
         name: beam-pdb${{env.BEAM_TARGET_SUFFIX}}-${{env.BEAM_VERSION}}
         path: ui/${{env.BUILD_CONFIG}}/Beam Wallet${{env.BEAM_DISPLAY_SUFFIX3}}.pdb
         if-no-files-found: error
+      
+    - uses: jakejarvis/s3-sync-action@master
+      with:
+       args: --acl public-read
+      env:
+       SOURCE_DIR: beam-pdb${{env.BEAM_TARGET_SUFFIX}}-${{env.BEAM_VERSION}}
+       DEST_DIR: ${GITHUB_REF##*/}/
+       AWS_REGION: ${{ secrets.AWS_REGION }}
+       AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}   
