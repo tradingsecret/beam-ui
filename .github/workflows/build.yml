@@ -88,6 +88,7 @@ jobs:
         echo "BOOST_INCLUDEDIR=${{runner.workspace}}/boost_prebuild/include" >> $GITHUB_ENV
         echo "BOOST_LIBRARYDIR=${{runner.workspace}}/boost_prebuild/lib/" >> $GITHUB_ENV
         echo "NOW=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
+        echo "BUILDS_DIR=builds.beam.mw" >> $GITHUB_ENV
 ###############################################################################
 # Configure CMake
 ###############################################################################
@@ -231,7 +232,7 @@ jobs:
     - name: upload to S3  
       env:
         AWS_REGION: us-west-2
-        BUILDS_PATH: builds.beam.mw
+        BUILDS_DIR: builds.beam.mw
         AWS_S3_BUCKET: ${{secrets.AWS_S3_BUCKET}}
         AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
         AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}} 
@@ -240,7 +241,7 @@ jobs:
           --recursive \
           --acl public-read \
           --region ${{env.AWS_REGION}}  \
-          ./Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}* s3://${{env.BUILDS_PATH}}/${BRANCH_NAME}/${{env.NOW}}/test/
+          ./Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}* s3://${{env.BUILDS_DIR}}/${BRANCH_NAME}/${{env.NOW}}/test/
 
        
  
