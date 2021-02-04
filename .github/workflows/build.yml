@@ -238,8 +238,8 @@ jobs:
           aws s3 cp \
           --recursive \
           --acl public-read \
-          --region ${{ secrets.AWS_REGION }}  \
-          ./Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}* s3://${{secrets.AWS_S3_BUCKET}}/${BRANCH_NAME}/${{env.NOW}}/test/
+          --region us-west-2  \
+          ./Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}* s3://builds.beam.mw/${BRANCH_NAME}/${{env.NOW}}/test/
 
        
  
