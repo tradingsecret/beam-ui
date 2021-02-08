@@ -318,7 +318,7 @@ Item {
                         radius:                 10
                         border {
                             width:      1
-                            color:      "#dc97dc"
+                            color:      "#1af6d6"
                         }
                          color: "transparent"
                     }
