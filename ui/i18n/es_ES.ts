@@ -257,34 +257,6 @@
         <source>Delete contact</source>
         <translation>Borrar contacto</translation>
     </message>
-    <message id="available-panel-available">
-        <source>Available</source>
-        <translation>Disponible</translation>
-    </message>
-    <message id="available-panel-locked">
-        <source>Locked</source>
-        <translation>Bloqueado</translation>
-    </message>
-    <message id="available-panel-sending">
-        <source>Sending</source>
-        <translation>Enviando</translation>
-    </message>
-    <message id="available-panel-receiving">
-        <source>Receiving</source>
-        <translation>Recibiendo</translation>
-    </message>
-    <message id="available-panel-maturing">
-        <source>Maturing</source>
-        <translation>Madurando</translation>
-    </message>
-    <message id="available-panel-change">
-        <source>Change</source>
-        <translation>Cambiar</translation>
-    </message>
-    <message id="available-panel-incoming">
-        <source>Incoming</source>
-        <translation>Llegando</translation>
-    </message>
     <message id="settings-version">
         <source>Version</source>
         <extracomment>settings tab, version label</extracomment>
@@ -2659,11 +2631,6 @@ Your version is: %2. Please, check for updates.</translation>
         <source>Payments</source>
         <translation>Pagos</translation>
     </message>
-    <message id="available-panel-maturing-mp">
-        <source>Max Privacy</source>
-        <oldsource>Max privacy</oldsource>
-        <translation type="unfinished">Máxima privacidad</translation>
-    </message>
     <message id="utxo-status-maturing-mp">
         <source>Maturing%1(max privacy %2% unlinked)</source>
         <translation type="unfinished">Maturing%1(max privacy %2% unlinked)</translation>
@@ -2799,28 +2766,12 @@ público fuera de línea</translation>
 (%2 incoming, %3 outgoing)</source>
         <translation type="unfinished"></translation>
     </message>
-    <message id="assets-connect-other">
-        <source>Connect other assets</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message id="wallet-assets-title">
         <source>Assets</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="wallet-search-asset">
         <source>Asset name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="wallet-beam-available">
-        <source>%1 Available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="wallet-total-available">
-        <source>Total Available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message id="inprogress-assets">
-        <source>Assets</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="wallet-txs-status-canceled-max">
