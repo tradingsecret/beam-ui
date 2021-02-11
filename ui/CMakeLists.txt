@@ -120,8 +120,11 @@ set(UI_SRC
     viewmodel/wallet/tx_object_list.cpp
     viewmodel/wallet/wallet_view.cpp
     viewmodel/wallet/tx_table.cpp
+    viewmodel/atomic_swap/swap_eth_settings_item.cpp
+    viewmodel/atomic_swap/seed_phrase_item.cpp
     viewmodel/atomic_swap/swap_offer_item.cpp
     viewmodel/atomic_swap/swap_offers_list.cpp
+    viewmodel/atomic_swap/swap_settings_item.cpp
     viewmodel/atomic_swap/swap_tx_object.cpp
     viewmodel/atomic_swap/swap_tx_object_list.cpp
     viewmodel/atomic_swap/swap_offers_view.cpp
@@ -166,6 +169,7 @@ set(UI_SRC
     viewmodel/receive_view.cpp
     viewmodel/send_view.h
     viewmodel/send_view.cpp
+    viewmodel/settings_helpers.cpp
     viewmodel/payment_item.h
     viewmodel/payment_item.cpp
     viewmodel/qml_globals.h
@@ -201,8 +205,6 @@ set(UI_SRC
     model/wallet_model.cpp
     model/app_model.h
     model/app_model.cpp
-    model/filter.h
-    model/filter.cpp
     model/keyboard.h
     model/keyboard.cpp
     model/settings.h
@@ -218,6 +220,8 @@ set(UI_SRC
     model/translator.h
     model/swap_coin_client_model.cpp
     model/swap_coin_client_model.h
+    model/swap_eth_client_model.cpp
+    model/swap_eth_client_model.h
 )
 
 beam_translations_update_ts("${SUPPORTED_LANGS}" TS_FILES)
@@ -274,6 +278,10 @@ if (APPLE)
         message(FATAL_ERROR "Carbon framework not found")
     endif()
 endif()
+if(BEAM_USE_STATIC AND LINUX)
+    set(CMAKE_C_FLAGS "-no-pie ${CMAKE_C_FLAGS}")
+    set(CMAKE_CXX_FLAGS "-no-pie ${CMAKE_CXX_FLAGS}")
+endif()
 add_executable(${TARGET_NAME} ${SYSTEM_TYPE} ${UI_SRC} ${QT_RESOURCES} beam.rc "${CMAKE_CURRENT_SOURCE_DIR}/beam.icns")
 set_target_properties(${TARGET_NAME} PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
 
@@ -282,7 +290,7 @@ if(BEAM_HW_WALLET)
 endif()
 
 configure_file("${PROJECT_SOURCE_DIR}/version.h.in" "${CMAKE_CURRENT_BINARY_DIR}/version.h")
-message("client cmake")
+
 add_definitions(-DBEAM_LIB_VERSION="${BEAM_VERSION}")
 add_definitions(-DBEAM_CLIENT_VERSION="${PROJECT_VERSION}")
 
@@ -405,7 +413,6 @@ if(BEAM_USE_STATIC_QT)
     endif()
 
     if(LINUX)
-
         target_link_libraries(${TARGET_NAME} -static-libstdc++ -static-libgcc)
 
         target_link_libraries(${TARGET_NAME}
@@ -414,6 +421,7 @@ if(BEAM_USE_STATIC_QT)
         )
 
         target_link_libraries(${TARGET_NAME}
+            ${CMAKE_PREFIX_PATH}/qml/QtQml/libqmlplugin.a
             ${CMAKE_PREFIX_PATH}/qml/QtQuick.2/libqtquick2plugin.a
             ${CMAKE_PREFIX_PATH}/qml/QtQuick/Window.2/libwindowplugin.a
             ${CMAKE_PREFIX_PATH}/qml/QtQuick/Controls/libqtquickcontrolsplugin.a
@@ -427,25 +435,19 @@ if(BEAM_USE_STATIC_QT)
         )
 
         foreach(lib
-            Qt5Core Qt5XcbQpa clip2tri Qt5Gui Qt5Nfc Qt5Quick Qt5Sensors clipper
-            Qt5PacketProtocol Qt5QuickControls2 Qt5SerialBus Qt5WebChannel qtharfbuzz
-            poly2tri Qt5InputSupport Qt5Positioning Qt5QuickTemplates2
-            Qt5SerialPort Qt5WebSockets qtlibpng Qt5AccessibilitySupport Qt5DeviceDiscoverySupport
-            Qt5KmsSupport Qt5PositioningQuick Qt5QuickTest Qt5ServiceSupport
-            Qt5Bluetooth Qt5EdidSupport Qt5QuickWidgets
-            Qt5Sql Qt5Widgets qtpcre2 Qt5Bootstrap Qt5EventDispatcherSupport
-            Qt5Purchasing Qt5RemoteObjects Qt5Svg Qt5X11Extras
-            Qt5FbSupport Qt5Qml Qt5Test
-            Qt5Concurrent Qt5FontDatabaseSupport Qt5Network Qt5QmlDebug
-            Qt5Xml xcb-static Qt5Gamepad Qt5NetworkAuth Qt5QmlDevTools
-            Qt5Scxml Qt5ThemeSupport Qt5XmlPatterns Qt5DBus Qt5GlxSupport
+            Qt5Core Qt5XcbQpa Qt5Gui Qt5Quick Qt5QuickControls2 Qt5InputSupport
+            Qt5QuickTemplates2 qtlibpng Qt5QuickWidgets Qt5Widgets qtpcre2
+            Qt5Bootstrap Qt5EventDispatcherSupport Qt5RemoteObjects Qt5Svg
+            Qt5X11Extras Qt5FbSupport Qt5Qml Qt5Test Qt5Concurrent
+            Qt5FontDatabaseSupport Qt5Network Qt5Xml Qt5QmlWorkerScript Qt5Scxml
+            Qt5ThemeSupport Qt5XmlPatterns Qt5GlxSupport
         )
             target_link_libraries(${TARGET_NAME} ${CMAKE_PREFIX_PATH}/lib/lib${lib}.a)
         endforeach()
 
-        target_link_libraries(${TARGET_NAME} -lX11-xcb -lX11 -lxcb -lGL -lfreetype -lfontconfig -lXi -lXext -lXfixes -lXrender -lglib-2.0 -lSM -lICE -lcups -lxcb-glx)
+        target_link_libraries(${TARGET_NAME} -lX11-xcb -lX11 -lxcb -lGL -lfreetype -lfontconfig -lXi -lXext -lXfixes -lXrender -lglib-2.0 -lSM -lICE)
 
-        foreach(lib icui18n icuuc icudata)
+        foreach(lib icui18n icuuc icudata xcb-xinerama xcb-xinput xcb-xkb xcb-xfixes xcb-glx xcb-sync xcb-shape xcb-render xcb-render-util xcb-randr xcb-keysyms xcb-shm xcb-icccm xcb-shm xcb-xkb jbig jpeg)
             target_link_libraries(${TARGET_NAME} /usr/lib/x86_64-linux-gnu/lib${lib}.a)
         endforeach()
 
@@ -477,39 +479,39 @@ elseif(APPLE)
             "${CMAKE_CURRENT_BINARY_DIR}/Beam Wallet${BEAM_DISPLAY_SUFFIX}.app"
             -always-overwrite
             -qmldir=${CMAKE_CURRENT_SOURCE_DIR}
-            -sign-for-notarization="${BEAM_SIGN_IDENTITY2}"
+            -sign-for-notarization="${BEAM_SIGN_IDENTITY}"
             COMMENT "Deploying Qt..."
         )
 
-        #if(BEAM_SIGN_MACOS_BINARY)
-        #    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
-        #        COMMAND codesign 
-        #        --force
-        #        --deep
-        #        --verify
-        #        --verbose
-        #        --display
-        #        -s "${BEAM_SIGN_IDENTITY2}"
-        #        -o runtime
-        #        --timestamp
-        #        #--entitlements ${CMAKE_CURRENT_SOURCE_DIR}/QtWebEngineProcess.entitlements
-        #        "${CMAKE_CURRENT_BINARY_DIR}/Beam Wallet${BEAM_DISPLAY_SUFFIX}.app"
-        #        COMMENT "Signing Beam Wallet${BEAM_DISPLAY_SUFFIX}.app..."
-        #    )
-        #    add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
-        #        COMMAND codesign 
-        #        --force
-        #        --verify
-        #        --verbose
-        #        --display
-        #        -s "${BEAM_SIGN_IDENTITY2}"
-        #        -o runtime
-        #        --timestamp
-        #        --entitlements ${CMAKE_CURRENT_SOURCE_DIR}/QtWebEngineProcess.entitlements
-        #        "${CMAKE_CURRENT_BINARY_DIR}/Beam Wallet${BEAM_DISPLAY_SUFFIX}.app/Contents/Frameworks/QtWebEngineCore.framework/Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess"
-        #        COMMENT "Signing QtWebEngineProcess..."
-        #    )
-        #endif()
+        if(BEAM_SIGN_MACOS_BINARY)
+            add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+                COMMAND codesign 
+                --force
+                --deep
+                --verify
+                --verbose
+                --display
+                -s "${BEAM_SIGN_IDENTITY}"
+                -o runtime
+                --timestamp
+                #--entitlements ${CMAKE_CURRENT_SOURCE_DIR}/QtWebEngineProcess.entitlements
+                "${CMAKE_CURRENT_BINARY_DIR}/Beam Wallet${BEAM_DISPLAY_SUFFIX}.app"
+                COMMENT "Signing Beam Wallet${BEAM_DISPLAY_SUFFIX}.app..."
+            )
+            add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+                COMMAND codesign 
+                --force
+                --verify
+                --verbose
+                --display
+                -s "${BEAM_SIGN_IDENTITY}"
+                -o runtime
+                --timestamp
+                --entitlements ${CMAKE_CURRENT_SOURCE_DIR}/QtWebEngineProcess.entitlements
+                "${CMAKE_CURRENT_BINARY_DIR}/Beam Wallet${BEAM_DISPLAY_SUFFIX}.app/Contents/Frameworks/QtWebEngineCore.framework/Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess"
+                COMMENT "Signing QtWebEngineProcess..."
+            )
+        endif()
     endif()
     install(TARGETS ${TARGET_NAME} DESTINATION .)
 else()
