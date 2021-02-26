@@ -261,8 +261,7 @@ QString SwapTxObject::getFee() const
     auto fee = m_swapTx.getFee();
     if (fee)
     {
-        Amount shieldedFee = GetShieldedFee(getTxDescription(), SubTxIndex::BEAM_LOCK_TX);
-        return beamui::AmountInGrothToUIString(shieldedFee + *fee);
+        return beamui::AmountInGrothToUIString(*fee);
     }
     return QString();
 }
