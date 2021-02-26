@@ -45,8 +45,10 @@ namespace
 }
 
 SendViewModel::SendViewModel()
-    : _walletModel(*AppModel::getInstance().getWalletModel())
+    : _fee(minimalFee(Currency::CurrBeam, false))
+    , _walletModel(*AppModel::getInstance().getWalletModel())
     , _amgr(AppModel::getInstance().getAssets())
+    , _minFee(minFeeBeam(false))
 {
     connect(&_walletModel,           SIGNAL(sendMoneyVerified()),               this,  SIGNAL(sendMoneyVerified()));
     connect(&_walletModel,           SIGNAL(cantSendToExpired()),               this,  SIGNAL(cantSendToExpired()));
@@ -55,26 +57,23 @@ SendViewModel::SendViewModel()
     connect(&_exchangeRatesManager,  &ExchangeRatesManager::activeRateChanged,       this,  &SendViewModel::assetsListChanged);
     connect(&_exchangeRatesManager,  &ExchangeRatesManager::rateUnitChanged,         this,  &SendViewModel::feeRateChanged);
     connect(&_exchangeRatesManager,  &ExchangeRatesManager::activeRateChanged,       this,  &SendViewModel::feeRateChanged);
-    connect(&_walletModel,           &WalletModel::coinsSelectionCalculated,         this,  &SendViewModel::onSelectionCalculated);
+    connect(&_walletModel,           &WalletModel::shieldedCoinsSelectionCalculated, this,  &SendViewModel::onSelectionCalculated);
     connect(_amgr.get(),             &AssetsManager::assetInfo,                      this,  &SendViewModel::onAssetInfo);
-
-    m_Csi.m_explicitFee = minFeeBeam(_isShielded);
-    m_Csi.m_minimalExplicitFee = m_Csi.m_explicitFee;
 }
 
 unsigned int SendViewModel::getFeeGrothes() const
 {
-    return m_Csi.m_explicitFee;
+    return _fee;
 }
 
 unsigned int SendViewModel::getMinFee() const
 {
-    return m_Csi.m_minimalExplicitFee;
+    return _minFee;
 }
 
 void SendViewModel::setFeeGrothesUI(unsigned int value)
 {
-    if (value != m_Csi.m_explicitFee)
+    if (value != _fee)
     {
         _feeChangedByUi = true;
         setFeeGrothes(value);
@@ -83,26 +82,13 @@ void SendViewModel::setFeeGrothesUI(unsigned int value)
 
 void SendViewModel::setFeeGrothes(unsigned int value)
 {
-    if (value != m_Csi.m_explicitFee)
+    if (value != _fee)
     {
-        m_Csi.m_explicitFee = value;
+        _fee = value;
         emit feeGrothesChanged();
-        RefreshCsiAsync();
+
+        _walletModel.getAsync()->calcShieldedCoinSelectionInfo(_sendAmount, _fee, _selectedAssetId, _isShielded);
     }
-}
-
-void SendViewModel::RefreshCsiAsync()
-{
-    _walletModel.getAsync()->calcShieldedCoinSelectionInfo(m_Csi.m_requestedSum, m_Csi.m_explicitFee, m_Csi.m_assetID, _isShielded);
-}
-
-beam::Amount SendViewModel::get_TotalSpendSelected() const
-{
-    auto val = m_Csi.m_requestedSum;
-    if (!m_Csi.m_assetID)
-        val += m_Csi.get_TotalFee();
-
-    return val;
 }
 
 QString SendViewModel::getComment() const
@@ -121,17 +107,17 @@ void SendViewModel::setComment(const QString& value)
 
 QString SendViewModel::getSendAmount() const
 {
-    return beamui::AmountToUIString(m_Csi.m_requestedSum);
+    return beamui::AmountToUIString(_sendAmount);
 }
 
 void SendViewModel::setSendAmount(QString value)
 {
     beam::Amount amount = beamui::UIStringToAmount(value);
-    if (amount != m_Csi.m_requestedSum || _maxPossible)
+    if (amount != _sendAmount || _maxPossible)
     {
-        m_Csi.m_requestedSum = amount;
+        _sendAmount = amount;
         emit sendAmountChanged();
-        RefreshCsiAsync();
+        _walletModel.getAsync()->calcShieldedCoinSelectionInfo(_sendAmount, _fee, _selectedAssetId, _isShielded);
     }
 }
 
@@ -195,7 +181,7 @@ void SendViewModel::setIsShieldedTx(bool value)
     {
         _isShielded = value;
         emit isShieldedTxChanged();
-        RefreshCsiAsync();
+        _walletModel.getAsync()->calcShieldedCoinSelectionInfo(_sendAmount, _minFee, _selectedAssetId, _isShielded);
     }
 }
 
@@ -272,8 +258,8 @@ void SendViewModel::setIsPublicOffline(bool value)
 
 QString SendViewModel::getAssetAvailable() const
 {
-    beam::AmountBig::Type amount = get_TotalSpendSelected();
-    beam::AmountBig::Type walletAvailable = _walletModel.getAvailable(m_Csi.m_assetID);
+    beam::AmountBig::Type amount = _sendAmount + (_selectedAssetId == beam::Asset::s_BeamID ? _fee : 0U);
+    beam::AmountBig::Type walletAvailable = _walletModel.getAvailable(_selectedAssetId);
 
     if (amount < walletAvailable)
     {
@@ -290,12 +276,12 @@ QString SendViewModel::getAssetAvailable() const
 
 QString SendViewModel::getBeamAvailable() const
 {
-    if (m_Csi.m_assetID == beam::Asset::s_BeamID)
+    if (_selectedAssetId == beam::Asset::s_BeamID)
     {
         return getAssetAvailable();
     }
 
-    auto amount = m_Csi.m_explicitFee;
+    auto amount = _fee;
     auto available = beam::AmountBig::get_Lo(_walletModel.getAvailable(beam::Asset::s_BeamID));
 
     if (amount < available)
@@ -309,8 +295,8 @@ QString SendViewModel::getBeamAvailable() const
 
 QString SendViewModel::getAssetMissing() const
 {
-    beam::AmountBig::Type amount = get_TotalSpendSelected();
-    auto available = _walletModel.getAvailable(m_Csi.m_assetID);
+    beam::AmountBig::Type amount = _sendAmount + (_selectedAssetId == beam::Asset::s_BeamID ? _fee : 0);
+    auto available = _walletModel.getAvailable(_selectedAssetId);
 
     if (amount > available)
     {
@@ -327,9 +313,7 @@ QString SendViewModel::getAssetMissing() const
 
 QString SendViewModel::getBeamMissing() const
 {
-    auto amount = m_Csi.get_TotalFee();
-    if (!m_Csi.m_assetID)
-        amount += m_Csi.m_requestedSum;
+    auto amount = _fee + (_selectedAssetId == beam::Asset::s_BeamID ? _sendAmount : 0);
     auto available = beam::AmountBig::get_Lo(_walletModel.getAvailable(beam::Asset::s_BeamID));
 
     if (amount > available)
@@ -354,36 +338,48 @@ bool SendViewModel::isEnough() const
     return getAssetMissing() == "0" && getBeamMissing() == "0";
 }
 
-void SendViewModel::onSelectionCalculated(const beam::wallet::CoinsSelectionInfo& selectionRes)
+void SendViewModel::onSelectionCalculated(const beam::wallet::ShieldedCoinsSelectionInfo& selectionRes)
 {
-    if ((selectionRes.m_requestedSum != m_Csi.m_requestedSum) ||
-        (selectionRes.m_assetID != m_Csi.m_assetID))
-        return;
-
-    bool bWasEnough = m_Csi.m_isEnought;
-    m_Csi = selectionRes;
-
-    if (!m_Csi.m_isEnought || !bWasEnough)
+    if (_selectedAssetId != selectionRes.assetID)
     {
+        return;
+    }
+
+    if (!selectionRes.isEnought)
+    {
+        _maxWhatCanSelect = selectionRes.selectedSumBeam - selectionRes.selectedFee;
+        emit sendAmountChanged();
+    }
+    else if (_maxWhatCanSelect)
+    {
+        _maxWhatCanSelect = 0;
         emit sendAmountChanged();
     }
 
-    if (m_Csi.m_assetID == beam::Asset::s_BeamID)
+    _shieldedFee = selectionRes.shieldedInputsFee;
+    setNeedExtractShieldedCoins(!!selectionRes.shieldedInputsFee);
+
+    if (selectionRes.assetID == beam::Asset::s_BeamID)
     {
-        if (!m_Csi.m_isEnought && _maxPossible)
+        if (!selectionRes.isEnought && _maxPossible)
         {
-            m_Csi.m_requestedSum = m_Csi.get_NettoValue();
+            _sendAmount = selectionRes.selectedSumBeam - selectionRes.selectedFee;
             emit sendAmountChanged();
             _maxPossible = false;
         }
     }
 
+    _minFee = selectionRes.minimalFee;
     emit minFeeChanged();
 
     if (!_feeChangedByUi)
     {
+        _fee = selectionRes.selectedFee;
         emit feeGrothesChanged();
     }
+
+    _changeAsset = selectionRes.changeAsset;
+    _changeBeam = selectionRes.changeBeam;
 
     emit availableChanged();
     emit canSendChanged();
@@ -392,7 +388,11 @@ void SendViewModel::onSelectionCalculated(const beam::wallet::CoinsSelectionInfo
 
 void SendViewModel::setNeedExtractShieldedCoins(bool val)
 {
-    // TODO: remove
+    if (_isNeedExtractShieldedCoins != val)
+    {
+        _isNeedExtractShieldedCoins = val;
+        emit isNeedExtractShieldedCoinsChanged();
+    }
 }
 
 void SendViewModel::onGetAddressReturned(const boost::optional<beam::wallet::WalletAddress>& address, int offlinePayments)
@@ -412,23 +412,25 @@ void SendViewModel::onGetAddressReturned(const boost::optional<beam::wallet::Wal
 
 QString SendViewModel::getChangeBeam() const
 {
-    return beamui::AmountBigToUIString(m_Csi.m_changeBeam);
+    return beamui::AmountBigToUIString(_changeBeam);
 }
 
 QString SendViewModel::getChangeAsset() const
 {
-    return beamui::AmountBigToUIString(m_Csi.m_changeAsset);
+    return beamui::AmountBigToUIString(_changeAsset);
 }
 
 QString SendViewModel::getFee() const
 {
-    return beamui::AmountToUIString(m_Csi.m_explicitFee);
+    return beamui::AmountToUIString(_fee);
 }
 
 bool SendViewModel::canSend() const
 {
     return !QMLGlobals::isSwapToken(_receiverTA) && getRreceiverTAValid()
-           && m_Csi.m_requestedSum > 0 && m_Csi.m_isEnought
+           && _sendAmount > 0 && isEnough()
+           && isFeeOK(_fee, Currency::CurrBeam, isShieldedTx() || _isNeedExtractShieldedCoins)
+           && _fee >= _minFee
            && (!isShieldedTx() || !isOffline() || getOfflinePayments() > 0)
            && canSendByOneTransaction();
 }
@@ -457,7 +459,7 @@ void SendViewModel::setMaxPossibleAmount()
     _maxPossible = true;
     _feeChangedByUi = false;
 
-    const auto amount = _walletModel.getAvailable(m_Csi.m_assetID);
+    const auto amount = _walletModel.getAvailable(_selectedAssetId);
     const auto maxAmount = std::min(amount, getMaxInputAmount());
     setSendAmount(beamui::AmountBigToUIString(maxAmount));
 }
@@ -475,10 +477,10 @@ void SendViewModel::sendMoney()
         auto params = CreateSimpleTransactionParameters();
         LoadReceiverParams(_txParameters, params);
 
-        params.SetParameter(TxParameterID::Amount, m_Csi.m_requestedSum)
+        params.SetParameter(TxParameterID::Amount, _sendAmount)
               // fee for shielded inputs would be included automatically
-              .SetParameter(TxParameterID::Fee, m_Csi.m_explicitFee)
-              .SetParameter(TxParameterID::AssetID, m_Csi.m_assetID)
+              .SetParameter(TxParameterID::Fee, _fee - _shieldedFee)
+              .SetParameter(TxParameterID::AssetID, _selectedAssetId)
               .SetParameter(TxParameterID::Message, beam::ByteBuffer(messageString.begin(), messageString.end()));
 
         if (isShieldedTx())
@@ -663,7 +665,7 @@ QString SendViewModel::getFeeRate() const
 
 bool SendViewModel::isNeedExtractShieldedCoins() const
 {
-    return false; // TODO: remove
+    return _isNeedExtractShieldedCoins;
 }
 
 bool SendViewModel::getIsNewToken() const
@@ -692,12 +694,12 @@ void SendViewModel::setWalletAddress(const boost::optional<beam::wallet::WalletA
 
 bool SendViewModel::canSendByOneTransaction() const
 {
-    return m_Csi.m_isEnought;
+    return !_maxWhatCanSelect || _maxWhatCanSelect >= _sendAmount;
 }
 
 QString SendViewModel::getMaxSendAmount() const
 {
-    return beamui::AmountToUIString(m_Csi.get_NettoValue());
+    return beamui::AmountToUIString(_maxWhatCanSelect);
 }
 
 void SendViewModel::onAssetInfo(beam::Asset::ID assetId)
@@ -707,16 +709,16 @@ void SendViewModel::onAssetInfo(beam::Asset::ID assetId)
 
 int SendViewModel::getSelectedAssetId() const
 {
-    return static_cast<int>(m_Csi.m_assetID);
+    return static_cast<int>(_selectedAssetId);
 }
 
 void SendViewModel::setSelectedAssetId(int value)
 {
     auto valueId = value < 0 ? beam::Asset::s_BeamID : static_cast<beam::Asset::ID>(value);
-    if (m_Csi.m_assetID != valueId)
+    if (_selectedAssetId != valueId)
     {
         LOG_INFO () << "Selected asset id" << value;
-        m_Csi.m_assetID = valueId;
+        _selectedAssetId = valueId;
 
         emit selectedAssetChanged();
         emit availableChanged();
@@ -731,6 +733,7 @@ void SendViewModel::resetAddress()
     setIsMaxPrivacy(false);
     setIsPublicOffline(false);
     setIsPermanentAddress(false);
+    setNeedExtractShieldedCoins(false);
     setWalletAddress({});
     setOfflinePayments(0);
 

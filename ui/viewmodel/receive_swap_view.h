@@ -127,7 +127,7 @@ private:
 private slots:
     void onGeneratedNewAddress(const beam::wallet::WalletAddress& walletAddr);
     void onSwapParamsLoaded(const beam::ByteBuffer& token);
-    void onCoinsSelectionCalculated(const beam::wallet::CoinsSelectionInfo&);
+    void onShieldedCoinsSelectionCalculated(const beam::wallet::ShieldedCoinsSelectionInfo& selectionRes);
 
 private:
     beam::Amount _amountToReceiveGrothes;
@@ -149,5 +149,6 @@ private:
     bool _isBeamSide;
 
     beam::Amount _minimalBeamFeeGrothes;
+    beam::Amount _shieldedInputsFee;
     bool _feeChangedByUI = false;
 };

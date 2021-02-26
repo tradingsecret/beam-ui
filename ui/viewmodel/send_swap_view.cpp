@@ -35,12 +35,13 @@ SendSwapViewModel::SendSwapViewModel()
     , _walletModel(*AppModel::getInstance().getWalletModel())
     , _isBeamSide(true)
     , _minimalBeamFeeGrothes(minimalFee(Currency::CurrBeam, false))
+    , _shieldedInputsFee(0)
 {
     connect(&_walletModel, &WalletModel::changeCalculated,  this,  &SendSwapViewModel::onChangeCalculated);
     connect(&_walletModel, &WalletModel::walletStatusChanged, this, &SendSwapViewModel::recalcAvailable);
     connect(&_exchangeRatesManager, SIGNAL(rateUnitChanged()), SIGNAL(secondCurrencyUnitNameChanged()));
     connect(&_exchangeRatesManager, SIGNAL(activeRateChanged()), SIGNAL(secondCurrencyRateChanged()));
-    connect(&_walletModel, &WalletModel::coinsSelectionCalculated, this, &SendSwapViewModel::onCoinsSelectionCalculated);
+    connect(&_walletModel, &WalletModel::shieldedCoinsSelectionCalculated, this, &SendSwapViewModel::onShieldedCoinsSelectionCalculated);
 }
 
 QString SendSwapViewModel::getToken() const
@@ -172,6 +173,7 @@ void SendSwapViewModel::setSendAmount(QString value)
 
         if (_sendCurrency == Currency::CurrBeam && _walletModel.hasShielded(beam::Asset::s_BeamID))
         {
+            _shieldedInputsFee = 0;
             _walletModel.getAsync()->calcShieldedCoinSelectionInfo(_sendAmountGrothes, _sendFeeGrothes, beam::Asset::s_BeamID);
         }
     }
@@ -194,6 +196,7 @@ void SendSwapViewModel::setSendFee(unsigned int value)
         if (_sendCurrency == Currency::CurrBeam && _walletModel.hasShielded(beam::Asset::s_BeamID) && _sendAmountGrothes)
         {
             _feeChangedByUI = true;
+            _shieldedInputsFee = 0;
             _walletModel.getAsync()->calcShieldedCoinSelectionInfo(_sendAmountGrothes, _sendFeeGrothes, beam::Asset::s_BeamID);
         }
     }
@@ -323,11 +326,12 @@ void SendSwapViewModel::onChangeCalculated(beam::Amount changeAsset, beam::Amoun
     emit canSendChanged();
 }
 
-void SendSwapViewModel::onCoinsSelectionCalculated(const beam::wallet::CoinsSelectionInfo& selectionRes)
+void SendSwapViewModel::onShieldedCoinsSelectionCalculated(const beam::wallet::ShieldedCoinsSelectionInfo& selectionRes)
 {
     if (_sendCurrency == Currency::CurrBeam)
     {
-        _minimalBeamFeeGrothes = selectionRes.m_minimalExplicitFee;
+        _shieldedInputsFee = selectionRes.shieldedInputsFee;
+        _minimalBeamFeeGrothes = selectionRes.minimalFee;
         emit minimalBeamFeeGrothesChanged();
 
         if (_feeChangedByUI)
@@ -335,7 +339,7 @@ void SendSwapViewModel::onCoinsSelectionCalculated(const beam::wallet::CoinsSele
             _feeChangedByUI = false;
             return;
         }
-        _sendFeeGrothes = selectionRes.m_explicitFee;
+        _sendFeeGrothes = selectionRes.selectedFee;
         emit sendFeeChanged();
     }
 }
@@ -426,7 +430,7 @@ void SendSwapViewModel::sendMoney()
 
     beam::wallet::FillSwapFee(
         &txParameters,
-        beam::Amount(beamFee),
+        beam::Amount(!!_shieldedInputsFee ? beamFee - _shieldedInputsFee : beamFee),
         beam::Amount(swapFee),
         _isBeamSide);
 

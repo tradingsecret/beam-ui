@@ -28,10 +28,7 @@
 
 beam::Amount minFeeBeam(bool isShielded)
 {
-    beam::Height h = AppModel::getInstance().getWalletModel()->getCurrentHeight();
-    auto& fs = beam::Transaction::FeeSettings::get(h);
-
-    return isShielded ? fs.get_DefaultShieldedOut() : fs.get_DefaultStd();
+    return isShielded ? beam::wallet::kShieldedTxMinFeeInGroth : beam::wallet::kMinFeeInGroth;
 }
 
 bool isFeeOK(beam::Amount fee, Currency currency, bool isShielded)
