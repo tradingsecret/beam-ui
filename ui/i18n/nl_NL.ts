@@ -86,6 +86,7 @@
     </message>
     <message id="general-fee">
         <source>Transaction fee</source>
+        <extracomment>UTXO type fee</extracomment>
         <translation>Transactiekosten</translation>
     </message>
     <message id="general-ok">
@@ -98,6 +99,7 @@
     </message>
     <message id="general-change">
         <source>Change</source>
+        <extracomment>UTXO type Change</extracomment>
         <translation>Wijzig</translation>
     </message>
     <message id="general-back">

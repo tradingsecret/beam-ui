@@ -86,6 +86,7 @@
     </message>
     <message id="general-fee">
         <source>Transaction fee</source>
+        <extracomment>UTXO type fee</extracomment>
         <translation>交易费</translation>
     </message>
     <message id="general-ok">
@@ -98,6 +99,7 @@
     </message>
     <message id="general-change">
         <source>Change</source>
+        <extracomment>UTXO type Change</extracomment>
         <translation>找零</translation>
     </message>
     <message id="general-back">
