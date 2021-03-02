@@ -34,25 +34,17 @@ namespace beamui::applications {
     WebAPI_Beam::WebAPI_Beam(QObject *parent)
         : QObject(parent)
     {
-        IWalletApi::InitData data;
-
-        data.contracts = AppModel::getInstance().getWalletModel()->getAppsShaders();
-        data.swaps     = nullptr;
-        data.wallet    = AppModel::getInstance().getWalletModel()->getWallet();
-        data.walletDB  = AppModel::getInstance().getWalletDB();
-
-        _walletAPI = IWalletApi::CreateInstance(ApiVerCurrent, *this, data);
+        _apiClient = std::make_shared<AppsApiClient>(*this);
     }
 
     void WebAPI_Beam::callWalletApi(const QString& request)
     {
-        IWalletApi::WeakPtr wp = _walletAPI;
+        WeakApiClientPtr wp = _apiClient;
         getAsyncWallet().makeIWTCall(
             [wp, request]() -> boost::any {
                 if(auto sp = wp.lock())
                 {
-                    std::string stdreq = request.toStdString();
-                    sp->executeAPIRequest(stdreq.c_str(), stdreq.size());
+                    sp->executeAPIRequest(request.toStdString());
                     return boost::none;
                 }
                 // this means that api is disconnected and destroyed already
@@ -64,12 +56,11 @@ namespace beamui::applications {
         );
     }
 
-    void WebAPI_Beam::sendAPIResponse(const json& result)
+    void WebAPI_Beam::onAPIResult(const std::string& result)
     {
-        auto str = result.dump();
-        if (!str.empty())
+        if (!result.empty())
         {
-            emit callWalletApiResult(QString::fromStdString(str));
+            emit callWalletApiResult(QString::fromStdString(result));
         }
     }
 
