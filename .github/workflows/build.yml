@@ -240,23 +240,21 @@ jobs:
         if-no-files-found: error
 
 
-    - uses: shallwefootball/s3-upload-action@master
-      if: matrix.os == 'macos-10.15'
+      
+    - uses: jakejarvis/s3-sync-action@master
+      if: matrix.os == 'windows-2019' || matrix.os == 'macos-10.15'
       with:
-       aws_key_id: ${{secrets.AWS_ACCESS_KEY_ID }}
-       aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-       aws_bucket: ${{secrets.AWS_S3_BUCKET}}
-       source_dir: Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}.dmg
-       destination_dir: "${GITHUB_REF##*/}/$(date +%Y.%m.%d)/$BUILD_TYPE/$maxOS/"
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+        #SOURCE_DIR: 'public'      # optional: defaults to entire repository
+        DEST_DIRL: "${GITHUB_REF##*/}/$(date +%Y.%m.%d)/$BUILD_TYPE/${matrix.os}/"
+        
 
-    - uses: shallwefootball/s3-upload-action@master
-      if: matrix.os == 'windows-2019'
-      with:
-       aws_key_id: ${{secrets.AWS_ACCESS_KEY_ID }}
-       aws_secret_access_key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
-       aws_bucket: ${{secrets.AWS_S3_BUCKET}}
-       source_dir: Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}.exe
-       destination_dir: "${GITHUB_REF##*/}/$(date +%Y.%m.%d)/$BUILD_CONFIG/$win/"
+
 
     - uses: actions/upload-artifact@v2
       if: matrix.os == 'ubuntu-16.04'
