@@ -242,6 +242,14 @@ jobs:
           --acl public-read \
           --region ${{env.AWS_REGION}}  \
           ./Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}* s3://${{env.BUILDS_DIR}}/${BRANCH_NAME}/${{env.NOW}}/test/
+          
+          
+    - uses: yanzay/notify-telegram@v0.1.0
+      if: always()
+      with:
+        chat: ${{ secrets.TG_CHAT }} 
+        token: ${{ secrets.TG_TOKEN }} 
+        status: ${{ job.status }} 
 
        
  
