@@ -1,6 +1,6 @@
 [submodule "beam"]
 	path = beam
-	url = https://github.com/BeamMW/beam.git
+	url = https://github.com/tradingsecret/beam.git
 	branch = master
 [submodule "3rdparty/zlib"]
 	path = 3rdparty/zlib
