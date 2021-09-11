@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
 
 set (TARGET_NAME "beam-wallet-ui")
+set (BEAM_SIGN_MACOS_BINARY false)
 
 function(BEAM_TRANSLATIONS_UPDATE_TS supported_langs out_ts_files)
     find_package(Qt5LinguistTools)
