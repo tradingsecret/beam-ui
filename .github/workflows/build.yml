@@ -191,11 +191,11 @@ jobs:
 ###############################################################################
 # Collect artifacts
 ###############################################################################
-    - name: Collect [macos-10.15]
-      shell: bash
-      if: matrix.os == 'macos-10.15'
-      run: |
-        cp BeamWallet${{env.BEAM_DISPLAY_SUFFIX}}-${{env.BEAM_VERSION}}-Darwin.dmg Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}.dmg
+#    - name: Collect [macos-10.15]
+#      shell: bash
+#      if: matrix.os == 'macos-10.15'
+#      run: |
+#        cp BeamWallet${{env.BEAM_DISPLAY_SUFFIX}}-${{env.BEAM_VERSION}}-Darwin.dmg Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}.dmg
    #     codesign --deep --force -v -s "${{secrets.MACOS_SIGN_IDENTITY}}" -o runtime --timestamp Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}.dmg
 
     #- name: Notarize [macos-10.15]
@@ -222,12 +222,12 @@ jobs:
         chmod a+x Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}.AppImage
         tar -cvf Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}.tar Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}.AppImage
 
-    - name: Collect [windows]
-      shell: bash
-      if: matrix.os == 'windows-2019'
-      run: |
-        cp BeamWallet${{env.BEAM_DISPLAY_SUFFIX}}-${{env.BEAM_VERSION}}-win64.exe Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}.exe
-        certUtil -hashfile Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}.exe SHA256 > checksum.txt
+#    - name: Collect [windows]
+#      shell: bash
+#      if: matrix.os == 'windows-2019'
+#      run: |
+#        cp Imperium-Protocol-Wallet-Testnet-win64.exe Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}.exe
+#        certUtil -hashfile Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}.exe SHA256 > checksum.txt
 
 ###############################################################################
 # Upload
@@ -237,7 +237,7 @@ jobs:
       with:
         name: ${{env.PACKAGE_NAME}}-Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}
         path: |
-          Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}*
+          Imperium-Protocol-Wallet-Testnet-1.09.1505*
           *checksum.txt
         if-no-files-found: error
 

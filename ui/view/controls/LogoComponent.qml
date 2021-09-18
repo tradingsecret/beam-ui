@@ -34,13 +34,19 @@ ColumnLayout
 
     SFText
     {
-        Layout.alignment: Qt.AlignHCenter
-        Layout.topMargin: 13
+        Layout.alignment:               Qt.AlignHCenter
+        horizontalAlignment:            Text.AlignHCenter
+        Layout.topMargin:               13
+        Layout.fillHeight:              true
+        Layout.minimumWidth:            430
+        Layout.maximumWidth:            430
+        wrapMode:                       Text.WordWrap
 
         //% "Confidential DeFi Platform and Cryptocurrency"
-        text:       qsTrId("logo-description")
+        text:       'Full Privacy Cryptocurrency Platform with Atomic Swaps by the Mechanics of the Future'
         color:      Style.content_main
         opacity:    0.7
+        
 
         font {
             styleName:  "Bold"
