@@ -237,7 +237,7 @@ jobs:
       with:
         name: ${{env.PACKAGE_NAME}}-Beam-Wallet${{env.BEAM_DISPLAY_SUFFIX2}}-${{env.BEAM_VERSION}}
         path: |
-          Imperium-Protocol-Wallet-Testnet-1.09.1505*
+          Imperium*
           *checksum.txt
         if-no-files-found: error
 
@@ -248,9 +248,9 @@ jobs:
         path: Beam-Wallet-${{env.BEAM_DISPLAY_SUFFIX}}-${{env.BEAM_VERSION}}.tar
         if-no-files-found: error
 
-    - uses: actions/upload-artifact@v2
-      if: matrix.os == 'windows-2019'
-      with:
-        name: beam-pdb${{env.BEAM_TARGET_SUFFIX}}-${{env.BEAM_VERSION}}
-        path: ui/${{env.BUILD_CONFIG}}/Beam Wallet${{env.BEAM_DISPLAY_SUFFIX3}}.pdb
-        if-no-files-found: error
+ #   - uses: actions/upload-artifact@v2
+ #     if: matrix.os == 'windows-2019'
+ #     with:
+ #       name: beam-pdb${{env.BEAM_TARGET_SUFFIX}}-${{env.BEAM_VERSION}}
+ #       path: ui/${{env.BUILD_CONFIG}}/Beam Wallet${{env.BEAM_DISPLAY_SUFFIX3}}.pdb
+ #       if-no-files-found: error
