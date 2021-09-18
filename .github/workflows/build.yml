@@ -165,8 +165,8 @@ jobs:
       if: matrix.os != 'windows-2019'
       run: cpack
     
-    - name: AppImage [ubuntu-18.04]
-      if: matrix.os == 'ubuntu-18.04'
+    - name: AppImage [ubuntu-16.04]
+      if: matrix.os == 'ubuntu-16.04'
       run: |
         echo "Creating AppImage deploy tree"
         mkdir -p ./deploy/usr/bin
