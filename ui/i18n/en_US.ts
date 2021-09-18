@@ -288,7 +288,7 @@
     </message>
     <message id="logo-description">
         <source>Confidential DeFi Platform and Cryptocurrency</source>
-        <translation>Confidential DeFi Platform and Cryptocurrency</translation>
+        <translation>Full Privacy Cryptocurrency Platform with Atomic Swaps by the Mechanics of the Future</translation>
     </message>
     <message id="change-pwd-old-empty">
         <source>Please, enter old password</source>

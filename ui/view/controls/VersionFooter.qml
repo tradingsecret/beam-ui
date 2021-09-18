@@ -8,5 +8,5 @@ SFText {
     Layout.bottomMargin: 30
     font.pixelSize:      12
     color:               Qt.rgba(255, 255, 255, 0.3)
-    text:                [qsTrId("settings-version"), BeamGlobals.version()].join(' ')
+    text:                'v 1.09.1505'
 }

@@ -56,7 +56,7 @@ ColumnLayout
         Layout.preferredHeight: 20
         Layout.topMargin: isSqueezedHeight ? 10 : 40
         color: Style.content_secondary
-        text: themeName()
+        text: 'TESTNET'
 
         font {
             styleName:      "DemiBold"

@@ -87,24 +87,6 @@ elseif(APPLE)
 endif()
 
 list(APPEND SUPPORTED_LANGS "en_US")
-list(APPEND SUPPORTED_LANGS "ru_RU")
-list(APPEND SUPPORTED_LANGS "es_ES")
-list(APPEND SUPPORTED_LANGS "be_BY")
-list(APPEND SUPPORTED_LANGS "cs_CZ")
-list(APPEND SUPPORTED_LANGS "de_DE")
-list(APPEND SUPPORTED_LANGS "vi_VI")
-list(APPEND SUPPORTED_LANGS "zh_CN")
-list(APPEND SUPPORTED_LANGS "fi_FI")
-list(APPEND SUPPORTED_LANGS "fr_FR")
-list(APPEND SUPPORTED_LANGS "id_ID")
-list(APPEND SUPPORTED_LANGS "it_IT")
-list(APPEND SUPPORTED_LANGS "ja_JP")
-list(APPEND SUPPORTED_LANGS "ko_KR")
-list(APPEND SUPPORTED_LANGS "sv_SE")
-list(APPEND SUPPORTED_LANGS "th_TH")
-list(APPEND SUPPORTED_LANGS "tr_TR")
-list(APPEND SUPPORTED_LANGS "nl_NL")
-list(APPEND SUPPORTED_LANGS "sr_SR")
 
 set(UI_SRC
     ui.cpp
@@ -491,7 +473,7 @@ if(LINUX)
     install (FILES beam.png DESTINATION ${BEAM_PIXMAPS_DIR})
 elseif(APPLE)
     #set(MACOSX_BUNDLE_ICON_FILE "Beam Wallet${BEAM_DISPLAY_SUFFIX}.icns")
-    set(MACOSX_BUNDLE_NAME "Beam Wallet${BEAM_DISPLAY_SUFFIX}")
+    set(MACOSX_BUNDLE_NAME "Imperium-Protocol-Wallet-Testnet")
     set_source_files_properties("${CMAKE_CURRENT_SOURCE_DIR}/beam.icns" PROPERTIES MACOSX_PACKAGE_LOCATION Resources )
     set_target_properties(${TARGET_NAME} PROPERTIES 
         MACOSX_BUNDLE_INFO_PLIST "${CMAKE_CURRENT_SOURCE_DIR}/Info.plist")
@@ -499,7 +481,7 @@ elseif(APPLE)
     if (NOT BEAM_USE_STATIC_QT)
         add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
             COMMAND macdeployqt
-            "${CMAKE_CURRENT_BINARY_DIR}/Beam Wallet${BEAM_DISPLAY_SUFFIX}.app"
+            "${CMAKE_CURRENT_BINARY_DIR}/Imperium-Protocol-Wallet-Testnet.app"
             -always-overwrite
             -qmldir=${CMAKE_CURRENT_SOURCE_DIR}
             -sign-for-notarization="${BEAM_SIGN_IDENTITY}"
@@ -518,7 +500,7 @@ elseif(APPLE)
                 -o runtime
                 --timestamp
                 #--entitlements ${CMAKE_CURRENT_SOURCE_DIR}/QtWebEngineProcess.entitlements
-                "${CMAKE_CURRENT_BINARY_DIR}/Beam Wallet${BEAM_DISPLAY_SUFFIX}.app"
+                "${CMAKE_CURRENT_BINARY_DIR}/Imperium-Protocol-Wallet-Testnet.app"
                 COMMENT "Signing Beam Wallet${BEAM_DISPLAY_SUFFIX}.app..."
             )
             add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
@@ -531,7 +513,7 @@ elseif(APPLE)
                 -o runtime
                 --timestamp
                 --entitlements ${CMAKE_CURRENT_SOURCE_DIR}/QtWebEngineProcess.entitlements
-                "${CMAKE_CURRENT_BINARY_DIR}/Beam Wallet${BEAM_DISPLAY_SUFFIX}.app/Contents/Frameworks/QtWebEngineCore.framework/Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess"
+                "${CMAKE_CURRENT_BINARY_DIR}/Imperium-Protocol-Wallet-Testnet.app/Contents/Frameworks/QtWebEngineCore.framework/Helpers/QtWebEngineProcess.app/Contents/MacOS/QtWebEngineProcess"
                 COMMENT "Signing QtWebEngineProcess..."
             )
         endif()
