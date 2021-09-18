@@ -198,7 +198,7 @@ if (WIN32)
     set(CPACK_NSIS_CREATE_ICONS_EXTRA "CreateShortCut \\\"$SMPROGRAMS\\\\$STARTMENU_FOLDER\\\\Imperium-Protocol-Wallet-Testnet-1.09.1505.lnk\\\" \\\"$INSTDIR\\\\Imperium-Protocol-Wallet-Testnet.exe\\\"")
     set(CPACK_NSIS_EXTRA_UNINSTALL_COMMANDS "Delete \\\"$DESKTOP\\\\Imperium-Protocol-Wallet-Testnet-1.09.1505.lnk\\\"")
     set(CPACK_NSIS_DELETE_ICONS_EXTRA "Delete \\\"$SMPROGRAMS\\\\$MUI_TEMP\\\\Imperium-Protocol-Wallet-Testnet-1.09.1505.lnk\\\"")
-
+    
     set(CPACK_NSIS_EXECUTABLES_DIRECTORY .)
     set(CPACK_NSIS_MUI_FINISHPAGE_RUN "Imperium-Protocol-Wallet-Testnet-1.09.1505-win.exe")
     set(CPACK_NSIS_PACKAGE_NAME "Imperium Protocol Wallet Testnet")

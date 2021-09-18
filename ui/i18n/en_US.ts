@@ -111,7 +111,8 @@
     </message>
     <message id="general-create-wallet">
         <source>Create new wallet</source>
-        <translation>Create new wallet</translation>
+        <oldsource>Create wallet password</oldsource>
+        <translation type="unfinished">Create wallet password</translation>
     </message>
     <message id="general-restore-or-create-wallet">
         <source>Restore wallet or create a new one</source>
@@ -127,7 +128,8 @@
     </message>
     <message id="general-start-using">
         <source>Start using your wallet</source>
-        <translation>Start using your wallet</translation>
+        <oldsource>next</oldsource>
+        <translation type="unfinished">next</translation>
     </message>
     <message id="general-open-wallet">
         <source>Open my wallet</source>
@@ -286,10 +288,6 @@
         <extracomment>settings tab, node section, apply button</extracomment>
         <translation>Apply changes</translation>
     </message>
-    <message id="logo-description">
-        <source>Confidential DeFi Platform and Cryptocurrency</source>
-        <translation>Full Privacy Cryptocurrency Platform with Atomic Swaps by the Mechanics of the Future</translation>
-    </message>
     <message id="change-pwd-old-empty">
         <source>Please, enter old password</source>
         <translation>Please, enter old password</translation>
@@ -438,7 +436,8 @@
     </message>
     <message id="start-restore-message-line">
         <source>You are trying to restore an existing Beam Wallet. Please notice that if you use your wallet on another device, your balance will be up to date, but  transaction history and addresses will be kept separately on each device.</source>
-        <translation>You are trying to restore an existing Beam Wallet. Please notice that if you use your wallet on another device, your balance will be up to date, but  transaction history and addresses will be kept separately on each device.</translation>
+        <oldsource>Restore an existing Imperium Protocol Wallet. Please note that if you use your wallet on another device, your balance will be up to date, but transaction history and addresses will be kept separately on each device.</oldsource>
+        <translation type="unfinished">Restore an existing Imperium Protocol Wallet. Please note that if you use your wallet on another device, your balance will be up to date, but transaction history and addresses will be kept separately on each device.</translation>
     </message>
     <message id="start-migration-message">
         <source>Your wallet will be migrated to v </source>
@@ -469,7 +468,8 @@
     </message>
     <message id="start-create-new-message-line-1">
         <source>Create new wallet with generating seed phrase.</source>
-        <translation>Create new wallet with generating seed phrase.</translation>
+        <oldsource>Please save the seed phrase for further wallet restoring if you lose access to it.</oldsource>
+        <translation type="unfinished">Please save the seed phrase for further wallet restoring if you lose access to it.</translation>
     </message>
     <message id="start-create-new-message-line-2">
         <source>If you ever lose your device, you will need this phrase to recover your wallet!</source>
@@ -477,35 +477,43 @@
     </message>
     <message id="start-create-new-securiry-note-1">
         <source>Do not let anyone see your seed phrase</source>
-        <translation>Do not let anyone see your seed phrase</translation>
+        <oldsource>Don’t show anyone your seed phrase</oldsource>
+        <translation type="unfinished">Don’t show anyone your seed phrase</translation>
     </message>
     <message id="start-create-new-securiry-note-2">
         <source>Never type your seed phrase into password managers or elsewhere</source>
-        <translation>Never type your seed phrase into password managers or elsewhere</translation>
+        <oldsource>Never type your seed phrase into password managers or any other such software</oldsource>
+        <translation type="unfinished">Never type your seed phrase into password managers or any other such software</translation>
     </message>
     <message id="start-create-new-securiry-note-3">
         <source>Keep the copies of your seed phrase in a safe place</source>
-        <translation>Keep the copies of your seed phrase in a safe place</translation>
+        <oldsource>Keep your seed phrase in a safe place</oldsource>
+        <translation type="unfinished">Keep your seed phrase in a safe place</translation>
     </message>
     <message id="start-generate-seed-phrase-button">
         <source>Generate seed phrase</source>
-        <translation>Generate seed phrase</translation>
+        <oldsource>Generate wallet’s seed phrase</oldsource>
+        <translation type="unfinished">Generate wallet’s seed phrase</translation>
     </message>
     <message id="start-generate-seed-phrase-message">
         <source>Your seed phrase is the access key to all the cryptocurrencies in your wallet. Write down the phrase to keep it in a safe or in a locked vault. Without the phrase you will not be able to recover your money.</source>
-        <translation>Your seed phrase is the access key to all the cryptocurrencies in your wallet. Write down the phrase to keep it in a safe or in a locked vault. Without the phrase you will not be able to recover your money.</translation>
+        <oldsource>Please save your seed phrase as it’s the access to your Imperium Protocol Wallet address. For easy saving please use the Print Seed Phrase button down below. Keep your printed seed phrase in a secured vault. If you lose access to your Imperium Protocol Wallet you can access it by Restoring your wallet using the seed phrase, otherwise, you might lose the access and stored funds in it.</oldsource>
+        <translation type="unfinished">Please save your seed phrase as it’s the access to your Imperium Protocol Wallet address. For easy saving please use the Print Seed Phrase button down below. Keep your printed seed phrase in a secured vault. If you lose access to your Imperium Protocol Wallet you can access it by Restoring your wallet using the seed phrase, otherwise, you might lose the access and stored funds in it.</translation>
     </message>
     <message id="start-confirm-seed-phrase-button">
         <source>I understand</source>
-        <translation>I understand</translation>
+        <oldsource>Proceed</oldsource>
+        <translation type="unfinished">Proceed</translation>
     </message>
     <message id="start-confirm-seed-phrase-message">
         <source>It is strictly recommended to write down the seed phrase on a paper. Storing it in a file makes it prone to cyber attacks and, therefore, less secure.</source>
-        <translation>It is strictly recommended to write down the seed phrase on a paper. Storing it in a file makes it prone to cyber attacks and, therefore, less secure.</translation>
+        <oldsource>We recommend writing down the seed phrase on paper. Don’t store the file with your wallet seed phrase on your computer due to possible cyber attacks.</oldsource>
+        <translation type="unfinished">We recommend writing down the seed phrase on paper. Don’t store the file with your wallet seed phrase on your computer due to possible cyber attacks.</translation>
     </message>
     <message id="start-check-seed-phrase-message">
         <source>To ensure the seed phrase is written down, please fill-in the specific words below</source>
-        <translation>To ensure the seed phrase is written down, please fill-in the specific words below</translation>
+        <oldsource>Please fill in the words from the seed phrase under specific numbers according to the numeric value in the seed phrase.</oldsource>
+        <translation type="unfinished">Please fill in the words from the seed phrase under specific numbers according to the numeric value in the seed phrase.</translation>
     </message>
     <message id="start-restore-message">
         <source>Type in or paste your seed phrase</source>
@@ -513,7 +521,8 @@
     </message>
     <message id="start-create-pwd-message">
         <source>Create password to access your wallet</source>
-        <translation>Create password to access your wallet</translation>
+        <oldsource>Create wallet access password</oldsource>
+        <translation type="unfinished">Create wallet access password</translation>
     </message>
     <message id="start-pwd-label">
         <source>Password</source>
@@ -529,15 +538,18 @@
     </message>
     <message id="start-node-title">
         <source>Setup node connectivity</source>
-        <translation>Setup node connectivity</translation>
+        <oldsource>Node connection setup</oldsource>
+        <translation type="unfinished">Node connection setup</translation>
     </message>
     <message id="start-node-integrated-radio">
         <source>Run integrated node (recommended)</source>
-        <translation>Run integrated node (recommended)</translation>
+        <oldsource>Initiate integrated node (Recommended)</oldsource>
+        <translation type="unfinished">Initiate integrated node (Recommended)</translation>
     </message>
     <message id="start-node-port-label">
         <source>Enter port to listen</source>
-        <translation>Enter port to listen</translation>
+        <oldsource>Enter port</oldsource>
+        <translation type="unfinished">Enter port</translation>
     </message>
     <message id="start-node-peer-label">
         <source>Peer</source>
@@ -3217,15 +3229,18 @@ cannot be canceled.</translation>
     </message>
     <message id="general-do-later">
         <source>I will do it later</source>
-        <translation>I will do it later</translation>
+        <oldsource>Print Seed Phrase</oldsource>
+        <translation type="unfinished">Print Seed Phrase</translation>
     </message>
     <message id="general-complete-verification">
         <source>Complete wallet verification</source>
-        <translation>Complete wallet verification</translation>
+        <oldsource>Seed phrase verification</oldsource>
+        <translation type="unfinished">Seed phrase verification</translation>
     </message>
     <message id="general-complete-verification-button">
         <source>Complete verification</source>
-        <translation>Complete verification</translation>
+        <oldsource>Next</oldsource>
+        <translation type="unfinished">Next</translation>
     </message>
     <message id="seed-validation-promo">
         <source>Write down and validate your seed phrase so you can always recover your funds.</source>
