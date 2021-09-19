@@ -4,8 +4,8 @@
 <context>
     <name></name>
     <message id="general-beam">
-        <source>BEAM</source>
-        <translation>BEAM</translation>
+        <source>ARC</source>
+        <translation>ARC</translation>
     </message>
     <message id="general-groth">
         <source>GROTH</source>
@@ -153,8 +153,8 @@
         <translation>Receive</translation>
     </message>
     <message id="wallet-transactions-title">
-        <source>Transactions</source>
-        <translation>Transactions</translation>
+        <source>YOUR TRANSACTION LIST</source>
+        <translation>YOUR TRANSACTION LIST</translation>
     </message>
     <message id="wallet-verify-payment">
         <source>Verify payment</source>
@@ -435,9 +435,8 @@
         <translation>I agree</translation>
     </message>
     <message id="start-restore-message-line">
-        <source>You are trying to restore an existing Beam Wallet. Please notice that if you use your wallet on another device, your balance will be up to date, but  transaction history and addresses will be kept separately on each device.</source>
-        <oldsource>Restore an existing Imperium Protocol Wallet. Please note that if you use your wallet on another device, your balance will be up to date, but transaction history and addresses will be kept separately on each device.</oldsource>
-        <translation type="unfinished">Restore an existing Imperium Protocol Wallet. Please note that if you use your wallet on another device, your balance will be up to date, but transaction history and addresses will be kept separately on each device.</translation>
+        <source>Restore an existing Imperium Protocol Wallet. Please note that if you use your wallet on another device, your balance will be up to date, but transaction history and addresses will be kept separately on each device.</source>
+        <translation>Restore an existing Imperium Protocol Wallet. Please note that if you use your wallet on another device, your balance will be up to date, but transaction history and addresses will be kept separately on each device.</translation>
     </message>
     <message id="start-migration-message">
         <source>Your wallet will be migrated to v </source>
@@ -657,24 +656,24 @@
         <translation>Connection to %1 nodes lost</translation>
     </message>
     <message id="tx-failure-undefined">
-        <source>Unexpected reason, please send wallet logs to Beam support</source>
-        <translation>Unexpected reason, please send wallet logs to Beam support</translation>
+        <source>Unexpected reason, please send wallet logs to Imperium Protocol support</source>
+        <translation>Unexpected reason, please send wallet logs to BeamImperium Protocol support</translation>
     </message>
     <message id="tx-failure-cancelled">
         <source>Transaction cancelled</source>
         <translation>Transaction cancelled</translation>
     </message>
     <message id="tx-failure-receiver-signature-invalid">
-        <source>Receiver signature in not valid, please send wallet logs to Beam support</source>
-        <translation>Receiver signature in not valid, please send wallet logs to Beam support</translation>
+        <source>Receiver signature in not valid, please send wallet logs to Imperium Protocol support</source>
+        <translation>Receiver signature in not valid, please send wallet logs to Imperium Protocol support</translation>
     </message>
     <message id="tx-failure-not-registered-in-blockchain">
         <source>Failed to register transaction with the blockchain, see node logs for details</source>
         <translation>Failed to register transaction with the blockchain, see node logs for details</translation>
     </message>
     <message id="tx-failure-not-valid">
-        <source>Transaction is not valid, please send wallet logs to Beam support</source>
-        <translation>Transaction is not valid, please send wallet logs to Beam support</translation>
+        <source>Transaction is not valid, please send wallet logs to Imperium Protocol support</source>
+        <translation>Transaction is not valid, please send wallet logs to Imperium Protocol support</translation>
     </message>
     <message id="tx-failure-kernel-invalid">
         <source>Invalid kernel proof provided</source>
@@ -701,8 +700,8 @@
         <translation>Transaction timed out</translation>
     </message>
     <message id="tx-failure-not-signed-by-receiver">
-        <source>Payment not signed by the receiver, please send wallet logs to Beam support</source>
-        <translation>Payment not signed by the receiver, please send wallet logs to Beam support</translation>
+        <source>Payment not signed by the receiver, please send wallet logs to Imperium Protocol support</source>
+        <translation>Payment not signed by the receiver, please send wallet logs to Imperium Protocol support</translation>
     </message>
     <message id="tx-failure-max-height-to-high">
         <source>Kernel maximum height is too high</source>
@@ -758,8 +757,8 @@
         <translation>External link</translation>
     </message>
     <message id="open-external-message">
-        <source>Beam Wallet app requires permission to open external link in the browser. This action will expose your IP to the web server. To avoid it, choose &quot;Cancel&quot;. You can change your choice in app setting anytime.</source>
-        <translation>Beam Wallet app requires permission to open external link in the browser. This action will expose your IP to the web server. To avoid it, choose &quot;Cancel&quot;. You can change your choice in app setting anytime.</translation>
+        <source>Imperium Protocol Wallet app requires permission to open external link in the browser. This action will expose your IP to the web server. To avoid it, choose &quot;Cancel&quot;. You can change your choice in app setting anytime.</source>
+        <translation>Imperium Protocol Wallet app requires permission to open external link in the browser. This action will expose your IP to the web server. To avoid it, choose &quot;Cancel&quot;. You can change your choice in app setting anytime.</translation>
     </message>
     <message id="start-open-change-wallet-message">
         <source>If you&apos;ll restore a wallet all transaction history and addresses will be lost.</source>
@@ -1155,12 +1154,12 @@ please review your settings and try again</translation>
         <translation>lock transaction confirmations</translation>
     </message>
     <message id="swap-details-beam-lock-kernel-id">
-        <source>BEAM lock transaction kernel ID</source>
-        <translation>BEAM lock transaction kernel ID</translation>
+        <source>ARC lock transaction kernel ID</source>
+        <translation>ARC lock transaction kernel ID</translation>
     </message>
     <message id="swap-details-beam-redeem-kernel-id">
-        <source>BEAM redeem transaction kernel ID</source>
-        <translation>BEAM redeem transaction kernel ID</translation>
+        <source>ARC redeem transaction kernel ID</source>
+        <translation>ARC redeem transaction kernel ID</translation>
     </message>
     <message id="swap-details-redeem-tx-id">
         <source>redeem transaction ID</source>
@@ -1171,8 +1170,8 @@ please review your settings and try again</translation>
         <translation>redeem transaction confirmations</translation>
     </message>
     <message id="swap-details-beam-refund-kernel-id">
-        <source>BEAM refund transaction kernel ID</source>
-        <translation>BEAM refund transaction kernel ID</translation>
+        <source>ARC refund transaction kernel ID</source>
+        <translation>ARC refund transaction kernel ID</translation>
     </message>
     <message id="swap-details-refund-tx-id">
         <source>refund transaction ID</source>
@@ -1187,8 +1186,8 @@ please review your settings and try again</translation>
         <translation>Transaction ID</translation>
     </message>
     <message id="swap-details-tx-fee">
-        <source>BEAM Transaction fee</source>
-        <translation>BEAM Transaction fee</translation>
+        <source>ARC Transaction fee</source>
+        <translation>ARC Transaction fee</translation>
     </message>
     <message id="swap-details-tx-comment">
         <source>Comment</source>
@@ -1351,8 +1350,8 @@ Please check the swap token and try again.</translation>
         <translation>Keep your wallet online. The swap normally takes about 1 hour to complete.</translation>
     </message>
     <message id="beam-transaction-fee">
-        <source>BEAM Transaction fee</source>
-        <translation>BEAM Transaction fee</translation>
+        <source>ARC Transaction fee</source>
+        <translation>ARC Transaction fee</translation>
     </message>
     <message id="send-swap-token">
         <source>Swap token</source>
@@ -1392,8 +1391,8 @@ Please check the swap token and try again.</translation>
         <translation> Once the offer is accepted by the other side, the %1 transaction fee will be charged even if the offer is cancelled.</translation>
     </message>
     <message id="app-close-title">
-        <source>Beam wallet close</source>
-        <translation>Beam wallet close</translation>
+        <source>Imperium Protocol wallet close</source>
+        <translation>Imperium Protocol wallet close</translation>
     </message>
     <message id="app-close-text">
         <source>There are %1 active transactions that might fail if the wallet will go offline. Are you sure to close the wallet now?</source>
@@ -1600,8 +1599,8 @@ deploy the key at the node you trust completely.</translation>
         <translation>Transaction failed</translation>
     </message>
     <message id="notification-news">
-        <source>BEAM in the press</source>
-        <translation>BEAM in the press</translation>
+        <source>ARC in the press</source>
+        <translation>ARC in the press</translation>
     </message>
     <message id="notification-address-expired-message">
         <source>&lt;b&gt;%1&lt;/b&gt; address expired.</source>
@@ -1637,20 +1636,20 @@ deploy the key at the node you trust completely.</translation>
         <translation>Atomic Swap offer completed</translation>
     </message>
     <message id="notification-swap-beam-completed-message">
-        <source>Offer &lt;b&gt;%1 BEAM ➞ %2 %3&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; completed.</source>
-        <translation>Offer &lt;b&gt;%1 BEAM ➞ %2 %3&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; completed.</translation>
+        <source>Offer &lt;b&gt;%1 ARC ➞ %2 %3&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; completed.</source>
+        <translation>Offer &lt;b&gt;%1 ARC ➞ %2 %3&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; completed.</translation>
     </message>
     <message id="notification-swap-completed-message">
-        <source>Offer &lt;b&gt;%1 %3 ➞ %2 BEAM&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; completed.</source>
-        <translation>Offer &lt;b&gt;%1 %3 ➞ %2 BEAM&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; completed.</translation>
+        <source>Offer &lt;b&gt;%1 %3 ➞ %2 ARC&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; completed.</source>
+        <translation>Offer &lt;b&gt;%1 %3 ➞ %2 ARC&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; completed.</translation>
     </message>
     <message id="notification-swap-beam-failed-message">
-        <source>Offer &lt;b&gt;%1 BEAM ➞ %2 %3&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; failed.</source>
-        <translation>Offer &lt;b&gt;%1 BEAM ➞ %2 %3&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; failed.</translation>
+        <source>Offer &lt;b&gt;%1 ARC ➞ %2 %3&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; failed.</source>
+        <translation>Offer &lt;b&gt;%1 ARC ➞ %2 %3&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; failed.</translation>
     </message>
     <message id="notification-swap-failed-message">
-        <source>Offer &lt;b&gt;%1 %3 ➞ %2 BEAM&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; failed.</source>
-        <translation>Offer &lt;b&gt;%1 %3 ➞ %2 BEAM&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; failed.</translation>
+        <source>Offer &lt;b&gt;%1 %3 ➞ %2 ARC&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; failed.</source>
+        <translation>Offer &lt;b&gt;%1 %3 ➞ %2 ARC&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; failed.</translation>
     </message>
     <message id="notification-swap-failed">
         <source>Atomic Swap offer failed</source>
@@ -1661,12 +1660,12 @@ deploy the key at the node you trust completely.</translation>
         <translation>Atomic Swap offer expired</translation>
     </message>
     <message id="notification-swap-beam-expired-message">
-        <source>Offer &lt;b&gt;%1 BEAM ➞ %2 %3&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; expired.</source>
-        <translation>Offer &lt;b&gt;%1 BEAM ➞ %2 %3&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; expired.</translation>
+        <source>Offer &lt;b&gt;%1 ARC ➞ %2 %3&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; expired.</source>
+        <translation>Offer &lt;b&gt;%1 ARC ➞ %2 %3&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; expired.</translation>
     </message>
     <message id="notification-swap-expired-message">
-        <source>Offer &lt;b&gt;%1 %3 ➞ %2 BEAM&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; expired.</source>
-        <translation>Offer &lt;b&gt;%1 %3 ➞ %2 BEAM&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; expired.</translation>
+        <source>Offer &lt;b&gt;%1 %3 ➞ %2 ARC&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; expired.</source>
+        <translation>Offer &lt;b&gt;%1 %3 ➞ %2 ARC&lt;/b&gt; with transaction ID &lt;b&gt;%4&lt;/b&gt; expired.</translation>
     </message>
     <message id="tx-failure-asset-exists">
         <source>Asset has been already registered</source>
@@ -1689,15 +1688,15 @@ deploy the key at the node you trust completely.</translation>
         <translation>Asset transactions are not available until fork2</translation>
     </message>
     <message id="address-newer-lib">
-        <source>This address generated by newer Beam library version(%1)
+        <source>This address generated by newer Imperium Protocol library version(%1)
 Your version is: %2. Please, check for updates.</source>
-        <translation>This address generated by newer Beam library version(%1)
+        <translation>This address generated by newer Imperium Protocol library version(%1)
 Your version is: %2. Please, check for updates.</translation>
     </message>
     <message id="address-newer-client">
-        <source>This address generated by newer Beam client version(%1)
+        <source>This address generated by newer Imperium Protocol client version(%1)
 Your version is: %2. Please, check for updates.</source>
-        <translation>This address generated by newer Beam client version(%1)
+        <translation>This address generated by newer Imperium Protocol client version(%1)
 Your version is: %2. Please, check for updates.</translation>
     </message>
     <message id="settings-wallet-title">
@@ -1713,8 +1712,8 @@ Your version is: %2. Please, check for updates.</translation>
         <translation>Troubleshooting</translation>
     </message>
     <message id="settings-get-beam">
-        <source>Get Beams from Beam Community Faucet</source>
-        <translation>Get Beams from Beam Community Faucet</translation>
+        <source>Get Arcs from Imperium Protocol Community Faucet</source>
+        <translation>Get Arcs from Imperium Protocol Community Faucet</translation>
     </message>
     <message id="settings-privacy-title">
         <source>Privacy</source>
@@ -1748,12 +1747,12 @@ Your version is: %2. Please, check for updates.</translation>
         <translation>Peers</translation>
     </message>
     <message id="settings-integrated-node-title">
-        <source>Beam Integrated Node</source>
-        <translation>Beam Integrated Node</translation>
+        <source>Imperium Protocol Integrated Node</source>
+        <translation>Imperium Protocol Integrated Node</translation>
     </message>
     <message id="settings-remote-node-title">
-        <source>Beam Remote Node</source>
-        <translation>Beam Remote Node</translation>
+        <source>Imperium Protocol Remote Node</source>
+        <translation>BeamImperium Protocol Remote Node</translation>
     </message>
     <message id="settings-run-remote-node">
         <source>Remote node</source>
@@ -1917,15 +1916,15 @@ when connection is established</source>
         when connection is established</translation>
     </message>
     <message id="swap-token-newer-lib">
-        <source>This address generated by newer Beam library version(%1)
+        <source>This address generated by newer Imperium Protocol library version(%1)
 Your version is: %2. Please, check for updates.</source>
-        <translation>This address generated by newer Beam library version(%1)
+        <translation>This address generated by newer Imperium Protocol library version(%1)
 Your version is: %2. Please, check for updates.</translation>
     </message>
     <message id="swap-swap-token-newer-client">
-        <source>This address generated by newer Beam client version(%1)
+        <source>This address generated by newer Imperium Protocol client version(%1)
 Your version is: %2. Please, check for updates.</source>
-        <translation>This address generated by newer Beam client version(%1)
+        <translation>This address generated by newer Imperium Protocol client version(%1)
 Your version is: %2. Please, check for updates.</translation>
     </message>
     <message id="address-info-title">
@@ -2500,7 +2499,7 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="overtop-beam-supply">
-        <source>Amount overtop total Beam supply.</source>
+        <source>Amount overtop total Arc supply.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="swap-invalid-rate">
@@ -2689,7 +2688,7 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="send-remaining-beam-label">
-        <source>BEAM Remaining</source>
+        <source>ARC Remaining</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="general-balance">
@@ -2805,8 +2804,8 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="tx-empty">
-        <source>Your transaction list is empty</source>
-        <translation type="unfinished"></translation>
+        <source>TRANSACTION LIST IS EMPTY</source>
+        <translation>TRANSACTION LIST IS EMPTY</translation>
     </message>
     <message id="tx-in-progress-empty">
         <source>There are no in progress transactions yet.</source>
@@ -3046,7 +3045,7 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="dapps-privacy-warning">
-        <source>Beam Wallet requires a permission to launch distributed applications. This action may expose your info including but not limited to the IP addres to 3rd-party web servers and/or contracts.
+        <source>Imperium Protocol Wallet requires a permission to launch distributed applications. This action may expose your info including but not limited to the IP addres to 3rd-party web servers and/or contracts.
 
 Allow to proceed ? You can always update your choice in Settings later.</source>
         <translation type="unfinished"></translation>
@@ -3216,12 +3215,12 @@ cannot be canceled.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message id="faucet-promo">
-        <source>See the wallet in action. Get a small amount of Beams from the Faucet DAPP.</source>
-        <translation>See the wallet in action. Get a small amount of Beams from the Faucet DAPP.</translation>
+        <source>Get testnet Arctis coins from Imperium DAPP.</source>
+        <translation>Get testnet Arctis coins from Imperium DAPP.</translation>
     </message>
     <message id="faucet-promo-get-coins">
-        <source>get coins</source>
-        <translation>get coins</translation>
+        <source>GET ARCs</source>
+        <translation>GET ARCs</translation>
     </message>
     <message id="general-seed-phrase">
         <source>Seed phrase</source>
@@ -3286,8 +3285,8 @@ cannot be canceled.</translation>
 (offline)</translation>
     </message>
     <message id="apps-version-error">
-        <source>This DApp requires version %1 of Beam Wallet or higher. Please update.</source>
-        <translation>This DApp requires version %1 of Beam Wallet or higher. Please update.</translation>
+        <source>This DApp requires version %1 of Imperium Protocol Wallet or higher. Please update.</source>
+        <translation>This DApp requires version %1 of Imperium Protocol Wallet or higher. Please update.</translation>
     </message>
     <message id="apps-err-cnt" numerus="yes">
         <source>%n DApp(s) is not available</source>

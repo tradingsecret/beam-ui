@@ -164,7 +164,7 @@ QString AssetsManager::getUnitName(beam::Asset::ID id, Shorten shorten)
 {
     if (id < 1)
     {
-        return "BEAM";
+        return "ARC";
     }
 
     QString unitName;
@@ -198,7 +198,7 @@ QString AssetsManager::getName(beam::Asset::ID id)
 {
     if (id < 1)
     {
-        return "Beam";
+        return "ARC";
     }
 
     QString name;

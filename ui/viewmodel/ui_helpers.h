@@ -39,7 +39,7 @@ namespace beamui
 
 #define CURRENCY_MAP(macro) \
     /*    name         label            short label      subunit     fee unit   decimal places*/ \
-    macro(Beam,        "BEAM",          "BEAM",          "GROTH",    "GROTH",     8) \
+    macro(Beam,        "ARC",          "ARC",          "GROTH",    "GROTH",     8) \
     macro(Bitcoin,     "Bitcoin",       "BTC",           "satoshi",  "sat/kB",    8) \
     macro(Litecoin,    "Litecoin",      "LTC",           "photon",   "ph/kB",     8) \
     macro(Qtum,        "QTUM",          "QTUM",          "qsatoshi", "qsat/kB",   8) \

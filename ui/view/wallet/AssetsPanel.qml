@@ -92,6 +92,7 @@ Control {
         return control.hasScroll ? control.itemHeight * 3 + control.vSpacing * 2 : grid.implicitHeight
     }
 
+
     contentItem: ScrollView {
         id: scroll
 

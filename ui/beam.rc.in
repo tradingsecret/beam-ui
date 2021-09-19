@@ -17,14 +17,14 @@ BEGIN
 	BEGIN
 		BLOCK "04090000"
 		BEGIN
-			VALUE "CompanyName", "Beam Foundation Limited"
-			VALUE "FileDescription", "Beam Wallet@BEAM_DISPLAY_SUFFIX@"
-			VALUE "FileVersion", "@PROJECT_VERSION@"
-			VALUE "InternalName", "Beam Wallet@BEAM_DISPLAY_SUFFIX@.exe"
-			VALUE "LegalCopyright", "https://beam.mw (C) 2018"
-			VALUE "OriginalFilename", "Beam Wallet@BEAM_DISPLAY_SUFFIX@.exe"
-			VALUE "ProductName", "Beam"
-			VALUE "ProductVersion", "@PROJECT_VERSION@"
+			VALUE "CompanyName", "Imperium Protocol"
+			VALUE "FileDescription", "Imperium Protocol Testnet"
+			VALUE "FileVersion", "1.9.1505"
+			VALUE "InternalName", "Imperium Protocol Testnet.exe"
+			VALUE "LegalCopyright", "https://imperiumprotocol.com (C) 2021"
+			VALUE "OriginalFilename", "Imperium Protocol Testnet.exe"
+			VALUE "ProductName", "Imperium Protocol"
+			VALUE "ProductVersion", "1.9.1505"
 		END
 	END
 	BLOCK "VarFileInfo"

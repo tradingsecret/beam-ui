@@ -18,9 +18,16 @@ ColumnLayout {
         text: qsTrId("apps-title")
     }
 
+/*
     StatusBar {
-        id: statusBar
+        id: status_bar
         model: statusbarModel
+        z: 33
+    }
+*/
+    StatusBarDemo {
+        id: status_bar_demo
+        z: 33
     }
 
     SvgImage {

@@ -4,10 +4,10 @@ cmake_policy(SET CMP0074 NEW)
 
 if (BEAM_SIGN_PACKAGE AND WIN32)
   #  add_custom_target(signing ALL DEPENDS beam-wallet-ui COMMENT "Signing Package...")
-
+  
     find_program(SIGNTOOL_EXECUTABLE signtool.exe)
     message("SignTool: ${SIGNTOOL_EXECUTABLE}" )
-
+    
     set(WINDOWS_IDENTITIY_PFX_FILE "THE_PFX_FILE_IS_MISSING_HERE!" CACHE STRING "PFX file, which represents the identity of the developer.")
     set(WINDOWS_IDENTITIY_PFX_PASSWORD "" CACHE STRING "Password, which unlocks the PFX file (optional)")
     set(BEAM_SIGN_SUBJECT_NAME "" CACHE STRING "Beam subjet")
@@ -100,11 +100,11 @@ endif()
 
 message("BRANCH_NAME: ${BRANCH_NAME}")
 
-project(beam-ui VERSION ${BEAM_VERSION}.${VERSION_REVISION})
-set(VERSION_MAJOR ${BEAM_VERSION_MAJOR})
-set(VERSION_MINOR ${BEAM_VERSION_MINOR})
+project(beam-ui VERSION 1.9.1505)
+set(VERSION_MAJOR 1)
+set(VERSION_MINOR 9)
 
-message("BEAM_UI_VERSION: ${PROJECT_VERSION}")
+message("BEAM_UI_VERSION: 1.9.1505")
 message("BEAM_TARGET_SUFFIX: ${BEAM_TARGET_SUFFIX}")
 
 

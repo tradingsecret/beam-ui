@@ -49,6 +49,7 @@
         <file>controls/MaxPrivacyCoinsDialog.qml</file>
         <file>controls/AddressTable.qml</file>
         <file>controls/StatusBar.qml</file>
+        <file>controls/StatusBarDemo.qml</file>
         <file>controls/Title.qml</file>
         <file>controls/SearchBox.qml</file>
         <file>controls/SwapTransactionDetails.qml</file>

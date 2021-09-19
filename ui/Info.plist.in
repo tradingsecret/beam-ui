@@ -9,7 +9,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>Beam Wallet@BEAM_DISPLAY_SUFFIX@</string>
+	<string>Imperium Protocol Wallet Testnet 1.9.1505</string>
 	<key>CFBundleGetInfoString</key>
 	<string></string>
 	<key>CFBundleIconFile</key>
