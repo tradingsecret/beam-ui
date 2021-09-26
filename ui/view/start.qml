@@ -10,6 +10,7 @@ import QtQuick.Layouts 1.12
 
 Item
 {
+    FontLoader { id: agency_b;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyB.ttf" }
     id: root
 
     anchors.fill: parent
@@ -597,8 +598,6 @@ Item
                         Layout.minimumHeight: Utils.isSqueezedHeight(selectDBColumn.height) ? 40 : 60
                         Layout.maximumHeight: Utils.isSqueezedHeight(selectDBColumn.height) ? 70 : 90
                     }
-
-                    VersionFooter {}
                 }
             }
         }
@@ -607,6 +606,15 @@ Item
             id: createWalletEntry
             Rectangle
             {
+                Image {
+                    fillMode: Image.PreserveAspectCrop
+                    anchors.fill: parent
+
+                    source: {
+                         "qrc:/assets/bg-2.png"
+                    }
+                }
+
                 color: Style.background_main
                 property Item defaultFocusItem: generateRecoveryPhraseButton
 
@@ -615,58 +623,107 @@ Item
                     anchors.fill: parent
                     anchors.topMargin: 50
                     Column {
-                        spacing: 30
+                        spacing: 10
                         Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
                         SFText {
                             anchors.horizontalCenter: parent.horizontalCenter
                             horizontalAlignment: Qt.AlignHCenter
                             //% "Create new wallet"
-                            text: qsTrId("general-create-wallet")
-                            color: Style.content_main
-                            font.pixelSize: 36
-                        }
-                        SFText {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            horizontalAlignment: Qt.AlignHCenter
-                            //% "Create new wallet with generating seed phrase."
-                            text: qsTrId("start-create-new-message-line-1")
-                            color: Style.content_main
-                            wrapMode: Text.WordWrap
-                            font.pixelSize: 14
-                        }
-                        SFText {
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            horizontalAlignment: Qt.AlignHCenter
-                            //% "If you ever lose your device, you will need this phrase to recover your wallet!"
-                            text: qsTrId("start-create-new-message-line-2")
-                            color: Style.content_main
-                            wrapMode: Text.WordWrap
-                            font.pixelSize: 14
+                            text: qsTrId("general-create-new-wallet")
+                            color: '#a4a8b1'
+                            font.pixelSize: 48
+                            font.family: agency_b.name
+                            font.capitalization: Font.AllUppercase
                         }
                     }
 
-                    Row {
-                        topPadding: 100
-                        spacing: 65
-                        Layout.alignment: Qt.AlignHCenter
-                        Layout.minimumHeight : 300
-                        Layout.maximumHeight: 500
-                        SecurityNote{
-                            iconSource: "qrc:/assets/eye.svg"
-                            //% "Do not let anyone see your seed phrase"
-                            text: qsTrId("start-create-new-securiry-note-1")
+
+                    Column {
+                        spacing: 10
+                        Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+                        Layout.topMargin: 50
+                        SFText {
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            horizontalAlignment: Qt.AlignHCenter
+                            text: qsTrId("start-create-new-message-line-1")
+                            color: 'white'
+                            wrapMode: Text.WordWrap
+                            font.pixelSize: 22
+                            font.family: agency_b.name
+                            font.weight: Font.Light
                         }
-                        SecurityNote{
-                            iconSource: "qrc:/assets/password.svg"
-                            //% "Never type your seed phrase into password managers or elsewhere"
-                            text: qsTrId("start-create-new-securiry-note-2")
-                        }
-                        SecurityNote{
-                            iconSource: "qrc:/assets/copy-two-paper-sheets-interface-symbol.svg"
-                            //% "Keep the copies of your seed phrase in a safe place"
-                            text: qsTrId("start-create-new-securiry-note-3")
+                        SFText {
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            horizontalAlignment: Qt.AlignHCenter
+                            text: qsTrId("start-create-new-message-line-2")
+                            color: 'white'
+                            wrapMode: Text.WordWrap
+                            font.pixelSize: 22
+                            font.family: agency_b.name
+                            font.weight: Font.Light
                         }
                     }
+
+
+                    ColumnLayout {
+                        Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+
+                        Column {
+                            Layout.topMargin: 50
+                            anchors.horizontalCenter: parent.horizontalCenter
+
+                            SFText {
+                                horizontalAlignment: Qt.AlignHCenter
+                                text: qsTrId("important-create")
+                                color: '#5fe795'
+                                font.pixelSize: 48
+                                font.family: agency_b.name
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        Column {
+                            Layout.topMargin: 40
+
+                            SFText{
+                                Layout.alignment: Qt.AlignLeft
+                                text: qsTrId("start-create-new-securiry-note-1")
+                                color: '#5fe795'
+                                font.pixelSize: 22
+                                font.family: agency_b.name
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        Column {
+                            Layout.topMargin: 30
+
+                            SFText{
+                                Layout.alignment: Qt.AlignLeft
+                                text: qsTrId("start-create-new-securiry-note-2")
+                                color: '#5fe795'
+                                font.pixelSize: 22
+                                font.family: agency_b.name
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        Column {
+                            Layout.topMargin: 30
+
+                            SFText{
+                                Layout.alignment: Qt.AlignLeft
+                                text: qsTrId("start-create-new-securiry-note-3")
+                                color: '#5fe795'
+                                font.pixelSize: 22
+                                font.family: agency_b.name
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+                    }
+
+
+
 
                     Item {
                         Layout.fillHeight: true
@@ -678,8 +735,7 @@ Item
 
                         CustomButton {
                             //% "Back"
-                            text: qsTrId("general-back")
-                            icon.source: "qrc:/assets/icon-back.svg"
+                            text: "<= " + qsTrId("general-base-back")
                             onClicked: startWizzardView.pop();
                         }
 
@@ -687,7 +743,6 @@ Item
                             id: generateRecoveryPhraseButton
                             //% "Generate seed phrase"
                             text: qsTrId("start-generate-seed-phrase-button")
-                            icon.source: "qrc:/assets/icon-recovery.svg"
                             onClicked: startWizzardView.push(generateRecoveryPhrase);
                         }
                     }
@@ -697,8 +752,6 @@ Item
                         Layout.minimumHeight: 67
                         Layout.maximumHeight: 143
                     }
-
-                    VersionFooter {}
                 }
             }
         }
@@ -774,8 +827,6 @@ Item
                         Layout.minimumHeight: 67
                         Layout.maximumHeight: 143
                     }
-
-                    VersionFooter {}
                 }
             }
         }
@@ -867,8 +918,6 @@ Item
                         Layout.minimumHeight: 67
                         Layout.maximumHeight: 143
                     }
-
-                    VersionFooter {}
                 }
             }
         }
@@ -1053,8 +1102,6 @@ Item
                         Layout.minimumHeight: 67
                         Layout.maximumHeight: 143
                     }
-
-                    VersionFooter {}
                 }
             }
         }
@@ -1312,8 +1359,6 @@ Item
                         Layout.minimumHeight: 67
                         Layout.maximumHeight: 143
                     }
-
-                    VersionFooter {}
                 }
             }
         }
@@ -1577,8 +1622,6 @@ Item
                         Layout.minimumHeight: 67
                         Layout.maximumHeight: 143
                     }
-
-                    VersionFooter {}
                 }
             }
         }

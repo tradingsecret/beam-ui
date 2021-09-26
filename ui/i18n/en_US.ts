@@ -15,6 +15,10 @@
         <source>Imperium</source>
         <translation>Imperium</translation>
     </message>
+    <message id="important-create">
+        <source>Important!</source>
+        <translation>Important!</translation>
+    </message>
     <message id="general-groth">
         <source>GROTH</source>
         <translation>GROTH</translation>
@@ -112,13 +116,21 @@
         <source>Back to Wallet</source>
         <translation>Back to Wallet</translation>
     </message>
+    <message id="general-base-back">
+        <source>back</source>
+        <translation>back</translation>
+    </message>
     <message id="general-next">
         <source>Next</source>
         <translation>Next</translation>
     </message>
     <message id="general-create-wallet">
         <source>Create private wallet</source>
-        <translation>Create private password</translation>
+        <translation>Create private wallet</translation>
+    </message>
+    <message id="general-create-new-wallet">
+        <source>Create new wallet</source>
+        <translation>Create new wallet</translation>
     </message>
     <message id="general-restore-or-create-wallet">
         <source>Restore wallet or create a new one</source>
@@ -477,27 +489,23 @@
     </message>
     <message id="start-create-new-message-line-1">
         <source>Create new wallet with generating seed phrase.</source>
-        <oldsource>Please save the seed phrase for further wallet restoring if you lose access to it.</oldsource>
-        <translation type="unfinished">Please save the seed phrase for further wallet restoring if you lose access to it.</translation>
+        <translation>Create new wallet with generating seed phrase.</translation>
     </message>
     <message id="start-create-new-message-line-2">
-        <source>If you ever lose your device, you will need this phrase to recover your wallet!</source>
-        <translation>If you ever lose your device, you will need this phrase to recover your wallet!</translation>
+        <source>Please save the seed phrase for further wallet restoring if you lose access to it.</source>
+        <translation>Please save the seed phrase for further wallet restoring if you lose access to it.</translation>
     </message>
     <message id="start-create-new-securiry-note-1">
-        <source>Do not let anyone see your seed phrase</source>
-        <oldsource>Don’t show anyone your seed phrase</oldsource>
-        <translation type="unfinished">Don’t show anyone your seed phrase</translation>
+        <source>- Do not let anyone see your seed phrase</source>
+        <translation>- Don’t show anyone your seed phrase</translation>
     </message>
     <message id="start-create-new-securiry-note-2">
-        <source>Never type your seed phrase into password managers or elsewhere</source>
-        <oldsource>Never type your seed phrase into password managers or any other such software</oldsource>
-        <translation type="unfinished">Never type your seed phrase into password managers or any other such software</translation>
+        <source>- Never type your seed phrase into password managers or elsewhere</source>
+        <translation>- Never type your seed phrase into password managers or any other such software</translation>
     </message>
     <message id="start-create-new-securiry-note-3">
-        <source>Keep the copies of your seed phrase in a safe place</source>
-        <oldsource>Keep your seed phrase in a safe place</oldsource>
-        <translation type="unfinished">Keep your seed phrase in a safe place</translation>
+        <source>- Keep the copies of your seed phrase in a safe place</source>
+        <translation>- Keep your seed phrase in a safe place</translation>
     </message>
     <message id="start-generate-seed-phrase-button">
         <source>Generate seed phrase</source>
