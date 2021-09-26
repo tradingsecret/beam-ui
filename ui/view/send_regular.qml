@@ -242,7 +242,7 @@ ColumnLayout {
                     //
                     Panel {
                         //% "Amount"
-                        title: qsTrId("general-amount")
+                        title: qsTrId("general-send-amount")
                         Layout.fillWidth: true
 
                         content: ColumnLayout {
@@ -290,24 +290,25 @@ ColumnLayout {
                                 value:    sendAmountInput.amount
                             }
 
-                            SFText {
-                                Layout.topMargin:    20
-                                font.pixelSize:      14
-                                font.styleName:      "Bold"
-                                font.weight:         Font.Bold
-                                font.letterSpacing:  3.11
-                                font.capitalization: Font.AllUppercase
-                                color:               Style.content_secondary
-                                //% "Available"
-                                text:             qsTrId("send-available")
-                                visible:          text.length > 0
-                            }
 
                             RowLayout {
                                 spacing: 0
-                                Layout.topMargin: 10
+                                Layout.topMargin:    20
+
+                                SFText {
+                                    font.pixelSize:      14
+                                    font.styleName:      "Bold"
+                                    font.weight:         Font.Bold
+                                    font.letterSpacing:  3.11
+                                    font.capitalization: Font.AllUppercase
+                                    color:               Style.content_secondary
+                                    //% "Available"
+                                    text:             qsTrId("send-available")
+                                    visible:          text.length > 0
+                                }
 
                                 BeamAmount {
+                                    Layout.leftMargin: 10
                                     Layout.alignment:  Qt.AlignTop | Qt.AlignLeft
                                     Layout.fillWidth:  true
                                     amount:            viewModel.assetAvailable
@@ -326,6 +327,40 @@ ColumnLayout {
                                     Layout.leftMargin: 10
                                     Layout.fillHeight: true
                                     spacing:           0
+
+                                    SvgImage {
+                                        source:     "qrc:/assets/icon-send-blue-copy-2.svg"
+                                        sourceSize: Qt.size(16, 16)
+
+                                        MouseArea {
+                                            anchors.fill:    parent
+                                            acceptedButtons: Qt.LeftButton
+                                            cursorShape:     Qt.PointingHandCursor
+                                            onClicked:       function () {
+                                                sendAmountInput.clearFocus()
+                                                viewModel.setMaxAvailableAmount()
+                                            }
+                                        }
+                                    }
+
+                                    SFText {
+                                        font.pixelSize:   14
+                                        font.styleName:   "Bold";
+                                        font.weight:      Font.Bold
+                                        color:            Style.accent_outgoing
+                                        //% "max"
+                                        text:             " " + qsTrId("amount-input-add-half")
+
+                                        MouseArea {
+                                            anchors.fill:    parent
+                                            acceptedButtons: Qt.LeftButton
+                                            cursorShape:     Qt.PointingHandCursor
+                                            onClicked:       function () {
+                                                sendAmountInput.clearFocus()
+                                                viewModel.setHalfPossibleAmount()
+                                            }
+                                        }
+                                    }
 
                                     SvgImage {
                                         source:     "qrc:/assets/icon-send-blue-copy-2.svg"
@@ -440,27 +475,7 @@ ColumnLayout {
                                 maxPaintedWidth:   false
                                 maxUnitChars:      20
                             }
-                    
-                            SFText {
-                                Layout.alignment:       Qt.AlignTop
-                                font.pixelSize:         14
-                                color:                  viewModel.isEnough ? Style.content_secondary : Style.validator_error
-                                text:                   qsTrId("general-change") + ":"
-                            }
-                    
-                            BeamAmount {
-                                Layout.alignment:  Qt.AlignTop
-                                Layout.fillWidth:  true
-                                error:             !viewModel.isEnough
-                                amount:            viewModel.changeAsset
-                                unitName:          control.sendUnit
-                                rateUnit:          control.assetId == 0 ? control.rateUnit : ""
-                                rate:              control.rate
-                                font.styleName:    "Bold"
-                                font.weight:       Font.Bold
-                                maxPaintedWidth:   false
-                                maxUnitChars:      20
-                            }
+
 
                             SFText {
                                 Layout.alignment:       Qt.AlignTop

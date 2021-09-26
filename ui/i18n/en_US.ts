@@ -12,8 +12,8 @@
         <translation>GROTH</translation>
     </message>
     <message id="general-comment">
-        <source>Comment</source>
-        <translation>Comment</translation>
+        <source>Transaction note</source>
+        <translation>Transaction note</translation>
     </message>
     <message id="general-actions">
         <source>Actions</source>
@@ -24,12 +24,12 @@
         <translation>Address</translation>
     </message>
     <message id="general-send">
-        <source>Send</source>
-        <translation>Send</translation>
+        <source>Output transaction</source>
+        <translation>Output transaction</translation>
     </message>
-    <message id="general-amount">
-        <source>Amount</source>
-        <translation>Amount</translation>
+    <message id="general-send-amount">
+        <source>Sending amount</source>
+        <translation>Sending amount</translation>
     </message>
     <message id="general-status">
         <source>Status</source>
@@ -85,7 +85,6 @@
     </message>
     <message id="general-fee">
         <source>Transaction fee</source>
-        <extracomment>UTXO type fee</extracomment>
         <translation>Transaction fee</translation>
     </message>
     <message id="general-ok">
@@ -102,8 +101,8 @@
         <translation>Change</translation>
     </message>
     <message id="general-back">
-        <source>Back</source>
-        <translation>Back</translation>
+        <source>Back to Wallet</source>
+        <translation>Back to Wallet</translation>
     </message>
     <message id="general-next">
         <source>Next</source>
@@ -430,6 +429,10 @@
         <source>Wallet</source>
         <translation>Wallet</translation>
     </message>
+    <message id="wallet-send-title">
+        <source>Wallet - Send</source>
+        <translation>Wallet - Send</translation>
+    </message>
     <message id="start-restore-confirm-button">
         <source>I agree</source>
         <translation>I agree</translation>
@@ -657,7 +660,7 @@
     </message>
     <message id="tx-failure-undefined">
         <source>Unexpected reason, please send wallet logs to Imperium Protocol support</source>
-        <translation>Unexpected reason, please send wallet logs to BeamImperium Protocol support</translation>
+        <translation>Unexpected reason, please send wallet logs to Imperium Protocol support</translation>
     </message>
     <message id="tx-failure-cancelled">
         <source>Transaction cancelled</source>
@@ -992,8 +995,8 @@
         <translation>Invalid swap token</translation>
     </message>
     <message id="general-comment-local">
-        <source>Comments are local and won&apos;t be shared</source>
-        <translation>Comments are local and won&apos;t be shared</translation>
+        <source>Transaction note will be visible only to you</source>
+        <translation>Transaction note will be visible only to you</translation>
     </message>
     <message id="general-bitcoin">
         <source>Bitcoin</source>
@@ -1628,8 +1631,8 @@ deploy the key at the node you trust completely.</translation>
         <translation>update wallet</translation>
     </message>
     <message id="general-exchange-rate-not-available">
-        <source>Exchange rate to %1 is not available</source>
-        <translation>Exchange rate to %1 is not available</translation>
+        <source>The exchange rate to %1 is available only on MAINNET</source>
+        <translation>The exchange rate to %1 is available only on MAINNET</translation>
     </message>
     <message id="notification-swap-completed">
         <source>Atomic Swap offer completed</source>
@@ -1752,7 +1755,7 @@ Your version is: %2. Please, check for updates.</translation>
     </message>
     <message id="settings-remote-node-title">
         <source>Imperium Protocol Remote Node</source>
-        <translation>BeamImperium Protocol Remote Node</translation>
+        <translation>Imperium Protocol Remote Node</translation>
     </message>
     <message id="settings-run-remote-node">
         <source>Remote node</source>
@@ -1806,8 +1809,8 @@ Your version is: %2. Please, check for updates.</translation>
         <translation>%1 %2</translation>
     </message>
     <message id="send-regular-fee">
-        <source>Fee</source>
-        <translation>Fee</translation>
+        <source>Transaction Fee</source>
+        <translation>Transaction Fee</translation>
     </message>
     <message id="settings-swap-clear">
         <source>clear</source>
@@ -2651,16 +2654,16 @@ Update your settings and try again.</source>
         <translation>Unknown address.</translation>
     </message>
     <message id="send-title">
-        <source>Send</source>
-        <translation type="unfinished">Send</translation>
+        <source>Output transaction</source>
+        <translation>Output transaction</translation>
     </message>
     <message id="general-send-to">
-        <source>Send to</source>
-        <translation type="unfinished"></translation>
+        <source>Recipient address</source>
+        <translation type="unfinished">Recipient address</translation>
     </message>
     <message id="send-contact-address-placeholder">
-        <source>Paste recipient address here</source>
-        <translation type="unfinished"></translation>
+        <source>Enter recipient address</source>
+        <translation>Enter recipient address</translation>
     </message>
     <message id="wallet-send-invalid-address-or-token">
         <source>Invalid wallet address</source>
@@ -2676,16 +2679,19 @@ Update your settings and try again.</source>
     </message>
     <message id="amount-input-add-max">
         <source>max</source>
-        <oldsource>add max</oldsource>
-        <translation type="unfinished"></translation>
+        <translation>max</translation>
+    </message>
+    <message id="amount-input-add-half">
+        <source>half</source>
+        <translation>half</translation>
     </message>
     <message id="send-amount-label">
-        <source>Amount to send</source>
-        <translation type="unfinished"></translation>
+        <source>Sending amount</source>
+        <translation>Sending amount</translation>
     </message>
     <message id="send-remaining-label">
-        <source>Remaining</source>
-        <translation type="unfinished"></translation>
+        <source>Balance left</source>
+        <translation>Balance left</translation>
     </message>
     <message id="send-remaining-beam-label">
         <source>ARC Remaining</source>
@@ -2900,8 +2906,8 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="source-wallet">
-        <source>Wallet</source>
-        <translation type="unfinished">Wallet</translation>
+        <source>Send</source>
+        <translation>Send</translation>
     </message>
     <message id="settings-general-confirmations">
         <source>Minimum confirmations</source>

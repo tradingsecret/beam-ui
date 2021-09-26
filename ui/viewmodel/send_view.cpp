@@ -345,6 +345,17 @@ void SendViewModel::setMaxPossibleAmount()
     RefreshCsiAsync();
 }
 
+void SendViewModel::setHalfPossibleAmount()
+{
+    const auto amount = _walletModel.getAvailable(m_Csi.m_assetID);
+    const auto maxAmount = std::min(amount, getMaxInputAmount());
+
+    _maxPossible = true;
+    m_Csi.m_requestedSum = beam::AmountBig::get_Lo(maxAmount) / 2;
+
+    RefreshCsiAsync();
+}
+
 void SendViewModel::onPublicAddress(const QString& pubAddr)
 {
     _publicOfflineAddr = pubAddr;

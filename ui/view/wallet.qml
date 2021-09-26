@@ -63,6 +63,7 @@ Item {
     
     Title {
         x: 0
+        id: wallet_title
         //% "Wallet"
         text: qsTrId("wallet-title")
     }
@@ -88,6 +89,8 @@ Item {
             spacing: 0
 
             function navigateSend(assetId) {
+                wallet_title.text = qsTrId("wallet-send-title")
+
                 var params = {
                     "onAccepted":    onAccepted,
                     "onClosed":      onClosed,
@@ -207,6 +210,9 @@ Item {
         onCurrentItemChanged: {
             if (currentItem && currentItem.defaultFocusItem) {
                 walletStackView.currentItem.defaultFocusItem.forceActiveFocus();
+            }
+            else {
+                wallet_title.text = qsTrId("wallet-title")
             }
         }
     }

@@ -180,8 +180,8 @@ Rectangle {
     property var contentItems : [
         {name: "wallet"},
         {name: "atomic_swap"},
-        {name: "applications", qml: appsQml},
         {name: "daocore", qml: appsQml, args: () => appArgs("BeamX DAO", viewModel.daoCoreAppID, false)},
+        {name: "applications", qml: appsQml},
         //{name: "dex"},
         {name: "addresses"},
         {name: "notifications"},
@@ -225,11 +225,11 @@ Rectangle {
 
                 ColumnLayout {
                     Layout.fillWidth:  true
-                    Layout.fillHeight: modelData.name =='addresses'
+                    Layout.fillHeight: modelData.name =='notifications'
 
                     Item {
                         Layout.fillHeight: true
-                        visible: modelData.name == 'addresses'
+                        visible: modelData.name == 'notifications'
                     }
 
                     Item {

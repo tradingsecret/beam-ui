@@ -92,6 +92,7 @@ public:
 
 public:
     Q_INVOKABLE void setMaxPossibleAmount();
+    Q_INVOKABLE void setHalfPossibleAmount();
     Q_INVOKABLE void sendMoney();
     Q_INVOKABLE void saveReceiverAddress(const QString& name);
 
