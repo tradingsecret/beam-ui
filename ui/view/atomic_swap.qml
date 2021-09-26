@@ -90,26 +90,12 @@ Item {
             //% "Atomic Swaps"
             text: qsTrId("atomic-swap-title")
         }
-
-        SvgImage {
-            Layout.alignment: Qt.AlignLeft | Qt.AlignHCenter
-            Layout.maximumHeight: 15
-            Layout.maximumWidth: 51
-            Layout.topMargin: 8
-            source: "qrc:/assets/beta2-label.svg"
-        }
     }
 
-/*
-    StatusBar {
-        id: status_bar
-        model: statusbarModel
-        z: 33
-    }
-*/
     StatusBarDemo {
         id: status_bar_demo
         z: 33
+        testnet: false
     }
 
     Component {
@@ -190,6 +176,7 @@ Item {
                     //% "Accept offer"
                     text: qsTrId("atomic-swap-accept")
                     font.pixelSize: 12
+                    enabled: false
                     onClicked: {
                         offersStackView.push(Qt.createComponent("send.qml"),
                                              {
@@ -210,6 +197,7 @@ Item {
                     //% "Create offer"
                     text: qsTrId("atomic-swap-create")
                     font.pixelSize: 12
+                    enabled: false
                     //font.capitalization: Font.AllUppercase
 
                     onClicked: {
@@ -242,7 +230,7 @@ Item {
                     gradLeft:           Style.coinPaneLeft
                     currencyIcon:       "qrc:/assets/icon-beam.svg"
                     amount:             viewModel.beamAvailable
-                    unitName:           BeamGlobals.beamUnit
+                    unitName:           "Arctis (ARC)"
                     valueSecondaryStr:  activeTxCountStr()
                     visible:            true
                 }
@@ -448,12 +436,6 @@ Item {
                         spacing: 0
                         Layout.minimumHeight: 20
                         Layout.maximumHeight: 20
-                        CustomCheckBox {
-                            id: checkboxFitBalance
-                            Layout.alignment: Qt.AlignHCenter | Qt.AlignLeft
-                            //% "Fit my current balance"
-                            text: qsTrId("atomic-swap-fit-current-balance")
-                        }
 
                         Item {
                             Layout.fillWidth: true

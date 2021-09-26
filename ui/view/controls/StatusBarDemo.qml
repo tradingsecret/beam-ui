@@ -5,6 +5,8 @@ import Beam.Wallet 1.0
 import "."
 
 Item {
+    property bool mainnet: true
+    property bool testnet: true
     id: rootControl
     y: 57
 
@@ -19,6 +21,7 @@ Item {
              border.width: 1
              radius: 4
         }
+        visible: mainnet
     }
 
     SFText {
@@ -27,6 +30,7 @@ Item {
         color: Style.content_secondary
         font.pixelSize: 12
         text: "Mainnet Offline"
+        visible: mainnet
     }
 
     Item {
@@ -41,6 +45,7 @@ Item {
              border.width: 1
              radius: 4
         }
+        visible: testnet
     }
 
     SFText {
@@ -49,6 +54,7 @@ Item {
         color: Style.content_secondary
         font.pixelSize: 12
         text: "Testnet Online"
+        visible: testnet
     }
 }
 

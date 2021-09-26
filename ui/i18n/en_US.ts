@@ -1137,8 +1137,8 @@ please review your settings and try again</translation>
         <translation>Search</translation>
     </message>
     <message id="swap-alert-confirm-button">
-        <source>I understand</source>
-        <translation>I understand</translation>
+        <source>OK</source>
+        <translation>OK</translation>
     </message>
     <message id="accept-own-offer-allert-head">
         <source>You cannot accept your own offer</source>
@@ -2308,12 +2308,12 @@ Please try again later or create an offer yourself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="swap-beta-title">
-        <source>Atomic Swaps are in BETA</source>
-        <translation type="unfinished"></translation>
+        <source>Imperium Atomic Swaps</source>
+        <translation>Imperium Atomic Swaps</translation>
     </message>
     <message id="swap-beta-message">
-        <source>Atomic Swaps functionality is Beta at the moment. We recommend you not to send large amounts.</source>
-        <translation type="unfinished"></translation>
+        <source>Imperium Atomic Swaps will be available on Mainnet launch. Thank you for your understanding.</source>
+        <translation>Imperium Atomic Swaps will be available on Mainnet launch. Thank you for your understanding.</translation>
     </message>
     <message id="atomic-swap-cancel">
         <source>Cancel offer</source>
@@ -2340,16 +2340,16 @@ Please try again later or create an offer yourself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="atomic-swap-title">
-        <source>Atomic Swaps</source>
-        <translation type="unfinished"></translation>
+        <source>Imperium Atomic Swaps</source>
+        <translation>Imperium Atomic Swaps</translation>
     </message>
     <message id="atomic-swap-accept">
-        <source>Accept offer</source>
-        <translation type="unfinished"></translation>
+        <source>Accept SWAP offer</source>
+        <translation>Accept SWAP offer</translation>
     </message>
     <message id="atomic-swap-create">
-        <source>Create offer</source>
-        <translation type="unfinished"></translation>
+        <source>Create SWAP offer</source>
+        <translation>Create SWAP offer</translation>
     </message>
     <message id="atomic-swap-1active-tx-count">
         <source>1 active transaction</source>
@@ -2372,16 +2372,16 @@ Please try again later or create an offer yourself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="atomic-swap-more-currency">
-        <source>Connect more currencies</source>
-        <translation type="unfinished"></translation>
+        <source>Connect more crypto for swapping</source>
+        <translation>Connect more crypto for swapping</translation>
     </message>
     <message id="atomic-swap-active-offers-tab">
-        <source>Active offers</source>
-        <translation type="unfinished"></translation>
+        <source>CURRENT SWAP OFFERS</source>
+        <translation>CURRENT SWAP OFFERS</translation>
     </message>
     <message id="atomic-swap-my-offers-tab">
-        <source>My offers</source>
-        <translation type="unfinished"></translation>
+        <source>MY SWAP OFFERS</source>
+        <translation>MY SWAP OFFERS</translation>
     </message>
     <message id="atomic-swap-transactions-tab">
         <source>Transactions</source>
@@ -2392,17 +2392,16 @@ Please try again later or create an offer yourself.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="atomic-swap-currency">
-        <source>Currency</source>
-        <translation type="unfinished"></translation>
+        <source>Crypto</source>
+        <translation>Crypto</translation>
     </message>
     <message id="atomic-offers-loading">
         <source>Please wait, offers are loading.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="atomic-no-offers">
-        <source>There are no active offers at the moment.
-Please try again later or create an offer yourself.</source>
-        <translation type="unfinished"></translation>
+        <source>Swap offers will be available on Mainnet.</source>
+        <translation>Swap offers will be available on Mainnet.</translation>
     </message>
     <message id="atomic-swap-time-created">
         <source>Created on</source>
@@ -2896,8 +2895,8 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="atomic-no-my-offers">
-        <source>There are no offers yet.</source>
-        <translation type="unfinished"></translation>
+        <source>You will be able to create own swap offers on Mainnet.</source>
+        <translation>You will be able to create own swap offers on Mainnet.</translation>
     </message>
     <message id="swap-tx-empty">
         <source>There are no transactions yet.</source>
