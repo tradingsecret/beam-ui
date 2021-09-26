@@ -19,4 +19,8 @@ Item {
 	FontLoader { source: "qrc:/assets/fonts/SF-Pro-Display-HeavyItalic.otf" }
 	FontLoader { source: "qrc:/assets/fonts/SF-Pro-Display-RegularItalic.otf" }
 	FontLoader { source: "qrc:/assets/fonts/SF-Pro-Display-UltralightItalic.otf" }
+    FontLoader { id: agency_b;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyB.ttf" }
+    FontLoader { id: tomorrow_regular;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowRegular.ttf" }
+    FontLoader { id: tomorrow_semibold;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowSemiBold.ttf" }
+    FontLoader { id: fixedFont; name: "Courier" }
 }

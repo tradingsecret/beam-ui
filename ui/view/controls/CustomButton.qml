@@ -8,8 +8,9 @@ import "."
 
 Button {
     id: control
+    FontLoader { id: tomorrow_regular;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowRegular.ttf" }
     
-    palette.button:      checkable ? (checked ? Style.active : "transparent") : Style.background_button
+    palette.button:      "transparent" //checkable ? (checked ? Style.active : "transparent") : Style.background_button
     palette.buttonText:  checkable ? (checked ? Style.content_opposite : Style.content_secondary) : Style.content_main
     opacity:             enabled   ? 1.0 : 0.45
 
@@ -21,15 +22,14 @@ Button {
 
 
     font { 
-        family: "SF Pro Display"
-        pixelSize: 14
-        styleName: control.checkable ? "Regular" : "Bold"
-        weight: control.checkable ? Font.Normal : Font.Bold
+        family:    tomorrow_regular.name
+        pixelSize: 20
+        weight: Font.Normal //control.checkable ? Font.Normal : Font.Bold
         capitalization: allLowercase && !control.checkable ? Font.AllLowercase : Font.MixedCase
     }
 
-    height: 38
-    Layout.preferredHeight: 38
+    height: 74
+    Layout.preferredHeight: 74
     leftPadding: 30
     rightPadding: 30
     activeFocusOnTab: true
@@ -46,7 +46,7 @@ Button {
         icon:  control.icon
         text:  control.text
         font:  control.font
-        color: control.palette.buttonText
+        color: hovered ? '#d5ff9f' : 'white' //control.palette.buttonText
 
         MouseArea {
             anchors.fill:  parent
@@ -61,12 +61,30 @@ Button {
     }
 
     background: Rectangle {
-        id:      rect
-        radius:  control.radius
-        color:   control.palette.button
+        id:         rect
+        //opacity:    0
+        color:      "transparent"
+        //radius:  control.radius
+        //color:   control.palette.button
+        Image {
+            id: backgroundImage
+            anchors.fill: parent
+            source: (hovered ? "qrc:/assets/primary-button-hover.png" : "qrc:/assets/primary-button.png")
+        }
     }
 
-    DropShadow {
+    /*background: BorderImage {
+        source: (hovered ? "qrc:/assets/primary-button-hover.png" : "qrc:/assets/primary-button.png")
+    }*/
+
+    /*background: Image {
+        id: backgroundImage
+        anchors.fill: parent
+        source: (hovered ? "qrc:/assets/primary-button-hover.png" : "qrc:/assets/primary-button.png")
+    }*/
+
+
+    /*DropShadow {
         id: drop_shadow
         anchors.fill: rect
         radius:  7
@@ -74,5 +92,5 @@ Button {
         color:   Style.content_main
         source:  rect
         visible: control.hasShadow && (control.visualFocus || control.hovered || control.checked)
-    }
+    }*/
 }

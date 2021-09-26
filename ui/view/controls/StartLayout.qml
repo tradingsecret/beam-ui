@@ -20,17 +20,17 @@ Rectangle
         anchors.fill: parent
 
         source: {
-            if (Screen.devicePixelRatio  > 2)
+             "qrc:/assets/bg-1.png"
+            /*if (Screen.devicePixelRatio  > 2)
                 "qrc:/assets/bg-pic@3x.png"
             else if (Screen.devicePixelRatio  > 1)
                 "qrc:/assets/bg-pic@2x.png"
             else
-                "qrc:/assets/bg-pic.png"
+                "qrc:/assets/bg-pic.png"*/
         }
     }
 
-    BgLogo {
-    }
+    BgLogo {}
 
     ColumnLayout {
         id: rootColumn
@@ -50,7 +50,10 @@ Rectangle
             Layout.alignment:   Qt.AlignHCenter
         }
 
-        VersionFooter {
+        Image {
+            source:  "qrc:/assets/copyright.png"
+            Layout.alignment: Qt.AlignHCenter
+            Layout.bottomMargin: 30
         }
     }
 }

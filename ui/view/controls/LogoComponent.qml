@@ -6,6 +6,9 @@ import "."
 
 ColumnLayout
 {
+    FontLoader { id: agency_b;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyB.ttf" }
+    FontLoader { id: tomorrow_semibold;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowSemiBold.ttf" }
+
     property bool isSqueezedHeight: false
 
     function themeName() {
@@ -24,12 +27,32 @@ ColumnLayout
         visible: isMainNet()
     }
 
-    SvgImage
+    SFText
     {
-        Layout.alignment: Qt.AlignHCenter
-        Layout.preferredWidth: 329
-        Layout.preferredHeight: 329
-        source: "qrc:/assets/start-logo.svg"
+        Layout.alignment:               Qt.AlignHCenter
+        horizontalAlignment:            Text.AlignHCenter
+        Layout.topMargin:               13
+        Layout.fillHeight:              true
+        Layout.minimumWidth:            550
+        Layout.maximumWidth:            550
+        wrapMode:                       Text.WordWrap
+
+        //% "Confidential DeFi Platform and Cryptocurrency"
+        text:       qsTrId('main-page-text')
+        color:      Style.content_main
+        opacity:    1
+        
+
+        font {
+            pixelSize:  20
+        }
+    }
+
+    SFText {
+        Layout.alignment:    Qt.AlignHCenter
+        font.pixelSize:      16
+        color:               Qt.rgba(255, 255, 255, 1)
+        text:                'v 1.09.1505'
     }
 
     SFText
@@ -42,16 +65,16 @@ ColumnLayout
         Layout.maximumWidth:            430
         wrapMode:                       Text.WordWrap
 
-        //% "Confidential DeFi Platform and Cryptocurrency"
-        text:       'Full Privacy Cryptocurrency Platform with Atomic Swaps by the Mechanics of the Future'
+        text:       qsTrId('imperium')
         color:      Style.content_main
-        opacity:    0.7
-        
+        opacity:    1
 
         font {
-            styleName:  "Bold"
-            weight:     Font.Bold
-            pixelSize:  16
+            family:    agency_b.name
+            weight:    Font.Bold
+            pixelSize: 200
+            capitalization: Font.AllUppercase
+            letterSpacing: 30
         }
     }
 
@@ -61,13 +84,14 @@ ColumnLayout
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredHeight: 20
         Layout.topMargin: isSqueezedHeight ? 10 : 40
-        color: Style.content_secondary
+        //color: Style.content_secondary
         text: 'TESTNET'
+        color: '#808e90'
 
         font {
-            styleName:      "DemiBold"
-            weight:         Font.DemiBold
-            pixelSize:      18
+            styleName:      tomorrow_semibold.name
+            pixelSize:      30
+            weight:         Font.Bold;
             capitalization: Font.AllUppercase
         }
     }

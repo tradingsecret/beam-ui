@@ -7,6 +7,14 @@
         <source>ARC</source>
         <translation>ARC</translation>
     </message>
+    <message id="main-page-text">
+        <source>Full Privacy Cryptocurrency Platform with Atomic Swaps by the Mechanics of the Future</source>
+        <translation>Full Privacy Cryptocurrency Platform with Atomic Swaps by the Mechanics of the Future</translation>
+    </message>
+    <message id="imperium">
+        <source>Imperium</source>
+        <translation>Imperium</translation>
+    </message>
     <message id="general-groth">
         <source>GROTH</source>
         <translation>GROTH</translation>
@@ -109,9 +117,8 @@
         <translation>Next</translation>
     </message>
     <message id="general-create-wallet">
-        <source>Create new wallet</source>
-        <oldsource>Create wallet password</oldsource>
-        <translation type="unfinished">Create wallet password</translation>
+        <source>Create private wallet</source>
+        <translation>Create private password</translation>
     </message>
     <message id="general-restore-or-create-wallet">
         <source>Restore wallet or create a new one</source>
@@ -122,8 +129,8 @@
         <translation>Select the wallet database file</translation>
     </message>
     <message id="general-restore-wallet">
-        <source>Restore wallet</source>
-        <translation>Restore wallet</translation>
+        <source>Restore your wallet</source>
+        <translation>Restore your wallet</translation>
     </message>
     <message id="general-start-using">
         <source>Start using your wallet</source>

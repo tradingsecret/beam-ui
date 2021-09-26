@@ -13,7 +13,9 @@ CustomButton {
         anchors.horizontalCenter: parent.horizontalCenter
 
         font.pixelSize: 12
-        font.styleName: "Bold"; font.weight: Font.Bold
+        font.styleName: "Bold";
+        font.weight: Font.Bold
+        font.capitalization: Font.AllUppercase
 
         color: Style.content_main
 

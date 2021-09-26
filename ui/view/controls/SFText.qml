@@ -2,9 +2,10 @@ import QtQuick 2.15
 import QtQuick.Window 2.2
 
 Text {
+    FontLoader { id: tomorrow_regular;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowRegular.ttf" }
+
 	font { 
-		family:    "SF Pro Display"
-		styleName: "Regular"
+        family:    tomorrow_regular.name
 		weight:    Font.Normal
 	}
     property alias linkEnabled: linkMouseArea.enabled

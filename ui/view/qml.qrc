@@ -55,7 +55,6 @@
         <file>controls/SwapTransactionDetails.qml</file>
         <file>controls/PaymentInfoDialog.qml</file>
         <file>controls/OpenExternalLinkConfirmation.qml</file>
-
         <file>controls/SeedInput.qml</file>
         <file>controls/CustomTripleSwitch.qml</file>
         <file>controls/CustomSecondCurrencySwitch.qml</file>
@@ -146,6 +145,10 @@
         <file>assets/fonts/SF-Pro-Display-HeavyItalic.otf</file>
         <file>assets/fonts/SF-Pro-Display-RegularItalic.otf</file>
         <file>assets/fonts/SF-Pro-Display-UltralightItalic.otf</file>
+        <file>assets/fonts/SF-Pro-Display-UltralightItalic.otf</file>
+		<file>assets/fonts/SF-Pro-Display-AgencyB.ttf</file>
+		<file>assets/fonts/SF-Pro-Display-TomorrowRegular.ttf</file>
+		<file>assets/fonts/SF-Pro-Display-TomorrowSemiBold.ttf</file>
         <file>assets/bottom-logo-beamx.svg</file>
         <file>assets/beam-circle.svg</file>
         <file>assets/ltc-circle.svg</file>
@@ -348,13 +351,13 @@
         <file>assets/icon-notifications-failed-sent-offline.svg</file>
         <file>assets/icon-notifications-failed-sent-privacy.svg</file>
         <file>assets/icon-notifications-received-privacy.svg</file>
-        <file>assets/icon-notifications-sent-privacy.svg</file>        
+        <file>assets/icon-notifications-sent-privacy.svg</file>
         <file>assets/icon-send-receive-blue.svg</file>
         <file>assets/icon-receive-failed-offline.svg</file>
         <file>assets/icon-received-offline.svg</file>
         <file>assets/icon-send-failed-offline.svg</file>
         <file>assets/icon-canceled-offline.svg</file>
-        <file>assets/icon-sent-offline.svg</file>        
+        <file>assets/icon-sent-offline.svg</file>
         <file>assets/icon-sending-offline.svg</file>
         <file>assets/bg-pic.png</file>
         <file>assets/bg-pic@2x.png</file>
@@ -367,5 +370,9 @@
         <file>assets/icon-verified-asset.svg</file>
         <file>assets/asset-beamx.svg</file>
         <file>assets/icon-refresh.svg</file>
+        <file>assets/bg-1.png</file>
+        <file>assets/primary-button.png</file>
+        <file>assets/primary-button-hover.png</file>
+        <file>assets/copyright.png</file>
     </qresource>
 </RCC>

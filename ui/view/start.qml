@@ -189,12 +189,25 @@ Item
                             spacing: 20
 
                             PrimaryButton {
+                                id: restoreWallet
+                                //% "Create new wallet"
+                                text: qsTrId("general-restore-wallet")
+                                Layout.preferredHeight: 38
+                                Layout.alignment: Qt.AlignHCenter
+                                font.capitalization: Font.AllUppercase
+                                onClicked:
+                                {
+                                    restoreWalletConfirmation.open();
+                                }
+                            }
+
+                            PrimaryButton {
                                 id: createNewWallet
                                 //% "Create new wallet"
                                 text: qsTrId("general-create-wallet")
                                 Layout.preferredHeight: 38
                                 Layout.alignment: Qt.AlignHCenter
-                                icon.source: "qrc:/assets/icon-add-blue.svg"
+                                font.capitalization: Font.AllUppercase
                                 onClicked: 
                                 {
                                     viewModel.isRecoveryMode = false;
@@ -202,7 +215,7 @@ Item
                                 }
                             }
 
-                            PrimaryButton {
+                            /*PrimaryButton {
                                 visible: viewModel.isTrezorEnabled
                                 id: createNewTrezorWallet
                                 //% "Create new Trezor wallet"
@@ -215,25 +228,7 @@ Item
                                     viewModel.isRecoveryMode = false;
                                     startWizzardView.push(createTrezorWalletEntry);
                                 }
-                            }
-                        }
-                    }
-
-                    SFText {
-                        Layout.alignment: Qt.AlignHCenter
-                        Layout.topMargin: 40
-                        //% "Restore wallet"
-                        text: qsTrId("general-restore-wallet")
-                        color: Style.active
-                        font.pixelSize: 14
-                        MouseArea {
-                            anchors.fill: parent
-                            acceptedButtons: Qt.LeftButton
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: {
-                                restoreWalletConfirmation.open();
-                            }
-                            hoverEnabled: true
+                            }*/
                         }
                     }
 
