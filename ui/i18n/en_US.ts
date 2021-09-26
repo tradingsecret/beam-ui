@@ -2213,12 +2213,12 @@ much longer for a transaction to complete.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="apps-title">
-        <source>DAPP Store</source>
-        <translation type="unfinished"></translation>
+        <source>Imperium DAPPs</source>
+        <translation>Imperium DAPPs</translation>
     </message>
     <message id="apps-nothing">
-        <source>There are no applications at the moment</source>
-        <translation type="unfinished"></translation>
+        <source>DAPPs will be available on Mainnet.</source>
+        <translation>DAPPs will be available on Mainnet.</translation>
     </message>
     <message id="apps-loading-app">
         <source>Please wait, %1 is loading</source>

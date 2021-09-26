@@ -19,7 +19,7 @@ ColumnLayout {
     property var      appToOpen: undefined
     property string   openedTxID: ""
     property bool     showBack: true
-    readonly property bool hasApps: !!appsList && appsList.length > 0
+    readonly property bool hasApps: false//!!appsList && appsList.length > 0
 
     function openAppTx (txid) {
         openedTxID = txid
@@ -48,6 +48,7 @@ ColumnLayout {
     StatusBarDemo {
         id: status_bar_demo
         z: 33
+        testnet: false
     }
 
     // Subtitle row is invisible only when we display appslit
