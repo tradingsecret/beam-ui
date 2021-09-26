@@ -9,6 +9,7 @@ Pane {
     id: control
 
     property string title
+    property string titleCapitalization: Font.AllUppercase
     property string titleTip
 
     property bool  folded:            true
@@ -48,7 +49,7 @@ Pane {
                             weight:         Font.Bold
                             pixelSize:      14
                             letterSpacing:  3.11
-                            capitalization: Font.AllUppercase
+                            capitalization: titleCapitalization
                         }
 
                         MouseArea {

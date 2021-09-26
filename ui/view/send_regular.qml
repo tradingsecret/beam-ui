@@ -295,33 +295,34 @@ ColumnLayout {
                                 spacing: 0
                                 Layout.topMargin:    20
 
-                                SFText {
-                                    font.pixelSize:      14
-                                    font.styleName:      "Bold"
-                                    font.weight:         Font.Bold
-                                    font.letterSpacing:  3.11
-                                    font.capitalization: Font.AllUppercase
-                                    color:               Style.content_secondary
-                                    //% "Available"
-                                    text:             qsTrId("send-available")
-                                    visible:          text.length > 0
-                                }
-
                                 BeamAmount {
-                                    Layout.leftMargin: 10
-                                    Layout.alignment:  Qt.AlignTop | Qt.AlignLeft
                                     Layout.fillWidth:  true
+                                    Layout.alignment:  Qt.AlignTop | Qt.AlignLeft
                                     amount:            viewModel.assetAvailable
-                                    unitName:          control.sendUnit
+                                    //unitName:          control.sendUnit
                                     rateUnit:          control.rateUnit
                                     rate:              control.rate
                                     font.styleName:    "Bold"
                                     font.weight:       Font.Bold
                                     font.pixelSize:    14
-                                    maxPaintedWidth:   false
+                                    maxPaintedWidth:   true
                                     maxUnitChars:      20
                                     rateFontSize:      12
+                                    unitName:          "Arctis available"
                                 }
+
+                                /*SFText {
+                                    Layout.fillWidth:  true
+                                    font.pixelSize:      14
+                                    font.styleName:      "Bold"
+                                    font.weight:         Font.Bold
+                                    font.letterSpacing:  3.11
+                                    font.capitalization: Font.AllUppercase
+                                    color:               Style.content_main
+                                    //% "Available"
+                                    text:             qsTrId("send-available")
+                                    visible:          text.length > 0
+                                }*/
 
                                 Row {
                                     Layout.leftMargin: 10
@@ -405,9 +406,10 @@ ColumnLayout {
                     //
                     FoldablePanel {
                         //% "Comment"
-                        title: qsTrId("general-comment")
-                        Layout.fillWidth: true
-                        folded: false
+                        title:                  qsTrId("general-comment")
+                        titleCapitalization:    Font.AllUppercase
+                        Layout.fillWidth:       true
+                        folded:                 false
 
                         content: ColumnLayout {
                             SFTextInput {

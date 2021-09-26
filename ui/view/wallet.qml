@@ -16,7 +16,10 @@ Item {
     property string openedTxID: ""
     
     function onAccepted() { walletStackView.pop(); }
-    function onClosed() { walletStackView.pop(); }
+    function onClosed() {
+        walletStackView.pop();
+        wallet_title.text = qsTrId("wallet-title");
+    }
     function onSwapToken(token) {
         tokenDuplicateChecker.checkTokenForDuplicate(token);
     }
@@ -109,6 +112,8 @@ Item {
             }
 
             function navigateReceive(assetId) {
+                wallet_title.text = qsTrId("wallet-receive-main-title")
+
                 walletStackView.push(Qt.createComponent("receive_regular.qml"),
                                         {"onClosed": onClosed,
                                          "token":    root.token,
@@ -210,9 +215,6 @@ Item {
         onCurrentItemChanged: {
             if (currentItem && currentItem.defaultFocusItem) {
                 walletStackView.currentItem.defaultFocusItem.forceActiveFocus();
-            }
-            else {
-                wallet_title.text = qsTrId("wallet-title")
             }
         }
     }

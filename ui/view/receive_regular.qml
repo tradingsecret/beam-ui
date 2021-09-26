@@ -139,11 +139,12 @@ ColumnLayout {
                     //
                     FoldablePanel {
                         //% "Requested amount"
-                        title:             qsTrId("receive-request")
+                        title:                  qsTrId("receive-request")
+                        titleCapitalization:    Font.Normal
                         //% "(optional)"
-                        titleTip:          qsTrId("receive-request-optional")
-                        Layout.fillWidth:  true
-                        folded:            false
+                        titleTip:               qsTrId("receive-request-optional")
+                        Layout.fillWidth:       true
+                        folded:                 false
 
                         //
                         // Amount
@@ -173,9 +174,10 @@ ColumnLayout {
                     //
                     FoldablePanel {
                         //% "Comment"
-                        title:            qsTrId("general-comment")
-                        Layout.fillWidth: true
-                        folded:           false
+                        title:                  qsTrId("general-comment")
+                        titleCapitalization:    Font.Normal
+                        Layout.fillWidth:       true
+                        folded:                 false
 
                         content: ColumnLayout {
                             spacing: 0
@@ -217,25 +219,39 @@ ColumnLayout {
                         //% "Advanced"
                         title: qsTrId("general-advanced")
                         Layout.fillWidth: true
-                        folded: true
+                        folded: false
 
                         content: ColumnLayout {
                             spacing: 20
                             id: addressType
                             // property bool isShieldedSupported: statusbarModel.isConnectionTrusted && statusbarModel.isOnline
 
-                            CustomSwitch {
-                                id: txType
-                                //% "Maximum anonymity set"
-                                text: qsTrId("receive-max-set")
-                                enabled: control.isShieldedSupported
-                                palette.text: control.isShieldedSupported ? Style.content_main : Style.content_secondary
-                                checked: viewModel.isMaxPrivacy
+                            RowLayout {
+                                id: advanced_row
+                                spacing: 20
 
-                                Binding {
-                                    target: viewModel
-                                    property: "isMaxPrivacy"
-                                    value: txType.checked
+                                CustomRadioButton {
+                                    id: regular_privacy
+                                    text: "Regular address"
+                                    checked: true
+
+                                    Binding {
+                                        target: viewModel
+                                        property: "isMaxPrivacy"
+                                        value: !regular_privacy.checked
+                                    }
+                                }
+
+                                CustomRadioButton {
+                                    id: max_privacy
+                                    text: "Anonymous Address"
+                                    checked: false
+
+                                    Binding {
+                                        target: viewModel
+                                        property: "isMaxPrivacy"
+                                        value: max_privacy.checked
+                                    }
                                 }
                             }
                         }
@@ -253,7 +269,7 @@ ColumnLayout {
 
                     Panel {
                         //% "Address"
-                        title: qsTrId("receive-addr")
+                        title: viewModel.isMaxPrivacy ? qsTrId("receive-anonymous-addr") : qsTrId("receive-addr")
                         Layout.fillWidth: true
 
                         content: ColumnLayout {
@@ -288,16 +304,7 @@ ColumnLayout {
                                         width: parent.width
                                         color: Style.content_main
                                         elide: Text.ElideMiddle
-                                    }
-
-                                    LinkButton {
-                                        Layout.alignment: Qt.AlignHCenter
-                                        //% "More details"
-                                        text:       qsTrId("more-details")
-                                        linkColor:  Style.accent_incoming
-                                        onClicked:  function () {
-                                            tokenInfoDialog.open()
-                                        }
+                                        visible: !viewModel.isMaxPrivacy
                                     }
                                 }
 
@@ -356,11 +363,7 @@ ColumnLayout {
                 wrapMode:              Text.WordWrap
                 horizontalAlignment:   Text.AlignHCenter
                 visible:               viewModel.isMaxPrivacy
-                text: (mpLockTimeLimit != "0" ?
-                    //% " Transaction can last at most %1 hours."
-                    qsTrId("wallet-receive-addr-message-mp").arg(mpLockTimeLimit) :
-                    //% "Transaction can last indefinitely."
-                    qsTrId("wallet-receive-addr-message-mp-no-limit")) + "\n"
+                text: qsTrId("wallet-receive-text-offline-time")
             }
 
             SFText {

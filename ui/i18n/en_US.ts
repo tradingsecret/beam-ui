@@ -24,8 +24,8 @@
         <translation>Address</translation>
     </message>
     <message id="general-send">
-        <source>Output transaction</source>
-        <translation>Output transaction</translation>
+        <source>send</source>
+        <translation>send</translation>
     </message>
     <message id="general-send-amount">
         <source>Sending amount</source>
@@ -1755,7 +1755,7 @@ Your version is: %2. Please, check for updates.</translation>
     </message>
     <message id="settings-remote-node-title">
         <source>Imperium Protocol Remote Node</source>
-        <translation>Imperium Protocol Remote Node</translation>
+        <translation>BeamImperium Protocol Remote Node</translation>
     </message>
     <message id="settings-run-remote-node">
         <source>Remote node</source>
@@ -2612,8 +2612,12 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="wallet-receive-title">
-        <source>Receive</source>
-        <translation type="unfinished">Receive</translation>
+        <source>Input transaction</source>
+        <translation>Input transaction</translation>
+    </message>
+    <message id="wallet-receive-main-title">
+        <source>Wallet - Receive</source>
+        <translation>Wallet - Receive</translation>
     </message>
     <message id="general-tx-type">
         <source>Transaction type</source>
@@ -2642,8 +2646,14 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="wallet-receive-text-online-time">
-        <source>Sender will be given a choice between online and offline payment.</source>
-        <translation>Sender will be given a choice between online and offline payment.</translation>
+        <source>You are using a regular type of address.</source>
+        <translation>You are using a regular type of address.</translation>
+    </message>
+    <message id="wallet-receive-text-offline-time">
+        <source>You are using an anonymous type of address.
+        This type of address is anonymous but has a slower transaction speed with an amount lock period.</source>
+        <translation>You are using an anonymous type of address.
+        This type of address is anonymous but has a slower transaction speed with an amount lock period.</translation>
     </message>
     <message id="send-public-token">
         <source>Public offline address.</source>
@@ -2826,8 +2836,12 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="receive-addr">
-        <source>Address</source>
-        <translation type="unfinished">Address</translation>
+        <source>Regular Address</source>
+        <translation>Regular Address</translation>
+    </message>
+    <message id="receive-anonymous-addr">
+        <source>Anonymous Address</source>
+        <translation>Anonymous Address</translation>
     </message>
     <message id="edit-addr-title">
         <source>Edit address</source>
@@ -2943,8 +2957,8 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="general-copy-and-close">
-        <source>copy and close</source>
-        <translation type="unfinished">copy and close</translation>
+        <source>Copy and go back</source>
+        <translation>Copy and go back</translation>
     </message>
     <message id="settings-remote-node-address-placeholder">
         <source>Please enter the address</source>
@@ -3097,8 +3111,8 @@ Allow to proceed ? You can always update your choice in Settings later.</source>
         <translation>Update Wallet to launch %1 application</translation>
     </message>
     <message id="general-advanced">
-        <source>Advanced</source>
-        <translation type="unfinished"></translation>
+        <source>Address type</source>
+        <translation>Address type</translation>
     </message>
     <message id="receive-max-set">
         <source>Maximum anonymity set</source>
@@ -3195,8 +3209,8 @@ cannot be canceled.</translation>
         <translation>You are currently connected to node that supports only online transactions.</translation>
     </message>
     <message id="wallet-receive-stay-online">
-        <source>For an online payment to complete, you should get online during the 12 hours after coins are sent.</source>
-        <translation>For an online payment to complete, you should get online during the 12 hours after coins are sent.</translation>
+        <source>This type of address is non-anonymous but has a faster transaction speed.</source>
+        <translation>This type of address is non-anonymous but has a faster transaction speed.</translation>
     </message>
     <message id="settings-dapps-port">
         <source>Local server port</source>
