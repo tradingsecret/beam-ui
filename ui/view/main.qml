@@ -180,7 +180,7 @@ Rectangle {
     property var contentItems : [
         {name: "wallet"},
         {name: "atomic_swap"},
-        {name: "daocore", qml: appsQml, args: () => appArgs("BeamX DAO", viewModel.daoCoreAppID, false)},
+        {name: "daocore", qml: appsQml},
         {name: "applications", qml: appsQml},
         //{name: "dex"},
         {name: "addresses"},
@@ -304,9 +304,11 @@ Rectangle {
                         }
 
                         Keys.onPressed: {
-                            if ((event.key == Qt.Key_Return || event.key == Qt.Key_Enter || event.key == Qt.Key_Space))
-                            if (selectedItem != index) {
-                                updateItem(index);
+                            if(modelData.name != 'daocore') {
+                                if ((event.key == Qt.Key_Return || event.key == Qt.Key_Enter || event.key == Qt.Key_Space))
+                                if (selectedItem != index) {
+                                    updateItem(index);
+                                }
                             }
                         }
 
@@ -314,9 +316,11 @@ Rectangle {
                             id: mouseArea
                             anchors.fill: parent
                             onClicked: {
-                                control.focus = true
-                                if (selectedItem != index) {
-                                    updateItem(index);
+                                if(modelData.name != 'daocore') {
+                                    control.focus = true
+                                    if (selectedItem != index) {
+                                        updateItem(index);
+                                    }
                                 }
                             }
                             hoverEnabled: true

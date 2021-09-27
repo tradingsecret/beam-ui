@@ -17,9 +17,22 @@ CustomButton {
         font.weight: Font.Bold
         font.capitalization: Font.AllUppercase
 
-        color: Style.content_main
+        color: '#d5ff9f'
 
         text: parent.text
         visible: false
+    }
+
+    background: Rectangle {
+        id:         rect
+        //opacity:    0
+        color:      "transparent"
+        radius:  control.radius
+        //color:   control.palette.button
+        Image {
+            id: backgroundImage
+            anchors.fill: parent
+            source: "qrc:/assets/primary-button-hover.png"
+        }
     }
 }

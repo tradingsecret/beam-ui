@@ -10,6 +10,15 @@ Component {
     id: generateRecoveryPhrase
 
     Rectangle {
+        Image {
+            fillMode: Image.PreserveAspectCrop
+            anchors.fill: parent
+
+            source: {
+                 "qrc:/assets/bg-2.png"
+            }
+        }
+
         color: Style.background_main
         property Item defaultFocusItem: nextButton
 
@@ -26,8 +35,10 @@ Component {
                     horizontalAlignment: Qt.AlignHCenter
                     //% "Seed phrase"
                     text: qsTrId("general-seed-phrase")
-                    color: Style.content_main
-                    font.pixelSize: 36
+                    color: '#a4a8b1'
+                    font.pixelSize: 48
+                    font.family: agency_b.name
+                    font.capitalization: Font.AllUppercase
                 }
                 SFText {
                     anchors.left: parent.left
@@ -35,9 +46,13 @@ Component {
                     horizontalAlignment: Qt.AlignHCenter
                     //% "Your seed phrase is the access key to all the cryptocurrencies in your wallet. Write down the phrase to keep it in a safe or in a locked vault. Without the phrase you will not be able to recover your money."
                     text: qsTrId("start-generate-seed-phrase-message")
-                    color: Style.content_main
                     wrapMode: Text.WordWrap
-                    font.pixelSize: 14
+                    color: 'white'
+                    font.pixelSize: 22
+                    font.family: agency_b.name
+                    font.weight: Font.Light
+                    font.capitalization: Font.AllUppercase
+                    font.letterSpacing: 2
                 }
             }
             ConfirmationDialog {
@@ -65,41 +80,25 @@ Component {
                 id: phrasesView
                 Layout.alignment: Qt.AlignHCenter
 
-                topPadding: 50
+                topPadding: 100
                 columnSpacing: 30
                 rowSpacing:  20
 
                 Repeater {
                     model:viewModel.recoveryPhrases //TODO zavarza
                     Rectangle{
-                        border.color: Style.background_second
                         color: "transparent"
                         width: 160
                         height: 38
                         radius: 30
-                        Rectangle {
-                            anchors.verticalCenter: parent.verticalCenter
-                            anchors.leftMargin: 9
-                            anchors.left: parent.left
-                            color: Style.background_second
-                            width: 20
-                            height: 20
-                            radius: 10
-                            SFText {
-                                anchors.verticalCenter: parent.verticalCenter
-                                anchors.horizontalCenter: parent.horizontalCenter
-                                text: modelData.index + 1
-                                font.pixelSize: 10
-                                color: Style.content_main
-                                opacity: 0.5
-                            }
-                        }
                         SFText {
                             anchors.verticalCenter: parent.verticalCenter
-                            anchors.horizontalCenter: parent.horizontalCenter
-                            text: modelData.phrase
-                            font.pixelSize: 14
-                            color: Style.content_main
+                            horizontalAlignment: Qt.AlignLeft
+                            text: modelData.index + 1 + ". " + modelData.phrase
+                            font.pixelSize: 20
+                            color: '#5fe795'
+                            font.capitalization: Font.AllUppercase
+                            font.letterSpacing: 1
                         }
                     }
                 }
@@ -117,8 +116,8 @@ Component {
 
                 CustomButton {
                     //% "Back"
-                    text: qsTrId("general-back")
-                    icon.source: "qrc:/assets/icon-back.svg"
+                    text: "<= " + qsTrId("general-base-back")
+                    font.capitalization: Font.AllUppercase
                     onClicked: {
                         if (seedValidationHelper.isSeedValidatiomMode) {
                             rootLoader.setSource("qrc:/main.qml");
@@ -129,10 +128,10 @@ Component {
                     }
                 }
 
-                CustomButton {
+                PrimaryButton {
                     //% "I will do it later"
                     text: qsTrId("general-do-later")
-                    icon.source: "qrc:/assets/icon-next-white.svg"
+                    font.capitalization: Font.AllUppercase
                     visible: !seedValidationHelper.isSeedValidatiomMode
                     onClicked: {
                         viewModel.saveSeed = true;
@@ -140,11 +139,11 @@ Component {
                     }
                 }
 
-                PrimaryButton {
+                CustomButton {
                     id: nextButton
                     //% "Complete verification"
                     text: qsTrId("general-complete-verification-button")
-                    icon.source: "qrc:/assets/icon-recovery.svg"
+                    font.capitalization: Font.AllUppercase
                     onClicked: {confirRecoveryPhrasesDialog.open();}
                 }
             }
@@ -154,8 +153,6 @@ Component {
                 Layout.minimumHeight: 67
                 Layout.maximumHeight: 143
             }
-
-            VersionFooter {}
         }
     }
 }

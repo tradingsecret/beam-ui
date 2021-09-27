@@ -508,9 +508,8 @@
         <translation>- Keep your seed phrase in a safe place</translation>
     </message>
     <message id="start-generate-seed-phrase-button">
-        <source>Generate seed phrase</source>
-        <oldsource>Generate wallet’s seed phrase</oldsource>
-        <translation type="unfinished">Generate wallet’s seed phrase</translation>
+        <source>Generate wallet’s seed phrase</source>
+        <translation>Generate wallet’s seed phrase</translation>
     </message>
     <message id="start-generate-seed-phrase-message">
         <source>Your seed phrase is the access key to all the cryptocurrencies in your wallet. Write down the phrase to keep it in a safe or in a locked vault. Without the phrase you will not be able to recover your money.</source>

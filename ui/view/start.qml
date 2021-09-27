@@ -189,7 +189,7 @@ Item
                         Row {
                             spacing: 20
 
-                            PrimaryButton {
+                            CustomButton {
                                 id: restoreWallet
                                 //% "Create new wallet"
                                 text: qsTrId("general-restore-wallet")
@@ -651,6 +651,8 @@ Item
                             font.pixelSize: 22
                             font.family: agency_b.name
                             font.weight: Font.Light
+                            font.capitalization: Font.AllUppercase
+                            font.letterSpacing: 2
                         }
                         SFText {
                             anchors.horizontalCenter: parent.horizontalCenter
@@ -661,6 +663,9 @@ Item
                             font.pixelSize: 22
                             font.family: agency_b.name
                             font.weight: Font.Light
+                            font.capitalization: Font.AllUppercase
+                            font.letterSpacing: 2
+                            font.underline: true
                         }
                     }
 
@@ -679,6 +684,7 @@ Item
                                 font.pixelSize: 48
                                 font.family: agency_b.name
                                 font.capitalization: Font.AllUppercase
+                                font.letterSpacing: 10
                             }
                         }
 
@@ -692,6 +698,7 @@ Item
                                 font.pixelSize: 22
                                 font.family: agency_b.name
                                 font.capitalization: Font.AllUppercase
+                                font.letterSpacing: 2
                             }
                         }
 
@@ -705,6 +712,7 @@ Item
                                 font.pixelSize: 22
                                 font.family: agency_b.name
                                 font.capitalization: Font.AllUppercase
+                                font.letterSpacing: 2
                             }
                         }
 
@@ -718,6 +726,7 @@ Item
                                 font.pixelSize: 22
                                 font.family: agency_b.name
                                 font.capitalization: Font.AllUppercase
+                                font.letterSpacing: 2
                             }
                         }
                     }
@@ -736,6 +745,7 @@ Item
                         CustomButton {
                             //% "Back"
                             text: "<= " + qsTrId("general-base-back")
+                            font.capitalization: Font.AllUppercase
                             onClicked: startWizzardView.pop();
                         }
 
@@ -743,6 +753,7 @@ Item
                             id: generateRecoveryPhraseButton
                             //% "Generate seed phrase"
                             text: qsTrId("start-generate-seed-phrase-button")
+                            font.capitalization: Font.AllUppercase
                             onClicked: startWizzardView.push(generateRecoveryPhrase);
                         }
                     }

@@ -64,7 +64,7 @@ Button {
         id:         rect
         //opacity:    0
         color:      "transparent"
-        //radius:  control.radius
+        radius:  control.radius
         //color:   control.palette.button
         Image {
             id: backgroundImage
@@ -73,21 +73,10 @@ Button {
         }
     }
 
-    /*background: BorderImage {
-        source: (hovered ? "qrc:/assets/primary-button-hover.png" : "qrc:/assets/primary-button.png")
-    }*/
-
-    /*background: Image {
-        id: backgroundImage
-        anchors.fill: parent
-        source: (hovered ? "qrc:/assets/primary-button-hover.png" : "qrc:/assets/primary-button.png")
-    }*/
-
-
     /*DropShadow {
         id: drop_shadow
         anchors.fill: rect
-        radius:  7
+        radius:  50
         samples: 9
         color:   Style.content_main
         source:  rect
