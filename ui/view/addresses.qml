@@ -214,7 +214,7 @@ ColumnLayout {
                 TableViewColumn {
                     role: viewModel.nameRole
                     //% "Comment"
-                    title: qsTrId("general-comment")
+                    title: qsTrId("general-address-comment")
                     width: 300 * contactsView.columnResizeRatio
                     movable: false
                 }

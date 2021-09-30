@@ -23,8 +23,7 @@ T.Menu {
 		icon.color: Style.content_main
 		icon.width: 16
 		icon.height: 16
-		font.pixelSize: 14
-        font.capitalization: Font.AllLowercase
+        font.pixelSize: 14
         padding: 0
 		spacing: 14
 

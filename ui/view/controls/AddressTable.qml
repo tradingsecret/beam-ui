@@ -249,22 +249,6 @@ CustomTableView {
         }
 
         Action {
-            id: showQRAction
-            //: Entry in address table context menu to show QR
-            //% "Show QR code"
-            text: qsTrId("address-table-cm-show-qr")
-            icon.source: "qrc:/assets/icon-qr.svg"
-            onTriggered: {
-                var popup = Qt.createComponent("AddressQRDialog.qml").createObject(main)
-                popup.address = contextMenu.addressItem.token;
-                 //: show qr dialog address label
-                //% "Your address"
-                popup.addressLabelText = qsTrId("show-qr-tx-token-label");
-                popup.open();
-            }
-        }
-
-        Action {
             //: Entry in address table context menu to edit
             //% "Edit address"
             text: qsTrId("address-table-cm-edit")

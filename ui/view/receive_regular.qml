@@ -276,18 +276,6 @@ ColumnLayout {
                             spacing: 12
 
                             RowLayout {
-                                spacing:          0
-                                Layout.alignment: Qt.AlignHCenter
-
-                                Image {
-                                    Layout.preferredWidth:  270
-                                    Layout.preferredHeight: 270
-                                    fillMode:               Image.PreserveAspectFit
-                                    source:                 qrCode.data
-                                }
-                            }
-
-                            RowLayout {
                                 spacing: 0
 
                                 ColumnLayout {
@@ -304,7 +292,6 @@ ColumnLayout {
                                         width: parent.width
                                         color: Style.content_main
                                         elide: Text.ElideMiddle
-                                        visible: !viewModel.isMaxPrivacy
                                     }
                                 }
 

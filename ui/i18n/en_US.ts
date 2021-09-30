@@ -27,6 +27,10 @@
         <source>Transaction note</source>
         <translation>Transaction note</translation>
     </message>
+    <message id="general-address-comment">
+        <source>Transaction comment</source>
+        <translation>Transaction comment</translation>
+    </message>
     <message id="general-actions">
         <source>Actions</source>
         <translation>Actions</translation>
@@ -227,35 +231,32 @@
         <translation>unknown</translation>
     </message>
     <message id="addresses-tittle">
-        <source>Address Book</source>
-        <translation>Address Book</translation>
+        <source>Wallet Address Book</source>
+        <translation>Wallet Address Book</translation>
     </message>
     <message id="addresses-tab-active">
-        <source>My active addresses</source>
-        <translation>My active addresses</translation>
+        <source>MY ADDRESSES (Active)</source>
+        <translation>MY ADDRESSES (Active)</translation>
     </message>
     <message id="addresses-tab-expired">
-        <source>My expired addresses</source>
-        <translation>My expired addresses</translation>
+        <source>MY ADDRESSES (Expired)</source>
+        <translation>MY ADDRESSES (Expired)</translation>
     </message>
     <message id="addresses-tab-contacts">
-        <source>Contacts</source>
-        <translation>Contacts</translation>
+        <source>MY CONTACTS</source>
+        <translation>MY CONTACTS</translation>
     </message>
     <message id="address-table-cm-show-qr">
-        <source>Show QR code</source>
-        <extracomment>Entry in address table context menu to show QR</extracomment>
-        <translation>Show QR code</translation>
+        <source>QR Code</source>
+        <translation>QR Code</translation>
     </message>
     <message id="address-table-cm-edit">
-        <source>Edit address</source>
-        <extracomment>Entry in address table context menu to edit</extracomment>
-        <translation>Edit address</translation>
+        <source>Edit</source>
+        <translation>Edit</translation>
     </message>
     <message id="address-table-cm-delete">
-        <source>Delete address</source>
-        <extracomment>Entry in address table context menu to delete</extracomment>
-        <translation>Delete address</translation>
+        <source>Delete</source>
+        <translation>Delete</translation>
     </message>
     <message id="address-table-cm-delete-contact">
         <source>Delete contact</source>
@@ -1810,9 +1811,8 @@ Your version is: %2. Please, check for updates.</translation>
         <translation>Peer already exists</translation>
     </message>
     <message id="address-table-cm-receive">
-        <source>receive</source>
-        <extracomment>Entry in address table context menu to get receive token</extracomment>
-        <translation>receive</translation>
+        <source>Request</source>
+        <translation>Request</translation>
     </message>
     <message id="format-small-amount">
         <source>&lt; 1 %1</source>
@@ -2905,8 +2905,8 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="addressbook-empty">
-        <source>Your address book is empty</source>
-        <translation type="unfinished"></translation>
+        <source>Your address list is empty</source>
+        <translation>Your address list is empty</translation>
     </message>
     <message id="atomic-no-my-offers">
         <source>You will be able to create own swap offers on Mainnet.</source>
@@ -3104,8 +3104,8 @@ Allow to proceed ? You can always update your choice in Settings later.</source>
         <translation>General info</translation>
     </message>
     <message id="general-wallet-signature">
-        <source>Wallet&apos;s signature</source>
-        <translation>Wallet&apos;s signature</translation>
+        <source>Signature</source>
+        <translation>Signature</translation>
     </message>
     <message id="settings-utilities-show-utxo">
         <source>Show UTXO</source>
