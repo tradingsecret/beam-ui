@@ -10,6 +10,8 @@ Component {
     id: generateRecoveryPhrase
 
     Rectangle {
+        id: generateRecoveryPhraseRectangle
+
         Image {
             fillMode: Image.PreserveAspectCrop
             anchors.fill: parent
@@ -134,8 +136,7 @@ Component {
                     font.capitalization: Font.AllUppercase
                     visible: !seedValidationHelper.isSeedValidatiomMode
                     onClicked: {
-                        viewModel.saveSeed = true;
-                        startWizzardView.push(create);
+                        PRINT.print(viewModel.recoveryPhrases);
                     }
                 }
 

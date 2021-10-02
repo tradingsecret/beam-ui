@@ -3260,9 +3260,8 @@ cannot be canceled.</translation>
         <translation>Seed phrase</translation>
     </message>
     <message id="general-do-later">
-        <source>I will do it later</source>
-        <oldsource>Print Seed Phrase</oldsource>
-        <translation type="unfinished">Print Seed Phrase</translation>
+        <source>Print Seed Phrase</source>
+        <translation>Print Seed Phrase</translation>
     </message>
     <message id="general-complete-verification">
         <source>Complete wallet verification</source>
