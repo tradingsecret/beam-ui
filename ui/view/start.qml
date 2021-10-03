@@ -173,7 +173,6 @@ Item
 
                         CustomButton {
                             text: qsTrId("general-back")
-                            icon.source: "qrc:/assets/icon-back.svg"
                             Layout.preferredHeight: 38
                             visible: startWizzardView.depth > 1
                             onClicked: {
@@ -216,7 +215,7 @@ Item
                                 }
                             }
 
-                            /*PrimaryButton {
+                            PrimaryButton {
                                 visible: viewModel.isTrezorEnabled
                                 id: createNewTrezorWallet
                                 //% "Create new Trezor wallet"
@@ -229,7 +228,7 @@ Item
                                     viewModel.isRecoveryMode = false;
                                     startWizzardView.push(createTrezorWalletEntry);
                                 }
-                            }*/
+                            }
                         }
                     }
 
@@ -279,7 +278,6 @@ Item
                             //: migration screen, start auto migration button
                             //% "Start auto migration"
                             text: qsTrId("start-migration-button")
-                            icon.source: "qrc:/assets/icon-repeat.svg"
                             onClicked: 
                             {
                                 startWizzardView.push(selectWalletDBView);
@@ -294,7 +292,6 @@ Item
                             //: migration screen, select db file button
                             //% "Select wallet database file manually"
                             text: qsTrId("start-migration-select-file-button")
-                            icon.source: "qrc:/assets/icon-folder.svg"
                             onClicked: {
                                 var path = viewModel.selectCustomWalletDB();
 
@@ -560,8 +557,7 @@ Item
                         spacing: 30
 
                         CustomButton {
-                            text: qsTrId("general-back")
-                            icon.source: "qrc:/assets/icon-back.svg"
+                            text: "<= " + qsTrId("general-back")
                             visible: startWizzardView.depth > 1
                             onClicked: {
                                 startWizzardView.pop();
@@ -572,7 +568,6 @@ Item
                             id: nextButton
                             //% "Next"
                             text: qsTrId("general-next")
-                            icon.source: "qrc:/assets/icon-next-blue.svg"
                             enabled: tableView.currentRow >= 0
                             onClicked: {
                                 migrateWalletDB(viewModel.walletDBpaths[tableView.currentRow].fullPath);
@@ -833,8 +828,7 @@ Item
 
                         CustomButton {
                             //% "Back"
-                            text: qsTrId("general-back")
-                            icon.source: "qrc:/assets/icon-back.svg"
+                            text: "<= " + qsTrId("general-back")
                             onClicked: startWizzardView.pop();
                         }
 
@@ -843,7 +837,6 @@ Item
                             enabled: viewModel.isTrezorConnected
                             //% "Next"
                             text: qsTrId("general-next")
-                            icon.source: "qrc:/assets/icon-next-blue.svg"
                             onClicked: {
                                 //viewModel.startOwnerKeyImporting();
                                 //startWizzardView.push(importTrezorOwnerKey);
@@ -933,9 +926,8 @@ Item
 
                         CustomButton {
                             //% "Back"
-                            text: qsTrId("general-back")
+                            text: "<= " + qsTrId("general-back")
                             enabled: viewModel.isOwnerKeyImported
-                            icon.source: "qrc:/assets/icon-back.svg"
                             onClicked: startWizzardView.pop();
                         }
 
@@ -944,7 +936,6 @@ Item
                             //% "Next"
                             text: qsTrId("general-next")
                             enabled: viewModel.isOwnerKeyImported && viewModel.isPasswordValid(trezorPassword.text)
-                            icon.source: "qrc:/assets/icon-next-blue.svg"
                             onClicked: {
                                 viewModel.setOwnerKeyPassword(trezorPassword.text)
                                 startWizzardView.push(create)
@@ -989,8 +980,10 @@ Item
                             horizontalAlignment: Qt.AlignHCenter
                             //% "Restore wallet"
                             text: qsTrId("general-restore-wallet")
-                            color: Style.content_main
-                            font.pixelSize: 36
+                            color: '#a4a8b1'
+                            font.pixelSize: 48
+                            font.family: agency_b.name
+                            font.capitalization: Font.AllUppercase
                         }
                         SFText {
                             anchors.left: parent.left
@@ -998,9 +991,13 @@ Item
                             horizontalAlignment: Qt.AlignHCenter
                             //% "Type in or paste your seed phrase"
                             text: qsTrId("start-restore-message")
-                            color: Style.content_main
                             wrapMode: Text.WordWrap
-                            font.pixelSize: 14
+                            color: 'white'
+                            font.pixelSize: 22
+                            font.family: agency_b.name
+                            font.weight: Font.Light
+                            font.capitalization: Font.AllUppercase
+                            font.letterSpacing: 2
                         }
                     }
  
@@ -1033,37 +1030,39 @@ Item
                                             anchors.verticalCenter: parent.verticalCenter
                                             anchors.horizontalCenter: parent.horizontalCenter
                                             text: modelData.index + 1
-                                            font.pixelSize: 10
-                                            color: Style.background_second
+                                            font.pixelSize: 20
+                                            color: (modelData.isAllowed || modelData.value.length == 0) ? '#5fe795' : Style.validator_error
+                                            font.capitalization: Font.AllUppercase
+                                            font.letterSpacing: 1
                                         }
-                                        visible: modelData.value.length == 0
+                                       // visible: modelData.value.length == 0
                                     }
 
-                                    Rectangle {
-                                        id: correctPhraseRect
-                                        color: modelData.isAllowed ? Style.background_second : Style.validator_error
-                                        width: 20
-                                        height: 20
-                                        radius: 10
-                                        SFText {
-                                            anchors.verticalCenter: parent.verticalCenter
-                                            anchors.horizontalCenter: parent.horizontalCenter
-                                            text: modelData.index + 1
-                                            font.pixelSize: 10
-                                            color: Style.content_main
-                                            opacity: 0.5
-                                        }
-                                        visible: modelData.value.length > 0
-                                    }
+                                    //Rectangle {
+                                    //    id: correctPhraseRect
+                                    //    color: modelData.isAllowed ? Style.background_second : Style.validator_error
+                                    //    width: 20
+                                    //    height: 20
+                                    //    radius: 10
+                                    //    SFText {
+                                    //        anchors.verticalCenter: parent.verticalCenter
+                                    //        anchors.horizontalCenter: parent.horizontalCenter
+                                    //        text: modelData.index + 1
+                                    //        font.pixelSize: 10
+                                    //        color: Style.content_main
+                                     //       opacity: 0.5
+                                     //   }
+                                     //   visible: modelData.value.length > 0
+                                    //}
                                 }
 
                                 SFTextInput {
                                     id: phraseValue
                                     anchors.bottom: parent.bottom
-                                    anchors.bottomMargin: 6
+                                    anchors.bottomMargin: 0
                                     width: 121
-                                    font.pixelSize: 14
-                                    color: (modelData.isAllowed || modelData.value.length == 0) ? Style.content_main : Style.validator_error
+                                    font.pixelSize: 20
+                                    color: (modelData.isAllowed || modelData.value.length == 0) ? '#5fe795' : Style.validator_error
                                     backgroundColor: (modelData.isAllowed || modelData.value.length == 0) ? Style.content_main : Style.validator_error
                                     text: modelData.value
                                     onTextEdited: {
@@ -1102,8 +1101,7 @@ Item
 
                         CustomButton {
                             //% "Back"
-                            text: qsTrId("general-back")
-                            icon.source: "qrc:/assets/icon-back.svg"
+                            text: "<= " + qsTrId("general-back")
                             onClicked: {
                                 startWizzardView.pop();
                                 viewModel.resetPhrases();
@@ -1123,7 +1121,6 @@ Item
                                 }
                                 return enable;
                             }
-                            icon.source: "qrc:/assets/icon-next-blue.svg"
                             onClicked: {
                                 viewModel.validateDictionary = true;
                                 onClicked: seedPhraseSubmitAllert.open();
@@ -1392,8 +1389,7 @@ Item
 
                         CustomButton {
                             //% "Back"
-                            text: qsTrId("general-back")
-                            icon.source: "qrc:/assets/icon-back.svg"
+                            text: "<= " + qsTrId("general-back")
                             onClicked: startWizzardView.pop();
                         }
                         PrimaryButton {
@@ -1403,9 +1399,6 @@ Item
                                 ? qsTrId("general-open-wallet")
                                 //% "Start using your wallet"
                                 : qsTrId("general-start-using")
-                            icon.source : viewModel.isRecoveryMode
-                                ? "qrc:/assets/icon-wallet-small.svg"
-                                : "qrc:/assets/icon-next-blue.svg"
                             onClicked: {
                                 onEnterPassword();
                             }
@@ -1616,8 +1609,7 @@ Item
 
                         CustomButton {
                             //% "Back"
-                            text: qsTrId("general-back")
-                            icon.source: "qrc:/assets/icon-back.svg"
+                            text: "<= " + qsTrId("general-back")
                             visible: !isBadPortMode
                             onClicked: startWizzardView.pop();
                         }
@@ -1628,7 +1620,6 @@ Item
                                 qsTrId("general-restore-wallet") :
                                 //% "Start using your wallet"
                                 qsTrId("general-start-using");
-                            icon.source: viewModel.isRecoveryMode ? "qrc:/assets/icon-restore-blue.svg" : "qrc:/assets/icon-next-blue.svg"
                             enabled: nodePreferencesGroup.checkState != Qt.Unchecked
                             onClicked:{
                                 if (localNodeButton.checked) {
@@ -1833,7 +1824,6 @@ Item
                                 :
                                 //% "Show my wallet with Trezor"
                                 qsTrId("open-show-wallet-button-hw")
-                            icon.source: "qrc:/assets/icon-wallet-small.svg"
                             onClicked: {
                                 parent.tryOpenWallet();
                             }
