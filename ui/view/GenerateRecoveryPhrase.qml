@@ -81,6 +81,7 @@ Component {
             Grid{
                 id: phrasesView
                 Layout.alignment: Qt.AlignHCenter
+                columns: 3
 
                 topPadding: 100
                 columnSpacing: 30
@@ -90,7 +91,7 @@ Component {
                     model:viewModel.recoveryPhrases //TODO zavarza
                     Rectangle{
                         color: "transparent"
-                        width: 160
+                        width: 200
                         height: 38
                         radius: 30
                         SFText {
@@ -99,7 +100,7 @@ Component {
                             text: modelData.index + 1 + ". " + modelData.phrase
                             font.pixelSize: 20
                             color: '#5fe795'
-                            font.capitalization: Font.AllUppercase
+                            font.capitalization: Font.AllLowercase
                             font.letterSpacing: 1
                         }
                     }
@@ -137,6 +138,9 @@ Component {
                     visible: !seedValidationHelper.isSeedValidatiomMode
                     onClicked: {
                         PRINT.print(viewModel.recoveryPhrases);
+
+                        viewModel.saveSeed = true; //tmp
+                        startWizzardView.push(create); //tmp
                     }
                 }
 

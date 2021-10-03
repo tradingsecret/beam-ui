@@ -336,6 +336,7 @@ Item
         Component {
             id: selectWalletDBView
             Item {
+
                 function next() {
                     if (nextButton.enabled) {
                         nextButton.clicked();
@@ -352,6 +353,15 @@ Item
                     id: selectBackground
                     color: Style.background_main
                     anchors.fill: parent
+
+                    Image {
+                        fillMode: Image.PreserveAspectCrop
+                        anchors.fill: parent
+
+                        source: {
+                             "qrc:/assets/bg-2.png"
+                        }
+                    }
                 }
 
                 ColumnLayout {
@@ -771,6 +781,15 @@ Item
             id: createTrezorWalletEntry
             Rectangle
             {
+                Image {
+                    fillMode: Image.PreserveAspectCrop
+                    anchors.fill: parent
+
+                    source: {
+                         "qrc:/assets/bg-2.png"
+                    }
+                }
+
                 color: Style.background_main
                 ColumnLayout {
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -850,6 +869,15 @@ Item
             Rectangle {
                 color: Style.background_main
                 property Item defaultFocusItem: null
+
+                Image {
+                    fillMode: Image.PreserveAspectCrop
+                    anchors.fill: parent
+
+                    source: {
+                         "qrc:/assets/bg-2.png"
+                    }
+                }
 
                 ColumnLayout {
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -938,6 +966,15 @@ Item
             Rectangle {
                 color: Style.background_main
                 property Item defaultFocusItem: null
+
+                Image {
+                    fillMode: Image.PreserveAspectCrop
+                    anchors.fill: parent
+
+                    source: {
+                         "qrc:/assets/bg-2.png"
+                    }
+                }
 
                 ColumnLayout {
                     anchors.horizontalCenter: parent.horizontalCenter
@@ -1121,6 +1158,16 @@ Item
             id: create
             Rectangle
             {
+                Image {
+                    fillMode: Image.PreserveAspectCrop
+                    anchors.fill: parent
+
+                    source: {
+                         "qrc:/assets/bg-2.png"
+                    }
+                }
+
+
                 color: Style.background_main
 
                 property Item defaultFocusItem: password
@@ -1379,6 +1426,15 @@ Item
 
             Rectangle
             {   
+                Image {
+                    fillMode: Image.PreserveAspectCrop
+                    anchors.fill: parent
+
+                    source: {
+                         "qrc:/assets/bg-2.png"
+                    }
+                }
+
                 id: nodeSetupRectangle
                 color: Style.background_main
                 property Item defaultFocusItem: localNodeButton

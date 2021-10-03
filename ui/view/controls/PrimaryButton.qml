@@ -6,6 +6,7 @@ import "."
 CustomButton {
     palette.button: Style.active
     palette.buttonText: Style.content_opposite
+    hoveredText: true
 
     SFText {
         id: text
@@ -21,18 +22,5 @@ CustomButton {
 
         text: parent.text
         visible: false
-    }
-
-    background: Rectangle {
-        id:         rect
-        //opacity:    0
-        color:      "transparent"
-        radius:  control.radius
-        //color:   control.palette.button
-        Image {
-            id: backgroundImage
-            anchors.fill: parent
-            source: "qrc:/assets/primary-button-hover.png"
-        }
     }
 }

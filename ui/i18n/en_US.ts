@@ -117,16 +117,16 @@
         <translation>Change</translation>
     </message>
     <message id="general-back">
-        <source>Back to Wallet</source>
-        <translation>Back to Wallet</translation>
+        <source>Back</source>
+        <translation>Back</translation>
     </message>
     <message id="general-base-back">
         <source>back</source>
         <translation>back</translation>
     </message>
     <message id="general-next">
-        <source>Next</source>
-        <translation>Next</translation>
+        <source>Next =></source>
+        <translation>Next=></translation>
     </message>
     <message id="general-create-wallet">
         <source>Create private wallet</source>
@@ -149,9 +149,8 @@
         <translation>Restore your wallet</translation>
     </message>
     <message id="general-start-using">
-        <source>Start using your wallet</source>
-        <oldsource>next</oldsource>
-        <translation type="unfinished">next</translation>
+        <source>next =></source>
+        <translation>next =></translation>
     </message>
     <message id="general-open-wallet">
         <source>Open my wallet</source>
@@ -513,33 +512,28 @@
         <translation>Generate wallet’s seed phrase</translation>
     </message>
     <message id="start-generate-seed-phrase-message">
-        <source>Your seed phrase is the access key to all the cryptocurrencies in your wallet. Write down the phrase to keep it in a safe or in a locked vault. Without the phrase you will not be able to recover your money.</source>
-        <oldsource>Please save your seed phrase as it’s the access to your Imperium Protocol Wallet address. For easy saving please use the Print Seed Phrase button down below. Keep your printed seed phrase in a secured vault. If you lose access to your Imperium Protocol Wallet you can access it by Restoring your wallet using the seed phrase, otherwise, you might lose the access and stored funds in it.</oldsource>
-        <translation type="unfinished">Please save your seed phrase as it’s the access to your Imperium Protocol Wallet address. For easy saving please use the Print Seed Phrase button down below. Keep your printed seed phrase in a secured vault. If you lose access to your Imperium Protocol Wallet you can access it by Restoring your wallet using the seed phrase, otherwise, you might lose the access and stored funds in it.</translation>
+        <source>Please save your seed phrase as it’s the access to your Imperium Protocol Wallet address. For easy saving please use the Print Seed Phrase button down below. Keep your printed seed phrase in a secured vault. If you lose access to your Imperium Protocol Wallet you can access it by Restoring your wallet using the seed phrase, otherwise, you might lose the access and stored funds in it.</source>
+        <translation>Please save your seed phrase as it’s the access to your Imperium Protocol Wallet address. For easy saving please use the Print Seed Phrase button down below. Keep your printed seed phrase in a secured vault. If you lose access to your Imperium Protocol Wallet you can access it by Restoring your wallet using the seed phrase, otherwise, you might lose the access and stored funds in it.</translation>
     </message>
     <message id="start-confirm-seed-phrase-button">
-        <source>I understand</source>
-        <oldsource>Proceed</oldsource>
-        <translation type="unfinished">Proceed</translation>
+        <source>Proceed</source>
+        <translation>Proceed</translation>
     </message>
     <message id="start-confirm-seed-phrase-message">
-        <source>It is strictly recommended to write down the seed phrase on a paper. Storing it in a file makes it prone to cyber attacks and, therefore, less secure.</source>
-        <oldsource>We recommend writing down the seed phrase on paper. Don’t store the file with your wallet seed phrase on your computer due to possible cyber attacks.</oldsource>
+        <source>We recommend writing down the seed phrase on paper. Don’t store the file with your wallet seed phrase on your computer due to possible cyber attacks.</source>
         <translation type="unfinished">We recommend writing down the seed phrase on paper. Don’t store the file with your wallet seed phrase on your computer due to possible cyber attacks.</translation>
     </message>
     <message id="start-check-seed-phrase-message">
-        <source>To ensure the seed phrase is written down, please fill-in the specific words below</source>
-        <oldsource>Please fill in the words from the seed phrase under specific numbers according to the numeric value in the seed phrase.</oldsource>
-        <translation type="unfinished">Please fill in the words from the seed phrase under specific numbers according to the numeric value in the seed phrase.</translation>
+        <source>Please fill in the words from the seed phrase under specific numbers according to the numeric value in the seed phrase.</source>
+        <translation>Please fill in the words from the seed phrase under specific numbers according to the numeric value in the seed phrase.</translation>
     </message>
     <message id="start-restore-message">
         <source>Type in or paste your seed phrase</source>
         <translation>Type in or paste your seed phrase</translation>
     </message>
     <message id="start-create-pwd-message">
-        <source>Create password to access your wallet</source>
-        <oldsource>Create wallet access password</oldsource>
-        <translation type="unfinished">Create wallet access password</translation>
+        <source>Create wallet access password</source>
+        <translation>Create wallet access password</translation>
     </message>
     <message id="start-pwd-label">
         <source>Password</source>
@@ -554,8 +548,7 @@
         <translation>Passwords do not match</translation>
     </message>
     <message id="start-node-title">
-        <source>Setup node connectivity</source>
-        <oldsource>Node connection setup</oldsource>
+        <source>Node connection setup</source>
         <translation type="unfinished">Node connection setup</translation>
     </message>
     <message id="start-node-integrated-radio">
@@ -3264,14 +3257,12 @@ cannot be canceled.</translation>
         <translation>Print Seed Phrase</translation>
     </message>
     <message id="general-complete-verification">
-        <source>Complete wallet verification</source>
-        <oldsource>Seed phrase verification</oldsource>
-        <translation type="unfinished">Seed phrase verification</translation>
+        <source>Seed phrase verification</source>
+        <translation>Seed phrase verification</translation>
     </message>
     <message id="general-complete-verification-button">
-        <source>Complete verification</source>
-        <oldsource>Next</oldsource>
-        <translation type="unfinished">Next</translation>
+        <source>Next =></source>
+        <translation>Next =></translation>
     </message>
     <message id="seed-validation-promo">
         <source>Write down and validate your seed phrase so you can always recover your funds.</source>

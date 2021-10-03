@@ -13,6 +13,15 @@ Component {
         color: Style.background_main
         property Item defaultFocusItem: null
 
+        Image {
+            fillMode: Image.PreserveAspectCrop
+            anchors.fill: parent
+
+            source: {
+                 "qrc:/assets/bg-2.png"
+            }
+        }
+
         ColumnLayout {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.fill: parent
@@ -26,8 +35,10 @@ Component {
                     horizontalAlignment: Qt.AlignHCenter
                     //% "Complete wallet verification"
                     text: qsTrId("general-complete-verification")
-                    color: Style.content_main
-                    font.pixelSize: 36
+                    color: '#a4a8b1'
+                    font.pixelSize: 48
+                    font.family: agency_b.name
+                    font.capitalization: Font.AllUppercase
                 }
                 SFText {
                     anchors.left: parent.left
@@ -35,9 +46,13 @@ Component {
                     horizontalAlignment: Qt.AlignHCenter
                     //% "To ensure the seed phrase is written down, please fill-in the specific words below"
                     text: qsTrId("start-check-seed-phrase-message")
-                    color: Style.content_main
                     wrapMode: Text.WordWrap
-                    font.pixelSize: 14
+                    color: 'white'
+                    font.pixelSize: 22
+                    font.family: agency_b.name
+                    font.weight: Font.Light
+                    font.capitalization: Font.AllUppercase
+                    font.letterSpacing: 2
                 }
             }
 
@@ -47,6 +62,7 @@ Component {
 
             Grid{
                 Layout.alignment: Qt.AlignHCenter
+                columns: 3
 
                 topPadding: 50
                 columnSpacing: 30
@@ -66,53 +82,56 @@ Component {
                             height: 20
                             Rectangle {
                                 color: "transparent"
-                                border.color: Style.content_secondary
                                 width: 20
                                 height: 20
-                                radius: 10
                                 SFText {
                                     anchors.verticalCenter: parent.verticalCenter
                                     anchors.horizontalCenter: parent.horizontalCenter
                                     text: modelData.index + 1
-                                    font.pixelSize: 10
-                                    color: Style.content_secondary
+
+                                    font.pixelSize: 20
+                                    color: (modelData.isCorrect || modelData.value.length == 0) ? '#5fe795' : Style.validator_error
+                                    font.capitalization: Font.AllUppercase
+                                    font.letterSpacing: 1
                                 }
-                                visible: modelData.value.length == 0
+                                //visible: modelData.value.length == 0
                             }
 
-                            Rectangle {
-                                id: correctPhraseRect
-                                color: modelData.isCorrect ? Style.active : Style.validator_error
-                                width: 20
-                                height: 20
-                                radius: 10
-                                SFText {
-                                    anchors.verticalCenter: parent.verticalCenter
-                                    anchors.horizontalCenter: parent.horizontalCenter
-                                    text: modelData.index + 1
-                                    font.pixelSize: 10
-                                    color: Style.background_main
-                                }
-                                visible: modelData.value.length > 0
-                            }
+                            //Rectangle {
+                            //    id: correctPhraseRect
+                            //    color: modelData.isCorrect ? '#5fe795' : Style.validator_error
+                            //    width: 20
+                             //   height: 20
+                             //   radius: 10
+                             //   SFText {
+                             //       anchors.verticalCenter: parent.verticalCenter
+                               //     anchors.horizontalCenter: parent.horizontalCenter
+                               //     text: modelData.index + 1
+                                //    font.pixelSize: 20
+                                 //   color: modelData.isCorrect ? '#5fe795' : Style.validator_error
+                                  //  font.capitalization: Font.AllLowercase
+                                   // font.letterSpacing: 1
+                              //  }
+                               // visible: modelData.value.length > 0
+                            //}
 
-                            DropShadow {
-                                anchors.fill: correctPhraseRect
-                                radius: 5
-                                samples: 9
-                                color: modelData.isCorrect ? Style.active : Style.validator_error
-                                source: correctPhraseRect
-                                visible: correctPhraseRect.visible
-                            }
+                            //DropShadow {
+                            //    anchors.fill: correctPhraseRect
+                                //radius: 5
+                                //samples: 9
+                            //    color: modelData.isCorrect ? Style.active : Style.validator_error
+                           //     source: correctPhraseRect
+                            //    visible: correctPhraseRect.visible
+                           // }
                         }
 
                         SFTextInput {
                             id: phraseValue
                             anchors.bottom: parent.bottom
-                            anchors.bottomMargin: 6
+                            anchors.bottomMargin: 0
                             width: 121
-                            font.pixelSize: 14
-                            color: (modelData.isCorrect || modelData.value.length == 0) ? Style.content_main : Style.validator_error
+                            font.pixelSize: 20
+                            color: (modelData.isCorrect || modelData.value.length == 0) ? '#5fe795' : Style.validator_error
                             backgroundColor: (modelData.isCorrect || modelData.value.length == 0) ? Style.content_main : Style.validator_error
                             text: modelData.value
                             Component.onCompleted: {
@@ -143,8 +162,7 @@ Component {
 
                 CustomButton {
                     //% "Back"
-                    text: qsTrId("general-back")
-                    icon.source: "qrc:/assets/icon-back.svg"
+                    text: "<= " + qsTrId("general-back")
                     onClicked: {
                         startWizzardView.pop();
                         if (!seedValidationHelper.isSeedValidatiomMode) {
@@ -153,7 +171,7 @@ Component {
                     }
                 }
 
-                PrimaryButton {
+                CustomButton {
                     id: checkRecoveryNextButton
                     //% "Next"
                     text: qsTrId("general-next")
@@ -165,7 +183,6 @@ Component {
                         }
                         return enable;
                     }
-                    icon.source: "qrc:/assets/icon-next-blue.svg"
                     onClicked: {
                         if (seedValidationHelper.isSeedValidatiomMode) {
                             seedValidationHelper.isSeedValidatiomMode = false;
@@ -183,8 +200,6 @@ Component {
                 Layout.minimumHeight: 67
                 Layout.maximumHeight: 143
             }
-
-            VersionFooter {}
         }
     }
 }

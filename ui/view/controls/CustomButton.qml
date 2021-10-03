@@ -18,6 +18,7 @@ Button {
     property bool  allLowercase:   !text.startsWith("I ")
     property bool  showHandCursor: false
     property bool  hasShadow:      true
+    property bool  hoveredText:    false
     property alias border:         rect.border
 
 
@@ -25,11 +26,11 @@ Button {
         family:    tomorrow_regular.name
         pixelSize: 20
         weight: Font.Normal //control.checkable ? Font.Normal : Font.Bold
-        capitalization: allLowercase && !control.checkable ? Font.AllLowercase : Font.MixedCase
+        capitalization: Font.AllUppercase //allLowercase && !control.checkable ? Font.AllLowercase : Font.MixedCase
     }
 
-    height: 74
-    Layout.preferredHeight: 74
+    height: 45
+    Layout.preferredHeight: 45
     leftPadding: 30
     rightPadding: 30
     activeFocusOnTab: true
@@ -46,7 +47,8 @@ Button {
         icon:  control.icon
         text:  control.text
         font:  control.font
-        color: hovered ? '#d5ff9f' : 'white' //control.palette.buttonText
+        //color: hovered || hoveredText ? '#d5ff9f' : 'white' //control.palette.buttonText
+        color: hovered || hoveredText ? '#d5ff9f' : '#d2bdff' //control.palette.buttonText
 
         MouseArea {
             anchors.fill:  parent
@@ -60,26 +62,42 @@ Button {
         if (event.key == Qt.Key_Return || event.key == Qt.Key_Enter) control.clicked();
     }
 
+    //background: Rectangle {
+    ///    id:         rect
+        //opacity:    0
+    //    color:      "transparent"
+    //    radius:  control.radius
+        //color:   control.palette.button
+    //    Image {
+    //        id: backgroundImage
+    //        anchors.fill: parent
+    //        source: (hovered ? "qrc:/assets/primary-button-hover.png" : "qrc:/assets/primary-button.png")
+    //    }
+    //}
+
     background: Rectangle {
         id:         rect
         //opacity:    0
         color:      "transparent"
-        radius:  control.radius
+        //radius:  control.radius
         //color:   control.palette.button
-        Image {
-            id: backgroundImage
-            anchors.fill: parent
-            source: (hovered ? "qrc:/assets/primary-button-hover.png" : "qrc:/assets/primary-button.png")
-        }
+        border.color: '#d2bdff'
+        border.width: 2
+        radius: 4
+        //Image {
+         //   id: backgroundImage
+        //    anchors.fill: parent
+        //    source: "qrc:/assets/primary-button-hover.png"
+       // }
     }
 
-    /*DropShadow {
+    DropShadow {
         id: drop_shadow
         anchors.fill: rect
-        radius:  50
-        samples: 9
-        color:   Style.content_main
+        radius:  3
+        samples: 10
+        color:   '#0ff' //Style.content_main
         source:  rect
         visible: control.hasShadow && (control.visualFocus || control.hovered || control.checked)
-    }*/
+    }
 }
