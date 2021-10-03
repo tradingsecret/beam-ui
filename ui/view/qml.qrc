@@ -376,5 +376,8 @@
         <file>assets/primary-button.png</file>
         <file>assets/primary-button-hover.png</file>
         <file>assets/copyright.png</file>
+        <file>assets/button.gif</file>
+        <file>assets/button.webp</file>
+        <file>assets/button.mp4</file>
     </qresource>
 </RCC>

@@ -77,7 +77,6 @@ Component {
                         spacing: 20
                         Item {
                             anchors.verticalCenter: parent.verticalCenter
-                            anchors.leftMargin: 9
                             width: 20
                             height: 20
                             Rectangle {
@@ -132,7 +131,7 @@ Component {
                             width: 121
                             font.pixelSize: 20
                             color: (modelData.isCorrect || modelData.value.length == 0) ? '#5fe795' : Style.validator_error
-                            backgroundColor: (modelData.isCorrect || modelData.value.length == 0) ? Style.content_main : Style.validator_error
+                            backgroundColor: (modelData.isCorrect || modelData.value.length == 0) ? '#5fe795' : Style.validator_error
                             text: modelData.value
                             Component.onCompleted: {
                                 modelData.value = "";

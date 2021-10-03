@@ -1,4 +1,5 @@
 import QtQuick 2.11
+import QtQuick.Shapes 1.0
 import QtQuick.Controls 1.4
 import QtQuick.Controls 2.4
 import QtQuick.Controls.Styles 1.2
@@ -565,7 +566,7 @@ Item
                             }
                         }
 
-                        PrimaryButton {
+                        CustomButton {
                             id: nextButton
                             //% "Next"
                             text: qsTrId("general-next")
@@ -833,7 +834,7 @@ Item
                             onClicked: startWizzardView.pop();
                         }
 
-                        PrimaryButton {
+                        CustomButton {
                             id: nextButton
                             enabled: viewModel.isTrezorConnected
                             //% "Next"
@@ -932,7 +933,7 @@ Item
                             onClicked: startWizzardView.pop();
                         }
 
-                        PrimaryButton {
+                        CustomButton {
                             id: checkRecoveryNextButton
                             //% "Next"
                             text: qsTrId("general-next")
@@ -1005,6 +1006,7 @@ Item
                     Grid{
                         Layout.alignment: Qt.AlignHCenter
 
+                        columns: 3
                         topPadding: 50
                         columnSpacing: 30
                         rowSpacing:  20
@@ -1013,11 +1015,12 @@ Item
                             model:viewModel.recoveryPhrases
 
                             Row {
-                                width: 160
+                                width: 200
                                 height: 38
                                 spacing: 20
                                 Item {
                                     anchors.verticalCenter: parent.verticalCenter
+                                    anchors.rightMargin: 9
                                     anchors.leftMargin: 9
                                     width: 20
                                     height: 20
@@ -1064,7 +1067,7 @@ Item
                                     width: 121
                                     font.pixelSize: 20
                                     color: (modelData.isAllowed || modelData.value.length == 0) ? '#5fe795' : Style.validator_error
-                                    backgroundColor: (modelData.isAllowed || modelData.value.length == 0) ? Style.content_main : Style.validator_error
+                                    backgroundColor: (modelData.isAllowed || modelData.value.length == 0) ? '#5fe795' : Style.validator_error
                                     text: modelData.value
                                     onTextEdited: {
                                         var phrases = text.trim().split(viewModel.phrasesSeparator);
@@ -1109,7 +1112,7 @@ Item
                             }
                         }
 
-                        PrimaryButton {
+                        CustomButton {
                             id: checkRecoveryNextButton
                             //% "Next"
                             text: qsTrId("general-next")
@@ -1262,6 +1265,7 @@ Item
                             SFTextInput {
                                 id:password
                                 width: parent.width
+                                dottedBorder: true
                                 font.pixelSize: 14
                                 color: Style.content_main
                                 echoMode: TextInput.Password
@@ -1364,6 +1368,7 @@ Item
                             SFTextInput {
                                 id: confirmPassword
                                 width: parent.width
+                                dottedBorder: true
 
                                 font.pixelSize: 14
                                 color: Style.content_main
@@ -1473,8 +1478,10 @@ Item
                             horizontalAlignment: Qt.AlignHCenter
                             //% "Setup node connectivity"
                             text: qsTrId("start-node-title")
-                            color: Style.content_main
-                            font.pixelSize: 36
+                            color: '#a4a8b1'
+                            font.pixelSize: 48
+                            font.family: agency_b.name
+                            font.capitalization: Font.AllUppercase
                         }
                     }
 
@@ -1623,7 +1630,7 @@ Item
                             onClicked: startWizzardView.pop();
                         }
 
-                        PrimaryButton {
+                        CustomButton {
                             text: viewModel.isRecoveryMode ?
                                 //% "Restore wallet"
                                 qsTrId("general-restore-wallet") :

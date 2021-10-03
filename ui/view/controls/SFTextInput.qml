@@ -8,6 +8,9 @@ import "."
 
 T.TextField {
     id: control
+
+    FontLoader { id: tomorrow_regular;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowRegular.ttf" }
+
     signal textPasted()
 
     function getMousePos() {
@@ -21,9 +24,9 @@ T.TextField {
                              background ? background.implicitHeight : 0,
                              placeholder.implicitHeight + topPadding + bottomPadding)
 
-    font { 
-        family: "SF Pro Display"
-        styleName: "Regular"
+    font {
+        family: tomorrow_regular.name
+        weight: Font.Normal
     }
 
     padding: 6
@@ -35,6 +38,7 @@ T.TextField {
     verticalAlignment: TextInput.AlignVCenter
 
     property bool  focusablePlaceholder: false
+    property bool  dottedBorder: false
     property alias backgroundColor : backgroundRect.color
     property alias underlineVisible : backgroundRect.visible
     backgroundColor: Style.content_main
@@ -64,8 +68,8 @@ T.TextField {
         id: backgroundRect
         y: control.height - height - control.bottomPadding + 4
         width: control.width - (control.leftPadding + control.rightPadding)
-        height: 0 //control.activeFocus || control.hovered ? 1 : 1
-        // opacity: (control.activeFocus || control.hovered)? 0.3 : 0.1
+        height: dottedBorder ? 0 : 1 //control.activeFocus || control.hovered ? 1 : 1
+        opacity: dottedBorder ? 1 : ((control.activeFocus || control.hovered)? 0.3 : 0.1)
 
         Shape {
             width: 5
@@ -77,6 +81,7 @@ T.TextField {
                 startY: 0
                 PathLine { x: parent.width; y: 0 }
             }
+            visible: dottedBorder
         }
     }
 

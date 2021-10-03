@@ -8,6 +8,8 @@ import "."
 
 T.RadioButton {
     id: control
+    FontLoader { id: tomorrow_regular;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowRegular.ttf" }
+
 	palette.windowText: Style.content_main
 	palette.text: Style.active
 
@@ -20,6 +22,11 @@ T.RadioButton {
 
     padding: 6
     spacing: 6
+
+    font {
+        family:    tomorrow_regular.name
+        weight:    Font.Normal
+    }
 
     property int outerWidth: 28
     property int innerWidth: 20

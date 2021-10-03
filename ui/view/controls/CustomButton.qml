@@ -84,11 +84,11 @@ Button {
         border.color: '#d2bdff'
         border.width: 2
         radius: 4
-        //Image {
-         //   id: backgroundImage
-        //    anchors.fill: parent
-        //    source: "qrc:/assets/primary-button-hover.png"
-       // }
+        //AnimatedImage {
+        //    id: backgroundImage
+        //     anchors.fill: parent
+        //    source: "qrc:/assets/button.mp4"
+        //}
     }
 
     DropShadow {
