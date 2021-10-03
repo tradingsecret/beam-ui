@@ -11,6 +11,7 @@ import QtQuick.Layouts 1.12
 Item
 {
     FontLoader { id: agency_b;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyB.ttf" }
+    FontLoader { id: agency_r;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyR.otf" }
     id: root
 
     anchors.fill: parent
@@ -1215,8 +1216,10 @@ Item
                                 ? qsTrId("start-recovery-title")
                                 //% "Create new wallet"
                                 : qsTrId("general-create-wallet")
-                            color: Style.content_main
-                            font.pixelSize: 36
+                            color: '#a4a8b1'
+                            font.pixelSize: 48
+                            font.family: agency_b.name
+                            font.capitalization: Font.AllUppercase
                         }
                         SFText {
                             anchors.left: parent.left
@@ -1227,9 +1230,12 @@ Item
                                 ? qsTrId("start-recovery-pwd-message")
                                 //% "Create password to access your wallet"
                                 : qsTrId("start-create-pwd-message")
-                            color: Style.content_main
                             wrapMode: Text.WordWrap
-                            font.pixelSize: 14
+                            color: 'white'
+                            font.pixelSize: 22
+                            font.family: agency_r.name
+                            font.capitalization: Font.AllUppercase
+                            font.letterSpacing: 2
                         }
                     }
                     
@@ -1246,9 +1252,11 @@ Item
                             SFText {
                                 //% "Password"
                                 text: qsTrId("start-pwd-label")
-                                color: Style.content_main
-                                font.pixelSize: 14
-                                font.styleName: "Bold"; font.weight: Font.Bold
+                                color: '#5fe795'
+                                font.pixelSize: 22
+                                font.family: agency_r.name
+                                font.capitalization: Font.AllUppercase
+                                font.letterSpacing: 2
                             }
 
                             SFTextInput {
@@ -1269,22 +1277,22 @@ Item
                                 [
                                     //: set passwort, difficulty message, very weak
                                     //% "Very weak password"
-                                    {exp: new RegExp("(?=.{1,})")                                                               , color: Style.validator_error, msg: qsTrId("start-pwd-difficulty-very-weak")},
+                                    {exp: new RegExp("(?=.{1,})")                                                               , color: 'red', msg: qsTrId("start-pwd-difficulty-very-weak")},
                                     //: set passwort, difficulty message, weak
                                     //% "Weak password"
-                                    {exp: new RegExp("((?=.{6,})(?=.*[0-9]))|((?=.{6,})(?=.*[A-Z]))|((?=.{6,})(?=.*[a-z]))")    , color: Style.validator_error, msg: qsTrId("start-pwd-difficulty-weak")},
+                                    {exp: new RegExp("((?=.{6,})(?=.*[0-9]))|((?=.{6,})(?=.*[A-Z]))|((?=.{6,})(?=.*[a-z]))")    , color: 'red', msg: qsTrId("start-pwd-difficulty-weak")},
                                     //: set passwort, difficulty message, medium
                                     //% "Medium strength password"
-                                    {exp: new RegExp("((?=.{6,})(?=.*[A-Z])(?=.*[a-z]))|((?=.{6,})(?=.*[0-9])(?=.*[a-z]))")     , color: Style.validator_warning, msg: qsTrId("start-pwd-difficulty-medium")},
+                                    {exp: new RegExp("((?=.{6,})(?=.*[A-Z])(?=.*[a-z]))|((?=.{6,})(?=.*[0-9])(?=.*[a-z]))")     , color: 'yellow', msg: qsTrId("start-pwd-difficulty-medium")},
                                     //: set passwort, difficulty message, medium
                                     //% "Medium strength password"
-                                    {exp: new RegExp("(?=.{8,})(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])")                              , color: Style.validator_warning, msg: qsTrId("start-pwd-difficulty-medium")},
+                                    {exp: new RegExp("(?=.{8,})(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])")                              , color: 'yellow', msg: qsTrId("start-pwd-difficulty-medium")},
                                     //: set passwort, difficulty message, strong
                                     //% "Strong password"
-                                    {exp: new RegExp("(?=.{10,})(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])")                             , color: Style.active, msg: qsTrId("start-pwd-difficulty-strong")},
+                                    {exp: new RegExp("(?=.{10,})(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])")                             , color: 'green', msg: qsTrId("start-pwd-difficulty-strong")},
                                     //: set passwort, difficulty message, very strong
                                     //% "Very strong password"
-                                    {exp: new RegExp("(?=.{10,})(?=.*[!@#\$%\^&\*])(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])")          , color: Style.active, msg: qsTrId("start-pwd-difficulty-very-strong")},
+                                    {exp: new RegExp("(?=.{10,})(?=.*[!@#\$%\^&\*])(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])")          , color: 'green', msg: qsTrId("start-pwd-difficulty-very-strong")},
                                 ]
 
                                 function passwordStrength(pass)
@@ -1307,9 +1315,9 @@ Item
                                         Layout.fillWidth: true
                                         height: 4
                                         border.width: index < parent.strength ? 0 : 1
-                                        border.color: Style.background_second
+                                        border.color: 'transparent' //Style.background_second
                                         radius: 10
-                                        color: index < parent.strength ? parent.strengthTests[parent.strength-1].color : Style.background_main
+                                        color: index < parent.strength ? parent.strengthTests[parent.strength-1].color : 'transparent'
                                     }
                                 }
                             }
@@ -1346,9 +1354,11 @@ Item
                             SFText {
                                 //% "Confirm password"
                                 text: qsTrId("start-create-pwd-confirm-label")
-                                color: Style.content_main
-                                font.pixelSize: 14
-                                font.styleName: "Bold"; font.weight: Font.Bold
+                                color: '#5fe795'
+                                font.pixelSize: 22
+                                font.family: agency_r.name
+                                font.capitalization: Font.AllUppercase
+                                font.letterSpacing: 2
                             }
 
                             SFTextInput {
@@ -1392,8 +1402,7 @@ Item
                             text: "<= " + qsTrId("general-back")
                             onClicked: startWizzardView.pop();
                         }
-                        PrimaryButton {
-                            
+                        CustomButton {
                             text: viewModel.isRecoveryMode
                                 //% "Open my wallet"
                                 ? qsTrId("general-open-wallet")

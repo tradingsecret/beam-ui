@@ -1,4 +1,5 @@
 import QtQuick 2.11
+import QtQuick.Shapes 1.0
 import QtQuick.Controls 2.4
 import QtQuick.Controls.impl 2.4
 import QtQuick.Templates 2.4 as T
@@ -63,8 +64,20 @@ T.TextField {
         id: backgroundRect
         y: control.height - height - control.bottomPadding + 4
         width: control.width - (control.leftPadding + control.rightPadding)
-        height: control.activeFocus || control.hovered ? 1 : 1
-        opacity: (control.activeFocus || control.hovered)? 0.3 : 0.1
+        height: 0 //control.activeFocus || control.hovered ? 1 : 1
+        // opacity: (control.activeFocus || control.hovered)? 0.3 : 0.1
+
+        Shape {
+            width: 5
+            ShapePath {
+                strokeColor: "#5fe795"
+                strokeWidth: 1
+                strokeStyle: ShapePath.DashLine
+                startX: 0
+                startY: 0
+                PathLine { x: parent.width; y: 0 }
+            }
+        }
     }
 
     MouseArea {
