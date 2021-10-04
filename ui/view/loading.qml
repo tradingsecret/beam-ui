@@ -101,89 +101,90 @@ Item
     }
 
     StartLayout {
-        id:             startLayout
+        id: startLayout
         anchors.fill:   parent
 
-        SFText {
-            Layout.alignment:       Qt.AlignHCenter | Qt.AlignTop
-            Layout.preferredHeight: 16
-            text: !isCreating ? 
-                    //% "Loading wallet..."
-                    qsTrId("loading-loading") :
-                    ( isRecoveryMode ?
-                        //% "Restoring wallet..."
-                        qsTrId("loading-restoring") :
-                        //% "Creating wallet..."
-                        qsTrId("loading-creating"))
-            font.pixelSize: 14
-            color: Style.content_main
-        }
+        //SFText {
+        //    Layout.alignment:       Qt.AlignHCenter | Qt.AlignTop
+        //    Layout.preferredHeight: 16
+        //    text: !isCreating ?
+        //            //% "Loading wallet..."
+        //            qsTrId("loading-loading") :
+        //            ( isRecoveryMode ?
+        //                //% "Restoring wallet..."
+        //                qsTrId("loading-restoring") :
+        //                //% "Creating wallet..."
+        //                qsTrId("loading-creating"))
+        //    font.pixelSize: 14
+        //    color: Style.content_main
+        //}
 
-        SFText {
-            Layout.topMargin: 6
-            Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
-            text: viewModel.progressMessage
-            font.pixelSize: 14
-            opacity: 0.5
-            color: Style.content_main
-        }
+        //SFText {
+        //    Layout.topMargin: 6
+        //    Layout.alignment: Qt.AlignHCenter | Qt.AlignTop
+        //    text: viewModel.progressMessage
+        //    font.pixelSize: 14
+        //    opacity: 0.5
+        //    color: Style.content_main
+        //}
 
         CustomProgressBar {
             Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: startLayout.isSqueezedHeight ? 10 : 24
+            //Layout.topMargin: startLayout.isSqueezedHeight ? 10 : 24
+            Layout.bottomMargin: 150
             id: bar
             value: viewModel.progress
         }
 
-        SFText {
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: startLayout.isSqueezedHeight ? 10 : 30
-            width: 584
-            //% "Please wait for synchronization and do not close or minimize the application."
-            text: qsTrId("loading-restore-message-line1")
-            font.pixelSize: 14
-            color: Style.content_secondary
-            font.italic: true
-            visible: isRecoveryMode
-        }
-        Row {
-            Layout.alignment: Qt.AlignHCenter
-            Layout.topMargin: startLayout.isSqueezedHeight ? 10 : 20
-            SFText {
-                horizontalAlignment: Text.AlignHCenter
-                width: 548
-                height: 30
-                //% "Only the wallet balance (UTXO) can be restored, transaction info and addresses are always private and never kept in the blockchain."
-                text: qsTrId("loading-restore-message-line2")
-                font.pixelSize: 14
-                color: Style.content_secondary
-                wrapMode: Text.Wrap
-                font.italic: true
-                visible: isRecoveryMode
-            }
-        }
+        //SFText {
+        //    Layout.alignment: Qt.AlignHCenter
+        //    Layout.topMargin: startLayout.isSqueezedHeight ? 10 : 30
+        //    width: 584
+        //    //% "Please wait for synchronization and do not close or minimize the application."
+        //    text: qsTrId("loading-restore-message-line1")
+        //    font.pixelSize: 14
+        //    color: Style.content_secondary
+        //    font.italic: true
+        //    visible: isRecoveryMode
+        //}
+        //Row {
+        //    Layout.alignment: Qt.AlignHCenter
+        //    Layout.topMargin: startLayout.isSqueezedHeight ? 10 : 20
+        //    SFText {
+        //        horizontalAlignment: Text.AlignHCenter
+        //        width: 548
+        //        height: 30
+        //        //% "Only the wallet balance (UTXO) can be restored, transaction info and addresses are always private and never kept in the blockchain."
+        //        text: qsTrId("loading-restore-message-line2")
+        //        font.pixelSize: 14
+        //        color: Style.content_secondary
+        //        wrapMode: Text.Wrap
+        //        font.italic: true
+        //        visible: isRecoveryMode
+        //    }
+        //}
 
-        Row {
-            Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
-            Layout.topMargin: {
-                if (startLayout.isSqueezedHeight)
-                    return isRecoveryMode ? 20 : 32;
-                else
-                    return isRecoveryMode ? 40 : 52;
-            }
+        //Row {
+        //    Layout.alignment: Qt.AlignBottom | Qt.AlignHCenter
+        //    Layout.topMargin: {
+        //        if (startLayout.isSqueezedHeight)
+        //            return isRecoveryMode ? 20 : 32;
+        //        else
+        //            return isRecoveryMode ? 40 : 52;
+        //    }
 
-            CustomButton {
-                visible: (isCreating || isRecoveryMode)
-                enabled: true
-                //% "Cancel"
-                text: qsTrId("general-cancel")
-                icon.source: "qrc:/assets/icon-cancel.svg"
-                onClicked: {
-                    this.enabled = false;
-                    cancelCreating();
-                }
-            }
-        }
+        //    CustomButton {
+        //        visible: (isCreating || isRecoveryMode)
+        //        enabled: true
+        //        //% "Cancel"
+        //        text: qsTrId("general-cancel")
+        //        icon.source: "qrc:/assets/icon-cancel.svg"
+        //        onClicked: {
+        //            this.enabled = false;
+        //            cancelCreating();
+        //        }
+        //    }
+        //}
         Item {
             Layout.fillWidth:   true
             Layout.fillHeight:  true

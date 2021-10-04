@@ -10,6 +10,7 @@ ColumnLayout
     FontLoader { id: tomorrow_semibold;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowSemiBold.ttf" }
 
     property bool isSqueezedHeight: false
+    property bool hideNetworkLabel: false
 
     function themeName() {
         return Theme.name();
@@ -80,7 +81,7 @@ ColumnLayout
 
     SFText
     {
-        visible: !isMainNet()
+        visible: !hideNetworkLabel && !isMainNet()
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredHeight: 20
         Layout.topMargin: isSqueezedHeight ? 10 : 40

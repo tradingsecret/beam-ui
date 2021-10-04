@@ -21,9 +21,9 @@ T.ProgressBar {
     Item {
         id: content_id
         implicitWidth: 200
-        implicitHeight: 4
+        implicitHeight: 10
         Rectangle {
-            radius: 10
+            radius: 0
             scale: control.mirrored ? -1 : 1
             width: control.visualPosition * parent.width
             height: parent.height
@@ -34,19 +34,19 @@ T.ProgressBar {
     background: Rectangle {
         id: background_id
         implicitWidth: 400
-        implicitHeight: 4
+        implicitHeight: 10
         y: (control.height - height) / 2
-        height: 4
-        radius: 10
+        height: 10
+        radius: 0
         border.color: Style.background_second
-        color: "transparent"
+        color: Qt.rgba(133, 156, 162, 0.5) // "transparent"
     }
 
-    DropShadow {
-        anchors.fill: contentItem
-        radius: 5
-        samples: 9
-        color: Style.active
-        source: contentItem
-    }
+    //DropShadow {
+    //    anchors.fill: contentItem
+    //    radius: 5
+    //    samples: 9
+    //    color: Style.active
+    //    source: contentItem
+    //}
 }

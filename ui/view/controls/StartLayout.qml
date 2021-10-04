@@ -21,12 +21,6 @@ Rectangle
 
         source: {
              "qrc:/assets/bg-1.png"
-            /*if (Screen.devicePixelRatio  > 2)
-                "qrc:/assets/bg-pic@3x.png"
-            else if (Screen.devicePixelRatio  > 1)
-                "qrc:/assets/bg-pic@2x.png"
-            else
-                "qrc:/assets/bg-pic.png"*/
         }
     }
 
@@ -38,9 +32,11 @@ Rectangle
         spacing: 0
 
         LogoComponent {
-            Layout.topMargin:   root.isSqueezedHeight ? 13 : 83
-            Layout.alignment:   Qt.AlignHCenter
-            isSqueezedHeight:   root.isSqueezedHeight
+            id: logoComponentId
+            Layout.topMargin:  root.isSqueezedHeight ? 13 : 83
+            Layout.alignment:  Qt.AlignHCenter
+            isSqueezedHeight:  root.isSqueezedHeight
+            hideNetworkLabel:  rootLoading
         }
 
         ColumnLayout {
