@@ -1763,7 +1763,7 @@ Your version is: %2. Please, check for updates.</translation>
     </message>
     <message id="settings-remote-node-title">
         <source>Imperium Protocol Remote Node</source>
-        <translation>BeamImperium Protocol Remote Node</translation>
+        <translation>Imperium Protocol Remote Node</translation>
     </message>
     <message id="settings-run-remote-node">
         <source>Remote node</source>

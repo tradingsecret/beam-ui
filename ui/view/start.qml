@@ -1198,7 +1198,22 @@ Item
                                 }
                             });
                         } else {
-                            startWizzardView.push(nodeSetup);
+                            //startWizzardView.push(nodeSetup);
+                            viewModel.setupRandomNode();
+
+                            if (isBadPortMode) {
+                                viewModel.onNodeSettingsChanged();
+                                root.parent.setSource("qrc:/loading.qml");
+                            } else {
+                                viewModel.createWallet(function (created) {
+                                    if (created) {
+                                        startWizzardView.push("qrc:/loading.qml", {"isRecoveryMode" : viewModel.isRecoveryMode, "isCreating" : true, "cancelCallback": startWizzardView.pop});
+                                    }
+                                    else {
+                                        // TODO(alex.starun): error message if wallet not created
+                                    }
+                                })
+                            }
                         }
                     }
                 }
