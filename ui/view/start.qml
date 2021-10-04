@@ -173,15 +173,6 @@ Item
                         Layout.fillWidth:   true
                         Layout.topMargin:   53
 
-                        CustomButton {
-                            text: qsTrId("general-back")
-                            Layout.preferredHeight: 38
-                            visible: startWizzardView.depth > 1
-                            onClicked: {
-                                startWizzardView.pop();
-                            }
-                        }
-
                         Item {
                             Layout.preferredWidth: 30
                             visible: startWizzardView.depth > 1
@@ -189,6 +180,16 @@ Item
 
                         Row {
                             spacing: 20
+
+                            CustomButton {
+                                text: "<= " + qsTrId("general-back")
+                                Layout.preferredHeight: 38
+                                font.capitalization: Font.AllUppercase
+                                visible: startWizzardView.depth > 1
+                                onClicked: {
+                                    startWizzardView.pop();
+                                }
+                            }
 
                             CustomButton {
                                 id: restoreWallet
@@ -1777,8 +1778,13 @@ Item
                         Layout.bottomMargin:    startLayout.isSqueezedHeight  ? 18 : 48
                         //% "Enter your password to access the wallet"
                         text: qsTrId("start-open-pwd-invitation")
-                        color: Style.content_main
-                        font.pixelSize: 14
+                        wrapMode: Text.WordWrap
+                        color: 'white'
+                        font.pixelSize: 22
+                        font.family: agency_b.name
+                        font.weight: Font.Light
+                        font.capitalization: Font.AllUppercase
+                        font.letterSpacing: 2
                     }
 
                     ColumnLayout {
@@ -1787,12 +1793,37 @@ Item
                         Layout.preferredHeight: 79
                         Layout.alignment: Qt.AlignHCenter
 
+                        //SFText {
+                        //    //% "Password"
+                        //    text: qsTrId("start-pwd-label")
+                        //    color: '#5fe795'
+                        //    font.pixelSize: 22
+                        //    font.family: agency_r.name
+                        //    font.capitalization: Font.AllUppercase
+                        //    font.letterSpacing: 2
+                        //}
+
+                        //SFTextInput {
+                        //    id:password
+                        //    width: parent.width
+                        //    dottedBorder: true
+                        //    font.pixelSize: 14
+                        //    color: Style.content_main
+                        //    echoMode: TextInput.Password
+                        //    onTextChanged: if (password.text.length > 0) passwordError.text = ""
+                        //    onAccepted: {
+                        //        confirmPassword.forceActiveFocus();
+                        //    }
+                        //}
+
                         SFText {
                             //% "Password"
                             text: qsTrId("start-pwd-label")
-                            color: Style.content_main
-                            font.pixelSize: 14
-                            font.styleName: "Bold"; font.weight: Font.Bold
+                            color: '#5fe795'
+                            font.pixelSize: 22
+                            font.family: agency_r.name
+                            font.capitalization: Font.AllUppercase
+                            font.letterSpacing: 2
                         }
 
                         SFTextInput {
@@ -1800,6 +1831,7 @@ Item
                             Layout.fillWidth: true
                             focus: true
                             activeFocusOnTab: true
+                            dottedBorder: true
                             font.pixelSize: 14
                             color: Style.content_main
                             echoMode: TextInput.Password
@@ -1861,6 +1893,21 @@ Item
                         }
                     }
 
+                    Row {
+                        Layout.alignment: Qt.AlignHCenter
+                        Layout.topMargin: startLayout.isSqueezedHeight  ? 8 : 18
+                        Layout.preferredHeight: 38
+                        spacing:          20
+
+                        CustomButton {
+                            id: btnRestoreOrCreateWallet
+                            text: qsTrId("general-restore-or-create-wallet")
+                            onClicked: {
+                                confirmChangeWalletDialog.open();
+                            }
+                        }
+                    }
+
                     Item {
                         Layout.alignment: Qt.AlignHCenter
                         Layout.preferredHeight: 36
@@ -1888,22 +1935,22 @@ Item
                         }
                     }
 
-                    SFText {
-                        Layout.alignment: Qt.AlignHCenter
-                        //% "Restore wallet or create a new one"
-                        text: qsTrId("general-restore-or-create-wallet")
-                        color: Style.active
-                        font.pixelSize: 14
-                        MouseArea {
-                            anchors.fill: parent
-                            acceptedButtons: Qt.LeftButton
-                            cursorShape: Qt.PointingHandCursor
-                            onClicked: {
-                                confirmChangeWalletDialog.open();
-                            }
-                            hoverEnabled: true
-                        }
-                    }
+                    //SFText {
+                    //    Layout.alignment: Qt.AlignHCenter
+                    //    //% "Restore wallet or create a new one"
+                    //    text: qsTrId("general-restore-or-create-wallet")
+                    //    color: Style.active
+                    //    font.pixelSize: 14
+                    //    MouseArea {
+                    //        anchors.fill: parent
+                    //        acceptedButtons: Qt.LeftButton
+                    //        cursorShape: Qt.PointingHandCursor
+                    //        onClicked: {
+                    //            confirmChangeWalletDialog.open();
+                    //        }
+                    //        hoverEnabled: true
+                    //    }
+                    //}
 
                     Item {
                         Layout.fillWidth:       true
