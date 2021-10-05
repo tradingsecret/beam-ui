@@ -379,5 +379,9 @@
         <file>assets/button.gif</file>
         <file>assets/button.webp</file>
         <file>assets/button.mp4</file>
+        <file>assets/popup.png</file>
+        <file>assets/blur.png</file>
+        <file>assets/blur1.png</file>
+        <file>assets/blur.jpg</file>
     </qresource>
 </RCC>

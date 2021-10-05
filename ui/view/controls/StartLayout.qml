@@ -16,6 +16,7 @@ Rectangle
     default property alias content: contentLayout.children
 
     Image {
+        id: backgroundImage
         fillMode: Image.PreserveAspectCrop
         anchors.fill: parent
 

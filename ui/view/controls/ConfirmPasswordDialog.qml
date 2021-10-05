@@ -17,9 +17,9 @@ CustomDialog {
 	property string dialogTitle: "title"
 	property string dialogMessage: "message"
 	property alias okButtonText: okButton.text
-	property alias okButtonIcon: okButton.icon.source
+    property var okButtonIcon
 	property alias cancelButtonText: cancelButton.text
-	property alias cancelButtonIcon: cancelButton.icon.source
+    property var cancelButtonIcon
 	property alias pwd: pwd.text
 	property bool showError: false
 	property var onDialogAccepted: function() {
@@ -123,7 +123,6 @@ CustomDialog {
 				id: cancelButton
 				//% "Cancel"
 				text: qsTrId("general-cancel")
-				icon.source: "qrc:/assets/icon-cancel.svg"
 				onClicked: reject()
 			}
 
@@ -133,7 +132,6 @@ CustomDialog {
 				//% "Proceed"
 				text: qsTrId("general-proceed")
 				enabled: !showError
-				icon.source: "qrc:/assets/icon-done.svg"
 				onClicked: {
 					onPwdEntered(pwd.text);
 				}

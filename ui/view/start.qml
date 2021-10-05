@@ -44,7 +44,6 @@ Item
 
         //% "I agree"
         okButtonText: qsTrId("start-restore-confirm-button")
-        okButtonIconSource: "qrc:/assets/icon-done.svg"
         okButtonAllLowercase: false
         cancelButtonVisible: false
         width: 460
@@ -93,7 +92,6 @@ Item
 
         //% "I understand"
         okButtonText: qsTrId("restore-finish-alert-button")
-        okButtonIconSource: "qrc:/assets/icon-done.svg"
         cancelButtonVisible: false
         width: 460
         height: contentItem.implicitHeight + footer.implicitHeight + 60
@@ -1961,8 +1959,6 @@ Item
                         id: confirmChangeWalletDialog
                         //% "Proceed"
                         okButtonText: qsTrId("general-proceed")
-                        okButtonIconSource: "qrc:/assets/icon-done.svg"
-                        cancelButtonIconSource: "qrc:/assets/icon-cancel-white.svg"
                         cancelButtonVisible: true
                         width: 460
                         height: 195

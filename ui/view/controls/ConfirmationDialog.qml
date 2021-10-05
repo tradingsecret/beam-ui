@@ -10,14 +10,14 @@ CustomDialog {
     property alias okButton: okButton
     property alias okButtonEnable: okButton.enabled
     property alias okButtonText: okButton.text
-    property alias okButtonIconSource: okButton.icon.source
+    property var okButtonIconSource
     property alias okButtonVisible: okButton.visible
     property alias okButtonColor: okButton.palette.button
     property alias okButtonAllLowercase: okButton.allLowercase
     property alias cancelButton: cancelButton
     property alias cancelButtonEnable: cancelButton.enabled
     property alias cancelButtonText: cancelButton.text
-    property alias cancelButtonIconSource: cancelButton.icon.source
+    property var cancelButtonIconSource
     property alias cancelButtonVisible: cancelButton.visible
     property alias cancelButtonColor: cancelButton.palette.button
     property alias cancelButtonAllLowercase: cancelButton.allLowercase
@@ -26,8 +26,8 @@ CustomDialog {
 
     x: (parent.width - width) / 2
     y: (parent.height - height) / 2
-    leftPadding: 30
-    rightPadding: 30
+    //leftPadding: 30
+    //rightPadding: 30
 
     parent:  Overlay.overlay
     visible: false
@@ -46,6 +46,8 @@ CustomDialog {
     SFText {
         bottomPadding: 20
         topPadding: control.title.length > 0 ? 10 : 30
+        leftPadding: 20
+        rightPadding: 20
         id: messageText
         font.pixelSize: 14
         color: Style.content_main
@@ -55,13 +57,6 @@ CustomDialog {
     }
 
     footer: Control {
-        
-        background: Rectangle {
-            radius: 10
-            color: Style.background_popup
-            anchors.fill: parent
-        }          
-
         contentItem: RowLayout {
             Item {
                 Layout.fillWidth: true
