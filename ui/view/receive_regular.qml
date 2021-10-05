@@ -24,7 +24,7 @@ ColumnLayout {
 
     property var defaultFocusItem: null
     property var onClosed: function () {} // set by parent
-    property bool isShieldedSupported: statusbarModel.isConnectionTrusted && statusbarModel.isOnline
+    property bool isShieldedSupported: true//statusbarModel.isConnectionTrusted && statusbarModel.isOnline
 
     property alias token:     viewModel.token
     property alias assetId:   viewModel.assetId
@@ -161,7 +161,7 @@ ColumnLayout {
                                control.assetId = viewModel.assetsList[idx].assetId
                            }
                         }
-                
+
                         Binding {
                             target:   viewModel
                             property: "amount"
@@ -194,13 +194,13 @@ ColumnLayout {
                                 placeholderText:  qsTrId("general-comment-local")
                                 maximumLength:    BeamGlobals.maxCommentLength()
                             }
-                 
+
                             Binding {
                                 target:   viewModel
                                 property: "comment"
                                 value:    commentInput.text
                             }
-                 
+
                             Item {
                                 Layout.fillWidth: true
                                 SFText {
