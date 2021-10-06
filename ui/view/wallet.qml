@@ -64,24 +64,6 @@ Item {
         }
     }
     
-    Title {
-        x: 0
-        id: wallet_title
-        //% "Wallet"
-        text: qsTrId("wallet-title")
-    }
-/*
-    StatusBar {
-        id: status_bar
-        model: statusbarModel
-        z: 33
-    }
-*/
-    StatusBarDemo {
-        id: status_bar_demo
-        z: 33
-    }
-
     Component {
         id: walletLayout
 

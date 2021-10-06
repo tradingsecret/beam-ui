@@ -383,5 +383,6 @@
         <file>assets/blur.png</file>
         <file>assets/blur1.png</file>
         <file>assets/blur.jpg</file>
+        <file>assets/menu-line.png</file>
     </qresource>
 </RCC>

@@ -178,156 +178,118 @@ Rectangle {
     }
 
     property var contentItems : [
-        {name: "wallet"},
-        {name: "atomic_swap"},
-        {name: "daocore", qml: appsQml},
-        {name: "applications", qml: appsQml},
+        {name: "wallet", title: "Wallet"},
+        {name: "atomic_swap", title: "Atomic Swaps"},
+        {name: "atomic_swap", title: "Atlas dex"},
+        {name: "daocore", qml: appsQml, title: "Dao"},
+        //{name: "applications", qml: appsQml, title: "Atomic Swaps"},
         //{name: "dex"},
-        {name: "addresses"},
-        {name: "notifications"},
-        {name: "settings"}
+        {name: "addresses", title: "Address book"},
+        {name: "notifications", title: "Notifications"},
+        {name: "settings", title: "Settings"},
+        {name: "settings", title: "Connect"}
     ]
 
     property int selectedItem: -1
 
-    Item {
-        id:              sidebar
-        width:           70
-        anchors.bottom:  parent.bottom
-        anchors.left:    parent.left
-        anchors.top:     parent.top
+    ColumnLayout {
+        Item {
+           // Layout.fillWidth: true
+            Layout.leftMargin: 40
+            Layout.rightMargin: 40
+            width: parent.parent.width - 80
 
-        Rectangle {
-            anchors.fill: parent
-            opacity: 0.1
-            border.width: 0
-            color: Style.navigation_background
-        }
+            RowLayout {
+                Layout.fillWidth: true
+                spacing: 10
+                width: parent.width
 
-        SvgImage {
-            id: image
-            y:  50
-            anchors.horizontalCenter: parent.horizontalCenter
-            source: Style.navigation_logo
-        }
+                Repeater {
+                    id: controls
+                    model: contentItems
 
-        ColumnLayout {
-            anchors.left:       parent.left
-            anchors.right:      parent.right
-            anchors.top:        parent.top
-            anchors.bottom:     parent.bottom
-            anchors.topMargin:  130
-            spacing:            0
-
-            Repeater {
-                id: controls
-                model: contentItems
-
-                ColumnLayout {
-                    Layout.fillWidth:  true
-                    Layout.fillHeight: modelData.name =='notifications'
-
-                    Item {
-                        Layout.fillHeight: true
-                        visible: modelData.name == 'notifications'
-                    }
-
-                    Item {
+                    ColumnLayout {
                         id: control
-                        Layout.fillWidth: true
-                        Layout.preferredHeight: 66
-                        Layout.alignment: Qt.AlignBottom
-                        activeFocusOnTab: true
 
-                        SvgImage {
-                            id: icon
-                            x: 21
-                            y: 16
-                            width: 28
-                            height: 28
-                            source: "qrc:/assets/icon-" + modelData.name + (selectedItem == index ? "-active" : "") + ".svg"
-                        }
+                        SFText {
+                            id: menu_item
+                            leftPadding: 7
+                            rightPadding: 7
+                            topPadding: 20
+                            bottomPadding: 20
+                            text:             modelData.title
+                            font.pixelSize: 14
+                            color: (selectedItem == index || menu_item.hovered) ? '#5fe795' : '#fff'
+                            font.capitalization: Font.AllUppercase
+                            font.letterSpacing: 1
 
-                        Item {
-                            Rectangle {
-                                id: indicator
-                                y: 6
-                                width: 4
-                                height: 48
-                                color: selectedItem == index ? Style.active : Style.passive
-                            }
-
-                            DropShadow {
-                                anchors.fill: indicator
-                                radius: 5
-                                samples: 9
-                                color: Style.active
-                                source: indicator
-                            }
-
-                            visible: selectedItem == index
-                        }
-
-                        Item {
-                            visible: modelData.name == 'notifications' && viewModel.unreadNotifications > 0
-                            Rectangle {
-                                id: counter
-                                x: 42
-                                y: 9
-                                width: 16
-                                height: 16
-                                radius: width/2
-                                color: Style.active
-
-                                SFText {
-                                    height: 14
-                                    text: viewModel.unreadNotifications
-                                    font.pixelSize: 12
-                                    anchors.centerIn: counter
-                                }
-                            }
-                            DropShadow {
-                                anchors.fill: counter
-                                radius: 5
-                                samples: 9
-                                source: counter
-                                color: Style.active
-                            }
-                        }
-
-                        Rectangle {
-                            x: 10
-                            width: parent.width - 20
-                            height: 2
-                            color: Style.background_button
-                            visible: modelData.name == 'dex'
-                        }
-
-                        Keys.onPressed: {
-                            if(modelData.name != 'daocore') {
-                                if ((event.key == Qt.Key_Return || event.key == Qt.Key_Enter || event.key == Qt.Key_Space))
-                                if (selectedItem != index) {
-                                    updateItem(index);
-                                }
-                            }
-                        }
-
-                        MouseArea {
-                            id: mouseArea
-                            anchors.fill: parent
-                            onClicked: {
+                            Keys.onPressed: {
                                 if(modelData.name != 'daocore') {
-                                    control.focus = true
+                                    if ((event.key == Qt.Key_Return || event.key == Qt.Key_Enter || event.key == Qt.Key_Space))
                                     if (selectedItem != index) {
                                         updateItem(index);
                                     }
                                 }
                             }
-                            hoverEnabled: true
+
+                            MouseArea {
+                                id: mouseArea
+                                anchors.fill: parent
+                                enabled: true
+                                onClicked: {
+                                    if(modelData.name != 'daocore') {
+                                        //control.focus = true
+                                        if (selectedItem != index) {
+                                            updateItem(index);
+                                        }
+                                    }
+                                }
+                                hoverEnabled: true
+                                cursorShape: Qt.ArrowCursor
+                            }
+                        }
+
+                        Item {
+                            Rectangle {
+                                id: indicator
+                                anchors.fill: menu_item
+                                y: 40
+                                height: 3
+                                width: menu_item.width
+                                color: selectedItem == index ? '#5fe795' : Style.passive
+                            }
+
+                            //DropShadow {
+                            //    anchors.fill: indicator
+                            //    radius: 5
+                            //    samples: 9
+                            //    color: Style.active
+                            //    source: indicator
+                            //}
+
+                            visible: selectedItem == index
                         }
                     }
                 }
             }
+        }
+
+        //BorderImage {
+            //anchors.topMargin: 50
+        //    Layout.topMargin: 38
+        //    width: parent.width
+       //     source:  "qrc:/assets/menu-line.png"
+       //     border.top: 1
+       //     horizontalTileMode: BorderImage.Stretch
+       //     verticalTileMode: BorderImage.Stretch
+        //}
+
+        Rectangle {
+            Layout.topMargin: 38
+            width: parent.parent.width
+            Layout.fillWidth: true
+            height: 1
+            color: '#307451'
         }
     }
 
@@ -335,8 +297,8 @@ Rectangle {
         id: content
         anchors.topMargin: 45
         anchors.bottomMargin: 0
-        anchors.rightMargin: 20
-        anchors.leftMargin: 90
+        anchors.rightMargin: 40
+        anchors.leftMargin: 40
         anchors.fill: parent
         focus: true
     }
