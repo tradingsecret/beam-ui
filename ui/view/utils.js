@@ -118,7 +118,15 @@ function openExternalWithConfirmation(externalLink, onFinish) {
 }
 
 function navigateToDownloads() {
-    openExternalWithConfirmation("https://www.beam.mw/downloads")
+    openExternalWithConfirmation("https://imperiumprotocol.com/downloads")
+}
+
+function getFaucet() {
+    openExternalWithConfirmation("https://imperiumprotocol.com/faucet")
+}
+
+function navigateToAtlasDex() {
+    openExternalWithConfirmation("https://atlasdexswap.com/")
 }
 
 function getSwapTotalFeeTitle(currencyUnit) {

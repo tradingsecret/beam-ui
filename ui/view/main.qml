@@ -134,22 +134,23 @@ Rectangle {
     Rectangle {
         id: mainBackground
         anchors.fill: parent
-        color: Style.background_main
+        color: '#00000d'
 
-        Rectangle {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            height: 230
-            gradient: Gradient {
-                GradientStop { position: 0.0; color: main.topColor }
-                GradientStop { position: 1.0; color: main.topGradientColor }
-            }
-        }
+        //Rectangle {
+        //    anchors.left: parent.left
+        //    anchors.right: parent.right
+            //height: 230
+            // gradient: Gradient {
+            //     GradientStop { position: 0.0; color: main.topColor }
+            //    GradientStop { position: 1.0; color: main.topGradientColor }
+            //}
+        //    color: '#00000d'
+        //}
 
-        BgLogo {
-            id: mainBackgroundLogo
-            anchors.leftMargin: sidebar.width
-        }
+        //BgLogo {
+        //    id: mainBackgroundLogo
+        //    anchors.leftMargin: sidebar.width
+        //}
     }
 
     MouseArea {
@@ -180,7 +181,7 @@ Rectangle {
     property var contentItems : [
         {name: "wallet", title: "Wallet"},
         {name: "atomic_swap", title: "Atomic Swaps"},
-        {name: "atomic_swap", title: "Atlas dex"},
+        {name: "atlasdex", title: "Atlas dex"},
         {name: "daocore", qml: appsQml, title: "Dao"},
         //{name: "applications", qml: appsQml, title: "Atomic Swaps"},
         //{name: "dex"},
@@ -224,7 +225,10 @@ Rectangle {
                             font.letterSpacing: 1
 
                             Keys.onPressed: {
-                                if(modelData.name != 'daocore') {
+                                if (modelData.name == 'atlasdex') {
+                                    Utils.navigateToAtlasDex();
+                                }
+                                else if (modelData.name != 'daocore') {
                                     if ((event.key == Qt.Key_Return || event.key == Qt.Key_Enter || event.key == Qt.Key_Space))
                                     if (selectedItem != index) {
                                         updateItem(index);
@@ -237,7 +241,10 @@ Rectangle {
                                 anchors.fill: parent
                                 enabled: true
                                 onClicked: {
-                                    if(modelData.name != 'daocore') {
+                                    if (modelData.name == 'atlasdex') {
+                                        Utils.navigateToAtlasDex();
+                                    }
+                                    else if (modelData.name != 'daocore') {
                                         //control.focus = true
                                         if (selectedItem != index) {
                                             updateItem(index);

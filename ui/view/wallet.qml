@@ -13,12 +13,16 @@ Item {
     id: root
     anchors.fill: parent
 
+    SwapOffersViewModel {
+        id: viewModelSwap
+    }
+
     property string openedTxID: ""
     
     function onAccepted() { walletStackView.pop(); }
     function onClosed() {
         walletStackView.pop();
-        wallet_title.text = qsTrId("wallet-title");
+       // wallet_title.text = qsTrId("wallet-title");
     }
     function onSwapToken(token) {
         tokenDuplicateChecker.checkTokenForDuplicate(token);
@@ -74,7 +78,7 @@ Item {
             spacing: 0
 
             function navigateSend(assetId) {
-                wallet_title.text = qsTrId("wallet-send-title")
+               // wallet_title.text = qsTrId("wallet-send-title")
 
                 var params = {
                     "onAccepted":    onAccepted,
@@ -94,7 +98,7 @@ Item {
             }
 
             function navigateReceive(assetId) {
-                wallet_title.text = qsTrId("wallet-receive-main-title")
+               // wallet_title.text = qsTrId("wallet-receive-main-title")
 
                 walletStackView.push(Qt.createComponent("receive_regular.qml"),
                                         {"onClosed": onClosed,
@@ -103,77 +107,205 @@ Item {
                 token = ""
             }
 
-            Row {
-                Layout.alignment: Qt.AlignTop | Qt.AlignRight
-                Layout.topMargin: 30
-                spacing: 20
-
-                CustomButton {
-                    id: sendButton
-                    height: 32
-                    palette.button: Style.accent_outgoing
-                    palette.buttonText: Style.content_opposite
-                    icon.source: "qrc:/assets/icon-send-blue.svg"
-                    //% "Send"
-                    text: qsTrId("general-send")
-                    font.pixelSize: 12
-                    //font.capitalization: Font.AllUppercase
-                    onClicked: {
-                        navigateSend(assets.selectedId);
-                    }
-                }
-
-                CustomButton {
-                    height: 32
-                    palette.button: Style.accent_incoming
-                    palette.buttonText: Style.content_opposite
-                    icon.source: "qrc:/assets/icon-receive-blue.svg"
-                    //% "Receive"
-                    text: qsTrId("wallet-receive-button")
-                    font.pixelSize: 12
-                    //font.capitalization: Font.AllUppercase
-                    onClicked: {
-                        navigateReceive(assets.selectedId);
-                    }
-                }
-            }
-
             AssetsPanel {
                 id: assets
                 Layout.topMargin: 25
                 Layout.fillWidth: true
+                showFaucetPromo: false
+                hideSeedValidationPromo: true
 
                 Binding {
                     target:    txTable
                     property:  "selectedAsset"
                     value:     assets.selectedId
                 }
+
+                visible: false
             }
 
-            SFText {
-                Layout.topMargin: assets.folded ? 25 : 35
-                Layout.fillWidth: true
+            Row {
+                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                Layout.topMargin: 30
+                spacing: 20
+                visible: true
 
-                font {
-                    pixelSize: 14
-                    letterSpacing: 4
-                    styleName: "DemiBold"; weight: Font.DemiBold
-                    capitalization: Font.AllUppercase
+                SFText {
+                    text: "Balance:"
+                    color: '#5fe795'
+                    font.pixelSize: 16
+                    font.capitalization: Font.AllUppercase
+                }
+            }
+
+            Row {
+                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                Layout.topMargin: 10
+                spacing: 20
+                visible: true
+
+                SFText {
+                    text: viewModelSwap.beamAvailable + ' ARC'
+                    color: '#5fe795'
+                    font.pixelSize: 30
+                    font.capitalization: Font.AllUppercase
+                }
+            }
+
+            Row {
+                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                Layout.topMargin: 30
+                spacing: 20
+
+                CustomButton {
+                    height: 38
+                    id: sendButton
+                    palette.button: Style.accent_outgoing
+                    palette.buttonText: Style.content_opposite
+                    //% "Send"
+                    text: qsTrId("general-send")
+                    onClicked: {
+                        navigateSend(assets.selectedId);
+                    }
+                    width: 200
                 }
 
-                opacity: 0.5
-                color: Style.content_main
-                //% "Transactions"
-                text: qsTrId("wallet-transactions-title")
+                CustomButton {
+                    height: 38
+                    palette.button: Style.accent_incoming
+                    palette.buttonText: Style.content_opposite
+                    //% "Receive"
+                    text: qsTrId("wallet-receive-button")
+                    onClicked: {
+                        navigateReceive(assets.selectedId);
+                    }
+                    width: 200
+                }
             }
 
-            TxTable {
-                id:    txTable
-                owner: root
+            Row {
+                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                Layout.topMargin: 15
 
-                Layout.topMargin:  12
-                Layout.fillWidth:  true
+                CustomButton {
+                    height: 38
+                    palette.button: Style.accent_incoming
+                    palette.buttonText: Style.content_opposite
+                    //% "Receive"
+                    text: "Get testnet arcs"
+                    onClicked: {
+                        Utils.getFaucet();
+                    }
+                    width: 420
+                }
+            }
+
+            ColumnLayout {
+                Layout.topMargin: assets.folded ? 25 : 35
+
+                SFText {
+                    Layout.topMargin: 10
+                    //Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignTop | Qt.AlignCenter
+
+                    font {
+                        pixelSize: 18
+                    }
+
+                    opacity: 0.5
+                    color: '#585858'
+                    //% "Transactions"
+                    text: qsTrId("wallet-transactions-title")
+                }
+
+                TxTable {
+                    Layout.leftMargin: 10
+                    Layout.rightMargin: 10
+                    Layout.bottomMargin: 10
+                    id:    txTable
+                    owner: root
+
+                    //Layout.topMargin:  12
+                    Layout.fillWidth:  true
+                    Layout.fillHeight: true
+                }
+
+                Rectangle {
+                    anchors.fill: parent
+                    border.color: '#112a26'
+                    border.width: 1
+                    color: 'transparent'
+                }
+            }
+
+            RowLayout {
                 Layout.fillHeight: true
+                Layout.topMargin: 12
+
+                ColumnLayout {
+                    Image {
+                        fillMode: Image.PreserveAspectCrop
+                        source: {
+                             "qrc:/assets/ins-logo-2.png"
+                        }
+                    }
+                }
+
+                ColumnLayout {
+                    Layout.fillWidth: true
+
+                    Item {
+                        Layout.fillWidth: true
+                    }
+                }
+
+                ColumnLayout {
+                    Layout.bottomMargin: 10
+                    Image {
+                        Layout.alignment: Qt.AlignVCenter
+
+                        source: {
+                             "qrc:/assets/status-offline.png"
+                        }
+                    }
+                }
+
+                ColumnLayout {
+                    Layout.bottomMargin: 10
+                    SFText {
+                        Layout.alignment: Qt.AlignVCenter
+
+                        Layout.rightMargin: 15
+                        color: '#7d7d7d'
+                        text: 'Mainnet offline'
+                        font.capitalization: Font.AllUppercase
+                        font.pixelSize: 12
+                        font.letterSpacing: 1
+                    }
+                }
+
+                ColumnLayout {
+                    Layout.bottomMargin: 10
+                    Image {
+                        Layout.alignment: Qt.AlignVCenter
+
+                        source: {
+                             "qrc:/assets/status-online.png"
+                        }
+                    }
+                }
+
+                ColumnLayout {
+                    Layout.bottomMargin: 10
+                    SFText {
+                        Layout.alignment: Qt.AlignVCenter
+
+                        color: '#ffffff'
+                        text: 'Testnet online'
+                        font.capitalization: Font.AllUppercase
+                        font.pixelSize: 12
+                        font.letterSpacing: 1
+                    }
+                }
             }
         }
     }

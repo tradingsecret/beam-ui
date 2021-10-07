@@ -384,5 +384,8 @@
         <file>assets/blur1.png</file>
         <file>assets/blur.jpg</file>
         <file>assets/menu-line.png</file>
+        <file>assets/ins-logo-2.png</file>
+		<file>assets/status-offline.png</file>
+		<file>assets/status-online.png</file>
     </qresource>
 </RCC>
