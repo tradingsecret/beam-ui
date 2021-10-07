@@ -205,7 +205,7 @@ Control {
             source:   control.iconSource
             width:    control.iconSize.width
             height:   control.iconSize.height
-            visible:  !!control.iconSource
+            visible:  false //!!control.iconSource
 
             anchors.top: control.iconAnchorCenter ? undefined : parent.top // undefined resets property
             anchors.verticalCenter: control.iconAnchorCenter ? parent.verticalCenter : undefined // undefined resets property

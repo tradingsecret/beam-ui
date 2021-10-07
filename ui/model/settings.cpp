@@ -661,26 +661,26 @@ void WalletSettings::applyChanges()
 QString WalletSettings::getExplorerUrl() const
 {
     #ifdef BEAM_BEAMX
-    return "https://beamx.explorer.beam.mw/";
+    return "https://imperiumprotocol.com/";
     #elif defined(BEAM_TESTNET)
-    return "https://testnet.explorer.beam.mw/";
+    return "https://imperiumprotocol.com/";
     #elif defined(BEAM_MAINNET)
-    return "https://explorer.beam.mw/";
+    return "https://imperiumprotocol.com/";
     #else
-    return "https://master-net.explorer.beam.mw/";
+    return "https://imperiumprotocol.com/";
     #endif
 }
 
 QString WalletSettings::getFaucetUrl() const
 {
     #ifdef BEAM_BEAMX
-    return "https://faucet.beamprivacy.community/";
+    return "https://faucet.imperiumprotocol.com/";
     #elif defined(BEAM_TESTNET)
-    return "https://faucet.beamprivacy.community/";
+    return "https://faucet.imperiumprotocol.com/";
     #elif defined(BEAM_MAINNET)
-    return "https://faucet.beamprivacy.community/";
+    return "https://faucet.imperiumprotocol.com/";
     #else
-    return "https://faucet.beamprivacy.community/";
+    return "https://faucet.imperiumprotocol.com/";
     #endif
 }
 

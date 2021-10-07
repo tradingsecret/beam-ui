@@ -1589,6 +1589,10 @@ deploy the key at the node you trust completely.</translation>
         <extracomment>settings tab, general section, amounts unit label</extracomment>
         <translation>Show amounts in</translation>
     </message>
+    <message id="general-amount">
+        <source>Amount</source>
+        <translation>Amount</translation>
+    </message>
     <message id="notification-update-title">
         <source>New version v %1 is available</source>
         <translation>New version v %1 is available</translation>

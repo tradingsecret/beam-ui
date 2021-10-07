@@ -3,7 +3,11 @@ import QtQuick.Controls 2.4
 import QtGraphicalEffects 1.15
 import "."
 
-Dialog {
+Dialog { 
+    //topPadding: 20
+    leftPadding: 20
+    rightPadding: 20
+    bottomPadding: 120
     background: Rectangle {
         //radius: 10
         //color: Style.background_popup
