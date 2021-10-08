@@ -8,7 +8,7 @@ Rectangle {
     property bool animating: false
     property bool rowInModel: true 
     property int  rowHeight: 10
-    property color backgroundColor: Style.background_row_even
+    property color backgroundColor: 'transparent' //Style.background_row_even
     property var onLeftClick: function() { return true; }
     property var tableView
     default property Component delegate
@@ -17,7 +17,7 @@ Rectangle {
     height:         rowHeight
     anchors.left:   parent.left
     anchors.right:  parent.right
-    color:          backgroundColor                          
+    color:          'transparent' // backgroundColor
 
     onCollapsedChanged: {
         rowItem.height = collapsed
@@ -75,7 +75,7 @@ Rectangle {
 
         Rectangle {
             anchors.fill: parent
-            color: Style.background_details
+            color: 'transparent' //Style.background_details
         }
     }
 
@@ -115,7 +115,7 @@ Rectangle {
         }
     }
 
-    ParallelAnimation {
+    /*ParallelAnimation {
         id: expandAnimation
         running: false
         property int expandDuration: 200
@@ -144,9 +144,9 @@ Rectangle {
             rowItem.collapsed = false
             rowItem.animating = false
         }
-    }
+    }*/
 
-    ParallelAnimation {
+    /*ParallelAnimation {
         id: collapseAnimation
         running: false
         property int collapseDuration: 200
@@ -175,5 +175,5 @@ Rectangle {
             rowItem.collapsed = true
             rowItem.animating = false
         }
-    }
+    }*/
 }

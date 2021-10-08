@@ -12,10 +12,10 @@ TableView {
     property int headerTextFontSize: 14
     property int headerTextLeftMargin: 20
     property var mainBackgroundRect: null
-    property var backgroundRect: mainBackgroundRect != null ? mainBackgroundRect : main.backgroundRect
-    property color headerColor: Style.table_header
+    property var backgroundRect: 'transparent' // mainBackgroundRect != null ? mainBackgroundRect : main.backgroundRect
+    property color headerColor: 'transparent' //Style.table_header
     // property var headerOpacity: 1
-    property bool headerShaderVisible: true
+    property bool headerShaderVisible: false
 
     // Scrollbar fine-tuning
     __scrollBarTopMargin: tableView.headerHeight

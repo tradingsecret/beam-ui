@@ -246,6 +246,12 @@ Control {
         CustomTableView {
             id: transactionsTable
 
+            //Rectangle { anchors.top: parent.top; height: 1; width: parent.width; color: 'purple'}
+            //Rectangle { anchors.bottom: parent.bottom; height: 1; width: parent.width;  color: 'purple'}
+            //Rectangle { anchors.left:  parent.left; height: parent.height; width: 1; color: 'purple'; visible: (isSelect()&&column === 0) }
+            //Rectangle { anchors.right: parent.right; height: parent.height; width: 1; color: 'purple'; visible: (isSelect()&&column === tableView.columns - 1) }
+
+
             property var initTxDetailsFromRow: function (model, row) {
                 txDetails.sendAddress      =  model.getRoleValue(row, "addressFrom") || ""
                 txDetails.receiveAddress   =  model.getRoleValue(row, "addressTo") || ""
@@ -396,19 +402,33 @@ Control {
             }
 
             rowDelegate: ExpandableRowDelegate {
+                /*Rectangle {
+                   anchors{
+                       right: parent.right
+                       left: parent.left
+                       bottom: parent.bottom
+                   }
+                   height: 1
+                   color: "pink"
+               }*/
+
                 id:         rowItemDelegate
                 collapsed:  true
                 rowInModel: styleData.row !== undefined && styleData.row >= 0 && styleData.row < txProxyModel.count
                 rowHeight:  transactionsTable.rowHeight
                 tableView:  transactionsTable
+                //border.width: 1
+                //border.color: 'pink'
 
-                backgroundColor: !rowInModel ? "transparent":
-                                 styleData.selected ?
-                                 Style.row_selected :
-                                 hovered 
-                                    ? Qt.rgba(Style.active.r, Style.active.g, Style.active.b, 0.1)
-                                    : (styleData.alternate ? (!collapsed || animating ? Style.background_row_details_even : Style.background_row_even)
-                                                           : (!collapsed || animating ? Style.background_row_details_odd : Style.background_row_odd))
+               // backgroundColor: !rowInModel ? "transparent":
+               //                  styleData.selected ?
+               //                  Style.row_selected :
+               //                  hovered
+               //                     ? Qt.rgba(Style.active.r, Style.active.g, Style.active.b, 0.1)
+               //                     : (styleData.alternate ? (!collapsed || animating ? Style.background_row_details_even : Style.background_row_even)
+               //                                            : (!collapsed || animating ? Style.background_row_details_odd : Style.background_row_odd))
+                backgroundColor: 'transparent'
+                radius: 0
 
                 property var model: parent.model
                 property bool hideFiltered: true
@@ -460,6 +480,7 @@ Control {
                 }
             }
 
+
             itemDelegate: Item {
                 Item {
                     width: parent.width
@@ -482,6 +503,18 @@ Control {
                 width:     100
                 movable:   false
                 resizable: false
+                elideMode:  Text.ElideNone
+
+
+                /*Rectangle {
+                   anchors {
+                       right: parent.right
+                       top: parent.top
+                       bottom: parent.bottom
+                   }
+                   width: 1
+                   color: "red"
+               }*/
 
                 delegate: Item { CoinsList {
                     width:    parent.width
