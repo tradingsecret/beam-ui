@@ -159,6 +159,7 @@ Item
             StartLayout
             {
                 property Item defaultFocusItem: createNewWallet
+                showNetworkLabel: true
 
                 ColumnLayout {
                     id: startColumn

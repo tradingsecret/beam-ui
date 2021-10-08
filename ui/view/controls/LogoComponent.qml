@@ -24,7 +24,7 @@ ColumnLayout
 
     Item {
         Layout.fillWidth:       true
-        Layout.preferredHeight: 60
+        Layout.preferredHeight: 30
         visible: isMainNet()
     }
 
@@ -33,7 +33,6 @@ ColumnLayout
         Layout.alignment:               Qt.AlignHCenter
         horizontalAlignment:            Text.AlignHCenter
         Layout.topMargin:               13
-        Layout.fillHeight:              true
         Layout.minimumWidth:            550
         Layout.maximumWidth:            550
         wrapMode:                       Text.WordWrap
@@ -51,54 +50,105 @@ ColumnLayout
 
     SFText {
         Layout.alignment:    Qt.AlignHCenter
+        Layout.topMargin:    13
+        Layout.fillHeight:   true
         font.pixelSize:      16
         color:               Qt.rgba(255, 255, 255, 1)
         text:                'v 1.09.1505'
     }
 
-    SFText
-    {
+    ColumnLayout {
+        width: 880
         Layout.alignment:               Qt.AlignHCenter
-        horizontalAlignment:            Text.AlignHCenter
+        Layout.fillHeight:   true
         Layout.topMargin:               13
-        Layout.fillHeight:              true
-        Layout.minimumWidth:            430
-        Layout.maximumWidth:            430
-        wrapMode:                       Text.WordWrap
+        //color: 'transparent'
+        //border.color: 'pink'
 
-        text:       qsTrId('imperium')
-        color:      Style.content_main
-        opacity:    1
 
-        font {
-            family:    agency_b.name
-            weight:    Font.Bold
-            pixelSize: 200
-            capitalization: Font.AllUppercase
-            letterSpacing: 30
+        ColumnLayout {
+            SFText {
+                //Layout.alignment:               Qt.AlignHCenter
+                horizontalAlignment:            Text.AlignHCenter
+                //Layout.topMargin:               13
+                //Layout.minimumWidth:            430
+                //Layout.maximumWidth:            430
+                wrapMode:                       Text.WordWrap
+
+                text:       qsTrId('imperium')
+                color:      Style.content_main
+
+                font {
+                    family:    agency_b.name
+                    weight:    Font.Bold
+                    pixelSize: 200
+                    capitalization: Font.AllUppercase
+                    letterSpacing: 30
+                }
+            }
         }
-    }
 
-    SFText
-    {
-        visible: !hideNetworkLabel && !isMainNet()
-        Layout.alignment: Qt.AlignHCenter
-        Layout.preferredHeight: 20
-        Layout.topMargin: isSqueezedHeight ? 10 : 40
-        //color: Style.content_secondary
-        text: 'TESTNET'
-        color: '#808e90'
+        ColumnLayout {
+            width: parent.width
+            Layout.topMargin: -50
+            Layout.leftMargin: -17
+            visible: !hideNetworkLabel && !isMainNet()
 
-        font {
-            styleName:      tomorrow_semibold.name
-            pixelSize:      30
-            weight:         Font.Bold;
-            capitalization: Font.AllUppercase
+            Row {
+                width: parent.width
+
+                SFText
+                {
+                    width: parent.parent.width
+                    Layout.fillWidth: true
+
+                    //Layout.fillWidth: true
+                    horizontalAlignment:            Qt.AlignRight
+                    Layout.alignment:               Qt.AlignRight
+                    //horizontalAlignment:            Text.AlignRight
+                    text: 'TESTNET'
+                    color:  Style.content_main
+                    wrapMode:                       Text.WordWrap
+
+
+                    font {
+                        styleName:      tomorrow_semibold.name
+                        pixelSize:      30
+                        weight:         Font.Bold;
+                        capitalization: Font.AllUppercase
+                    }
+                }
+            }
         }
     }
 
     Item {
-        Layout.fillWidth:       true
-        Layout.preferredHeight: isSqueezedHeight ? 10 : 30 
+        Layout.fillWidth:  true
+        Layout.fillHeight: true
+        Layout.preferredHeight: isSqueezedHeight ? 10 : 30
+        visible: !hideNetworkLabel
+    }
+
+    Rectangle {
+        Layout.alignment: Qt.AlignHCenter
+        Layout.topMargin: isSqueezedHeight ? 10 : 40
+        width: 100
+        height: 100
+        color: 'transparent'
+        visible: !hideNetworkLabel
+
+        Image {
+            anchors.fill: parent
+            fillMode: Image.Stretch
+            source: {
+                 "qrc:/assets/ImperiumLogo.png"
+            }
+        }
+    }
+
+    Item {
+        Layout.fillWidth:  true
+        Layout.fillHeight: true
+        Layout.preferredHeight: isSqueezedHeight ? 10 : 30
     }
 }

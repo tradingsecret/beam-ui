@@ -14,6 +14,7 @@ Rectangle
 
     color: Style.background_main
     default property alias content: contentLayout.children
+    property bool showNetworkLabel
 
     Image {
         id: backgroundImage
@@ -37,7 +38,7 @@ Rectangle
             Layout.topMargin:  root.isSqueezedHeight ? 13 : 83
             Layout.alignment:  Qt.AlignHCenter
             isSqueezedHeight:  root.isSqueezedHeight
-            hideNetworkLabel:  rootLoading
+            hideNetworkLabel:  !showNetworkLabel
         }
 
         ColumnLayout {

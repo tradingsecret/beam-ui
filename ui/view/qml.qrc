@@ -387,5 +387,6 @@
         <file>assets/ins-logo-2.png</file>
 		<file>assets/status-offline.png</file>
 		<file>assets/status-online.png</file>
+		<file>assets/ImperiumLogo.png</file>
     </qresource>
 </RCC>
