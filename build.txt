@@ -1,0 +1,7 @@
+install visual studio 2019
+
+#set command lines arguments.
+-Wno-dev -DOPENSSL_ROOT_DIR=C:/Users/user/Documents/beam-libs/openssl -DCMAKE_CONFIGURATION_TYPES:STRING=RelWithDebInfo -DBEAM_LINK_TYPE=Static -DBEAM_USE_STATIC_QT=FALSE -DBRANCH_NAME=master -DBEAM_HW_WALLET=Off
+
+#build type
+RelWithDebugInfo
