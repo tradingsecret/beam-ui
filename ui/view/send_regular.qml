@@ -127,7 +127,7 @@ ColumnLayout {
                     CustomButton {
                         id: backBtn
                         Layout.alignment: Qt.AlignTop | Qt.AlignRight
-                        Layout.leftMargin: 120
+                        Layout.leftMargin: 65
 
                         //anchors.verticalCenter: parent.verticalCenter
                         anchors.left:   parent.right
@@ -274,76 +274,6 @@ ColumnLayout {
                                 wrapMode:           Text.Wrap
                                 visible:            viewModel.tokenValid
                                 text:               viewModel.tokenTip
-                            }
-                        }
-                    }
-
-                    Panel {
-                        //% "Transaction type"
-                        title: qsTrId("general-tx-type")
-                        Layout.fillWidth: true
-                        visible: viewModel.canChoose
-                        backgroundColor: 'transparent'
-
-                        content: ColumnLayout {
-                            spacing: 20
-                            id: addressType
-
-                            Pane {
-                                padding: 2
-
-                                background: Rectangle {
-                                    color:  Qt.rgba(1, 1, 1, 0.1)
-                                    radius: 16
-                                }
-
-                                ButtonGroup {
-                                    id: txTypeGroup
-                                }
-
-                                RowLayout {
-                                    spacing: 0
-
-                                    CustomButton {
-                                        Layout.preferredHeight: 30
-                                        Layout.preferredWidth: offlineCheck.width
-                                        id: regularCheck
-                                        //% "Online"
-                                        text:               qsTrId("tx-online")
-                                        ButtonGroup.group:  txTypeGroup
-                                        checkable:          true
-                                        hasShadow:          false
-                                        checked:            !viewModel.choiceOffline
-                                        radius:             16
-                                        border.width:       1
-                                        border.color:       checked ? Style.active : "transparent"
-                                        palette.button:     checked ? Qt.rgba(0, 252/255, 207/255, 0.1) : "transparent"
-                                        palette.buttonText: checked ? Style.active : Style.content_secondary
-                                    }
-
-                                    CustomButton {
-                                        Layout.preferredHeight: 30
-                                        Layout.minimumWidth: 137
-                                        id: offlineCheck
-                                        //% "Offline"
-                                        text:               qsTrId("tx-offline")
-                                        ButtonGroup.group:  txTypeGroup
-                                        checkable:          true
-                                        checked:            viewModel.choiceOffline
-                                        hasShadow:          false
-                                        radius:             16
-                                        border.width:       1
-                                        border.color:       checked ? Style.active : "transparent"
-                                        palette.button:     checked ? Qt.rgba(0, 252/255, 207/255, 0.1) : "transparent"
-                                        palette.buttonText: checked ? Style.active : Style.content_secondary
-                                    }
-
-                                    Binding {
-                                        target:   viewModel
-                                        property: "choiceOffline"
-                                        value:    offlineCheck.checked
-                                    }
-                                }
                             }
                         }
                     }
@@ -593,6 +523,76 @@ ColumnLayout {
                                 target:   viewModel
                                 property: "comment"
                                 value:    addressComment.text
+                            }
+                        }
+                    }
+
+                    Panel {
+                        //% "Transaction type"
+                        title: qsTrId("general-tx-type")
+                        Layout.fillWidth: true
+                        visible: viewModel.canChoose
+                        backgroundColor: 'transparent'
+
+                        content: ColumnLayout {
+                            spacing: 20
+                            id: addressType
+
+                            Pane {
+                                padding: 2
+
+                                background: Rectangle {
+                                    color:  Qt.rgba(1, 1, 1, 0.1)
+                                    radius: 16
+                                }
+
+                                ButtonGroup {
+                                    id: txTypeGroup
+                                }
+
+                                RowLayout {
+                                    spacing: 0
+
+                                    CustomButton {
+                                        Layout.preferredHeight: 30
+                                        Layout.preferredWidth: offlineCheck.width
+                                        id: regularCheck
+                                        //% "Online"
+                                        text:               qsTrId("tx-online")
+                                        ButtonGroup.group:  txTypeGroup
+                                        checkable:          true
+                                        hasShadow:          false
+                                        checked:            !viewModel.choiceOffline
+                                        radius:             16
+                                        border.width:       1
+                                        border.color:       checked ? Style.active : "transparent"
+                                        palette.button:     checked ? Qt.rgba(0, 252/255, 207/255, 0.1) : "transparent"
+                                        palette.buttonText: checked ? Style.active : Style.content_secondary
+                                    }
+
+                                    CustomButton {
+                                        Layout.preferredHeight: 30
+                                        Layout.minimumWidth: 137
+                                        id: offlineCheck
+                                        //% "Offline"
+                                        text:               qsTrId("tx-offline")
+                                        ButtonGroup.group:  txTypeGroup
+                                        checkable:          true
+                                        checked:            viewModel.choiceOffline
+                                        hasShadow:          false
+                                        radius:             16
+                                        border.width:       1
+                                        border.color:       checked ? Style.active : "transparent"
+                                        palette.button:     checked ? Qt.rgba(0, 252/255, 207/255, 0.1) : "transparent"
+                                        palette.buttonText: checked ? Style.active : Style.content_secondary
+                                    }
+
+                                    Binding {
+                                        target:   viewModel
+                                        property: "choiceOffline"
+                                        value:    offlineCheck.checked
+                                    }
+                                }
                             }
                         }
                     }

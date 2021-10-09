@@ -13,7 +13,7 @@ TableView {
     property int headerTextLeftMargin: 20
     property var mainBackgroundRect: null
     property var backgroundRect: 'transparent' // mainBackgroundRect != null ? mainBackgroundRect : main.backgroundRect
-    property color headerColor: 'transparent' //Style.table_header
+    property color headerColor: '#00000d' //Style.table_header
     // property var headerOpacity: 1
     property bool headerShaderVisible: false
 

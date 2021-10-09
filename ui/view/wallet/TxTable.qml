@@ -727,14 +727,14 @@ Control {
                 }
             }
 
-            TableViewColumn {
+            /*TableViewColumn {
                 id: actionsColumn
                 elideMode: Text.ElideRight
                 width: 40
                 movable: false
                 resizable: false
                 delegate: txActions
-            }
+            }*/
 
             function showContextMenu(row) {
                 if (transactionsTable.model.getRoleValue(row, "isContractTx"))
