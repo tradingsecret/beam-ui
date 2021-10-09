@@ -20,6 +20,9 @@ Button {
     property bool  hasShadow:      true
     property bool  hoveredText:    false
     property alias border:         rect.border
+    property var   customColor
+    property var   customBorderColor
+    property bool  disableBorders: false
 
 
     font { 
@@ -48,7 +51,7 @@ Button {
         text:  control.text
         font:  control.font
         //color: hovered || hoveredText ? '#d5ff9f' : 'white' //control.palette.buttonText
-        color: hovered || hoveredText ? '#d5ff9f' : '#d2bdff' //control.palette.buttonText
+        color: customColor ? customColor : (hovered || hoveredText ? '#d5ff9f' : '#d2bdff') //control.palette.buttonText
 
         MouseArea {
             anchors.fill:  parent
@@ -81,8 +84,8 @@ Button {
         color:      "transparent"
         //radius:  control.radius
         //color:   control.palette.button
-        border.color: '#d2bdff'
-        border.width: 2
+        border.color: customBorderColor ? customBorderColor : '#d2bdff'
+        border.width: disableBorders ? 0 : 2
         radius: 4
         //AnimatedImage {
         //    id: backgroundImage

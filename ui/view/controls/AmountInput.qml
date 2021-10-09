@@ -55,9 +55,8 @@ ColumnLayout {
         SFTextInput {
             id:               ainput
             Layout.fillWidth: true
-            font.pixelSize:   36
-            font.styleName:   "Light"
-            font.weight:      Font.Light
+            font.pixelSize:   20
+            dottedBorder:     true
             color:            error.length ? Style.validator_error : control.color
             backgroundColor:  error.length ? Style.validator_error : Style.content_main
             validator:        RegExpValidator {regExp: new RegExp(ainput.getRegExpPattern())}

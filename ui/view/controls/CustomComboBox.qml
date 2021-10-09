@@ -47,7 +47,7 @@ ComboBox {
 
         contentItem: RowLayout {
             spacing: 0
-
+/*
             SvgImage {
                 source: iconS
                 visible: iconW > 0
@@ -66,7 +66,7 @@ ComboBox {
                     width:  18 * parent.width / 26
                     height: 18 * parent.width / 26
                 }
-            }
+            }*/
 
             SFText {
                 Layout.fillWidth: true
@@ -115,6 +115,7 @@ ComboBox {
     contentItem: RowLayout {
         spacing: 0
 
+        /*
         SvgImage {
             source: iconS
             sourceSize: Qt.size(iconW, iconH)
@@ -132,7 +133,7 @@ ComboBox {
                 width:  18 * parent.width / 26
                 height: 18 * parent.width / 26
             }
-        }
+        }*/
 
         SFText  {
             Layout.fillWidth:   true
@@ -141,7 +142,7 @@ ComboBox {
 
             clip: true
             text: control.editable ? control.editText : control.displayText
-            color: control.enabled || control.colorConst ? control.color : Style.content_secondary 
+            color: '#56d288' // control.enabled || control.colorConst ? control.color : Style.content_secondary
             font.pixelSize: fontPixelSize
             elide: Text.ElideRight
         }

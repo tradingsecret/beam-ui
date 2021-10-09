@@ -1,4 +1,5 @@
 import QtQuick 2.11
+import QtQuick.Layouts 1.12
 import QtQuick.Shapes 1.0
 import QtQuick.Controls 2.4
 import QtQuick.Controls.impl 2.4
@@ -39,6 +40,7 @@ T.TextField {
 
     property bool  focusablePlaceholder: false
     property bool  dottedBorder: false
+    property var   dottedBorderColor: "#5fe795"
     property alias backgroundColor : backgroundRect.color
     property alias underlineVisible : backgroundRect.visible
     backgroundColor: Style.content_main
@@ -72,16 +74,17 @@ T.TextField {
         opacity: dottedBorder ? 1 : ((control.activeFocus || control.hovered)? 0.3 : 0.1)
 
         Shape {
-            width: 5
+            anchors.fill: parent
+
             ShapePath {
-                strokeColor: "#5fe795"
-                strokeWidth: 1
+                strokeColor: dottedBorderColor
+                strokeWidth: 2
                 strokeStyle: ShapePath.DashLine
                 startX: 0
                 startY: 0
-                PathLine { x: parent.width; y: 0 }
+                PathLine { x: backgroundRect.width; y: 0 }
             }
-            visible: dottedBorder
+            visible: true
         }
     }
 

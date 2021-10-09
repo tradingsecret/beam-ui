@@ -10,6 +10,8 @@ ColumnLayout {
     spacing: 0
     property var defaultFocusItem: receiverToken ? sendAmountInput.amountInput : tokenInput
 
+    FontLoader { id: tomorrow_regular;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowRegular.ttf" }
+
     SendViewModel {
         id: viewModel
 
@@ -22,6 +24,10 @@ ColumnLayout {
                 .createObject(control)
                 .open();
         }
+    }
+
+    SwapOffersViewModel {
+        id: viewModelSwap
     }
 
     property alias assetId:   viewModel.assetId
@@ -71,6 +77,7 @@ ColumnLayout {
         //% "Send"
         text:   qsTrId("send-title")
         onBack: control.onClosed
+        visible: false
     }
 
     ScrollView {
@@ -84,6 +91,106 @@ ColumnLayout {
 
         ColumnLayout {
             width: scrollView.availableWidth
+
+            RowLayout {
+                ColumnLayout {
+                    Row {
+                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                        Layout.topMargin: 30
+                        //spacing: 20
+                        visible: true
+
+                        SFText {
+                            text: "Balance:"
+                            color: '#5fe795'
+                            font.pixelSize: 16
+                            font.capitalization: Font.AllUppercase
+                        }
+                    }
+
+                    Row {
+                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                        Layout.topMargin: 5
+                        //spacing: 20
+                        visible: true
+
+                        SFText {
+                            text: viewModelSwap.beamAvailable + ' ARC'
+                            color: '#5fe795'
+                            font.pixelSize: 30
+                            font.capitalization: Font.AllUppercase
+                        }
+                    }
+                }
+
+                ColumnLayout {
+                    CustomButton {
+                        id: backBtn
+                        Layout.alignment: Qt.AlignTop | Qt.AlignRight
+                        Layout.leftMargin: 120
+
+                        //anchors.verticalCenter: parent.verticalCenter
+                        anchors.left:   parent.right
+
+                        palette.button: "transparent"
+                        leftPadding:    0
+                        showHandCursor: true
+
+                        //% "Back"
+                        text:         "<= " + qsTrId("general-back")
+                        //visible:      true
+
+                        //onClicked: control.onClosed
+                        onClicked: {
+                            control.onClosed();
+                        }
+                        customColor: 'white'
+                        disableBorders: true
+
+                        //background.border.width: 0
+                        //contentItem.color: 'white'
+                    }
+                }
+            }
+
+            Row {
+                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                Layout.topMargin: 25
+                spacing: 20
+
+                CustomButton {
+                    height: 38
+                    id: sendButton
+                    palette.button: Style.accent_outgoing
+                    palette.buttonText: Style.content_opposite
+                    //% "Send"
+                    text: qsTrId("general-send")
+                    enabled: false
+                    onClicked: {
+                        control.onClosed();
+                        navigateSend(assets.selectedId);
+                    }
+                    width: 200
+                }
+
+                CustomButton {
+                    height: 38
+                    palette.button: Style.accent_incoming
+                    palette.buttonText: Style.content_opposite
+                    //% "Receive"
+                    text: qsTrId("wallet-receive-button")
+                    onClicked: {
+                        // control.onClosed();
+                        navigateReceive(assets.selectedId);
+                    }
+                    width: 200
+                }
+            }
+
+            Item {
+                Layout.fillHeight: true
+            }
+
 
             //
             // Content row
@@ -108,20 +215,23 @@ ColumnLayout {
                         //% "Send to"
                         title:            qsTrId("general-send-to")
                         Layout.fillWidth: true
+                        backgroundColor: 'transparent'
                         content: ColumnLayout {
                             spacing: 0
                             SFTextInput {
                                 property bool tokenError:  viewModel.token && !viewModel.tokenValid
 
-                                Layout.fillWidth: true
-                                id:               tokenInput
-                                font.pixelSize:   14
-                                color:            tokenError ? Style.validator_error : Style.content_main
-                                backgroundColor:  tokenError ? Style.validator_error : Style.content_main
-                                font.italic :     tokenError
-                                text:             viewModel.token
-                                validator:        RegExpValidator { regExp: /[0-9a-zA-Z]{1,}/ }
-                                selectByMouse:    true
+                                Layout.fillWidth:  true
+                                id:                tokenInput
+                                font.pixelSize:    14
+                                dottedBorder:      true
+                                dottedBorderColor: '#616360'
+                                color:             tokenError ? Style.validator_error : Style.content_main
+                                backgroundColor:   tokenError ? Style.validator_error : Style.content_main
+                                font.italic :      tokenError
+                                text:              viewModel.token
+                                validator:         RegExpValidator { regExp: /[0-9a-zA-Z]{1,}/ }
+                                selectByMouse:     true
 
                                 //% "Paste recipient address here"
                                 placeholderText:  qsTrId("send-contact-address-placeholder")
@@ -173,6 +283,7 @@ ColumnLayout {
                         title: qsTrId("general-tx-type")
                         Layout.fillWidth: true
                         visible: viewModel.canChoose
+                        backgroundColor: 'transparent'
 
                         content: ColumnLayout {
                             spacing: 20
@@ -243,7 +354,9 @@ ColumnLayout {
                     Panel {
                         //% "Amount"
                         title: qsTrId("general-send-amount")
-                        Layout.fillWidth: true
+                        //Layout.fillWidth: true
+                        width: parent.width / 2
+                        backgroundColor: 'transparent'
 
                         content: ColumnLayout {
                             spacing: 0
@@ -251,10 +364,11 @@ ColumnLayout {
                             AmountInput {
                                 id:                sendAmountInput
                                 amount:            viewModel.sendAmount
-                                color:             Style.accent_outgoing
+                                color:             '#56d288'
                                 Layout.fillWidth:  true
                                 currencies:        viewModel.assetsList
                                 multi:             viewModel.assetsList.length > 1
+                                showRate:          false
 
                                 error: {
                                     if (!viewModel.isEnoughAmount)
@@ -295,22 +409,6 @@ ColumnLayout {
                                 spacing: 0
                                 Layout.topMargin:    20
 
-                                BeamAmount {
-                                    Layout.fillWidth:  true
-                                    Layout.alignment:  Qt.AlignTop | Qt.AlignLeft
-                                    amount:            viewModel.assetAvailable
-                                    //unitName:          control.sendUnit
-                                    rateUnit:          control.rateUnit
-                                    rate:              control.rate
-                                    font.styleName:    "Bold"
-                                    font.weight:       Font.Bold
-                                    font.pixelSize:    14
-                                    maxPaintedWidth:   true
-                                    maxUnitChars:      20
-                                    rateFontSize:      12
-                                    unitName:          "Arctis available"
-                                }
-
                                 /*SFText {
                                     Layout.fillWidth:  true
                                     font.pixelSize:      14
@@ -324,31 +422,17 @@ ColumnLayout {
                                     visible:          text.length > 0
                                 }*/
 
-                                Row {
-                                    Layout.leftMargin: 10
+                                ColumnLayout {
+                                    Layout.leftMargin: 5
                                     Layout.fillHeight: true
+                                    Layout.fillWidth: true
                                     spacing:           0
 
-                                    SvgImage {
-                                        source:     "qrc:/assets/icon-send-blue-copy-2.svg"
-                                        sourceSize: Qt.size(16, 16)
-
-                                        MouseArea {
-                                            anchors.fill:    parent
-                                            acceptedButtons: Qt.LeftButton
-                                            cursorShape:     Qt.PointingHandCursor
-                                            onClicked:       function () {
-                                                sendAmountInput.clearFocus()
-                                                viewModel.setMaxAvailableAmount()
-                                            }
-                                        }
-                                    }
-
                                     SFText {
-                                        font.pixelSize:   14
-                                        font.styleName:   "Bold";
-                                        font.weight:      Font.Bold
-                                        color:            Style.accent_outgoing
+                                        Layout.fillWidth: true
+                                        font.pixelSize:   12
+                                        font.capitalization: Font.AllUppercase
+                                        color:            '#56d288'
                                         //% "max"
                                         text:             " " + qsTrId("amount-input-add-half")
 
@@ -362,27 +446,16 @@ ColumnLayout {
                                             }
                                         }
                                     }
+                                }
 
-                                    SvgImage {
-                                        source:     "qrc:/assets/icon-send-blue-copy-2.svg"
-                                        sourceSize: Qt.size(16, 16)
-
-                                        MouseArea {
-                                            anchors.fill:    parent
-                                            acceptedButtons: Qt.LeftButton
-                                            cursorShape:     Qt.PointingHandCursor
-                                            onClicked:       function () {
-                                                sendAmountInput.clearFocus()
-                                                viewModel.setMaxAvailableAmount()
-                                            }
-                                        }
-                                    }
+                                ColumnLayout {
+                                    Layout.rightMargin: 5
+                                    Layout.alignment:  Qt.AlignRight
 
                                     SFText {
-                                        font.pixelSize:   14
-                                        font.styleName:   "Bold";
-                                        font.weight:      Font.Bold
-                                        color:            Style.accent_outgoing
+                                        font.pixelSize:   12
+                                        font.capitalization: Font.AllUppercase
+                                        color:            '#56d288'
                                         //% "max"
                                         text:             " " + qsTrId("amount-input-add-max")
 
@@ -401,33 +474,83 @@ ColumnLayout {
                         }
                     }
 
-                    //
-                    // Comment
-                    //
-                    FoldablePanel {
-                        //% "Comment"
-                        title:                  qsTrId("general-comment")
-                        titleCapitalization:    Font.AllUppercase
-                        Layout.fillWidth:       true
-                        folded:                 false
+                    Pane {
+                        //Layout.fillWidth:        true
+                        padding:                 20
+                        Layout.alignment:  Qt.AlignHCenter
 
-                        content: ColumnLayout {
-                            SFTextInput {
-                                id:               addressComment
-                                font.pixelSize:   14
-                                Layout.fillWidth: true
-                                color:            Style.content_main
-                                text:             viewModel.comment
-                                maximumLength:    BeamGlobals.maxCommentLength()
-                                //% "Comments are local and won't be shared"
-                                placeholderText:  qsTrId("general-comment-local")
+                        background: Rectangle {
+                            radius: 10
+                            color:  'transparent' //Style.background_button
+                        }
+
+                        Row {
+                            Layout.alignment:  Qt.AlignHCenter
+                            //anchors.fill:   parent
+                            //columnSpacing:  35
+                            //rowSpacing:     14
+                            //columns:        2
+
+                            SFText {
+                                Layout.alignment:       Qt.AlignTop
+                                font.pixelSize:         20
+                                color:                  viewModel.isEnough ? '#fff' : Style.validator_error
+                                text:                   qsTrId("send-regular-fee") + ": "
                             }
-                 
-                            Binding {
-                                target:   viewModel
-                                property: "comment"
-                                value:    addressComment.text
+
+                            BeamAmount {
+                                Layout.alignment:  Qt.AlignTop
+                                Layout.fillWidth:  true
+                                error:             !viewModel.isEnough
+                                amount:            viewModel.fee
+                                unitName:          BeamGlobals.beamUnit
+                                rateUnit:          viewModel.feeRateUnit
+                                rate:              viewModel.feeRate
+                                font.pixelSize:    20
+                                font.family:       tomorrow_regular.name
+                                font.weight:       Font.Normal
+                                maxPaintedWidth:   false
+                                maxUnitChars:      20
                             }
+                        }
+                    }
+
+                    CustomButton {
+                        Layout.alignment:  Qt.AlignHCenter
+                        Layout.topMargin:  30
+                        customColor:       '#5fe795'
+                        customBorderColor: '#5fe795'
+                        //% "Send"
+                        text:                "Confirm"
+                        palette.buttonText:  Style.content_opposite
+                        palette.button:      Style.accent_outgoing
+                        enabled:             viewModel.canSend
+                        onClicked: {
+                            const dialog = Qt.createComponent("send_confirm.qml")
+                            const instance = dialog.createObject(control,
+                                {
+                                    addressText:   viewModel.token,
+                                    typeText:      viewModel.sendType,
+                                    isOnline:      viewModel.sendTypeOnline,
+                                    amounts: [{
+                                        amount:   viewModel.sendAmount,
+                                        unitName: control.sendUnit,
+                                        rate:     control.rate,
+                                        spend:    true
+                                    }],
+                                    rateUnit:      control.rateUnit,
+                                    fee:           viewModel.fee,
+                                    feeRate:       viewModel.feeRate,
+                                    onAccepted: function () {
+                                        viewModel.sendMoney()
+                                    },
+                                })
+
+                            instance.onAccepted.connect(function () {
+                                viewModel.sendMoney()
+                            })
+
+                            instance.open()
                         }
                     }
                 }
@@ -441,109 +564,35 @@ ColumnLayout {
                     Layout.preferredWidth: 400
                     spacing:               10
 
-                    Pane {
-                        Layout.fillWidth:        true
-                        padding:                 20
+                    //
+                    // Comment
+                    //
+                    Panel {
+                        //% "Comment"
+                        title:                  qsTrId("general-comment")
+                       // titleCapitalization:    Font.AllUppercase
+                        Layout.fillWidth:       true
+                        //folded:                 true
+                        backgroundColor: 'transparent'
 
-                        background: Rectangle {
-                            radius: 10
-                            color:  Style.background_button
-                        }
-
-                        GridLayout {
-                            anchors.fill:   parent
-                            columnSpacing:  35
-                            rowSpacing:     14
-                            columns:        2
-
-                            SFText {
-                                Layout.alignment:  Qt.AlignTop
+                        content: ColumnLayout {
+                            SFTextInput {
+                                id:                addressComment
                                 font.pixelSize:    14
-                                color:             viewModel.isEnough ? Style.content_secondary : Style.validator_error
-                                //% "Amount to send"
-                                text:              qsTrId("send-amount-label") + ":"
-                            }
-                    
-                            BeamAmount {
-                                Layout.alignment:  Qt.AlignTop
                                 Layout.fillWidth:  true
-                                error:             !viewModel.isEnough
-                                amount:            viewModel.sendAmount
-                                unitName:          control.sendUnit
-                                rateUnit:          control.rateUnit
-                                rate:              control.rate
-                                font.styleName:    "Bold"
-                                font.weight:       Font.Bold
-                                maxPaintedWidth:   false
-                                maxUnitChars:      20
+                                dottedBorder:      true
+                                dottedBorderColor: '#616360'
+                                color:             Style.content_main
+                                text:              viewModel.comment
+                                maximumLength:    BeamGlobals.maxCommentLength()
+                                //% "Comments are  local and won't be shared"
+                                placeholderText:   qsTrId("general-comment-local")
                             }
 
-
-                            SFText {
-                                Layout.alignment:       Qt.AlignTop
-                                font.pixelSize:         14
-                                color:                  viewModel.isEnough ? Style.content_secondary : Style.validator_error
-                                text:                   qsTrId("send-regular-fee") + ":"
-                            }
-                    
-                            BeamAmount {
-                                Layout.alignment:  Qt.AlignTop
-                                Layout.fillWidth:  true
-                                error:             !viewModel.isEnough
-                                amount:            viewModel.fee
-                                unitName:          BeamGlobals.beamUnit
-                                rateUnit:          viewModel.feeRateUnit
-                                rate:              viewModel.feeRate
-                                font.styleName:    "Bold"
-                                font.weight:       Font.Bold
-                                maxPaintedWidth:   false
-                                maxUnitChars:      20
-                            }
-
-                            SFText {
-                                Layout.alignment:       Qt.AlignTop
-                                font.pixelSize:         14
-                                color:                  viewModel.isEnough ? Style.content_secondary : Style.validator_error
-                                //% "Remaining"
-                                text:                   qsTrId("send-remaining-label") + ":"
-                            }
-                    
-                            BeamAmount {
-                                Layout.alignment:  Qt.AlignTop | Qt.AlignLeft
-                                Layout.fillWidth:  true
-                                error:             !viewModel.isEnough
-                                amount:            viewModel.assetRemaining
-                                unitName:          control.sendUnit
-                                rateUnit:          control.rateUnit
-                                rate:              control.rate
-                                font.styleName:    "Bold"
-                                font.weight:       Font.Bold
-                                maxPaintedWidth:   false
-                                maxUnitChars:      20
-                            }
-
-                            SFText {
-                                Layout.alignment:       Qt.AlignTop
-                                font.pixelSize:         14
-                                color:                  viewModel.isEnough ? Style.content_secondary : Style.validator_error
-                                visible:                control.assetId != 0
-                                //% "BEAM Remaining"
-                                text:                   qsTrId("send-remaining-beam-label") + ":"
-                            }
-
-                            BeamAmount {
-                                Layout.alignment:  Qt.AlignTop | Qt.AlignLeft
-                                Layout.fillWidth:  true
-                                error:             !viewModel.isEnough
-                                amount:            viewModel.beamRemaining
-                                unitName:          BeamGlobals.beamUnit
-                                rateUnit:          viewModel.feeRateUnit
-                                rate:              viewModel.feeRate
-                                visible:           control.assetId != 0
-                                font.styleName:    "Bold"
-                                font.weight:       Font.Bold
-                                maxPaintedWidth:   false
-                                maxUnitChars:      20
+                            Binding {
+                                target:   viewModel
+                                property: "comment"
+                                value:    addressComment.text
                             }
                         }
                     }
@@ -553,44 +602,6 @@ ColumnLayout {
             //
             // Footers
             //
-            CustomButton {
-                Layout.alignment: Qt.AlignHCenter
-                Layout.topMargin: 30
-                //% "Send"
-                text:                qsTrId("general-send")
-                palette.buttonText:  Style.content_opposite
-                palette.button:      Style.accent_outgoing
-                icon.source:         "qrc:/assets/icon-send-blue.svg"
-                enabled:             viewModel.canSend
-                onClicked: {                
-                    const dialog = Qt.createComponent("send_confirm.qml")
-                    const instance = dialog.createObject(control,
-                        {
-                            addressText:   viewModel.token,
-                            typeText:      viewModel.sendType,
-                            isOnline:      viewModel.sendTypeOnline,
-                            amounts: [{
-                                amount:   viewModel.sendAmount,
-                                unitName: control.sendUnit,
-                                rate:     control.rate,
-                                spend:    true
-                            }],
-                            rateUnit:      control.rateUnit,
-                            fee:           viewModel.fee,
-                            feeRate:       viewModel.feeRate,
-                            onAccepted: function () {
-                                viewModel.sendMoney()
-                            },
-                        })
-
-                    instance.onAccepted.connect(function () {
-                        viewModel.sendMoney()
-                    })
-
-                    instance.open()
-                }
-            }
-
             SFText {
                 Layout.alignment:      Qt.AlignHCenter
                 Layout.preferredWidth: 400

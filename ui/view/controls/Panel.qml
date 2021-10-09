@@ -24,12 +24,10 @@ Pane {
                 SFText {
                     id: headerTitle
                     Layout.fillWidth: headerTextLabel.text.length == 0
-                    color:              Qt.rgba(Style.content_main.r, Style.content_main.g, Style.content_main.b, control.enabled ? 1 : 0.15)
+                    color:              '#616360'//Qt.rgba(Style.content_main.r, Style.content_main.g, Style.content_main.b, control.enabled ? 1 : 0.15)
 
                     font {
-                        styleName:      "Bold"
-                        weight:         Font.Bold
-                        pixelSize:      14
+                        pixelSize:      20
                         letterSpacing:  3.11
                         capitalization: Font.AllUppercase
                     }
