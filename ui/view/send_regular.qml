@@ -620,69 +620,6 @@ ColumnLayout {
                 Layout.fillHeight: true
                 Layout.bottomMargin: 20
             }
-
-            RowLayout {
-                Layout.fillHeight: true
-                //Layout.topMargin: 12
-                visible: false
-
-                ColumnLayout {
-                    Layout.fillWidth: true
-
-                    Item {
-                        Layout.fillWidth: true
-                    }
-                }
-
-                ColumnLayout {
-                    Layout.bottomMargin: 10
-                    Image {
-                        Layout.alignment: Qt.AlignVCenter
-
-                        source: {
-                             "qrc:/assets/status-offline.png"
-                        }
-                    }
-                }
-
-                ColumnLayout {
-                    Layout.bottomMargin: 10
-                    SFText {
-                        Layout.alignment: Qt.AlignVCenter
-
-                        Layout.rightMargin: 15
-                        color: '#7d7d7d'
-                        text: 'Mainnet offline'
-                        font.capitalization: Font.AllUppercase
-                        font.pixelSize: 12
-                        font.letterSpacing: 1
-                    }
-                }
-
-                ColumnLayout {
-                    Layout.bottomMargin: 10
-                    Image {
-                        Layout.alignment: Qt.AlignVCenter
-
-                        source: {
-                             "qrc:/assets/status-online.png"
-                        }
-                    }
-                }
-
-                ColumnLayout {
-                    Layout.bottomMargin: 10
-                    SFText {
-                        Layout.alignment: Qt.AlignVCenter
-
-                        color: '#ffffff'
-                        text: 'Testnet online'
-                        font.capitalization: Font.AllUppercase
-                        font.pixelSize: 12
-                        font.letterSpacing: 1
-                    }
-                }
-            }
         }  // ColumnLayout
     }  // ScrollView
 } // ColumnLayout

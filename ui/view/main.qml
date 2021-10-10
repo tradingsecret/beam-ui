@@ -297,17 +297,98 @@ Rectangle {
             Layout.fillWidth: true
             height: 1
             color: '#307451'
-        }
-    }
+        } 
+   }
 
     Loader {
         id: content
         anchors.topMargin: 45
-        anchors.bottomMargin: 0
+        anchors.bottomMargin: 45
         anchors.rightMargin: 40
         anchors.leftMargin: 40
-        anchors.fill: parent
         focus: true
+        anchors.fill: parent
+        Layout.fillHeight: true
+    }
+
+    ColumnLayout {
+        anchors.fill: parent
+        anchors.rightMargin: 40
+        anchors.leftMargin: 40
+
+        Item {
+            Layout.fillHeight: true
+        }
+
+        RowLayout {
+            anchors.bottomMargin: 10
+
+            ColumnLayout {
+                Image {
+                    fillMode: Image.PreserveAspectCrop
+                    source: {
+                         "qrc:/assets/ins-logo-2.png"
+                    }
+                }
+            }
+
+            ColumnLayout {
+                Layout.fillWidth: true
+
+                Item {
+                    Layout.fillWidth: true
+                }
+            }
+
+            ColumnLayout {
+                Layout.bottomMargin: 10
+                Image {
+                    Layout.alignment: Qt.AlignVCenter
+
+                    source: {
+                         "qrc:/assets/status-offline.png"
+                    }
+                }
+            }
+
+            ColumnLayout {
+                Layout.bottomMargin: 10
+                SFText {
+                    Layout.alignment: Qt.AlignVCenter
+
+                    Layout.rightMargin: 15
+                    color: '#7d7d7d'
+                    text: 'Mainnet offline'
+                    font.capitalization: Font.AllUppercase
+                    font.pixelSize: 12
+                    font.letterSpacing: 1
+                }
+            }
+
+            ColumnLayout {
+                Layout.bottomMargin: 10
+                Image {
+                    Layout.alignment: Qt.AlignVCenter
+
+                    source: {
+                         "qrc:/assets/status-online.png"
+                    }
+                }
+            }
+
+            ColumnLayout {
+                Layout.bottomMargin: 10
+                SFText {
+                    Layout.alignment: Qt.AlignVCenter
+
+                    color: '#ffffff'
+                    text: 'Testnet online'
+                    font.capitalization: Font.AllUppercase
+                    font.pixelSize: 12
+                    font.letterSpacing: 1
+                }
+            }
+        }
     }
 
     function updateItem(indexOrID, props)

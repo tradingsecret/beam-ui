@@ -8,6 +8,8 @@ Dialog {
     leftPadding: 20
     rightPadding: 20
     bottomPadding: 20
+    //width: 584
+    //height: 340
     background: Rectangle {
         //radius: 10
         //color: Style.background_popup
