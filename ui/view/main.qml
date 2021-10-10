@@ -202,7 +202,7 @@ Rectangle {
 
             RowLayout {
                 Layout.fillWidth: true
-                spacing: 10
+                spacing: 0
                 width: parent.width
 
                 Repeater {
@@ -214,13 +214,13 @@ Rectangle {
 
                         SFText {
                             id: menu_item
-                            leftPadding: 7
-                            rightPadding: 7
+                            leftPadding: 15
+                            rightPadding: 15
                             topPadding: 20
                             bottomPadding: 20
                             text:             modelData.title
                             font.pixelSize: 14
-                            color: (selectedItem == index || menu_item.hovered) ? '#5fe795' : '#fff'
+                            color: (selectedItem == index || mouseArea.containsMouse) ? '#5fe795' : '#fff'
                             font.capitalization: Font.AllUppercase
                             font.letterSpacing: 1
 
@@ -260,7 +260,7 @@ Rectangle {
                             Rectangle {
                                 id: indicator
                                 anchors.fill: menu_item
-                                y: 40
+                                y: 45
                                 height: 3
                                 width: menu_item.width
                                 color: selectedItem == index ? '#5fe795' : Style.passive
@@ -292,7 +292,7 @@ Rectangle {
         //}
 
         Rectangle {
-            Layout.topMargin: 38
+            Layout.topMargin: 43
             width: parent.parent.width
             Layout.fillWidth: true
             height: 1

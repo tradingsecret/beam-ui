@@ -104,6 +104,11 @@ Item
         id: startLayout
         anchors.fill:   parent
 
+        Item {
+            Layout.fillWidth:   true
+            Layout.fillHeight:  true
+        }
+
         //SFText {
         //    Layout.alignment:       Qt.AlignHCenter | Qt.AlignTop
         //    Layout.preferredHeight: 16

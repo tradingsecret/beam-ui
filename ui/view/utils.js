@@ -91,20 +91,19 @@ function openExternal(externalLink, settings, dialog, onFinish) {
     var onFinishCallback = onFinish && (typeof onFinish === "function")
         ? onFinish
         : function () {};
-    if (settings.isAllowedBeamMWLinks) {
+    /*if (settings.isAllowedBeamMWLinks) {
         openUrl(externalLink);
         onFinishCallback();
-    } else {
-        dialog.externalUrl = externalLink;
-        dialog.onOkClicked = function () {
-            settings.isAllowedBeamMWLinks = true;
-            onFinishCallback();
-        };
-        dialog.onCancelClicked = function() {
-            onFinishCallback();
-        };
-        dialog.open();
-    }
+    } else*/
+    dialog.externalUrl = externalLink;
+    dialog.onOkClicked = function () {
+        settings.isAllowedBeamMWLinks = true;
+        onFinishCallback();
+    };
+    dialog.onCancelClicked = function() {
+        onFinishCallback();
+    };
+    dialog.open();
 }
 
 function openExternalWithConfirmation(externalLink, onFinish) {

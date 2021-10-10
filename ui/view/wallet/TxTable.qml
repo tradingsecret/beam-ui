@@ -214,6 +214,7 @@ Control {
             }
         }
 
+        /*
         ColumnLayout {
             Layout.topMargin: emptyMessageMargin
             Layout.alignment: Qt.AlignHCenter
@@ -241,7 +242,7 @@ Control {
             Item {
                 Layout.fillHeight: true
             }
-        }
+        }*/
 
         CustomTableView {
             id: transactionsTable

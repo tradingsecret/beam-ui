@@ -50,8 +50,8 @@ Button {
         icon:  control.icon
         text:  control.text
         font:  control.font
-        //color: hovered || hoveredText ? '#d5ff9f' : 'white' //control.palette.buttonText
-        color: customColor ? customColor : (hovered || hoveredText ? '#d5ff9f' : '#d2bdff') //control.palette.buttonText
+        //color: hovered || hoveredText ? '#5fe795' : 'white' //control.palette.buttonText
+        color: customColor ? customColor : (hovered || hoveredText ? '#5fe795' : '#d2bdff') //control.palette.buttonText
 
         MouseArea {
             anchors.fill:  parent
@@ -84,7 +84,7 @@ Button {
         color:      "transparent"
         //radius:  control.radius
         //color:   control.palette.button
-        border.color: customBorderColor ? customBorderColor : '#d2bdff'
+        border.color: customBorderColor ? customBorderColor : (hovered ? '#5fe795' : '#d2bdff')
         border.width: disableBorders ? 0 : 2
         radius: 4
         //AnimatedImage {
