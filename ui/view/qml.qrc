@@ -395,5 +395,6 @@
 		<file>assets/tx_anonymous-default.png</file>
 		<file>assets/tx_public-active.png</file>
 		<file>assets/tx_public-default.png</file>
+		<file>assets/copy-icon.png</file>
     </qresource>
 </RCC>

@@ -292,19 +292,16 @@ ColumnLayout {
 
                         content: ColumnLayout {
                             spacing: 0
-                            //Layout.fillWidth: true
-                            width: parent.width
+                            Layout.fillWidth: true
 
                             RowLayout {
-                                //Layout.fillWidth: true
-                                width: parent.width
+                                Layout.fillWidth: true
 
                                 Grid{
                                     columns: 2
-                                    width: parent.width
-
 
                                     ColumnLayout {
+                                        Layout.fillWidth: true
                                         width: 250
 
                                         AmountInput {

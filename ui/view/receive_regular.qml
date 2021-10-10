@@ -2,6 +2,7 @@ import QtQuick 2.11
 import QtQuick.Controls 1.2
 import QtQuick.Controls 2.4
 import QtQuick.Controls.Styles 1.2
+import QtQuick.Shapes 1.0
 import QtGraphicalEffects 1.0
 import QtQuick.Layouts 1.12
 import Beam.Wallet 1.0
@@ -248,6 +249,7 @@ ColumnLayout {
                                 spacing: 0
 
                                 ColumnLayout {
+                                    id: controlCopy
                                     spacing: 0
 
                                     Layout.fillWidth:   true
@@ -257,25 +259,52 @@ ColumnLayout {
                                         Layout.fillWidth:   true
                                         text:  control.isShieldedSupported ? viewModel.token : viewModel.sbbsAddress
                                         width: parent.width
-                                        color: Style.content_main
+                                        //color: Style.content_main
                                         elide: Text.ElideMiddle
+                                        font.pixelSize: 18
+                                        color:          '#bb69dd'
                                     }
+
+                                    Rectangle {
+                                            id: backgroundRect
+                                            //y: 20
+                                            height: 0
+                                            //width: control.width - (control.leftPadding + control.rightPadding)
+                                            //height: dottedBorder ? 0 : 1 //control.activeFocus || control.hovered ? 1 : 1
+                                            //opacity: dottedBorder ? 1 : ((control.activeFocus || control.hovered)? 0.3 : 0.1)
+                                            anchors.fill: parent
+                                            color: 'transparent'
+
+                                            Shape {
+                                                anchors.fill: parent
+
+                                                ShapePath {
+                                                    strokeColor: "#616360"
+                                                    strokeWidth: 2
+                                                    strokeStyle: ShapePath.DashLine
+                                                    startX: 0
+                                                    startY: 23
+                                                    PathLine { x: backgroundRect.width; y: 23 }
+                                                }
+                                                visible: true
+                                            }
+                                        }
                                 }
 
-                                SvgImage {
+                                Image {
                                     Layout.alignment: Qt.AlignVCenter
-                                    Layout.bottomMargin: 15
+                                    //Layout.topMargin: 20
 
-                                    source: "qrc:/assets/icon-copy.svg"
-                                    sourceSize: Qt.size(16, 16)
-                                    opacity: control.isValid() ? 1.0 : 0.45
+                                    source: "qrc:/assets/copy-icon.png"
+                                    sourceSize: Qt.size(32, 32)
+                                    //opacity: control.isValid() ? 1.0 : 0.45
 
                                     MouseArea {
-                                    anchors.fill: parent
-                                    acceptedButtons: Qt.LeftButton
-                                    cursorShape: control.isValid() ? Qt.PointingHandCursor : Qt.ArrowCursor
-                                    onClicked: function () {
-                                            control.copyAndSave()
+                                        anchors.fill: parent
+                                        acceptedButtons: Qt.LeftButton
+                                        cursorShape: control.isValid() ? Qt.PointingHandCursor : Qt.ArrowCursor
+                                        onClicked: function () {
+                                                control.copyAndSave()
                                         }
                                     }
                                 }
@@ -295,13 +324,17 @@ ColumnLayout {
                         //Layout.fillWidth:       true
                         backgroundColor: 'transparent'
                         //folded:                 false
-
                         //
                         // Amount
                         //
-                        content: ColumnLayout {
+                        content: Grid {
+                            Layout.alignment: Qt.AlignHCenter
+                            columns: 2
+                            //Layout.fillWidth: true
+
                             ColumnLayout {
-                                width: parent.width / 2
+                                width: 250
+                                Layout.fillWidth: true
 
                                 AmountInput {
                                     id:          amountInput
