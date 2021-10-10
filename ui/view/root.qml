@@ -8,17 +8,22 @@ import Beam.Wallet 1.0
 Window  {
     id: appWindow
     property alias source: rootLoader.source
-    flags: Qt.Window | Qt.WindowFullscreenButtonHint
+    flags: Qt.Window
     title: BeamGlobals.getAppName()
+    minimumHeight: 800
+    minimumWidth: 1200
+    maximumHeight: 800
+    maximumWidth: 1200
+
 
     function cellResize() {
         if(appWindow.visibility != ApplicationWindow.Maximized) {
             var minWidth = Math.min(1200, appWindow.screen.width - 10);
             var minHeight = Math.min(800, appWindow.screen.height - 80);
-            appWindow.minimumWidth = minWidth;
-            appWindow.minimumHeight = minHeight;
-            appWindow.width = minWidth;
-            appWindow.height = minHeight;
+            //appWindow.minimumWidth = minWidth;
+            //appWindow.minimumHeight = minHeight;
+            //appWindow.width = minWidth;
+            //appWindow.height = minHeight;
         }
     }
  
