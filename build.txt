@@ -5,3 +5,6 @@ install visual studio 2019
 
 #build type
 RelWithDebugInfo
+
+#cpack
+cpack --verbose -G NSIS -C RelWithDebugInfo

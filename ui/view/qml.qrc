@@ -388,5 +388,11 @@
 		<file>assets/status-offline.png</file>
 		<file>assets/status-online.png</file>
 		<file>assets/ImperiumLogo.png</file>
+		<file>assets/tx_anonimity.png</file>
+		<file>assets/tx_public.png</file>
+		<file>assets/tx_anonymous-active.png</file>
+		<file>assets/tx_anonymous-default.png</file>
+		<file>assets/tx_public-active.png</file>
+		<file>assets/tx_public-default.png</file>
     </qresource>
 </RCC>

@@ -40,8 +40,6 @@ Pane {
                     color:              Qt.rgba(Style.content_main.r, Style.content_main.g, Style.content_main.b, 0.5)
 
                     font {
-                        styleName:      "Bold"
-                        weight:         Font.Bold
                         pixelSize:      14
                         letterSpacing:  0.35
                     }
