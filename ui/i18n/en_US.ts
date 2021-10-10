@@ -363,8 +363,8 @@
         <translation>Enter your password to access the wallet</translation>
     </message>
     <message id="open-show-wallet-button">
-        <source>Show my wallet</source>
-        <translation>Show my wallet</translation>
+        <source>Open wallet</source>
+        <translation>Open wallet</translation>
     </message>
     <message id="payment-info-proof-verification">
         <source>Payment proof verification</source>

@@ -22,17 +22,11 @@ ColumnLayout
 
     spacing: 0
 
-    Item {
-        Layout.fillWidth:       true
-        Layout.preferredHeight: 30
-        visible: isMainNet()
-    }
-
     SFText
     {
         Layout.alignment:               Qt.AlignHCenter
         horizontalAlignment:            Text.AlignHCenter
-        Layout.topMargin:               13
+        Layout.topMargin:               -20
         Layout.minimumWidth:            550
         Layout.maximumWidth:            550
         wrapMode:                       Text.WordWrap
@@ -51,17 +45,23 @@ ColumnLayout
     SFText {
         Layout.alignment:    Qt.AlignHCenter
         Layout.topMargin:    13
-        Layout.fillHeight:   true
+        //Layout.fillHeight:   true
         font.pixelSize:      16
         color:               Qt.rgba(255, 255, 255, 1)
         text:                'v 1.09.1505'
     }
 
+    //Item {
+    //    Layout.fillWidth:       true
+    //    Layout.preferredHeight: 30
+    //    visible: isMainNet()
+    //}
+
     ColumnLayout {
         width: 880
         Layout.alignment:               Qt.AlignHCenter
-        Layout.fillHeight:   true
-        Layout.topMargin:               13
+        Layout.fillHeight:              true
+        Layout.topMargin:               35
         //color: 'transparent'
         //border.color: 'pink'
 
@@ -92,7 +92,7 @@ ColumnLayout
             width: parent.width
             Layout.topMargin: -50
             Layout.leftMargin: -17
-            visible: !hideNetworkLabel && !isMainNet()
+            //visible: !hideNetworkLabel && !isMainNet()
 
             Row {
                 width: parent.width
@@ -112,7 +112,7 @@ ColumnLayout
 
 
                     font {
-                        styleName:      tomorrow_semibold.name
+                        styleName:      agency_b.name
                         pixelSize:      30
                         weight:         Font.Bold;
                         capitalization: Font.AllUppercase
@@ -122,16 +122,16 @@ ColumnLayout
         }
     }
 
-    Item {
+    /*Item {
         Layout.fillWidth:  true
         Layout.fillHeight: true
         Layout.preferredHeight: isSqueezedHeight ? 10 : 30
         visible: !hideNetworkLabel
-    }
+    }*/
 
     Rectangle {
         Layout.alignment: Qt.AlignHCenter
-        Layout.topMargin: isSqueezedHeight ? 10 : 40
+        //Layout.topMargin: isSqueezedHeight ? 10 : 40
         width: 100
         height: 100
         color: 'transparent'
@@ -146,9 +146,9 @@ ColumnLayout
         }
     }
 
-    Item {
+    /*Item {
         Layout.fillWidth:  true
         Layout.fillHeight: true
         Layout.preferredHeight: isSqueezedHeight ? 10 : 30
-    }
+    }*/
 }

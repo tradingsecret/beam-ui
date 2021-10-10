@@ -1281,7 +1281,7 @@ Item
                                 id:password
                                 width: parent.width
                                 dottedBorder: true
-                                font.pixelSize: 14
+                                font.pixelSize: 28
                                 color: Style.content_main
                                 echoMode: TextInput.Password
                                 onTextChanged: if (password.text.length > 0) passwordError.text = ""
@@ -1385,7 +1385,7 @@ Item
                                 width: parent.width
                                 dottedBorder: true
 
-                                font.pixelSize: 14
+                                font.pixelSize: 28
                                 color: Style.content_main
                                 echoMode: TextInput.Password
                                 onTextChanged: {
@@ -1831,7 +1831,7 @@ Item
                             focus: true
                             activeFocusOnTab: true
                             dottedBorder: true
-                            font.pixelSize: 14
+                            font.pixelSize: 28
                             color: Style.content_main
                             echoMode: TextInput.Password
                             onAccepted: btnCurrentWallet.clicked()
@@ -1875,6 +1875,15 @@ Item
                             }
                         }
 
+                        CustomButton {
+                            anchors.verticalCenter: parent.verticalCenter
+                            id: btnRestoreOrCreateWallet
+                            text: qsTrId("general-restore-or-create-wallet")
+                            onClicked: {
+                                confirmChangeWalletDialog.open();
+                            }
+                        }
+
                         PrimaryButton {
                             anchors.verticalCenter: parent.verticalCenter
                             id: btnCurrentWallet
@@ -1888,21 +1897,6 @@ Item
                                 qsTrId("open-show-wallet-button-hw")
                             onClicked: {
                                 parent.tryOpenWallet();
-                            }
-                        }
-                    }
-
-                    Row {
-                        Layout.alignment: Qt.AlignHCenter
-                        Layout.topMargin: startLayout.isSqueezedHeight  ? 8 : 18
-                        Layout.preferredHeight: 38
-                        spacing:          20
-
-                        CustomButton {
-                            id: btnRestoreOrCreateWallet
-                            text: qsTrId("general-restore-or-create-wallet")
-                            onClicked: {
-                                confirmChangeWalletDialog.open();
                             }
                         }
                     }
