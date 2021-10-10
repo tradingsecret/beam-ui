@@ -286,40 +286,152 @@ ColumnLayout {
                         //% "Amount"
                         title: qsTrId("general-send-amount")
                         //Layout.fillWidth: true
-                        width: parent.width / 2
+                        //width: parent.width
+                        Layout.fillWidth: true
                         backgroundColor: 'transparent'
 
                         content: ColumnLayout {
                             spacing: 0
+                            //Layout.fillWidth: true
+                            width: parent.width
 
-                            AmountInput {
-                                id:                sendAmountInput
-                                amount:            viewModel.sendAmount
-                                color:             '#56d288'
-                                Layout.fillWidth:  true
-                                currencies:        viewModel.assetsList
-                                multi:             viewModel.assetsList.length > 1
-                                showRate:          false
+                            RowLayout {
+                                //Layout.fillWidth: true
+                                width: parent.width
 
-                                error: {
-                                    if (!viewModel.isEnoughAmount)
-                                    {
-                                        var maxAmount = Utils.uiStringToLocale(viewModel.maxSendAmount)
-                                        //% "Insufficient funds to complete the transaction. Maximum amount is %1 %2."
-                                        return qsTrId("send-no-funds").arg(maxAmount).arg(Utils.limitText(control.sendUnit, 10))
+                                Grid{
+                                    columns: 2
+                                    width: parent.width
+
+
+                                    ColumnLayout {
+                                        width: 250
+
+                                        AmountInput {
+                                            id:                sendAmountInput
+                                            amount:            viewModel.sendAmount
+                                            color:             '#56d288'
+                                            Layout.fillWidth:  true
+
+                                            //width:              parent.width / 2
+                                            currencies:        viewModel.assetsList
+                                            multi:             viewModel.assetsList.length > 1
+                                            showRate:          false
+
+                                            error: {
+                                                return ""
+                                                /*
+                                                if (!viewModel.isEnoughAmount)
+                                                {
+                                                    var maxAmount = Utils.uiStringToLocale(viewModel.maxSendAmount)
+                                                    //% "Insufficient funds to complete the transaction. Maximum amount is %1 %2."
+                                                    return qsTrId("send-no-funds").arg(maxAmount).arg(Utils.limitText(control.sendUnit, 10))
+                                                }
+                                                else if (!viewModel.isEnoughFee)
+                                                {
+                                                    //% "Insufficient funds to pay transaction fee."
+                                                    return qsTrId("send-no-funds-for-fee")
+                                                }*/
+                                            }
+
+                                            onCurrencyIdxChanged: function () {
+                                                var idx = sendAmountInput.currencyIdx
+                                                control.assetId = viewModel.assetsList[idx].assetId
+                                            }
+                                        }
+
+                                        RowLayout {
+                                            spacing: 0
+                                            //width: 250
+
+                                            /*SFText {
+                                                Layout.fillWidth:  true
+                                                font.pixelSize:      14
+                                                font.styleName:      "Bold"
+                                                font.weight:         Font.Bold
+                                                font.letterSpacing:  3.11
+                                                font.capitalization: Font.AllUppercase
+                                                color:               Style.content_main
+                                                //% "Available"
+                                                text:             qsTrId("send-available")
+                                                visible:          text.length > 0
+                                            }*/
+
+                                            ColumnLayout {
+                                                Layout.leftMargin: 0
+                                                Layout.fillHeight: true
+                                                Layout.fillWidth: true
+                                                spacing:           0
+                                                width: parent.width
+
+                                                SFText {
+                                                    Layout.fillWidth: true
+                                                    font.pixelSize:   12
+                                                    font.capitalization: Font.AllUppercase
+                                                    color:            '#56d288'
+                                                    //% "max"
+                                                    text:             "Send half"
+
+                                                    MouseArea {
+                                                        anchors.fill:    parent
+                                                        acceptedButtons: Qt.LeftButton
+                                                        cursorShape:     Qt.PointingHandCursor
+                                                        onClicked:       function () {
+                                                            sendAmountInput.clearFocus()
+                                                            viewModel.setHalfPossibleAmount()
+                                                        }
+                                                    }
+                                                }
+                                            }
+
+                                            ColumnLayout {
+                                                Layout.rightMargin: 50
+                                                Layout.alignment:  Qt.AlignRight
+
+                                                SFText {
+                                                    font.pixelSize:   12
+                                                    font.capitalization: Font.AllUppercase
+                                                    color:            '#56d288'
+                                                    //% "max"
+                                                    text:             "Send max"
+
+                                                    MouseArea {
+                                                        anchors.fill:    parent
+                                                        acceptedButtons: Qt.LeftButton
+                                                        cursorShape:     Qt.PointingHandCursor
+                                                        onClicked:       function () {
+                                                            sendAmountInput.clearFocus()
+                                                            viewModel.setMaxPossibleAmount()
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
                                     }
-                                    else if (!viewModel.isEnoughFee)
-                                    {
-                                        //% "Insufficient funds to pay transaction fee."
-                                        return qsTrId("send-no-funds-for-fee")
-                                    }
-                                    return ""
-                                }
 
-                                onCurrencyIdxChanged: function () {
-                                    var idx = sendAmountInput.currencyIdx
-                                    control.assetId = viewModel.assetsList[idx].assetId
+                                    SFText {
+                                        Layout.fillWidth:  true
+                                        topPadding:        25
+                                        leftPadding:       25
+                                        width: 250
+                                        Layout.alignment:       Qt.AlignVCenter
+                                        font.pixelSize:         14
+                                        font.italic:            true
+                                        color:                  Style.validator_error
+                                        text:                   "Insufficient funds"
+                                        visible:                !viewModel.isEnough
+                                    }
                                 }
+                            }
+
+                            SFText {
+                                topPadding:             10
+                                Layout.fillWidth:       true
+                                Layout.alignment:       Qt.AlignVCenter
+                                font.pixelSize:         14
+                                font.italic:            true
+                                color:                  '#616360'
+                                text:                   "The exchange rate to USD is available only on MAINNET"
                             }
 
                             Connections {
@@ -333,74 +445,6 @@ ColumnLayout {
                                 target:   viewModel
                                 property: "sendAmount"
                                 value:    sendAmountInput.amount
-                            }
-
-
-                            RowLayout {
-                                spacing: 0
-                                Layout.topMargin:    20
-
-                                /*SFText {
-                                    Layout.fillWidth:  true
-                                    font.pixelSize:      14
-                                    font.styleName:      "Bold"
-                                    font.weight:         Font.Bold
-                                    font.letterSpacing:  3.11
-                                    font.capitalization: Font.AllUppercase
-                                    color:               Style.content_main
-                                    //% "Available"
-                                    text:             qsTrId("send-available")
-                                    visible:          text.length > 0
-                                }*/
-
-                                ColumnLayout {
-                                    Layout.leftMargin: 5
-                                    Layout.fillHeight: true
-                                    Layout.fillWidth: true
-                                    spacing:           0
-
-                                    SFText {
-                                        Layout.fillWidth: true
-                                        font.pixelSize:   12
-                                        font.capitalization: Font.AllUppercase
-                                        color:            '#56d288'
-                                        //% "max"
-                                        text:             " " + qsTrId("amount-input-add-half")
-
-                                        MouseArea {
-                                            anchors.fill:    parent
-                                            acceptedButtons: Qt.LeftButton
-                                            cursorShape:     Qt.PointingHandCursor
-                                            onClicked:       function () {
-                                                sendAmountInput.clearFocus()
-                                                viewModel.setHalfPossibleAmount()
-                                            }
-                                        }
-                                    }
-                                }
-
-                                ColumnLayout {
-                                    Layout.rightMargin: 5
-                                    Layout.alignment:  Qt.AlignRight
-
-                                    SFText {
-                                        font.pixelSize:   12
-                                        font.capitalization: Font.AllUppercase
-                                        color:            '#56d288'
-                                        //% "max"
-                                        text:             " " + qsTrId("amount-input-add-max")
-
-                                        MouseArea {
-                                            anchors.fill:    parent
-                                            acceptedButtons: Qt.LeftButton
-                                            cursorShape:     Qt.PointingHandCursor
-                                            onClicked:       function () {
-                                                sendAmountInput.clearFocus()
-                                                viewModel.setMaxPossibleAmount()
-                                            }
-                                        }
-                                    }
-                                }
                             }
                         }
                     }

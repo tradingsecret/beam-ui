@@ -179,16 +179,16 @@ Rectangle {
     }
 
     property var contentItems : [
-        {name: "wallet", title: "Wallet"},
-        {name: "atomic_swap", title: "Atomic Swaps"},
-        {name: "atlasdex", title: "Atlas dex"},
-        {name: "daocore", qml: appsQml, title: "Dao"},
+        {name: "wallet", title: "Wallet", active: true},
+        {name: "atomic_swap", title: "Atomic Swaps", active: false},
+        {name: "atlasdex", title: "Atlas dex", active: true},
+        {name: "daocore", qml: appsQml, title: "Dao", active: false},
         //{name: "applications", qml: appsQml, title: "Atomic Swaps"},
         //{name: "dex"},
-        {name: "addresses", title: "Address book"},
-        {name: "notifications", title: "Notifications"},
-        {name: "settings", title: "Settings"},
-        {name: "settings", title: "Connect"}
+        {name: "addresses", title: "Address book", active: true},
+        {name: "notifications", title: "Notifications", active: true},
+        {name: "settings", title: "Settings", active: true},
+        {name: "connect", title: "Connect", active: false}
     ]
 
     property int selectedItem: -1
@@ -220,7 +220,7 @@ Rectangle {
                             bottomPadding: 20
                             text:             modelData.title
                             font.pixelSize: 14
-                            color: (selectedItem == index || mouseArea.containsMouse) ? '#5fe795' : '#fff'
+                            color: modelData.active ? ((selectedItem == index || mouseArea.containsMouse) ? '#5fe795' : '#fff') : '#817272'
                             font.capitalization: Font.AllUppercase
                             font.letterSpacing: 1
 
@@ -228,7 +228,7 @@ Rectangle {
                                 if (modelData.name == 'atlasdex') {
                                     Utils.navigateToAtlasDex();
                                 }
-                                else if (modelData.name != 'daocore') {
+                                else if (modelData.name != 'daocore' && modelData.name != 'connect' && modelData.name != 'atomic_swap') {
                                     if ((event.key == Qt.Key_Return || event.key == Qt.Key_Enter || event.key == Qt.Key_Space))
                                     if (selectedItem != index) {
                                         updateItem(index);
@@ -244,7 +244,7 @@ Rectangle {
                                     if (modelData.name == 'atlasdex') {
                                         Utils.navigateToAtlasDex();
                                     }
-                                    else if (modelData.name != 'daocore') {
+                                    else if (modelData.name != 'daocore' && modelData.name != 'connect' && modelData.name != 'atomic_swap') {
                                         //control.focus = true
                                         if (selectedItem != index) {
                                             updateItem(index);
