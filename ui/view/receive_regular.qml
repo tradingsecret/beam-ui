@@ -12,6 +12,39 @@ import "./utils.js" as Utils
 ColumnLayout {
     id: control
 
+    property bool copied: false
+
+    Timer {
+        id: timer
+        running: false
+        repeat: false
+
+        property var callback
+
+        onTriggered: callback()
+    }
+
+    function setTimeout(callback, delay)
+    {
+        if (timer.running) {
+            console.error("nested calls to setTimeout are not supported!");
+            return;
+        }
+        timer.callback = callback;
+        // note: an interval of 0 is directly triggered, so add a little padding
+        timer.interval = delay + 1;
+        timer.running = true;
+    }
+
+    MainViewModel {
+        onClipboardChanged: function(message) {
+            control.copied = true;
+            setTimeout(function() {
+                control.copied = false;
+            }, 5000);
+        }
+    }
+
     ReceiveViewModel {
         id: viewModel
 
@@ -116,7 +149,10 @@ ColumnLayout {
         Layout.bottomMargin: 10
         clip:                true
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-        ScrollBar.vertical.policy:   ScrollBar.AsNeeded
+        ScrollBar.vertical.policy:   ScrollBar.AlwaysOff
+        ScrollBar.vertical.interactive: false
+        wheelEnabled: false
+
 
         ColumnLayout {
             width: scrollView.availableWidth
@@ -247,6 +283,7 @@ ColumnLayout {
 
                             RowLayout {
                                 spacing: 0
+                                Layout.topMargin: -3
 
                                 ColumnLayout {
                                     id: controlCopy
@@ -293,7 +330,7 @@ ColumnLayout {
 
                                 Image {
                                     Layout.alignment: Qt.AlignVCenter
-                                    //Layout.topMargin: 20
+                                    Layout.topMargin: 5
 
                                     source: "qrc:/assets/copy-icon.png"
                                     sourceSize: Qt.size(32, 32)
@@ -307,6 +344,27 @@ ColumnLayout {
                                                 control.copyAndSave()
                                         }
                                     }
+                                }
+                            }
+
+                            Rectangle {
+                                anchors.right: parent.right
+                                anchors.top: parent.top
+                                anchors.rightMargin: 45
+                                anchors.topMargin: -20
+                                //anchors.fill: parent
+                                color: 'transparent'
+                                //Layout.fillWidth: true
+                                //horizontalAlignment: Text.AlignHCenter
+                                Layout.alignment:      Qt.AlignRight
+
+                                SFText {
+                                    Layout.alignment:      Qt.AlignRight
+                                    font.pixelSize:        14
+                                    font.italic:           true
+                                    color:                 '#bb69dd'
+                                    horizontalAlignment:   Text.AlignHCenter
+                                    text: control.copied ? "Copied!" : ""
                                 }
                             }
                         }
@@ -376,9 +434,26 @@ ColumnLayout {
                     ColumnLayout {
                         Layout.alignment:       Qt.AlignHCenter
 
+                        ColumnLayout {
+                            Layout.topMargin:   30
+                            height: 5
+                            //Layout.fillWidth: true
+                            //horizontalAlignment: Text.AlignHCenter
+                            Layout.alignment:      Qt.AlignHCenter
+
+                            SFText {
+                                Layout.alignment:      Qt.AlignHCenter
+                                font.pixelSize:        14
+                                font.italic:           true
+                                color:                 '#bb69dd'
+                                horizontalAlignment:   Text.AlignHCenter
+                                text: control.copied ? "Copied!" : ""
+                            }
+                        }
+
                         CustomButton {
                             id: copyButton
-                            Layout.topMargin:       30
+                            Layout.topMargin:       5
                             customColor:            '#5fe795'
                             customBorderColor:      '#5fe795'
                             Layout.alignment:       Qt.AlignHCenter

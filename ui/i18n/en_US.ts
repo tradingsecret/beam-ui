@@ -72,8 +72,8 @@
         <translation>Please, enter password</translation>
     </message>
     <message id="general-pwd-invalid">
-        <source>Invalid password provided</source>
-        <translation>Invalid password provided</translation>
+        <source>Wrong password</source>
+        <translation>Wrong password</translation>
     </message>
     <message id="general-payment-proof">
         <source>Payment proof</source>

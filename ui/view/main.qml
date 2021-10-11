@@ -69,13 +69,6 @@ Rectangle {
          showPopup(popup)
     }
 
-	MainViewModel {
-        id: viewModel
-        onClipboardChanged: function(message) {
-            showSimplePopup(message)
-        }
-    }
-
     PushNotificationManager {
         id: updateInfoProvider
         onShowUpdateNotification: function (newVersion, currentVersion, id) {

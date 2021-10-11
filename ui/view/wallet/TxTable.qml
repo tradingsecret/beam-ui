@@ -214,13 +214,12 @@ Control {
             }
         }
 
-        /*
         ColumnLayout {
             Layout.topMargin: emptyMessageMargin
             Layout.alignment: Qt.AlignHCenter
             visible: transactionsTable.model.count == 0
 
-            SvgImage {
+            /*SvgImage {
                 Layout.alignment: Qt.AlignHCenter
                 source: "qrc:/assets/icon-wallet-empty.svg"
                 sourceSize: Qt.size(60, 60)
@@ -237,12 +236,12 @@ Control {
                 lineHeight:           1.43
                 //% "Your transaction list is empty"
                 text: qsTrId("tx-empty")
-            }
+            }*/
 
             Item {
                 Layout.fillHeight: true
             }
-        }*/
+        }
 
         CustomTableView {
             id: transactionsTable
