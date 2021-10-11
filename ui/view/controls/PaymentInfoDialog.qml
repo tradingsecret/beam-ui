@@ -18,6 +18,7 @@ CustomDialog {
     y: (parent.height - height) / 2
     parent: Overlay.overlay
     padding: 30
+    bottomPadding: 60
 
     closePolicy: Popup.NoAutoClose | Popup.CloseOnEscape
 
@@ -34,6 +35,9 @@ CustomDialog {
     }
 
     contentItem: Item {
+        Layout.leftMargin: 40
+        Layout.rightMargin: 40
+        Layout.bottomMargin: 60
         ColumnLayout {
             spacing:    0
             RowLayout {
@@ -43,8 +47,6 @@ CustomDialog {
                     horizontalAlignment:    Text.AlignHCenter
                     leftPadding:            30
                     font.pixelSize:         18
-                    font.styleName:         "Bold"
-                    font.weight:            Font.Bold
                     color:                  Style.content_main
                     text: shouldVerify ? 
                         //% "Payment proof verification"

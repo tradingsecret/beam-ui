@@ -35,7 +35,7 @@ CustomDialog {
 
     header: SFText {
         text: control.title
-        topPadding: 30
+        topPadding: 60
         visible: control.title.length > 0
         horizontalAlignment : Text.AlignHCenter
         font.pixelSize: 18
@@ -66,7 +66,7 @@ CustomDialog {
                 height: 40
                 leftPadding: 30
                 rightPadding: 30
-                bottomPadding: 30
+                bottomPadding: 60
                 CustomButton {
                     id: cancelButton
                     focus: true

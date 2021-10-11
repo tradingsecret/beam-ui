@@ -5,8 +5,8 @@ import "."
 
 Dialog { 
     //topPadding: 20
-    leftPadding: 20
-    rightPadding: 20
+    leftPadding: 40
+    rightPadding: 40
     bottomPadding: 20
     //width: 584
     //height: 340
@@ -24,7 +24,7 @@ Dialog {
             anchors.fill: parent
 
             source: {
-                 "qrc:/assets/popup.png"
+                 "qrc:/assets/popup-window.png"
             }
         }
     }

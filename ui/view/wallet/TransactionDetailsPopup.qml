@@ -74,7 +74,7 @@ CustomDialog {
 
     header: ColumnLayout {
         SFText {
-            Layout.topMargin: 60
+            Layout.topMargin: 90
             Layout.alignment: Qt.AlignHCenter
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 18
@@ -646,16 +646,16 @@ CustomDialog {
 
 
             Item {
-                height: 40
+                height: 100
             }
         }
     }
 
     footer: ColumnLayout {
+
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
-            Layout.bottomMargin: 60
-            Layout.topMargin: 60
+            //Layout.topMargin: 60
             spacing: 20
 
             CustomButton {
@@ -663,6 +663,10 @@ CustomDialog {
                 text:               qsTrId("general-close")
                 onClicked:          dialog.close()
             }
+        }
+
+        Item {
+            height: 80
         }
     }
 

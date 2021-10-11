@@ -1956,10 +1956,11 @@ Item
                         okButtonText: qsTrId("general-proceed")
                         cancelButtonVisible: true
                         width: 460
-                        height: 195
+                        height: 250
                         contentItem: Column {
                             anchors.fill: parent
                             anchors.margins: 30
+                            anchors.topMargin: 60
                             spacing: 20
 
                             SFText {
