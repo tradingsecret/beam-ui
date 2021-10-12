@@ -500,7 +500,8 @@ Control {
 
                 //% "Coin"
                 title:     qsTrId("general-coin")
-                width:     100
+                //width:     100
+                width:     130 * transactionsTable.columnResizeRatio
                 movable:   false
                 resizable: false
                 elideMode:  Text.ElideNone
@@ -531,7 +532,8 @@ Control {
                 //% "Amount"
                 title:     qsTrId("general-amount")
                 elideMode: Text.ElideRight
-                width:     115 * transactionsTable.columnResizeRatio
+                //width:     115 * transactionsTable.columnResizeRatio
+                width: 130 * transactionsTable.columnResizeRatio
                 movable:   false
                 resizable: false
 
@@ -561,7 +563,7 @@ Control {
                 }}
             }
 
-            TableViewColumn {
+            /*TableViewColumn {
                 role: "amountSecondCurrency"
 
                 title:     [tableViewModel.rateUnit || "USD",
@@ -594,7 +596,7 @@ Control {
                         }
                     }
                 }}
-            }
+            }*/
 
             TableViewColumn {
                 role: "source"
@@ -616,7 +618,8 @@ Control {
                 //% "Created on"
                 title:      qsTrId("wallet-txs-date-time")
                 elideMode:  Text.ElideRight
-                width:      105 * transactionsTable.columnResizeRatio
+                //width:      105 * transactionsTable.columnResizeRatio
+                width: 130 * transactionsTable.columnResizeRatio
                 movable:    false
                 resizable:  false
             }
@@ -626,7 +629,8 @@ Control {
                 role: "status"
                 //% "Status"
                 title: qsTrId("general-status")
-                width: transactionsTable.getAdjustedColumnWidth(statusColumn) // 100 * transactionsTable.columnResizeRatio
+                // width: transactionsTable.getAdjustedColumnWidth(statusColumn) // 100 * transactionsTable.columnResizeRatio
+                width: 130 * transactionsTable.columnResizeRatio
                 movable: false
                 resizable: false
                 delegate: Item {

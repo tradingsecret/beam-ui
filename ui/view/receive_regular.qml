@@ -192,7 +192,7 @@ ColumnLayout {
                     CustomButton {
                         id: backBtn
                         Layout.alignment: Qt.AlignTop | Qt.AlignRight
-                        Layout.leftMargin: 65
+                        Layout.leftMargin: 115
 
                         //anchors.verticalCenter: parent.verticalCenter
                         anchors.left:   parent.right

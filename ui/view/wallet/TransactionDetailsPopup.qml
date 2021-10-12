@@ -163,7 +163,7 @@ CustomDialog {
                 }
                 CustomToolButton {
                     Layout.alignment: Qt.AlignRight
-                    icon.source: "qrc:/assets/icon-copy.svg"
+                    icon.source: "qrc:/assets/copy-icon.png"
                     onClicked: textCopied(sendAddressField.text)
                     padding: 0
                     background.implicitHeight: 16
@@ -191,7 +191,7 @@ CustomDialog {
                 }
                 CustomToolButton {
                     Layout.alignment: Qt.AlignRight
-                    icon.source: "qrc:/assets/icon-copy.svg"
+                    icon.source: "qrc:/assets/copy-icon.png"
                     onClicked: textCopied(senderIdentityField.text)
                     padding: 0
                     background.implicitHeight: 16
@@ -220,7 +220,7 @@ CustomDialog {
                 }
                 CustomToolButton {
                     Layout.alignment:Qt.AlignRight
-                    icon.source: "qrc:/assets/icon-copy.svg"
+                    icon.source: "qrc:/assets/copy-icon.png"
                     onClicked: textCopied(receiveAddressField.text)
                     padding: 0
                     background.implicitHeight: 16
@@ -248,7 +248,7 @@ CustomDialog {
                 }
                 CustomToolButton {
                     Layout.alignment: Qt.AlignRight
-                    icon.source: "qrc:/assets/icon-copy.svg"
+                    icon.source: "qrc:/assets/copy-icon.png"
                     onClicked: textCopied(receiverIdentityField.text)
                     padding: 0
                     background.implicitHeight: 16
@@ -367,7 +367,7 @@ CustomDialog {
                         }
                         CustomToolButton {
                             Layout.alignment: Qt.AlignRight | Qt.AlignTop
-                            icon.source: "qrc:/assets/icon-copy.svg"
+                            icon.source: "qrc:/assets/copy-icon.png"
                             onClicked: textCopied(dialog.assetIDs[index])
                             visible: dialog.assetIDs[index] != "0"
                             padding: 0
@@ -455,7 +455,7 @@ CustomDialog {
                 }
                 CustomToolButton {
                     Layout.alignment: Qt.AlignRight
-                    icon.source: "qrc:/assets/icon-copy.svg"
+                    icon.source: "qrc:/assets/copy-icon.png"
                     onClicked: textCopied(cidText.text)
                     padding: 0
                     background.implicitHeight: 16
@@ -510,7 +510,7 @@ CustomDialog {
                 }
                 CustomToolButton {
                     Layout.alignment: Qt.AlignTop | Qt.AlignRight
-                    icon.source: "qrc:/assets/icon-copy.svg"
+                    icon.source: "qrc:/assets/copy-icon.png"
                     onClicked: textCopied(transactionID.text)
                     padding: 0
                     background.implicitHeight: 16
@@ -537,7 +537,7 @@ CustomDialog {
                 }
                 CustomToolButton {
                     Layout.alignment: Qt.AlignRight
-                    icon.source: "qrc:/assets/icon-copy.svg"
+                    icon.source: "qrc:/assets/copy-icon.png"
                     onClicked: textCopied(kernelID.text)
                     padding: 0
                     background.implicitHeight: 16
@@ -637,7 +637,7 @@ CustomDialog {
 
                 CustomToolButton {
                     Layout.alignment: Qt.AlignTop | Qt.AlignRight
-                    icon.source: "qrc:/assets/icon-copy.svg"
+                    icon.source: "qrc:/assets/copy-icon.png"
                     onClicked: textCopied(paymentInfo ? paymentInfo.paymentProof : "")
                     padding: 0
                     background.implicitHeight: 16

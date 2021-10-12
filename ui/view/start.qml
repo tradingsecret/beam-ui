@@ -48,7 +48,7 @@ Item
         cancelButtonVisible: false
         width: 460
         height: contentItem.implicitHeight + footer.implicitHeight
-        padding: 0
+        topPadding: 30
 
         contentItem: Column {
             width: parent.width
@@ -68,7 +68,8 @@ Item
 
             SFText {
                 id: restoreWalletConfirmationMessage
-                padding: 30
+                padding: 20
+                bottomPadding: 40
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment : Text.AlignHCenter
                 width: parent.width
@@ -95,7 +96,7 @@ Item
         cancelButtonVisible: false
         width: 460
         height: contentItem.implicitHeight + footer.implicitHeight + 60
-        padding: 0
+        topPadding: 30
 
         contentItem: Column {
             width: parent.width
@@ -134,6 +135,11 @@ Item
                 color: Style.content_main
                 font.pixelSize: 14
                 wrapMode: Text.Wrap
+            }
+
+            Item {
+                height: 30
+                width: parent.width
             }
         }
         onAccepted: {

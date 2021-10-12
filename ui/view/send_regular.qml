@@ -127,7 +127,7 @@ ColumnLayout {
                     CustomButton {
                         id: backBtn
                         Layout.alignment: Qt.AlignTop | Qt.AlignRight
-                        Layout.leftMargin: 65
+                        Layout.leftMargin: 115
 
                         //anchors.verticalCenter: parent.verticalCenter
                         anchors.left:   parent.right
@@ -224,12 +224,13 @@ ColumnLayout {
 
                                 Layout.fillWidth:  true
                                 id:                tokenInput
-                                font.pixelSize:    14
+                                font.pixelSize:    18
+                                font.italic:       false
                                 dottedBorder:      true
                                 dottedBorderColor: '#616360'
-                                color:             tokenError ? Style.validator_error : Style.content_main
+                                color:             '#bb69dd' //tokenError ? Style.validator_error : Style.content_main
                                 backgroundColor:   tokenError ? Style.validator_error : Style.content_main
-                                font.italic :      tokenError
+                                //font.italic :      tokenError
                                 text:              viewModel.token
                                 validator:         RegExpValidator { regExp: /[0-9a-zA-Z]{1,}/ }
                                 selectByMouse:     true
@@ -550,7 +551,7 @@ ColumnLayout {
                         content: ColumnLayout {
                             SFTextInput {
                                 id:                addressComment
-                                font.pixelSize:    14
+                                font.pixelSize:    18
                                 Layout.fillWidth:  true
                                 dottedBorder:      true
                                 dottedBorderColor: '#616360'

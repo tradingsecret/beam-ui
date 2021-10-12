@@ -17,6 +17,10 @@ Item {
         id: viewModelSwap
     }
 
+    AssetsViewModel {
+        id: viewModelAssets
+    }
+
     property string openedTxID: ""
     
     function onAccepted() { walletStackView.pop(); }
@@ -196,6 +200,164 @@ Item {
                         Utils.getFaucet();
                     }
                     width: 420
+                }
+            }
+
+            RowLayout {
+                visible: false
+                Layout.fillWidth: true
+
+                ColumnLayout {
+                    width: parent.width / 2
+
+
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                Repeater {
+                    model: viewModelAssets.assets
+                    Layout.topMargin: 30
+
+                    Grid {
+                        columns: 2
+                        visible: index == 0
+                        anchors.top: parent.top
+                        anchors.right: parent.right
+
+                        Row {
+                            //Layout.topMargin: 30
+
+                            SFText {
+                                Layout.alignment: Qt.AlignLeft
+                                rightPadding: 20
+                                text: "Available:"
+                                color: '#5fe795'
+                                font.pixelSize: 16
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        Row {
+                            //Layout.topMargin: 30
+
+                            SFText {
+                                Layout.alignment: AlignLeft
+                                text: model.amount + ' ARC'
+                                color: '#5fe795'
+                                font.pixelSize: 16
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        /*
+                        Row {
+                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                            spacing: 20
+                            visible: true
+
+                            SFText {
+                                text: "Regular:"
+                                color: '#5fe795'
+                                font.pixelSize: 16
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        Row {
+                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                            spacing: 20
+                            visible: true
+
+                            SFText {
+                                text: model.amountRegular + ' ARC'
+                                color: '#5fe795'
+                                font.pixelSize: 30
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        Row {
+                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                            spacing: 20
+                            visible: true
+
+                            SFText {
+                                text: "Anonymous:"
+                                color: '#5fe795'
+                                font.pixelSize: 16
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        Row {
+                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                            spacing: 20
+                            visible: true
+
+                            SFText {
+                                text: model.amountShielded + ' ARC'
+                                color: '#5fe795'
+                                font.pixelSize: 30
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        Row {
+                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                            spacing: 20
+                            visible: true
+
+                            SFText {
+                                text: "Locked:"
+                                color: '#5fe795'
+                                font.pixelSize: 16
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        Row {
+                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                            spacing: 20
+                            visible: true
+
+                            SFText {
+                                text: model.locked + ' ARC'
+                                color: '#5fe795'
+                                font.pixelSize: 30
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        Row {
+                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                            spacing: 20
+                            visible: true
+
+                            SFText {
+                                text: "Maturing:"
+                                color: '#5fe795'
+                                font.pixelSize: 16
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        Row {
+                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
+                            spacing: 20
+                            visible: true
+
+                            SFText {
+                                text: model.maturingRegular + ' ARC'
+                                color: '#5fe795'
+                                font.pixelSize: 30
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+                        */
+                    }
                 }
             }
 
