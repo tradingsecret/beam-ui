@@ -95,7 +95,10 @@ ColumnLayout {
             width: scrollView.availableWidth
 
             RowLayout {
+                width: 440
+
                 ColumnLayout {
+                    Layout.leftMargin: 10
                     Row {
                         Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                         Layout.topMargin: 30
@@ -129,10 +132,10 @@ ColumnLayout {
                     CustomButton {
                         id: backBtn
                         Layout.alignment: Qt.AlignTop | Qt.AlignRight
-                        Layout.leftMargin: 115
+                        Layout.leftMargin: 75
 
                         //anchors.verticalCenter: parent.verticalCenter
-                        anchors.left:   parent.right
+                        //anchors.left:   parent.right
 
                         palette.button: "transparent"
                         leftPadding:    0
@@ -159,10 +162,11 @@ ColumnLayout {
             Row {
                 Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 Layout.topMargin: 25
-                spacing: 20
+                spacing: 40
+                width: 440
 
                 CustomButton {
-                    height: 38
+                    height: 43
                     id: sendButton
                     palette.button: Style.accent_outgoing
                     palette.buttonText: Style.content_opposite
@@ -177,7 +181,7 @@ ColumnLayout {
                 }
 
                 CustomButton {
-                    height: 38
+                    height: 43
                     palette.button: Style.accent_incoming
                     palette.buttonText: Style.content_opposite
                     //% "Receive"
@@ -219,6 +223,7 @@ ColumnLayout {
                         title:            qsTrId("general-send-to")
                         Layout.fillWidth: true
                         backgroundColor: 'transparent'
+                        leftPadding: 0
                         content: ColumnLayout {
                             spacing: 0
                             SFTextInput {
@@ -292,6 +297,7 @@ ColumnLayout {
                         //width: parent.width
                         Layout.fillWidth: true
                         backgroundColor: 'transparent'
+                        leftPadding: 0
 
                         content: ColumnLayout {
                             spacing: 0
@@ -454,6 +460,7 @@ ColumnLayout {
                         padding:                 20
                         topPadding:              10
                         Layout.alignment:  Qt.AlignHCenter
+                        leftPadding: 0
 
                         background: Rectangle {
                             radius: 10
@@ -550,6 +557,7 @@ ColumnLayout {
                         Layout.fillWidth:       true
                         //folded:                 true
                         backgroundColor: 'transparent'
+                        rightPadding: 0
 
                         content: ColumnLayout {
                             SFTextInput {
@@ -579,6 +587,7 @@ ColumnLayout {
                         Layout.fillWidth: true
                         visible: viewModel.canChoose
                         backgroundColor: 'transparent'
+                        rightPadding: 0
 
                         content: ColumnLayout {
                             spacing: 20

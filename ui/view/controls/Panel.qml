@@ -15,6 +15,7 @@ Pane {
     spacing: 0
     padding: 20
 
+
     contentItem: Item {
         ColumnLayout {
             spacing: 0

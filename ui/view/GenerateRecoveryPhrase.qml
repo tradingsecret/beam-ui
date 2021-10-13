@@ -133,7 +133,7 @@ Component {
 
                 PrimaryButton {
                     //% "I will do it later"
-                    text: qsTrId("general-do-later")
+                    text: "          " + qsTrId("general-do-later") + "          "
                     font.capitalization: Font.AllUppercase
                     visible: !seedValidationHelper.isSeedValidatiomMode
                     onClicked: {

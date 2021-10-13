@@ -84,7 +84,7 @@ Button {
         color:      "transparent"
         //radius:  control.radius
         //color:   control.palette.button
-        border.color: customBorderColor ? customBorderColor : (hovered ? '#5fe795' : '#d2bdff')
+        border.color: customBorderColor ? customBorderColor : (hovered ? '#1aa853' : '#d2bdff')
         border.width: disableBorders ? 0 : 2
         radius: 4
         //AnimatedImage {

@@ -21,7 +21,7 @@ T.ProgressBar {
     Item {
         id: content_id
         implicitWidth: 200
-        implicitHeight: 10
+        implicitHeight: 13
         Rectangle {
             radius: 0
             scale: control.mirrored ? -1 : 1
@@ -34,9 +34,9 @@ T.ProgressBar {
     background: Rectangle {
         id: background_id
         implicitWidth: 400
-        implicitHeight: 10
+        implicitHeight: 13
         y: (control.height - height) / 2
-        height: 10
+        height: 13
         radius: 0
         border.color: Style.background_second
         color: Qt.rgba(133, 156, 162, 0.5) // "transparent"

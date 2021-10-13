@@ -209,7 +209,7 @@ Rectangle {
                             id: menu_item
                             leftPadding: 15
                             rightPadding: 15
-                            topPadding: 20
+                            topPadding: 15
                             bottomPadding: 20
                             text:             modelData.title
                             font.pixelSize: 14
@@ -253,7 +253,7 @@ Rectangle {
                             Rectangle {
                                 id: indicator
                                 anchors.fill: menu_item
-                                y: 45
+                                y: 43
                                 height: 3
                                 width: menu_item.width
                                 color: selectedItem == index ? '#5fe795' : Style.passive
@@ -285,7 +285,7 @@ Rectangle {
         //}
 
         Rectangle {
-            Layout.topMargin: 43
+            Layout.topMargin: 41
             width: parent.parent.width
             Layout.fillWidth: true
             height: 1
@@ -296,7 +296,7 @@ Rectangle {
     Loader {
         id: content
         anchors.topMargin: 45
-        anchors.bottomMargin: 45
+        anchors.bottomMargin: 49
         anchors.rightMargin: 40
         anchors.leftMargin: 40
         focus: true
@@ -314,7 +314,7 @@ Rectangle {
         }
 
         RowLayout {
-            anchors.bottomMargin: 10
+            Layout.bottomMargin: 5
 
             ColumnLayout {
                 Image {
@@ -334,7 +334,7 @@ Rectangle {
             }
 
             ColumnLayout {
-                Layout.bottomMargin: 10
+                Layout.bottomMargin: 3
                 Image {
                     Layout.alignment: Qt.AlignVCenter
 
@@ -345,7 +345,7 @@ Rectangle {
             }
 
             ColumnLayout {
-                Layout.bottomMargin: 10
+                Layout.bottomMargin: 3
                 SFText {
                     Layout.alignment: Qt.AlignVCenter
 
@@ -359,7 +359,7 @@ Rectangle {
             }
 
             ColumnLayout {
-                Layout.bottomMargin: 10
+                Layout.bottomMargin: 3
                 Image {
                     Layout.alignment: Qt.AlignVCenter
 
@@ -370,7 +370,7 @@ Rectangle {
             }
 
             ColumnLayout {
-                Layout.bottomMargin: 10
+                Layout.bottomMargin: 3
                 SFText {
                     Layout.alignment: Qt.AlignVCenter
 

@@ -136,7 +136,7 @@ Item
         CustomProgressBar {
             Layout.alignment: Qt.AlignHCenter
             //Layout.topMargin: startLayout.isSqueezedHeight ? 10 : 24
-            Layout.bottomMargin: 150
+            //Layout.bottomMargin: 150
             id: bar
             value: viewModel.progress
         }

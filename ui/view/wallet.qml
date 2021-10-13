@@ -130,6 +130,7 @@ Item {
             Row {
                 Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 Layout.topMargin: 30
+                Layout.leftMargin: 10
                 spacing: 20
                 visible: true
 
@@ -144,6 +145,7 @@ Item {
             Row {
                 Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 Layout.topMargin: 10
+                Layout.leftMargin: 10
                 spacing: 20
                 visible: true
 
@@ -158,10 +160,10 @@ Item {
             Row {
                 Layout.alignment: Qt.AlignTop | Qt.AlignLeft
                 Layout.topMargin: 30
-                spacing: 20
+                spacing: 40
 
                 CustomButton {
-                    height: 38
+                    height: 45
                     id: sendButton
                     palette.button: Style.accent_outgoing
                     palette.buttonText: Style.content_opposite
@@ -174,7 +176,7 @@ Item {
                 }
 
                 CustomButton {
-                    height: 38
+                    height: 45
                     palette.button: Style.accent_incoming
                     palette.buttonText: Style.content_opposite
                     //% "Receive"
@@ -191,7 +193,7 @@ Item {
                 Layout.topMargin: 15
 
                 CustomButton {
-                    height: 38
+                    height: 45
                     palette.button: Style.accent_incoming
                     palette.buttonText: Style.content_opposite
                     //% "Receive"
@@ -199,7 +201,7 @@ Item {
                     onClicked: {
                         Utils.getFaucet();
                     }
-                    width: 420
+                    width: 440
                 }
             }
 
