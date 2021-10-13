@@ -279,20 +279,23 @@ ColumnLayout {
                         backgroundColor: 'transparent'
 
                         content: ColumnLayout {
-                            spacing: 12
+                            Layout.alignment:       Qt.AlignTop
+                            //spacing: 12
 
                             RowLayout {
+                                Layout.alignment:       Qt.AlignTop
                                 spacing: 0
-                                Layout.topMargin: -3
+                                Layout.topMargin: -5
 
                                 ColumnLayout {
+                                    Layout.alignment:       Qt.AlignTop
                                     id: controlCopy
                                     spacing: 0
 
                                     Layout.fillWidth:   true
-                                    Layout.alignment:   Qt.AlignVCenter
+                                    //Layout.alignment:   Qt.AlignVCenter
 
-                                    SFText {
+                                    /*SFText {
                                         Layout.fillWidth:   true
                                         text:  control.isShieldedSupported ? viewModel.token : viewModel.sbbsAddress
                                         width: parent.width
@@ -300,40 +303,49 @@ ColumnLayout {
                                         elide: Text.ElideMiddle
                                         font.pixelSize: 18
                                         color:          '#bb69dd'
-                                    }
+                                    }*/
 
-                                    Rectangle {
-                                            id: backgroundRect
-                                            //y: 20
-                                            height: 0
-                                            //width: control.width - (control.leftPadding + control.rightPadding)
-                                            //height: dottedBorder ? 0 : 1 //control.activeFocus || control.hovered ? 1 : 1
-                                            //opacity: dottedBorder ? 1 : ((control.activeFocus || control.hovered)? 0.3 : 0.1)
-                                            anchors.fill: parent
-                                            color: 'transparent'
+                                    SFTextInput {
+                                        property bool tokenError:  viewModel.token && !viewModel.tokenValid
 
-                                            Shape {
-                                                anchors.fill: parent
+                                        Layout.fillWidth:  true
+                                        id:                tokenOutput
+                                        font.pixelSize:    18
+                                        font.italic:       false
+                                        dottedBorder:      true
+                                        readOnly:          true
+                                        dottedBorderColor: '#616360'
+                                        color:             '#bb69dd' //tokenError ? Style.validator_error : Style.content_main
+                                        backgroundColor:   tokenError ? Style.validator_error : Style.content_main
+                                        //font.italic :      tokenError
+                                        text:              viewModel.token
+                                        validator:         RegExpValidator { regExp: /[0-9a-zA-Z]{1,}/ }
+                                        selectByMouse:     true
 
-                                                ShapePath {
-                                                    strokeColor: "#616360"
-                                                    strokeWidth: 2
-                                                    strokeStyle: ShapePath.DashLine
-                                                    startX: 0
-                                                    startY: 23
-                                                    PathLine { x: backgroundRect.width; y: 23 }
-                                                }
-                                                visible: true
+                                        //% "Paste recipient address here"
+                                        placeholderText:  qsTrId("send-contact-address-placeholder")
+                                        onTextChanged: function () {
+                                            var isSwap = BeamGlobals.isSwapToken(text)
+                                            if (isSwap && typeof onSwapToken == "function") {
+                                                onSwapToken(text);
                                             }
                                         }
+                                    }
+
+                                    Binding {
+                                        target:   viewModel
+                                        property: control.isShieldedSupported ? "token" : "sbbsAddress"
+                                        value:    tokenInput.tokenOutput
+                                    }
                                 }
+
 
                                 Image {
                                     Layout.alignment: Qt.AlignVCenter
-                                    Layout.topMargin: 5
+                                    //Layout.topMargin: 5
 
                                     source: "qrc:/assets/copy-icon.png"
-                                    sourceSize: Qt.size(32, 32)
+                                    sourceSize: Qt.size(24, 24)
                                     //opacity: control.isValid() ? 1.0 : 0.45
 
                                     MouseArea {

@@ -49,10 +49,10 @@ Rectangle
         }
 
         Image {
-            Layout.topMargin: -100
+            //Layout.topMargin: -100
             source:  "qrc:/assets/copyright.png"
             Layout.alignment: Qt.AlignHCenter
-            Layout.bottomMargin: 70
+            Layout.bottomMargin: 30
         }
     }
 }

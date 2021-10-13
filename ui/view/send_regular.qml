@@ -87,7 +87,9 @@ ColumnLayout {
         Layout.bottomMargin: 10
         clip:                true
         ScrollBar.horizontal.policy: ScrollBar.AlwaysOff
-        ScrollBar.vertical.policy:   ScrollBar.AsNeeded
+        ScrollBar.vertical.policy:   ScrollBar.AlwaysOff
+        ScrollBar.vertical.interactive: false
+        wheelEnabled: false
 
         ColumnLayout {
             width: scrollView.availableWidth
@@ -450,6 +452,7 @@ ColumnLayout {
                     Pane {
                         //Layout.fillWidth:        true
                         padding:                 20
+                        topPadding:              10
                         Layout.alignment:  Qt.AlignHCenter
 
                         background: Rectangle {
@@ -490,7 +493,7 @@ ColumnLayout {
 
                     CustomButton {
                         Layout.alignment:  Qt.AlignHCenter
-                        Layout.topMargin:  30
+                        Layout.topMargin:  0
                         customColor:       '#5fe795'
                         customBorderColor: '#5fe795'
                         //% "Send"

@@ -1,5 +1,23 @@
 install visual studio 2019
 
+## install
+BOOST_ROOT
+C:\Users\user\Documents\boost_prebuild
+
+QT5_ROOT_DIR
+C:\Qt\5.15.2\msvc2019_64
+
+QML_IMPORT_PATH
+%QT5_ROOT_DIR%\qml
+
+OPENSSL_ROOT_DIR
+C:\Users\user\Documents\beam-libs\openssl
+
+ADD TO PATH
+C:\Qt\5.15.2\msvc2019_64\bin
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin
+C:\cygwin64\bin
+
 #set command lines arguments.
 -Wno-dev -DOPENSSL_ROOT_DIR=C:/Users/user/Documents/beam-libs/openssl -DCMAKE_CONFIGURATION_TYPES:STRING=RelWithDebInfo -DBEAM_LINK_TYPE=Static -DBEAM_USE_STATIC_QT=FALSE -DBRANCH_NAME=master -DBEAM_HW_WALLET=Off
 
@@ -8,3 +26,6 @@ RelWithDebugInfo
 
 #cpack
 cpack --verbose -G NSIS -C RelWithDebugInfo
+
+
+
