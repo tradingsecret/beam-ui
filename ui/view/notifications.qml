@@ -36,7 +36,7 @@ ColumnLayout {
         visible: notificationList.model.count == 0
 
         SFText {
-            Layout.topMargin:     43
+            Layout.topMargin:     48
             Layout.bottomMargin:  20
             Layout.alignment:     Qt.AlignHCenter
             horizontalAlignment:  Text.AlignHCenter
@@ -66,9 +66,10 @@ ColumnLayout {
     }
 
     ColumnLayout {
+        visible: notificationList.model.count > 0
 
         SFText {
-            Layout.topMargin:     43
+            Layout.topMargin:     48
             Layout.bottomMargin:  20
             Layout.alignment:     Qt.AlignHCenter
             horizontalAlignment:  Text.AlignHCenter
@@ -85,14 +86,17 @@ ColumnLayout {
                 //Layout.topMargin: 2
                 Layout.margins: 15
                 Layout.rightMargin: 5
+                Layout.bottomMargin: 0
 
                 ListView {
                     id: notificationList
                     Layout.fillWidth: true
-                    Layout.fillHeight: true
-                    visible: notificationList.model.count > 0
+                    Layout.fillHeight: notificationList.model.count <= notificationList.loadedCnt
+                    height: 525
                     boundsMovement: Flickable.StopAtBounds
                     boundsBehavior: Flickable.StopAtBounds
+
+                    property var loadedCnt: 5
 
                     model: SortFilterProxyModel {
                         source: viewModel.notifications
@@ -151,9 +155,11 @@ ColumnLayout {
                     }*/
 
                     delegate: Item {
+                        id: notification_item
+                        visible: index+1 <= notificationList.loadedCnt
                         anchors.left: parent ? parent.left : 0
                         anchors.right: parent ? parent.right : 500
-                        height: 121+10
+                        height: index+1 <= notificationList.loadedCnt ? 121+10 : 0
 
                         property bool isUnread: model.state == "unread"
 
@@ -173,9 +179,7 @@ ColumnLayout {
                             Image {
                                 anchors.fill: parent
                                 fillMode: Image.Stretch
-                                source: {
-                                    isUnread ? "qrc:/assets/notify-bg-unread.png" : "qrc:/assets/notify-bg-read.png"
-                                }
+                                source: notification_item.isUnread ? "qrc:/assets/notify-bg-unread.png" : "qrc:/assets/notify-bg-read.png"
                             }
                         }
 
@@ -381,6 +385,61 @@ ColumnLayout {
                         }
                     }
                 }
+            }
+
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+
+            CustomButton {
+                id:             loadMoreButton
+                Layout.alignment: Qt.AlignHCenter
+                Layout.topMargin: -18
+                visible: notificationList.model.count > notificationList.loadedCnt
+
+                height: 36
+                palette.button: Style.background_second
+                palette.buttonText : Style.content_main
+                text: 'Load more'//getActionButtonLabel(type)
+                font.pixelSize: 18
+                customColor: '#b4b4b4'
+
+                border.color: '#b6f4ce'
+                border.width: 1
+
+                hasShadow: false
+                disableRadius: true
+                radius: 0
+
+                background: Rectangle {
+                    color:      "transparent"
+
+                    Image {
+                        anchors.fill: parent
+                        fillMode: Image.Stretch
+                        source: {
+                             loadMoreButton.hovered ? "qrc:/assets/load-more-hover.png" :  "qrc:/assets/load-more-default.png"
+                        }
+                    }
+                }
+
+                //visible: getActionButtonLabel(type) != undefined
+                //enabled: control.notifications[type].action != null
+
+                onClicked: {
+                    if (notificationList.model.count - notificationList.loadedCnt >= 5) {
+                        notificationList.loadedCnt = notificationList.loadedCnt + 5;
+                    }
+                    else {
+                        notificationList.loadedCnt = notificationList.loadedCnt + (notificationList.model.count - notificationList.loadedCnt);
+                    }
+                }
+            }
+
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
             }
 
             Rectangle {

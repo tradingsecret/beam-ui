@@ -399,7 +399,10 @@
 		<file>assets/anonymity-icon.png</file>
 		<file>assets/completed-icon.png</file>
 		<file>assets/notify-bg-read.png</file>
+		<file>assets/notify-bg-unread.png</file>
 		<file>assets/show-info-default.png</file>
 		<file>assets/show-info-hover.png</file>
+		<file>assets/load-more-default.png</file>
+		<file>assets/load-more-hover.png</file>
     </qresource>
 </RCC>
