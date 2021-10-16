@@ -24,6 +24,9 @@ C:\cygwin64\bin
 #build type
 RelWithDebugInfo
 
+#install nsis
+https://nsis.sourceforge.io/Download
+
 #cpack
 cpack --verbose -G NSIS -C RelWithDebugInfo
 

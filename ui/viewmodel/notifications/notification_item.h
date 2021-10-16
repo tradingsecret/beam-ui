@@ -34,6 +34,9 @@ public:
     beam::wallet::Notification::State getState() const;
     QString title() const;
     QString message(AssetsManager::Ptr amgr) const;
+    QString amount(AssetsManager::Ptr amgr) const;
+    QString coin(AssetsManager::Ptr amgr) const;
+    QString wallet(AssetsManager::Ptr amgr) const;
     QString type() const;
     QString state() const;
     beam::Asset::ID assetId() const;

@@ -15,25 +15,8 @@ ColumnLayout {
     NotificationsViewModel {
         id: viewModel
     }
-
-    Title {
-        //% "Notifications"
-        text: qsTrId("notifications-title")
-    }
-
-/*
-    StatusBar {
-        id: status_bar
-        model: statusbarModel
-        z: 33
-    }
-*/
-    StatusBarDemo {
-        id: status_bar_demo
-        z: 33
-    }
     
-    CustomButton {
+    /*CustomButton {
         Layout.alignment: Qt.AlignRight | Qt.AlignTop
         Layout.preferredHeight: 38
         Layout.bottomMargin: 10
@@ -46,244 +29,365 @@ ColumnLayout {
         onClicked: {
             viewModel.clearAll();
         }
-    }
+    }*/
 
     ColumnLayout {
         Layout.fillWidth: true
         visible: notificationList.model.count == 0
 
-        SvgImage {
-            Layout.topMargin: 80
-            Layout.alignment: Qt.AlignHCenter
-            source:     "qrc:/assets/icon-notifications.svg"
-            sourceSize: Qt.size(60, 60)
-        }
-
         SFText {
-            Layout.topMargin:     30
+            Layout.topMargin:     43
+            Layout.bottomMargin:  20
             Layout.alignment:     Qt.AlignHCenter
             horizontalAlignment:  Text.AlignHCenter
-            font.pixelSize:       14
-            color:                Style.content_main
-            opacity:              0.5
-            lineHeight:           1.43
+            font.capitalization:  Font.AllUppercase
+            font.pixelSize:       18
+            color:                'white'
+            //lineHeight:           1.43
             /*% "There are no notifications yet."*/
-            text:                 qsTrId("notifications-empty")
+            text:                 "All notifies"
         }
 
-        Item {
+        ColumnLayout {
             Layout.fillWidth: true
-            Layout.fillHeight: true
+
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+
+            Rectangle {
+                anchors.fill: parent
+                border.color: '#112a26'
+                border.width: 1
+                color: 'transparent'
+            }
         }
     }
 
-    ListView {
-        id: notificationList
-        Layout.fillWidth: true
-        Layout.fillHeight: true
-        visible: notificationList.model.count > 0 
-        boundsMovement: Flickable.StopAtBounds
-        boundsBehavior: Flickable.StopAtBounds
+    ColumnLayout {
 
-        model: SortFilterProxyModel {
-            source: viewModel.notifications
-            sortOrder: Qt.DescendingOrder
-            sortCaseSensitivity: Qt.CaseInsensitive
-            sortRole: "timeCreatedSort"
+        SFText {
+            Layout.topMargin:     43
+            Layout.bottomMargin:  20
+            Layout.alignment:     Qt.AlignHCenter
+            horizontalAlignment:  Text.AlignHCenter
+            font.capitalization:  Font.AllUppercase
+            font.pixelSize:       18
+            color:                'white'
+            //lineHeight:           1.43
+            /*% "There are no notifications yet."*/
+            text:                 "All notifies"
         }
-        spacing: 0 // we emulate spacings with margins to avoid Flickable drag effect
-        clip: true
 
-        //! [transitions]
-        add: Transition {
-            NumberAnimation { property: "opacity"; from: 0; to: 1.0; easing.type: Easing.InOutQuad }
-        }
-        remove: Transition {
-            NumberAnimation { property: "opacity"; to: 0; easing.type: Easing.InOutQuad }
-        }
-        
-        displaced: Transition {
-            SequentialAnimation {
-                PauseAnimation { duration: 125 }
-                NumberAnimation { property: "y"; easing.type: Easing.InOutQuad }
+        ColumnLayout {
+            ColumnLayout {
+                //Layout.topMargin: 2
+                Layout.margins: 15
+                Layout.rightMargin: 5
+
+                ListView {
+                    id: notificationList
+                    Layout.fillWidth: true
+                    Layout.fillHeight: true
+                    visible: notificationList.model.count > 0
+                    boundsMovement: Flickable.StopAtBounds
+                    boundsBehavior: Flickable.StopAtBounds
+
+                    model: SortFilterProxyModel {
+                        source: viewModel.notifications
+                        sortOrder: Qt.DescendingOrder
+                        sortCaseSensitivity: Qt.CaseInsensitive
+                        sortRole: "timeCreatedSort"
+                    }
+                    spacing: 0 // we emulate spacings with margins to avoid Flickable drag effect
+                    clip: true
+
+                    //! [transitions]
+                    add: Transition {
+                        NumberAnimation { property: "opacity"; from: 0; to: 1.0; easing.type: Easing.InOutQuad }
+                    }
+                    remove: Transition {
+                        NumberAnimation { property: "opacity"; to: 0; easing.type: Easing.InOutQuad }
+                    }
+
+                    displaced: Transition {
+                        SequentialAnimation {
+                            PauseAnimation { duration: 125 }
+                            NumberAnimation { property: "y"; easing.type: Easing.InOutQuad }
+                        }
+                    }
+                    //! [transitions]
+
+                    ScrollBar.vertical: ScrollBar {
+                        contentItem: Rectangle {
+                                radius: implicitHeight/2
+                                color: "#307451"
+                                width: 10 // This will be overridden by the width of the scrollbar
+                                height: 10 // This will be overridden based on the size of the scrollbar
+                            }
+
+                            //size: (songGrid.height) / (songGrid.flickableItem.contentItem.height)
+                            width: 10
+                    }
+
+                    section.property: "state"
+                    /*section.delegate: Item {
+                        anchors.left: parent.left
+                        anchors.right: parent.right
+                        property bool isRead: section == "read"
+                        height: isRead ? 24 : 0
+
+                        SFText {
+                            anchors.horizontalCenter: parent.horizontalCenter
+                            anchors.top: parent.top
+                            //% "read"
+                            text: qsTrId("notifications-read")
+                            font.pixelSize: 12
+                            color: Style.section
+                            font.capitalization: Font.AllUppercase
+                            visible: parent.isRead
+                        }
+                    }*/
+
+                    delegate: Item {
+                        anchors.left: parent ? parent.left : 0
+                        anchors.right: parent ? parent.right : 500
+                        height: 121+10
+
+                        property bool isUnread: model.state == "unread"
+
+                        Rectangle {
+                            id: itemRect
+                            anchors.topMargin: index == 0 ? 3 : 0
+                            anchors.bottomMargin: 10
+                            anchors.rightMargin: 20
+                            radius: 0
+                            anchors.fill: parent
+                            //color: parent.isUnread ? '#effdf4' : 'transparent'
+                            color: 'transparent'
+                            //border.color: '#b6f4ce'
+                            //border.width: 0.5
+                            //opacity: (parent.isUnread) ? 0.5 : 1
+
+                            Image {
+                                anchors.fill: parent
+                                fillMode: Image.Stretch
+                                source: {
+                                    isUnread ? "qrc:/assets/notify-bg-unread.png" : "qrc:/assets/notify-bg-read.png"
+                                }
+                            }
+                        }
+
+                        MouseArea { // avoid Flickable drag effect
+                            anchors.fill: parent
+                            onPressed : {
+                                notificationList.interactive = false;
+                            }
+                            onReleased : {
+                                notificationList.interactive = true;
+                            }
+                        }
+
+                        Timer {
+                            id: readTimer
+                            running: parent.isUnread
+                            interval: 10000
+                            onTriggered: {
+                                viewModel.markItemAsRead(model.rawID);
+                            }
+                        }
+
+                        Item {
+                            anchors.fill: itemRect
+
+                            ColumnLayout {
+                                anchors.fill: parent
+                                anchors.topMargin: 20
+                                anchors.bottomMargin: 20
+                                anchors.leftMargin: 20
+                                anchors.rightMargin: actionButton.width + 20
+
+                                spacing: 3
+
+                                RowLayout {
+                                    Layout.bottomMargin: 5
+
+                                    Image {
+                                        fillMode: Image.Stretch
+                                        source: {
+                                             "qrc:/assets/completed-icon.png"
+                                        }
+                                        sourceSize: Qt.size(25, 25)
+                                    }
+
+                                    Item {
+                                        width: 5
+                                    }
+
+                                    SFText {
+                                        text: 'Completed'
+                                        font.capitalization: Font.AllUppercase
+                                        font.pixelSize: 18
+                                        color: '#0b7d3b'
+                                    }
+                                }
+
+                                SFText {
+                                    text: model.amount + " " + model.coin
+                                    font.pixelSize: 18
+                                    color: '#fff'
+                                }
+
+                                SFText {
+                                    text: type == 'maxpReceived' || type == 'maxpSent' || type == 'maxpFailedToSend' ? 'Anonymous transaction' : model.wallet
+                                    font.pixelSize: 18
+                                    color: '#fff'
+                                }
+
+                               /* SFText {
+                                    Layout.fillWidth: true
+                                    text: model.message.charAt(0).toUpperCase() + model.message.slice(1)
+                                    font.pixelSize: 14
+                                    color: Style.content_main
+                                    elide: Text.ElideMiddle
+                                }*/
+
+                                Item {
+                                    Layout.fillHeight: true
+                                }
+                            }
+                        }
+
+                        /*
+                        CustomToolButton {
+                            anchors.top: itemRect.top
+                            anchors.right: itemRect.right
+                            anchors.topMargin: 12
+                            anchors.rightMargin: 12
+                            padding: 0
+
+                            icon.source: "qrc:/assets/icon-cancel-white.svg"
+                            onClicked: {
+                                viewModel.removeItem(model.rawID);
+                            }
+                            onPressed : { // avoid Flickable drag effect
+                                notificationList.interactive = false;
+                            }
+                            onReleased : {
+                                notificationList.interactive = true;
+                            }
+                        }*/
+
+                        ColumnLayout {
+                            anchors.top: itemRect.top
+                            anchors.right: itemRect.right
+                            anchors.topMargin: 10
+                            anchors.rightMargin: 20
+
+                            SFText {
+                                Layout.alignment: Qt.AlignRight
+                                text: dateCreated
+                                font.pixelSize: 16
+                                color: '#767676'
+                                //opacity: 0.5
+                            }
+
+                            SFText {
+                                Layout.alignment: Qt.AlignRight
+                                text: timeCreated
+                                font.pixelSize: 16
+                                color: '#767676'
+                                //opacity: 0.5
+                            }
+                            Item {
+                                Layout.fillWidth: true
+                            }
+                        }
+
+                        Image {
+                            anchors.top: itemRect.top
+                            anchors.right: itemRect.right
+                            anchors.rightMargin: 170
+                            anchors.topMargin: 20
+                            fillMode: Image.Stretch
+                            source: {
+                                 "qrc:/assets/anonymity-icon.png"
+                            }
+                            //sourceSize: Qt.size(25, 25)
+                            visible: type == 'maxpReceived' || type == 'maxpSent' || type == 'maxpFailedToSend'
+                        }
+
+                        CustomButton {
+                            id:             actionButton
+                            anchors.bottom: itemRect.bottom
+                            anchors.right: itemRect.right
+                            anchors.bottomMargin: 20
+                            anchors.rightMargin: 20
+
+                            height: 36
+                            palette.button: Style.background_second
+                            palette.buttonText : Style.content_main
+                            text: 'Show info'//getActionButtonLabel(type)
+                            font.pixelSize: 13
+                            customColor: '#b4b4b4'
+
+                            border.color: '#b6f4ce'
+                            border.width: 1
+
+                            hasShadow: false
+                            disableRadius: true
+                            radius: 0
+
+                            background: Rectangle {
+                                id:         rect
+                                //opacity:    0
+                                color:      "transparent"
+                                //radius:  control.radius
+                                //color:   control.palette.button
+                                //border.color: customBorderColor ? customBorderColor : (hovered ? '#1aa853' : '#d2bdff')
+                                //border.width: disableBorders ? 0 : 2
+                                //radius: disableRadius ? 0 : 4
+                                //AnimatedImage {
+                                //    id: backgroundImage
+                                //     anchors.fill: parent
+                                //    source: "qrc:/assets/button.mp4"
+                                //}
+
+                                Image {
+                                    anchors.fill: parent
+                                    fillMode: Image.Stretch
+                                    source: {
+                                         actionButton.hovered ? "qrc:/assets/show-info-hover.png" :  "qrc:/assets/show-info-default.png"
+                                    }
+                                }
+                            }
+
+                            visible: getActionButtonLabel(type) != undefined
+                            enabled: control.notifications[type].action != null
+
+                            onClicked: {
+                                if (enabled) {
+                                    viewModel.markItemAsRead(model.rawID);
+                                    control.notifications[type].action(model.rawID);
+                                }
+                            }
+                            onPressed : { // avoid Flickable drag effect
+                                notificationList.interactive = false;
+                            }
+                            onReleased : {
+                                notificationList.interactive = true;
+                            }
+                        }
+                    }
+                }
             }
-        }
-        //! [transitions]
-
-        ScrollBar.vertical: ScrollBar {}
-
-        section.property: "state"
-        section.delegate: Item {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            property bool isRead: section == "read" 
-            height: isRead ? 24 : 0
-            
-            SFText {
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.top: parent.top
-                //% "read"
-                text: qsTrId("notifications-read")
-                font.pixelSize: 12
-                color: Style.section
-                font.capitalization: Font.AllUppercase
-                visible: parent.isRead
-            }
-        }
-
-        delegate: Item {
-            anchors.left: parent ? parent.left : 0
-            anchors.right: parent ? parent.right : 500
-            height: 121+10
-
-            property bool isUnread: model.state == "unread" 
 
             Rectangle {
-                id: itemRect
-                anchors.bottomMargin: 10
-                radius: 10
                 anchors.fill: parent
-                color: (parent.isUnread) ? Style.active : Style.background_second
-                opacity: (parent.isUnread) ? 0.1 : 1.0
-            }
-
-            MouseArea { // avoid Flickable drag effect
-                anchors.fill: parent
-                onPressed : {
-                    notificationList.interactive = false;
-                }
-                onReleased : {
-                    notificationList.interactive = true;
-                }
-            }
-
-            Timer {
-                id: readTimer
-                running: parent.isUnread
-                interval: 10000
-                onTriggered: {
-                    viewModel.markItemAsRead(model.rawID);
-                }
-            }
-        
-            Item {
-                anchors.fill: itemRect
-        
-                SvgImage {
-                    anchors.left: parent.left
-                    anchors.leftMargin: 30
-                    anchors.verticalCenter: parent.verticalCenter 
-        
-                    source: getIconSource(type)
-                }
-        
-                ColumnLayout {
-                    anchors.fill: parent
-                    anchors.topMargin: 20
-                    anchors.bottomMargin: 20
-                    anchors.leftMargin: 100
-                    anchors.rightMargin: actionButton.width + 20
-        
-                    spacing: 10
-        
-                    SFText {
-                        text: title
-                        font.pixelSize: 18
-                        color: Style.content_main
-                        font.styleName: "Bold"; font.weight: Font.Bold
-                    }
-        
-                    SFText {
-                        Layout.fillWidth: true
-                        text: model.message.charAt(0).toUpperCase() + model.message.slice(1)
-                        font.pixelSize: 14
-                        color: Style.content_main
-                        elide: Text.ElideMiddle
-                    }
-
-                    Item {
-                        Layout.fillHeight: true
-                    }
-        
-                    RowLayout {
-                        SFText {
-                            Layout.rightMargin: 5
-                            text: dateCreated
-                            font.pixelSize: 12
-                            color: Style.content_main
-                            opacity: 0.5
-                        }
-
-                        SFText {
-                            text: "|"
-                            font.pixelSize: 12
-                            color: Style.content_main
-                            opacity: 0.5
-                        }
-
-                        SFText {
-                            Layout.leftMargin: 5
-                            text: timeCreated
-                            font.pixelSize: 12
-                            color: Style.content_main
-                            opacity: 0.5
-                        }
-                        Item {
-                            Layout.fillWidth: true
-                        }
-
-                    }
-                }
-            }
-        
-            CustomToolButton {
-                anchors.top: itemRect.top
-                anchors.right: itemRect.right
-                anchors.topMargin: 12
-                anchors.rightMargin: 12
-                padding: 0
-        
-                icon.source: "qrc:/assets/icon-cancel-white.svg"
-                onClicked: {
-                    viewModel.removeItem(model.rawID);
-                }
-                onPressed : { // avoid Flickable drag effect
-                    notificationList.interactive = false;
-                }
-                onReleased : {
-                    notificationList.interactive = true;
-                }
-            }
-        
-            CustomButton {
-                id:             actionButton
-                anchors.bottom: itemRect.bottom
-                anchors.right: itemRect.right
-                anchors.bottomMargin: 20
-                anchors.rightMargin: 20
-        
-                height: 38
-                palette.button: Style.background_second
-                palette.buttonText : Style.content_main
-                icon.source: getActionButtonIcon(type).source
-                icon.height: getActionButtonIcon(type).height
-                text: getActionButtonLabel(type)
-        
-                visible: getActionButtonLabel(type) != undefined
-                enabled: control.notifications[type].action != null
-
-                onClicked: {
-                    if (enabled) {
-                        viewModel.markItemAsRead(model.rawID);
-                        control.notifications[type].action(model.rawID);
-                    }
-                }
-                onPressed : { // avoid Flickable drag effect
-                    notificationList.interactive = false;
-                }
-                onReleased : {
-                    notificationList.interactive = true;
-                }
+                border.color: '#112a26'
+                border.width: 1
+                color: 'transparent'
             }
         }
     }

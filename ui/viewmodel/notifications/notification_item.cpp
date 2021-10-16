@@ -326,6 +326,33 @@ QString NotificationItem::title() const
     }
 }
 
+QString NotificationItem::amount(AssetsManager::Ptr amgr) const
+{
+    auto p = getTxParameters(m_notification);
+
+    return getAmount(p);
+}
+
+QString NotificationItem::coin(AssetsManager::Ptr amgr) const
+{
+    auto p = getTxParameters(m_notification);
+
+    auto aid = getAssetId(p);
+    return amgr->getUnitName(aid, AssetsManager::ShortenHtml);
+}
+
+QString NotificationItem::wallet(AssetsManager::Ptr amgr) const
+{
+    using namespace beam::wallet;
+
+    auto p = getTxParameters(m_notification);
+
+    WalletID wid;
+    getPeerID(p, wid);
+
+    return std::to_string(wid).c_str();
+}
+
 QString NotificationItem::message(AssetsManager::Ptr amgr) const
 {
     using namespace beam::wallet;

@@ -396,5 +396,10 @@
 		<file>assets/tx_public-active.png</file>
 		<file>assets/tx_public-default.png</file>
 		<file>assets/copy-icon.png</file>
+		<file>assets/anonymity-icon.png</file>
+		<file>assets/completed-icon.png</file>
+		<file>assets/notify-bg-read.png</file>
+		<file>assets/show-info-default.png</file>
+		<file>assets/show-info-hover.png</file>
     </qresource>
 </RCC>

@@ -17,21 +17,9 @@ RowLayout {
         model: Math.min(3, control.count)
 
         SvgImage {
-            Layout.leftMargin: index == 0 ? 20 : -6
-            source: icons[index]
-            sourceSize: Qt.size(20, 20)
+            Layout.leftMargin: 13
+            sourceSize: Qt.size(0, 0)
             z: -index
-
-             SvgImage {
-                source: "qrc:/assets/icon-verified-asset.svg";
-                visible: verified && verified[index]
-
-                x: parent.width - width / 1.6
-                y: - height / 3.6
-
-                width:  18 * parent.width / 26
-                height: 18 * parent.width / 26
-            }
         }
     }
 

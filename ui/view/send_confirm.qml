@@ -113,9 +113,11 @@ ConfirmationDialog {
         return true
     }
 
-    topPadding: 30
+    topPadding: 10
     contentItem: Item { ColumnLayout {
         spacing: 22
+        //margins: 20
+        Layout.margins: 40
 
         GridLayout {
             Layout.alignment:  Qt.AlignHCenter
@@ -398,10 +400,6 @@ ConfirmationDialog {
             visible:                isEnough && isOnline
             //% "For the transaction to complete, the recipient must get online within the next 12 hours and you should get online within 2 hours afterwards."
             text:                   qsTrId("send-confirmation-pwd-text-online-time")
-        }
-
-        Item {
-            height: 1
         }
     }}
 }

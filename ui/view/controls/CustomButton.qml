@@ -22,6 +22,7 @@ Button {
     property alias border:         rect.border
     property var   customColor
     property var   customBorderColor
+    property bool  disableRadius:  fasle
     property bool  disableBorders: false
 
 
@@ -86,7 +87,7 @@ Button {
         //color:   control.palette.button
         border.color: customBorderColor ? customBorderColor : (hovered ? '#1aa853' : '#d2bdff')
         border.width: disableBorders ? 0 : 2
-        radius: 4
+        radius: disableRadius ? 0 : 4
         //AnimatedImage {
         //    id: backgroundImage
         //     anchors.fill: parent

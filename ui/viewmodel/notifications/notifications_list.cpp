@@ -29,6 +29,9 @@ QHash<int, QByteArray> NotificationsList::roleNames() const
         { static_cast<int>(Roles::TimeCreatedSort), "timeCreatedSort" },
         { static_cast<int>(Roles::Title), "title" },
         { static_cast<int>(Roles::Message), "message" },
+        { static_cast<int>(Roles::Amount), "amount" },
+        { static_cast<int>(Roles::Coin), "coin" },
+        { static_cast<int>(Roles::Wallet), "wallet" },
         { static_cast<int>(Roles::Type), "type" },
         { static_cast<int>(Roles::State), "state" },
         { static_cast<int>(Roles::RawID), "rawID" },
@@ -66,6 +69,15 @@ QVariant NotificationsList::data(const QModelIndex &index, int role) const
 
         case Roles::Message:
             return value->message(_amgr);
+
+        case Roles::Amount:
+            return value->amount(_amgr);
+
+        case Roles::Coin:
+            return value->coin(_amgr);
+
+        case Roles::Wallet:
+            return value->wallet(_amgr);
 
         case Roles::Type:
             return value->type();

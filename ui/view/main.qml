@@ -181,7 +181,7 @@ Rectangle {
         {name: "addresses", title: "Address book", active: true},
         {name: "notifications", title: "Notifications", active: true},
         {name: "settings", title: "Settings", active: true},
-        {name: "connect", title: "Connect", active: false}
+        {name: "connect", title: "Assets", active: false}
     ]
 
     property int selectedItem: -1
