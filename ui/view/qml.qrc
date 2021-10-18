@@ -404,5 +404,7 @@
 		<file>assets/show-info-hover.png</file>
 		<file>assets/load-more-default.png</file>
 		<file>assets/load-more-hover.png</file>
+		<file>assets/gear-hover.png</file>
+		<file>assets/gear-default.png</file>
     </qresource>
 </RCC>

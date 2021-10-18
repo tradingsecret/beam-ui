@@ -83,9 +83,10 @@ private:
 class AddressBookViewModel : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(QQmlListProperty<ContactItem> contacts          READ getContacts          NOTIFY contactsChanged)
-    Q_PROPERTY(QQmlListProperty<AddressItem> activeAddresses   READ getActiveAddresses   NOTIFY activeAddressesChanged)
-    Q_PROPERTY(QQmlListProperty<AddressItem> expiredAddresses  READ getExpiredAddresses  NOTIFY expiredAddressesChanged)
+    Q_PROPERTY(QQmlListProperty<ContactItem> contacts          READ getContacts             NOTIFY contactsChanged)
+    Q_PROPERTY(QQmlListProperty<AddressItem> activeAddresses   READ getActiveAddresses      NOTIFY activeAddressesChanged)
+    Q_PROPERTY(QList<AddressItem*> activeAddressesList         READ getActiveAddressesList  NOTIFY activeAddressesChanged)
+    Q_PROPERTY(QQmlListProperty<AddressItem> expiredAddresses  READ getExpiredAddresses     NOTIFY expiredAddressesChanged)
 
     Q_PROPERTY(QString nameRole READ nameRole CONSTANT)
     Q_PROPERTY(QString tokenRole READ tokenRole CONSTANT)
@@ -116,6 +117,7 @@ public:
 
     QQmlListProperty<ContactItem> getContacts();
     QQmlListProperty<AddressItem> getActiveAddresses();
+    QList<AddressItem*> getActiveAddressesList();
     QQmlListProperty<AddressItem> getExpiredAddresses();
 
     [[nodiscard]] QString nameRole() const;

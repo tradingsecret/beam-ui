@@ -1,6 +1,7 @@
 import QtQuick 2.11
 import QtQuick.Controls 1.4
 import QtQuick.Controls 2.3
+import QtQuick.Controls.Styles 1.2
 import Beam.Wallet 1.0
 import "."
 import "../utils.js" as Utils
@@ -10,7 +11,7 @@ CustomTableView {
 
     property bool isShieldedSupported: true
 
-    property int rowHeight: 56
+    property int rowHeight: 46
     property int resizableWidth: parent.width - actions.width
     property double columnResizeRatio: resizableWidth / 914
 
@@ -25,6 +26,10 @@ CustomTableView {
     sortIndicatorColumn: 0
     sortIndicatorOrder: Qt.DescendingOrder
 
+    __scrollBarTopMargin: 0
+    __verticalScrollbarOffset: 200
+    verticalScrollBarPolicy: Qt.ScrollBarAsNeeded
+
     //onSortIndicatorColumnChanged: {
     //    if (sortIndicatorColumn != 3 &&
     //        sortIndicatorColumn != 4) {
@@ -34,41 +39,104 @@ CustomTableView {
     //    }
     //}
 
-    TableViewColumn {
-        role: parentModel.nameRole
-        //% "Comment"
-        title: qsTrId("general-comment")
-        width: 300 * rootControl.columnResizeRatio
-        resizable: false
-        movable: false
-        //delegate: TableItem {
-        //    text:           styleData.value
-        //    elide:          styleData.elideMode
-        //    fontWeight:     Font.Bold
-        //    fontStyleName: "Bold"
-        //}
+
+    headerDelegate: Rectangle {
+        id: rect
+        height: 0
+        visible: none
     }
+
+
+    /*style: TableViewStyle {
+        minimumHandleLength: 30
+
+        handle: Rectangle {
+            color: "white"
+            radius: 3
+            opacity: __verticalScrollBar.handlePressed ? 0.12 : 0.5
+            implicitWidth: 6
+        }
+
+        scrollBarBackground: Rectangle {
+            color: "transparent"
+            implicitWidth: 6
+            anchors.topMargin: 46
+        }
+
+        decrementControl: Rectangle {
+            color: "transparent"
+        }
+
+        incrementControl: Rectangle {
+            color: "transparent"
+        }
+    }*/
+
+    style: TableViewStyle {
+        handle: Rectangle {
+            //anchors.leftMargin: 100
+            //implicitHeight: 17
+            //implicitWidth: 10
+            implicitWidth: 10
+            width: 5
+            //implicitHeight: 50
+
+            //height: 10
+            //radius: implicitHeight/2
+            color: "#307451"
+           // width: 10 // This will be overridden by the width of the scrollbar
+            //height: 10
+
+            /*Rectangle {
+                color: "purple"
+                anchors.top: parent.top
+                anchors.left: parent.left
+                anchors.leftMargin: 30
+                //anchors.topMargin: 6
+               // anchors.leftMargin: 200
+                //anchors.rightMargin: 4
+               // anchors.bottomMargin: 6
+            }*/
+        }
+
+        scrollBarBackground: Rectangle {
+            color: "transparent"
+            implicitWidth: 10
+            //anchors.topMargin: 46
+            //anchors.leftMargin: 100
+        }
+
+        decrementControl: Rectangle {
+            color: "transparent"
+        }
+
+        incrementControl: Rectangle {
+            color: "transparent"
+        }
+    }
+
 
     TableViewColumn {
         role: rootControl.isShieldedSupported ? parentModel.tokenRole : parentModel.walletIDRole
         //% "Address"
         title: qsTrId("general-address")
-        width: 280 *  rootControl.columnResizeRatio
+        width: 360//280 *  rootControl.columnResizeRatio
+        horizontalAlignment: Text.AlignRight
         movable: false
         resizable: false
-        delegate: 
-        Item {
+        delegate: Item {
             width: parent.width
             height: rootControl.rowHeight
-            clip:true
+            //clip:true
 
             SFLabel {
                 font.pixelSize: 14
+                horizontalAlignment: Text.AlignHCenter
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 20
-                anchors.rightMargin: 80
-                elide: Text.ElideMiddle
+                anchors.rightMargin: 20
+                elide: Text.ElideLeft
                 anchors.verticalCenter: parent.verticalCenter
                 text: styleData.value
                 color: Style.content_main
@@ -83,9 +151,10 @@ CustomTableView {
         role: viewModel.identityRole
         //% "Wallet's signature"
         title: qsTrId("general-wallet-signature")
-        width: rootControl.getAdjustedColumnWidth(identityColumn)//150 *  rootControl.columnResizeRatio
+        width: 360//rootControl.getAdjustedColumnWidth(identityColumn)//150 *  rootControl.columnResizeRatio
         resizable: false
         movable: false
+        horizontalAlignment: Text.AlignRight
         delegate:
         Item {
             width: parent.width
@@ -94,17 +163,96 @@ CustomTableView {
 
             SFLabel {
                 font.pixelSize: 14
+                horizontalAlignment: Text.AlignHCenter
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 20
-                anchors.rightMargin: 100
-                elide: Text.ElideMiddle
+                anchors.rightMargin: 20
+                elide: Text.ElideLeft
                 anchors.verticalCenter: parent.verticalCenter
                 text: styleData.value
                 color: Style.content_main
                 copyMenuEnabled: true
                 onCopyText: BeamGlobals.copyToClipboard(text)
 
+            }
+        }
+    }
+
+    TableViewColumn {
+        role: parentModel.nameRole
+        //% "Comment"
+        title: qsTrId("general-comment")
+        width: 360//300 * rootControl.columnResizeRatio
+        resizable: false
+        movable: false
+        horizontalAlignment: Text.AlignRight
+        //delegate: TableItem {
+        //    text:           styleData.value
+        //    elide:          styleData.elideMode
+        //    fontWeight:     Font.Bold
+        //    fontStyleName: "Bold"
+        //}
+
+        delegate: Item {
+            width: parent.width
+            height: rootControl.rowHeight
+            clip:true
+
+            SFLabel {
+                font.pixelSize: 14
+                horizontalAlignment: Text.AlignHCenter
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.leftMargin: 20
+                anchors.rightMargin: 70
+                elide: Text.ElideLeft
+                anchors.verticalCenter: parent.verticalCenter
+                text: styleData.value
+                color: Style.content_main
+                copyMenuEnabled: true
+                onCopyText: BeamGlobals.copyToClipboard(text)
+            }
+
+            CustomButton {
+                id:             actionButton
+                anchors.top: parent.top
+                anchors.right: parent.right
+                anchors.rightMargin: 25
+                anchors.topMargin: 10
+
+                height: 28
+                width: 28
+                palette.button: Style.background_second
+                palette.buttonText : Style.content_main
+                text: ''
+                font.pixelSize: 13
+                customColor: '#b4b4b4'
+
+                border.color: '#b6f4ce'
+                border.width: 1
+
+                hasShadow: false
+                disableRadius: true
+                radius: 0
+
+                background: Rectangle {
+                    id:         rect
+                    color:      "transparent"
+
+                    Image {
+                        anchors.fill: parent
+                        fillMode: Image.Stretch
+                        source: {
+                             actionButton.hovered ? "qrc:/assets/gear-hover.png" :  "qrc:/assets/gear-default.png"
+                        }
+                    }
+                }
+
+                onClicked: {
+                    contextMenu.addressItem = rootControl.model[styleData.row]
+                    contextMenu.popup()
+                }
             }
         }
     }
@@ -165,6 +313,7 @@ CustomTableView {
     //}
 
     TableViewColumn {
+        visible: false
         id: actions
         title: ""
         width: 40
@@ -178,13 +327,14 @@ CustomTableView {
         height: rootControl.rowHeight
 
         anchors.left: parent.left
-        anchors.right: parent.right
+        //anchors.right: parent.right
+        //anchors.rightMargin: 200
 
         Rectangle {
             anchors.fill: parent
 
             color: styleData.selected ? Style.row_selected :
-                    (styleData.alternate ? Style.background_row_even : Style.background_row_odd)
+                    (styleData.alternate ? 'transparent' : '#14141e')
         }
         MouseArea {
             anchors.fill: parent

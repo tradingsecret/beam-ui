@@ -10,7 +10,10 @@ CustomDialog {
 	modal:   true
 	x:       (parent.width - width) / 2
 	y:       (parent.height - height) / 2
-	padding: 30
+    padding: 80
+    leftPadding: 60
+    width: 700
+    height: 490
 
     property var  viewModel
     property var  addressItem
@@ -28,6 +31,8 @@ CustomDialog {
 
     contentItem: Item { ColumnLayout {
         spacing: 0
+        Layout.margins: 80
+        Layout.leftMargin: 60
 
         SFText {
 			Layout.alignment: Qt.AlignHCenter
@@ -196,7 +201,6 @@ CustomDialog {
 
 				//% "Cancel"
 				text:        qsTrId("general-cancel")
-                icon.source: "qrc:/assets/icon-cancel.svg"
                 icon.color:  Style.content_main
 
 				onClicked: {
@@ -211,7 +215,6 @@ CustomDialog {
 
 				//% "Save"
 				text: qsTrId("edit-addr-save-button")
-                icon.source: "qrc:/assets/icon-done.svg"
                 enabled: control.commentValid &&
                          (
                            control.comment !==  addressItem.name ||

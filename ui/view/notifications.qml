@@ -345,18 +345,7 @@ ColumnLayout {
 
                             background: Rectangle {
                                 id:         rect
-                                //opacity:    0
                                 color:      "transparent"
-                                //radius:  control.radius
-                                //color:   control.palette.button
-                                //border.color: customBorderColor ? customBorderColor : (hovered ? '#1aa853' : '#d2bdff')
-                                //border.width: disableBorders ? 0 : 2
-                                //radius: disableRadius ? 0 : 4
-                                //AnimatedImage {
-                                //    id: backgroundImage
-                                //     anchors.fill: parent
-                                //    source: "qrc:/assets/button.mp4"
-                                //}
 
                                 Image {
                                     anchors.fill: parent

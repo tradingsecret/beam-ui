@@ -171,6 +171,11 @@ QQmlListProperty<AddressItem> AddressBookViewModel::getActiveAddresses()
     return CreateQmlListProperty<AddressItem>(this, m_activeAddresses);
 }
 
+QList<AddressItem*> AddressBookViewModel::getActiveAddressesList()
+{
+    return m_activeAddresses;
+}
+
 QQmlListProperty<AddressItem> AddressBookViewModel::getExpiredAddresses()
 {
     return CreateQmlListProperty<AddressItem>(this, m_expiredAddresses);
