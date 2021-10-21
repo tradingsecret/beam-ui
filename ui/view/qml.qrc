@@ -60,6 +60,8 @@
         <file>controls/CustomSecondCurrencySwitch.qml</file>
         <file>controls/ConfirmRefreshDialog.qml</file>
         <file>controls/OwnerKeyDialog.qml</file>
+		<file>controls/settings/NewSettingsGeneral.qml</file>
+		<file>controls/settings/NewSettingsPrivacy.qml</file>
         <file>controls/SettingsFoldable.qml</file>
         <file>controls/SettingsGeneral.qml</file>
         <file>controls/SettingsNotifications.qml</file>
@@ -113,6 +115,7 @@
         <file>main.qml</file>
         <file>wallet.qml</file>
         <file>settings.qml</file>
+		<file>settings_old.qml</file>
         <file>addresses.qml</file>
         <file>applications.qml</file>
         <file>applications_nofork.qml</file>
@@ -406,5 +409,8 @@
 		<file>assets/load-more-hover.png</file>
 		<file>assets/gear-hover.png</file>
 		<file>assets/gear-default.png</file>
+		<file>assets/settings/button-active.png</file>
+		<file>assets/settings/button-default.png</file>
+		<file>assets/settings/button-hover.png</file>
     </qresource>
 </RCC>

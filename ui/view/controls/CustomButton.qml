@@ -22,7 +22,7 @@ Button {
     property alias border:         rect.border
     property var   customColor
     property var   customBorderColor
-    property bool  disableRadius:  fasle
+    property bool  disableRadius:  false
     property bool  disableBorders: false
 
 
