@@ -26,10 +26,16 @@ namespace
     {
         0 * msInMinute,
         1 * msInMinute,
+        2 * msInMinute,
+        3 * msInMinute,
         5 * msInMinute,
         15 * msInMinute,
         30 * msInMinute,
+        45 * msInMinute,
         60 * msInMinute,
+        120 * msInMinute,
+        180 * msInMinute,
+        360 * msInMinute,
     };
 
     const int minResetPeriodInMs = 1000;

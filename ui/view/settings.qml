@@ -139,20 +139,30 @@ ColumnLayout {
 
                         Item {
                             Layout.fillWidth: true
-                            Layout.fillHeight: true
                             Layout.margins: 38
 
                             NewSettingsGeneral {
                                 id: generalBlock
+                                Layout.fillWidth: true
+                                width: parent.width
+                                height: parent.height
                                 viewModel: viewModel
                                 visible: tabActive ==  'general_settings'
                             }
 
                             NewSettingsPrivacy {
                                 id: privacylBlock
+                                Layout.fillWidth: true
+                                width: parent.width
+                                height: parent.height
                                 viewModel: viewModel
                                 visible: tabActive ==  'privacy_and_security'
                             }
+                        }
+
+                        Item {
+                            Layout.fillWidth: true
+                           Layout.fillHeight: true
                         }
 
                         Rectangle {

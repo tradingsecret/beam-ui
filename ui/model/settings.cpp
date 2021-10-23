@@ -60,10 +60,14 @@ namespace
 
     const char* kMpAnonymitySet = "max_privacy/anonymity_set";
 
-    const std::map<QString, QString> kSupportedLangs { 
-        { "zh_CN", "Chinese Simplified"},
+    const std::map<QString, QString> kSupportedLangs {
         { "en_US", "English" },
-        { "es_ES", "Español"},
+        { "fr_FR", "Française"},
+        { "de_DE", "Deutsch"},
+        { "it_IT", "Italiano"},
+        { "cs_CZ", "Czech"},
+        { "zh_CN", "Chinese Simplified"}
+        /*{ "es_ES", "Español"},
         { "be_BY", "Беларуская"},
         { "cs_CZ", "Czech"},
         { "de_DE", "Deutsch"},
@@ -79,7 +83,7 @@ namespace
         { "th_TH", "ภาษาไทย"},
         { "tr_TR", "Türkçe"},
         { "vi_VI", "Tiếng việt"},
-        { "ko_KR", "한국어"}
+        { "ko_KR", "한국어"}*/
     };
 
     const vector<string> kOutDatedPeers = beam::getOutdatedDefaultPeers();

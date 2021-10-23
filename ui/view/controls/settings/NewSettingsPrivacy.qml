@@ -2,6 +2,7 @@ import QtQuick 2.11
 import QtQuick.Controls 1.2
 import QtQuick.Controls 2.4
 import QtQuick.Controls.Styles 1.2
+import QtQuick.Shapes 1.0
 import QtQuick.Layouts 1.12
 import Beam.Wallet 1.0
 import ".."
@@ -11,6 +12,16 @@ ColumnLayout {
     spacing: 30
     id: privacyBlock
     property var viewModel
+    property var lockTime: [
+        //% "No limit"
+        '72H',
+        '48H',
+        '24H',
+        '16H',
+        '8H',
+        '4H',
+        '2H',
+    ]
 
     ConfirmPasswordDialog {
         id: confirmPasswordDialog
@@ -90,33 +101,76 @@ ColumnLayout {
 
         SFText {
             Layout.fillWidth: true
-            text: "ANONYMOUS MAX. TRANSACTION TIME (24H, 36H, 48H, 60H, 72H)"
+            text: "ANONYMOUS MAX. TRANSACTION TIME (72H, 48H, 24H, 16H, 8H, 4H, 2H)"
             color: '#fff'
             font.pixelSize: 18
             font.capitalization: Font.AllUppercase
         }
 
-        CustomComboBox {
-            id: mpLockTimeLimit
-            fontPixelSize: 14
-            Layout.preferredWidth: 100
-            currentIndex: viewModel.maxPrivacyLockTimeLimit
-            model: [
-                //% "No limit"
-                qsTrId("settings-privacy-mp-time-no-limit"),
-                //% "72h"
-                qsTrId("settings-privacy-mp-time-limit-72"),
-                //% "60h"
-                qsTrId("settings-privacy-mp-time-limit-60"),
-                //% "48h"
-                qsTrId("settings-privacy-mp-time-limit-48"),
-                //% "36h"
-                qsTrId("settings-privacy-mp-time-limit-36"),
-                //% "24h"
-                qsTrId("settings-privacy-mp-time-limit-24"),
-            ]
-            onActivated: {
-                viewModel.maxPrivacyLockTimeLimit = mpLockTimeLimit.currentIndex
+        RowLayout {
+            spacing: 10
+            Layout.topMargin: 15
+
+            Repeater {
+                model: lockTime
+
+                ColumnLayout {
+                    SFText {
+                       // width: 125
+                       // Layout.fillWidth: true
+                        id: confirmationsSelect
+                        bottomPadding: 5
+                        leftPadding: 10
+                        rightPadding: 10
+                        horizontalAlignment: Text.AlignHCenter
+                        text: lockTime[index]
+                        color: {
+                            if (mouseAreaConfirmations.containsMouse) {
+                                return '#5d8af0';
+                            }
+                            else if (viewModel.maxPrivacyLockTimeLimit != index) {
+                                return '#817272'
+                            }
+                            else {
+                                return '#5fe795';
+                            }
+                        }
+                        font.pixelSize: 24
+                        font.capitalization: Font.AllUppercase
+                        MouseArea {
+                            id: mouseAreaConfirmations
+                            anchors.fill: parent
+                            hoverEnabled: true
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: {
+                                viewModel.maxPrivacyLockTimeLimit = index
+                            }
+                        }
+                    }
+
+                    Shape {
+                        anchors.bottom: confirmationsSelect.bottom
+
+                        ShapePath {
+                            strokeColor: {
+                                 if (mouseAreaConfirmations.containsMouse) {
+                                     return '#5d8af0';
+                                 }
+                                 else if (viewModel.maxPrivacyLockTimeLimit != index) {
+                                     return '#817272'
+                                 }
+                                 else {
+                                     return '#fff';
+                                 }
+                             }
+                            strokeWidth: 1
+                            strokeStyle: ShapePath.DashLine
+                            startX: 0
+                            startY: 0
+                            PathLine { x: confirmationsSelect.width; y: 0 }
+                        }
+                    }
+                }
             }
         }
     }
@@ -132,86 +186,159 @@ ColumnLayout {
             font.capitalization: Font.AllUppercase
         }
 
+        RowLayout {
+            spacing: 10
+            Layout.topMargin: 15
 
-        CustomSwitch {
-            id: isPasswordReqiredToSpendMoney
-            //: settings tab, general section, ask password to send label
-            //% "Ask password on every Send"
-            text: qsTrId("settings-general-require-pwd-to-spend")
-            checked: viewModel.isPasswordReqiredToSpendMoney
-            Layout.fillWidth: true
-            font.styleName:   "Regular"
-            font.weight:      Font.Normal
-            function onDialogAccepted() {
-                viewModel.isPasswordReqiredToSpendMoney = checked;
+            ColumnLayout {
+                SFText {
+                   // width: 125
+                   // Layout.fillWidth: true
+                    id: noSelect
+                    bottomPadding: 5
+                    leftPadding: 10
+                    rightPadding: 10
+                    horizontalAlignment: Text.AlignHCenter
+                    text: 'NO'
+                    color: {
+                        if (mouseAreaNo.containsMouse) {
+                            return '#5d8af0';
+                        }
+                        else if (viewModel.isPasswordReqiredToSpendMoney) {
+                            return '#817272'
+                        }
+                        else {
+                            return '#5fe795';
+                        }
+                    }
+                    font.pixelSize: 24
+                    font.capitalization: Font.AllUppercase
+                    MouseArea {
+                        id: mouseAreaNo
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        function onDialogAcceptedFalse() {
+                            viewModel.isPasswordReqiredToSpendMoney = false;
+                        }
+                        onClicked: {
+                            confirmPasswordDialog.dialogTitle = viewModel.isPasswordReqiredToSpendMoney
+                                //: settings tab, general section, ask password to send, confirm password dialog, title if checked
+                                //% "Don't ask password on every Send"
+                                ? qsTrId("settings-general-require-pwd-to-spend-confirm-pwd-title")
+                                //: settings tab, general section, ask password to send, confirm password dialog, title if unchecked
+                                //% "Ask password on every Send"
+                                : qsTrId("settings-general-no-require-pwd-to-spend-confirm-pwd-title")
+                            //: settings tab, general section, ask password to send, confirm password dialog, message
+                            //% "Password verification is required to change that setting"
+                            confirmPasswordDialog.dialogMessage = qsTrId("settings-general-require-pwd-to-spend-confirm-pwd-message")
+                            confirmPasswordDialog.okButtonIcon = "qrc:/assets/icon-done.svg"
+                            //% "Proceed"
+                            confirmPasswordDialog.okButtonText = qsTrId("general-proceed")
+                            confirmPasswordDialog.onDialogAccepted = onDialogAcceptedFalse
+                            confirmPasswordDialog.open()
+                        }
+                    }
+                }
+
+                Shape {
+                    anchors.bottom: noSelect.bottom
+
+                    ShapePath {
+                        strokeColor: {
+                             if (mouseAreaNo.containsMouse) {
+                                 return '#5d8af0';
+                             }
+                             else if (viewModel.isPasswordReqiredToSpendMoney) {
+                                 return '#817272'
+                             }
+                             else {
+                                 return '#fff';
+                             }
+                         }
+                        strokeWidth: 1
+                        strokeStyle: ShapePath.DashLine
+                        startX: 0
+                        startY: 0
+                        PathLine { x: noSelect.width; y: 0 }
+                    }
+                }
             }
 
-            function onDialogRejected() {
-                checked = !checked;
-            }
+            ColumnLayout {
+                SFText {
+                   // width: 125
+                   // Layout.fillWidth: true
+                    id: yesSelect
+                    bottomPadding: 5
+                    leftPadding: 10
+                    rightPadding: 10
+                    horizontalAlignment: Text.AlignHCenter
+                    text: 'YES'
+                    color: {
+                        if (mouseAreaYes.containsMouse) {
+                            return '#5d8af0';
+                        }
+                        else if (!viewModel.isPasswordReqiredToSpendMoney) {
+                            return '#817272'
+                        }
+                        else {
+                            return '#5fe795';
+                        }
+                    }
+                    font.pixelSize: 24
+                    font.capitalization: Font.AllUppercase
+                    MouseArea {
+                        id: mouseAreaYes
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        cursorShape: Qt.PointingHandCursor
+                        function onDialogAcceptedTrue() {
+                            viewModel.isPasswordReqiredToSpendMoney = true;
+                        }
+                        onClicked: {
+                            confirmPasswordDialog.dialogTitle = viewModel.isPasswordReqiredToSpendMoney
+                                //: settings tab, general section, ask password to send, confirm password dialog, title if checked
+                                //% "Don't ask password on every Send"
+                                ? qsTrId("settings-general-require-pwd-to-spend-confirm-pwd-title")
+                                //: settings tab, general section, ask password to send, confirm password dialog, title if unchecked
+                                //% "Ask password on every Send"
+                                : qsTrId("settings-general-no-require-pwd-to-spend-confirm-pwd-title")
+                            //: settings tab, general section, ask password to send, confirm password dialog, message
+                            //% "Password verification is required to change that setting"
+                            confirmPasswordDialog.dialogMessage = qsTrId("settings-general-require-pwd-to-spend-confirm-pwd-message")
+                            confirmPasswordDialog.okButtonIcon = "qrc:/assets/icon-done.svg"
+                            //% "Proceed"
+                            confirmPasswordDialog.okButtonText = qsTrId("general-proceed")
+                            confirmPasswordDialog.onDialogAccepted = onDialogAcceptedTrue
+                            confirmPasswordDialog.open()
+                        }
+                    }
+                }
 
-            onClicked: {
-                confirmPasswordDialog.dialogTitle = viewModel.isPasswordReqiredToSpendMoney
-                    //: settings tab, general section, ask password to send, confirm password dialog, title if checked
-                    //% "Don't ask password on every Send"
-                    ? qsTrId("settings-general-require-pwd-to-spend-confirm-pwd-title")
-                    //: settings tab, general section, ask password to send, confirm password dialog, title if unchecked
-                    //% "Ask password on every Send"
-                    : qsTrId("settings-general-no-require-pwd-to-spend-confirm-pwd-title")
-                //: settings tab, general section, ask password to send, confirm password dialog, message
-                //% "Password verification is required to change that setting"
-                confirmPasswordDialog.dialogMessage = qsTrId("settings-general-require-pwd-to-spend-confirm-pwd-message")
-                confirmPasswordDialog.okButtonIcon = "qrc:/assets/icon-done.svg"
-                //% "Proceed"
-                confirmPasswordDialog.okButtonText = qsTrId("general-proceed")
-                confirmPasswordDialog.onDialogAccepted = onDialogAccepted
-                confirmPasswordDialog.onDialogRejected = onDialogRejected
-                confirmPasswordDialog.open()
-            }
-        }
+                Shape {
+                    anchors.bottom: yesSelect.bottom
 
-    }
-
-
-
-/*
-    RowLayout {
-        Layout.fillWidth:       true
-        ColumnLayout {
-            SFText {
-                Layout.fillWidth: true
-                //% "Max privacy longest transaction time"
-                text: qsTrId("settings-privacy-mp-time-limit")
-                wrapMode:   Text.WordWrap
-                color: Style.content_main
-                font.pixelSize: 14
-            }
-        }
-
-        ColumnLayout {
-            CustomComboBox {
-                id: mpLockTimeLimit
-                fontPixelSize: 14
-                Layout.preferredWidth: 100
-                currentIndex: viewModel.maxPrivacyLockTimeLimit
-                model: [
-                    //% "No limit"
-                    qsTrId("settings-privacy-mp-time-no-limit"),
-                    //% "72h"
-                    qsTrId("settings-privacy-mp-time-limit-72"),
-                    //% "60h"
-                    qsTrId("settings-privacy-mp-time-limit-60"),
-                    //% "48h"
-                    qsTrId("settings-privacy-mp-time-limit-48"),
-                    //% "36h"
-                    qsTrId("settings-privacy-mp-time-limit-36"),
-                    //% "24h"
-                    qsTrId("settings-privacy-mp-time-limit-24"),
-                ]
-                onActivated: {
-                    viewModel.maxPrivacyLockTimeLimit = mpLockTimeLimit.currentIndex
+                    ShapePath {
+                        strokeColor: {
+                             if (mouseAreaYes.containsMouse) {
+                                 return '#5d8af0';
+                             }
+                             else if (!viewModel.isPasswordReqiredToSpendMoney) {
+                                 return '#817272'
+                             }
+                             else {
+                                 return '#fff';
+                             }
+                         }
+                        strokeWidth: 1
+                        strokeStyle: ShapePath.DashLine
+                        startX: 0
+                        startY: 0
+                        PathLine { x: yesSelect.width; y: 0 }
+                    }
                 }
             }
         }
-    }*/
+    }
 }
