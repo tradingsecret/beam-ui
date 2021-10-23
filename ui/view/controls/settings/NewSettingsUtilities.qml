@@ -157,12 +157,13 @@ ColumnLayout {
                     RowLayout {
                         visible: showAddress
                         Layout.topMargin:       85
-                        Layout.fillWidth:       true
+                        Layout.alignment:       Qt.AlignCenter | Qt.AlignHCenter
 
                         CustomButton {
                             id: copyButton
                             customColor:            copyButton.hovered ? '#5fe795' : '#696969'
-                            Layout.alignment:       Qt.AlignLeft
+                            Layout.alignment:       Qt.AlignCenter | Qt.AlignHCenter
+                            Layout.rightMargin:     30
                             text:                   "Copy and go back"
                             font.capitalization:    Font.AllUppercase
                             Layout.preferredHeight: 42
@@ -188,14 +189,10 @@ ColumnLayout {
                             }
                         }
 
-                        Item {
-                            Layout.fillWidth: true
-                        }
-
                         CustomButton {
                             id: closeButton
                             customColor:            closeButton.hovered ? '#5fe795' : '#696969'
-                            Layout.alignment:       Qt.AlignRight
+                            Layout.alignment:       Qt.AlignCenter | Qt.AlignHCenter
                             text:                   "Hide all info"
                             font.capitalization:    Font.AllUppercase
                             Layout.preferredHeight: 42

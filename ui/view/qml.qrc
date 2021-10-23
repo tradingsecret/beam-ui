@@ -63,6 +63,9 @@
 		<file>controls/settings/NewSettingsGeneral.qml</file>
 		<file>controls/settings/NewSettingsPrivacy.qml</file>
 		<file>controls/settings/NewSettingsUtilities.qml</file>
+		<file>controls/settings/NewSettingsDapps.qml</file>
+		<file>controls/settings/NewSettingsFoundABug.qml</file>
+		<file>controls/settings/NewSettingsHallOfFame.qml</file>
         <file>controls/SettingsFoldable.qml</file>
         <file>controls/SettingsGeneral.qml</file>
         <file>controls/SettingsNotifications.qml</file>

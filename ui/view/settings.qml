@@ -167,6 +167,33 @@ ColumnLayout {
                                 viewModel: viewModel
                                 visible: tabActive ==  'wallet_settings'
                             }
+
+                            NewSettingsDapps {
+                                id: dappsBlock
+                                Layout.fillWidth: true
+                                width: parent.width
+                                height: parent.height
+                                viewModel: viewModel
+                                visible: tabActive ==  'dapps_settings'
+                            }
+
+                            NewSettingsFoundABug {
+                                id: foundABugBlock
+                                Layout.fillWidth: true
+                                width: parent.width
+                                height: parent.height
+                                viewModel: viewModel
+                                visible: tabActive ==  'found_bug'
+                            }
+
+                            NewSettingsHallOfFame {
+                                id: hallOfFameBlock
+                                Layout.fillWidth: true
+                                width: parent.width
+                                height: parent.height
+                                viewModel: viewModel
+                                visible: tabActive ==  'hall_of_fame'
+                            }
                         }
 
                         Item {

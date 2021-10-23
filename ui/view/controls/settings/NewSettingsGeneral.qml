@@ -12,6 +12,7 @@ ColumnLayout {
     property var viewModel
     property bool languagePanelVisible: false
     property bool autoLockPanelVisible: false
+    property var confirmationsValue: viewModel.minConfirmations
     Layout.fillWidth: true
     Layout.fillHeight: false
     spacing: 0
@@ -272,7 +273,7 @@ ColumnLayout {
                             if (mouseAreaConfirmations.containsMouse) {
                                 return '#5d8af0';
                             }
-                            else if (viewModel.minConfirmations != index) {
+                            else if (confirmationsValue != index) {
                                 return '#817272'
                             }
                             else {
@@ -287,7 +288,8 @@ ColumnLayout {
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
-                                //viewModel.minConfirmations = confirmationsItems[index]
+                                viewModel.minConfirmations = index
+                                confirmationsValue = index
                             }
                         }
                     }
@@ -300,7 +302,7 @@ ColumnLayout {
                                  if (mouseAreaConfirmations.containsMouse) {
                                      return '#5d8af0';
                                  }
-                                 else if (viewModel.minConfirmations != index) {
+                                 else if (confirmationsValue != index) {
                                      return '#817272'
                                  }
                                  else {
