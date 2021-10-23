@@ -62,6 +62,7 @@
         <file>controls/OwnerKeyDialog.qml</file>
 		<file>controls/settings/NewSettingsGeneral.qml</file>
 		<file>controls/settings/NewSettingsPrivacy.qml</file>
+		<file>controls/settings/NewSettingsUtilities.qml</file>
         <file>controls/SettingsFoldable.qml</file>
         <file>controls/SettingsGeneral.qml</file>
         <file>controls/SettingsNotifications.qml</file>
@@ -413,5 +414,9 @@
 		<file>assets/settings/button-default.png</file>
 		<file>assets/settings/button-hover.png</file>
 		<file>assets/settings/language-popup.png</file>
+		<file>assets/settings/secret-bg-1.png</file>
+		<file>assets/settings/secret-bg-2.png</file>
+		<file>assets/settings/buttons-frame-default.png</file>
+		<file>assets/settings/buttons-frame-hover.png</file>
     </qresource>
 </RCC>

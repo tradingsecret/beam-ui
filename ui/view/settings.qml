@@ -158,6 +158,15 @@ ColumnLayout {
                                 viewModel: viewModel
                                 visible: tabActive ==  'privacy_and_security'
                             }
+
+                            NewSettingsUtilities {
+                                id: utilitiesBlock
+                                Layout.fillWidth: true
+                                width: parent.width
+                                height: parent.height
+                                viewModel: viewModel
+                                visible: tabActive ==  'wallet_settings'
+                            }
                         }
 
                         Item {
