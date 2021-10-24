@@ -1778,6 +1778,7 @@ Item
 
 
                     SFText {
+                        visible: false
                         Layout.alignment:       Qt.AlignHCenter
                         Layout.preferredHeight: 16
                         Layout.bottomMargin:    startLayout.isSqueezedHeight  ? 18 : 48
@@ -1796,6 +1797,8 @@ Item
                         Layout.maximumWidth: 400
                         Layout.minimumWidth: 400
                         Layout.preferredHeight: 79
+                        Layout.topMargin: 20
+                        Layout.bottomMargin: 40
                         Layout.alignment: Qt.AlignHCenter
 
                         //SFText {
@@ -1890,7 +1893,7 @@ Item
                             }
                         }
 
-                        PrimaryButton {
+                        CustomButton {
                             anchors.verticalCenter: parent.verticalCenter
                             id: btnCurrentWallet
                             enabled: !viewModel.useHWWallet || viewModel.isTrezorConnected

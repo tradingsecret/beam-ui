@@ -24,6 +24,10 @@ Button {
     property var   customBorderColor
     property bool  disableRadius:  false
     property bool  disableBorders: false
+    property string   hoveredTextColor:   '#5fe795'
+    property string   textColor:   '#d2bdff'
+    property string   hoveredBorderColor:   '#5de394'
+    property string   borderColor:   '#d2bdff'
 
 
     font { 
@@ -52,7 +56,7 @@ Button {
         text:  control.text
         font:  control.font
         //color: hovered || hoveredText ? '#5fe795' : 'white' //control.palette.buttonText
-        color: customColor ? customColor : (hovered || hoveredText ? '#5fe795' : '#d2bdff') //control.palette.buttonText
+        color: customColor ? customColor : (hovered || hoveredText ? hoveredTextColor : textColor) //control.palette.buttonText
 
         MouseArea {
             anchors.fill:  parent
@@ -85,7 +89,7 @@ Button {
         color:      "transparent"
         //radius:  control.radius
         //color:   control.palette.button
-        border.color: customBorderColor ? customBorderColor : (hovered ? '#1aa853' : '#d2bdff')
+        border.color: customBorderColor ? customBorderColor : (hovered ? hoveredBorderColor : borderColor)
         border.width: disableBorders ? 0 : 2
         radius: disableRadius ? 0 : 4
         //AnimatedImage {
@@ -102,6 +106,7 @@ Button {
         samples: 10
         color:   '#0ff' //Style.content_main
         source:  rect
-        visible: control.hasShadow && (control.visualFocus || control.hovered || control.checked)
+        visible: false
+        //visible: control.hasShadow && (control.visualFocus || control.hovered || control.checked)
     }
 }

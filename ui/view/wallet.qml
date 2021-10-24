@@ -167,6 +167,7 @@ Item {
                     id: sendButton
                     palette.button: Style.accent_outgoing
                     palette.buttonText: Style.content_opposite
+                    hoveredBorderColor: '#1aa853'
                     //% "Send"
                     text: qsTrId("general-send")
                     onClicked: {
@@ -179,6 +180,7 @@ Item {
                     height: 45
                     palette.button: Style.accent_incoming
                     palette.buttonText: Style.content_opposite
+                    hoveredBorderColor: '#1aa853'
                     //% "Receive"
                     text: qsTrId("wallet-receive-button")
                     onClicked: {
@@ -196,6 +198,7 @@ Item {
                     height: 45
                     palette.button: Style.accent_incoming
                     palette.buttonText: Style.content_opposite
+                    hoveredBorderColor: '#1aa853'
                     //% "Receive"
                     text: "Get testnet arcs"
                     onClicked: {

@@ -12,6 +12,8 @@ import "."
 Control {
     id: control
 
+    FontLoader { id: tomorrow_semibold;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowSemiBold.ttf" }
+
     TxTableViewModel {
         id: tableViewModel
 
@@ -142,6 +144,43 @@ Control {
 
     contentItem: ColumnLayout {
         spacing: 0
+
+        ColumnLayout {
+            visible:             tableViewModel.transactions.rowCount() == 0
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            height: parent.parent.height
+            Layout.preferredHeight: height
+            Layout.alignment:    Qt.AlignCenter | Qt.AlignHCenter | Qt.AlignVCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            ColumnLayout {
+                 Layout.alignment:    Qt.AlignCenter | Qt.AlignHCenter | Qt.AlignVCenter
+                 anchors.horizontalCenter: parent.horizontalCenter
+
+                 SFText {
+                     text:              'EMPTY'
+                     color:             '#585858'
+                     font.pixelSize:    72
+                     font.family:       tomorrow_semibold.name
+                     opacity: 0.5
+                 }
+
+                 Rectangle {
+                     anchors.fill: parent
+                     //border.width: 1
+                     //border.color: 'pink'
+                     color: 'transparent'
+                 }
+            }
+
+            Rectangle {
+                anchors.fill: parent
+                //border.width: 1
+                //border.color: 'purple'
+                color: 'transparent'
+            }
+        }
 
         RowLayout {
             Layout.fillWidth:    true

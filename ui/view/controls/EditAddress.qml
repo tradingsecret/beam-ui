@@ -13,7 +13,7 @@ CustomDialog {
     padding: 80
     leftPadding: 60
     width: 700
-    height: 490
+    height: 310
 
     property var  viewModel
     property var  addressItem
@@ -100,6 +100,7 @@ CustomDialog {
         }
 
         Row {
+            visible: false
             spacing: 15
             Layout.topMargin: 10
 
@@ -149,6 +150,7 @@ CustomDialog {
         SFText {
             //% "Comment"
             text: qsTrId("general-comment")
+            visible: false
 
             Layout.topMargin: 25
             color:            Style.content_main
@@ -158,6 +160,7 @@ CustomDialog {
         }
 
         ColumnLayout {
+            visible: false
             Layout.fillWidth: true
             Layout.preferredWidth: addressID.width
             spacing: 0
@@ -192,6 +195,7 @@ CustomDialog {
         }
 
         RowLayout {
+            visible: false
             Layout.topMargin: 35
             Layout.alignment: Qt.AlignHCenter
             spacing: 15

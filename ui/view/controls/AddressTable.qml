@@ -83,7 +83,7 @@ CustomTableView {
 
             //height: 10
             //radius: implicitHeight/2
-            color: "#307451"
+            color: styleData.hovered ? '#aff3ca' : "#307451"
            // width: 10 // This will be overridden by the width of the scrollbar
             //height: 10
 
@@ -129,6 +129,14 @@ CustomTableView {
             height: rootControl.rowHeight
             //clip:true
 
+            Rectangle {
+                anchors.fill: parent
+
+                color: styleData.row % 2 == 0 ?  '#14141e' : 'transparent'
+                //color: styleData.selected ? Style.row_selected :
+                //        (styleData.alternate ? 'transparent' : '#14141e')
+            }
+
             SFLabel {
                 font.pixelSize: 14
                 horizontalAlignment: Text.AlignHCenter
@@ -160,6 +168,14 @@ CustomTableView {
             width: parent.width
             height: rootControl.rowHeight
             clip:true
+
+            Rectangle {
+                anchors.fill: parent
+
+                color: styleData.row % 2 == 0 ?  '#14141e' : 'transparent'
+                //color: styleData.selected ? Style.row_selected :
+                //        (styleData.alternate ? 'transparent' : '#14141e')
+            }
 
             SFLabel {
                 font.pixelSize: 14
@@ -199,6 +215,16 @@ CustomTableView {
             height: rootControl.rowHeight
             clip:true
 
+
+            Rectangle {
+                anchors.fill: parent
+                anchors.rightMargin: 15
+
+                color: styleData.row % 2 == 0 ?  '#14141e' : 'transparent'
+                //color: styleData.selected ? Style.row_selected :
+                //        (styleData.alternate ? 'transparent' : '#14141e')
+            }
+
             SFLabel {
                 font.pixelSize: 14
                 horizontalAlignment: Text.AlignHCenter
@@ -237,7 +263,6 @@ CustomTableView {
                 radius: 0
 
                 background: Rectangle {
-                    id:         rect
                     color:      "transparent"
 
                     Image {
@@ -250,8 +275,15 @@ CustomTableView {
                 }
 
                 onClicked: {
-                    contextMenu.addressItem = rootControl.model[styleData.row]
-                    contextMenu.popup()
+                    //contextMenu.addressItem = rootControl.model[styleData.row]
+                    //contextMenu.popup()
+
+                    var dialog = Qt.createComponent("EditAddress.qml").createObject(main, {
+                        viewModel:           rootControl.parentModel,
+                        addressItem:         rootControl.model[styleData.row],
+                        isShieldedSupported: rootControl.isShieldedSupported
+                    })
+                    dialog.open();
                 }
             }
         }
@@ -330,23 +362,24 @@ CustomTableView {
         //anchors.right: parent.right
         //anchors.rightMargin: 200
 
-        Rectangle {
-            anchors.fill: parent
-
-            color: styleData.selected ? Style.row_selected :
-                    (styleData.alternate ? 'transparent' : '#14141e')
-        }
-        MouseArea {
+        /*MouseArea {
             anchors.fill: parent
             acceptedButtons: Qt.RightButton
             onClicked: {
                 if (mouse.button == Qt.RightButton && styleData.row != undefined)
                 {
-                    contextMenu.addressItem = rootControl.model[styleData.row]
-                    contextMenu.popup()
+                    //contextMenu.addressItem = rootControl.model[styleData.row]
+                    //contextMenu.popup()
+
+                    var dialog = Qt.createComponent("EditAddress.qml").createObject(main, {
+                        viewModel:           rootControl.parentModel,
+                        addressItem:         rootControl.model[styleData.row],
+                        isShieldedSupported: rootControl.isShieldedSupported
+                    })
+                    dialog.open();
                 }
             }
-        }
+        }*/
     }
 
     itemDelegate: TableItem {
@@ -371,8 +404,15 @@ CustomTableView {
                         //% "Actions"
                         ToolTip.text: qsTrId("general-actions")
                         onClicked: {
-                            contextMenu.addressItem = rootControl.model[styleData.row]
-                            contextMenu.popup()
+                            //contextMenu.addressItem = rootControl.model[styleData.row]
+                            //contextMenu.popup()
+
+                            var dialog = Qt.createComponent("EditAddress.qml").createObject(main, {
+                                viewModel:           rootControl.parentModel,
+                                addressItem:         contextMenu.addressItem,
+                                isShieldedSupported: rootControl.isShieldedSupported
+                            })
+                            dialog.open();
                         }
                     }
                 }

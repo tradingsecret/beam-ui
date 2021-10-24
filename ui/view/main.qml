@@ -234,6 +234,7 @@ Rectangle {
                                 id: mouseArea
                                 anchors.fill: parent
                                 enabled: true
+                                cursorShape: Qt.ArrowCursor
                                 onClicked: {
                                     if (modelData.name == 'atlasdex') {
                                         Utils.navigateToAtlasDex();
@@ -246,7 +247,6 @@ Rectangle {
                                     }
                                 }
                                 hoverEnabled: true
-                                cursorShape: Qt.ArrowCursor
                             }
                         }
 

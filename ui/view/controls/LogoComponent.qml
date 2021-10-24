@@ -138,6 +138,7 @@ ColumnLayout
         visible: !hideNetworkLabel
 
         Image {
+            visible: false
             anchors.fill: parent
             fillMode: Image.Stretch
             source: {

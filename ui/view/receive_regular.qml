@@ -109,7 +109,7 @@ ColumnLayout {
         if (isValid()) {
             BeamGlobals.copyToClipboard(control.isShieldedSupported ? viewModel.token : viewModel.sbbsAddress);
             viewModel.saveAddress();
-            control.onClosed()
+            updateItem(0);
         }
     }
 
@@ -157,103 +157,150 @@ ColumnLayout {
         ColumnLayout {
             width: scrollView.availableWidth
 
-            RowLayout {
+            ColumnLayout {
+                Layout.minimumWidth: 440
+                Layout.maximumWidth: 440
                 width: 440
 
                 ColumnLayout {
-                    Layout.leftMargin: 10
+                    Layout.minimumHeight: 65
+                    Layout.maximumHeight: 65
+                    Layout.minimumWidth: parent.width
+                    Layout.maximumWidth: parent.width
+                    width: parent.width
+                    height: 65
+                    Layout.topMargin: 30
 
-                    Row {
-                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                        Layout.topMargin: 30
-                        //spacing: 20
-                        visible: true
+                    ColumnLayout {
+                        Layout.leftMargin: 10
 
-                        SFText {
-                            text: "Balance:"
-                            color: '#5fe795'
-                            font.pixelSize: 16
-                            font.capitalization: Font.AllUppercase
+                        Row {
+                            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                            //spacing: 20
+                            visible: true
+
+                            SFText {
+                                text: "Balance:"
+                                color: '#5fe795'
+                                font.pixelSize: 16
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
+
+                        Row {
+                            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                            Layout.topMargin: 5
+                            //spacing: 20
+                            visible: true
+
+                            SFText {
+                                text: viewModelSwap.beamAvailable + ' ARC'
+                                color: '#5fe795'
+                                font.pixelSize: 30
+                                font.capitalization: Font.AllUppercase
+                            }
                         }
                     }
 
-                    Row {
-                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                        Layout.topMargin: 5
-                        //spacing: 20
-                        visible: true
+                    ColumnLayout {
+                        anchors.right: parent.right
+                        anchors.top: parent.top
 
-                        SFText {
-                            text: viewModelSwap.beamAvailable + ' ARC'
-                            color: '#5fe795'
-                            font.pixelSize: 30
-                            font.capitalization: Font.AllUppercase
+                        CustomButton {
+                            id: backBtn
+                            Layout.alignment: Qt.AlignRight
+                            leftPadding: 0
+                            rightPadding: 0
+                            //Layout.leftMargin: 75
+
+                            //anchors.verticalCenter: parent.verticalCenter
+                            //anchors.left:   parent.right
+
+                            palette.button: "transparent"
+                            showHandCursor: true
+
+                            //% "Back"
+                            text:         "<= " + qsTrId("general-back")
+                            //visible:      true
+
+                            //onClicked: control.onClosed
+                            onClicked: {
+                                updateItem(0);
+                                //control.onClosed();
+                            }
+                            customColor: 'white'
+                            disableBorders: true
+
+                            //background.border.width: 0
+                            //contentItem.color: 'white'
                         }
+
+                        Rectangle {
+                            visible: true
+                            anchors.fill: parent
+                            color: 'transparent'
+                            //border.width: 3
+                            //border.color: 'purple'
+                        }
+                    }
+
+                    Rectangle {
+                        visible: true
+                        anchors.fill: parent
+                        color: 'transparent'
+                        //border.width: 2
+                        //border.color: 'pink'
                     }
                 }
 
-                ColumnLayout {
+                Row {
+                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                    Layout.topMargin: 25
+                    spacing: 40
+
                     CustomButton {
-                        id: backBtn
-                        Layout.alignment: Qt.AlignTop | Qt.AlignRight
-                        Layout.leftMargin: 75
-
-                        //anchors.verticalCenter: parent.verticalCenter
-                        //anchors.left:   parent.right
-
-                        palette.button: "transparent"
-                        leftPadding:    0
-                        showHandCursor: true
-
-                        //% "Back"
-                        text:         "<= " + qsTrId("general-back")
-                        //visible:      true
-
-                        //onClicked: control.onClosed
+                        height: 43
+                        id: sendButton
+                        Layout.alignment: Qt.AlignLeft
+                        palette.button: Style.accent_outgoing
+                        palette.buttonText: Style.content_opposite
+                        hoveredBorderColor: '#1aa853'
+                        //% "Send"
+                        text: qsTrId("general-send")
+                        enabled: true
                         onClicked: {
-                            updateItem(0);
-                            //control.onClosed();
+                            navigateSend(assets.selectedId);
                         }
-                        customColor: 'white'
-                        disableBorders: true
+                        width: 200
+                    }
 
-                        //background.border.width: 0
-                        //contentItem.color: 'white'
+                    Item {
+                        Layout.fillWidth: true
+                    }
+
+                    CustomButton {
+                        height: 43
+                        Layout.alignment: Qt.AlignRight
+                        palette.button: Style.accent_incoming
+                        palette.buttonText: Style.content_opposite
+                        hoveredBorderColor: '#1aa853'
+                        //% "Receive"
+                        text: qsTrId("wallet-receive-button")
+                        enabled: false
+                        onClicked: {
+                            navigateReceive(assets.selectedId);
+                        }
+                        width: 200
                     }
                 }
-            }
 
-            Row {
-                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                Layout.topMargin: 25
-                spacing: 40
-                width: 440
 
-                CustomButton {
-                    height: 43
-                    id: sendButton
-                    palette.button: Style.accent_outgoing
-                    palette.buttonText: Style.content_opposite
-                    //% "Send"
-                    text: qsTrId("general-send")
-                    enabled: true
-                    onClicked: {
-                        navigateSend(assets.selectedId);
-                    }
-                    width: 200
-                }
-
-                CustomButton {
-                    height: 43
-                    palette.button: Style.accent_incoming
-                    palette.buttonText: Style.content_opposite
-                    //% "Receive"
-                    text: qsTrId("wallet-receive-button")
-                    enabled: false
-                    onClicked: {
-                        navigateReceive(assets.selectedId);
-                    }
-                    width: 200
+                Rectangle {
+                    visible: true
+                    anchors.fill: parent
+                    color: 'transparent'
+                    //border.width: 3
+                    //border.color: 'yellow'
                 }
             }
 
@@ -473,8 +520,6 @@ ColumnLayout {
                         CustomButton {
                             id: copyButton
                             Layout.topMargin:       5
-                            customColor:            '#5fe795'
-                            customBorderColor:      '#5fe795'
                             Layout.alignment:       Qt.AlignHCenter
                             //% "copy and close"
                             text:                   qsTrId("general-copy-and-close")
@@ -483,6 +528,10 @@ ColumnLayout {
                             icon.color:             Style.content_opposite
                             palette.button:         Style.accent_incoming
                             enabled:                control.isValid()
+                            hoveredTextColor:       '#5fe795'
+                            textColor:              '#696969'
+                            hoveredBorderColor:     '#5fe795'
+                            borderColor:            '#696969'
 
                             onClicked: function () {
                                 control.copyAndClose()
@@ -590,6 +639,7 @@ ColumnLayout {
                     }
 
                     Panel {
+                        visible: false
                         //% "Advanced"
                         title: qsTrId("general-advanced")
                         Layout.fillWidth: true
