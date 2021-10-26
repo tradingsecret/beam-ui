@@ -95,13 +95,13 @@ T.TextField {
         id: mouseArea
 
         onClicked: {
-            var selectStart = control.selectionStart
+            /*var selectStart = control.selectionStart
             var selectEnd = control.selectionEnd
             contextMenu.x = mouseX
             contextMenu.y = mouseY
             contextMenu.open()
             if (cursorPosition == selectEnd) control.select(selectStart, selectEnd)
-            else control.select(selectEnd, selectStart)
+            else control.select(selectEnd, selectStart)*/
         }
     }
 
@@ -109,6 +109,7 @@ T.TextField {
         id: contextMenu
         modal: true
         dim: false
+        visible: false
         Action {
             //% "Copy"
             text: qsTrId("general-copy")

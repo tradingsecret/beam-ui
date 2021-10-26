@@ -639,7 +639,7 @@ ColumnLayout {
                     }
 
                     Panel {
-                        visible: false
+                        visible: true
                         //% "Advanced"
                         title: qsTrId("general-advanced")
                         Layout.fillWidth: true

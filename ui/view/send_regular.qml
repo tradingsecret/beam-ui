@@ -633,7 +633,7 @@ ColumnLayout {
                         //% "Transaction type"
                         title: qsTrId("general-tx-type")
                         Layout.fillWidth: true
-                        visible: viewModel.canChoose
+                        visible: false//viewModel.canChoose
                         backgroundColor: 'transparent'
                         rightPadding: 0
 
@@ -699,24 +699,26 @@ ColumnLayout {
                             }
                         }
                     }
+
+                    SFText {
+                        Layout.alignment:      Qt.AlignHCenter
+                        Layout.preferredWidth: 400
+                        Layout.topMargin:      15
+                        font.pixelSize:        14
+                        font.italic:           true
+                        color:                 Style.content_disabled
+                        wrapMode:              Text.WordWrap
+                        horizontalAlignment:   Text.AlignHCenter
+                        text:                  viewModel.tokenTip2
+                        visible:               !!text
+                    }
                 }
             }
 
             //
             // Footers
             //
-            SFText {
-                Layout.alignment:      Qt.AlignHCenter
-                Layout.preferredWidth: 400
-                Layout.topMargin:      15
-                font.pixelSize:        14
-                font.italic:           true
-                color:                 Style.content_disabled
-                wrapMode:              Text.WordWrap
-                horizontalAlignment:   Text.AlignHCenter
-                text:                  viewModel.tokenTip2
-                visible:               !!text
-            }
+
 
             Item {
                 Layout.fillHeight: true

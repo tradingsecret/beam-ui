@@ -181,7 +181,7 @@ Rectangle {
         {name: "addresses", title: "Address book", active: true},
         {name: "notifications", title: "Notifications", active: true},
         {name: "settings", title: "Settings", active: true},
-        {name: "settings_old", title: "Settings Old", active: true},
+       // {name: "settings_old", title: "Settings Old", active: true},
         {name: "connect", title: "Assets", active: false}
     ]
 

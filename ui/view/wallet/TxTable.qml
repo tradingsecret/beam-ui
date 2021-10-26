@@ -163,7 +163,7 @@ Control {
                      color:             '#585858'
                      font.pixelSize:    72
                      font.family:       tomorrow_semibold.name
-                     opacity: 0.5
+                     opacity: 0.3
                  }
 
                  Rectangle {
