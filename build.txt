@@ -30,5 +30,19 @@ https://nsis.sourceforge.io/Download
 #cpack
 cpack --verbose -G NSIS -C RelWithDebugInfo
 
+#macos
+brew uninstall --ignore-dependencies qt boost
+install QML: 5.15.2 with WebEngine module.
+git clone --depth=1 https://github.com/BeamMW/boost_prebuild_macos-10.15.git
+export BOOST_INCLUDEDIR=/path_boost/include
+export BOOST_LIBRARYDIR=/path_boost/lib/
+export BOOST_ROOT=/path_boost/
 
+export OPENSSL_ROOT_DIR="/usr/local/opt/openssl@1.1"
+export PATH=/Users/<username>/Qt5.11.0/5.11.0/clang_64/bin:$PATH
+export QT5_ROOT_DIR=/Users/<username>/Qt5.11.0/5.11.0/
+export QML_IMPORT_PATH="/Users/<username>/Qt5.11.0/5.11.0/qml"
 
+cmake -Wno-dev -DCMAKE_BUILD_TYPE=Release -DDEBUG_MESSAGES_IN_RELEASE_MODE=On -DBEAM_LINK_TYPE=Static -DBEAM_USE_STATIC_QT=FALSE -DBRANCH_NAME=master -DBEAM_SIGN_MACOS_BINARY=On -DBEAM_HW_WALLET=Off .
+cmake -DCMAKE_BUILD_TYPE=Release . && make -j4
+cpack
