@@ -453,8 +453,8 @@
         <translation>Wallet - Send</translation>
     </message>
     <message id="start-restore-confirm-button">
-        <source>I agree</source>
-        <translation>I agree</translation>
+        <source>I UNDERSTAND</source>
+        <translation>I UNDERSTAND</translation>
     </message>
     <message id="start-restore-message-line">
         <source>Restore an existing Imperium Protocol Wallet. Please note that if you use your wallet on another device, your balance will be up to date, but transaction history and addresses will be kept separately on each device.</source>
