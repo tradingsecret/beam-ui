@@ -1467,8 +1467,8 @@ know all your funds (UTXO). Make sure that you
 deploy the key at the node you trust completely.</translation>
     </message>
     <message id="settings-general-require-pwd-to-show-owner-key">
-        <source>Access to private key</source>
-        <translation>Access to private key</translation>
+        <source>REVEAL THE PRIVATE KEY</source>
+        <translation>REVEAL THE PRIVATE KEY</translation>
     </message>
     <message id="settings-general-require-pwd-to-show-owner-key-message">
         <source>Enter your wallet’s password to reveal the private key:</source>
