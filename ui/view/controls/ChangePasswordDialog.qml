@@ -18,14 +18,14 @@ CustomDialog {
 	modal: true
 
 	width: 520
-	height: 420
+    height: 520
 	x: (parent.width - width) / 2
 	y: (parent.height - height) / 2
 	visible: false
 
     contentItem: Column {
     	anchors.fill: parent
-    	anchors.margins: 30
+        anchors.margins: 60
 
     	spacing: 30
 

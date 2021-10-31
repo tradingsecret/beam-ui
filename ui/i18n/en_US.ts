@@ -64,8 +64,8 @@
         <translation>Rescan</translation>
     </message>
     <message id="general-change-pwd">
-        <source>Change wallet password</source>
-        <translation>Change wallet password</translation>
+        <source>Change password</source>
+        <translation>Change password</translation>
     </message>
     <message id="general-pwd-empty-error">
         <source>Please, enter password</source>
@@ -331,16 +331,16 @@
         <translation>The old password you have entered is incorrect</translation>
     </message>
     <message id="change-pwd-old-pwd-label">
-        <source>Enter old password</source>
-        <translation>Enter old password</translation>
+        <source>Old password</source>
+        <translation>Old password</translation>
     </message>
     <message id="change-pwd-new-pwd-label">
-        <source>Enter new password</source>
-        <translation>Enter new password</translation>
+        <source>New password</source>
+        <translation>New password</translation>
     </message>
     <message id="change-pwd-confirm-pwd-label">
-        <source>Confirm new password</source>
-        <translation>Confirm new password</translation>
+        <source>Re-enter new password</source>
+        <translation>Re-enter new password</translation>
     </message>
     <message id="change-pwd-ok">
         <source>Change password</source>
