@@ -1471,9 +1471,8 @@ deploy the key at the node you trust completely.</translation>
         <translation>Access to private key</translation>
     </message>
     <message id="settings-general-require-pwd-to-show-owner-key-message">
-        <source>Password verification is required to see the owner key</source>
-        <extracomment>settings tab, general section, ask password to Show owner key, message</extracomment>
-        <translation>Password verification is required to see the owner key</translation>
+        <source>Enter your wallet’s password to reveal the private key:</source>
+        <translation>Enter your wallet’s password to reveal the private key:</translation>
     </message>
     <message id="swap-tx-state-in-progress-negotiation">
         <source>If the other side will not sign the transaction in %1, the offer will be canceled automatically.</source>

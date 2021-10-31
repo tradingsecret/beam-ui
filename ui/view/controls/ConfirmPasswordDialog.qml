@@ -44,14 +44,15 @@ CustomDialog {
 	y: (parent.height - height) / 2
 	visible:        false
 	parent:         Overlay.overlay
-	padding:        30
+    padding:        50
+    bottomPadding:  60
 
     contentItem: ColumnLayout {
-		spacing: 30
+        spacing: 30
 
 		SFText {
 			Layout.alignment: Qt.AlignHCenter
-			Layout.fillWidth: true
+            Layout.fillWidth: true
 			text: dialogTitle
 			color: Style.content_main
 			horizontalAlignment: Text.AlignHCenter
@@ -60,11 +61,11 @@ CustomDialog {
 		}
 
 		ColumnLayout {
-			Layout.fillWidth:		true
+            Layout.fillWidth:		true
 			SFText {
-				Layout.fillWidth:		true
+                Layout.fillWidth:		true
 				Layout.alignment:		Qt.AlignHCenter
-				text:					dialogMessage
+                text:					dialogMessage
 				color:					Style.content_main
 				font.pixelSize:			14
 				wrapMode:				Text.Wrap
