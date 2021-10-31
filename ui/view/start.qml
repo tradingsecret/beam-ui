@@ -74,10 +74,37 @@ Item
                 horizontalAlignment : Text.AlignHCenter
                 width: parent.width
                 //% "You are trying to restore an existing Beam Wallet. Please notice that if you use your wallet on another device, your balance will be up to date, but  transaction history and addresses will be kept separately on each device."
-                text: qsTrId("start-restore-message-line")
+                text: qsTrId("start-restore-message-line-1-new")
                 color: Style.content_main
                 font.pixelSize: 14
                 wrapMode: Text.Wrap
+            }
+
+            RowLayout {
+                width: parent.width
+                visible: false
+
+                SFText {
+                    bottomPadding: 40
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    horizontalAlignment : Text.AlignHCenter
+                    text: "IMPORTANT: "
+                    color: Style.content_main
+                    font.pixelSize: 14
+                    font.bold: true
+                    wrapMode: Text.Wrap
+                }
+
+                SFText {
+                    padding: 20
+                    bottomPadding: 40
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    horizontalAlignment : Text.AlignHCenter
+                    text: qsTrId("start-restore-message-line-2-new")
+                    color: Style.content_main
+                    font.pixelSize: 14
+                    wrapMode: Text.Wrap
+                }
             }
         }
         onAccepted: {

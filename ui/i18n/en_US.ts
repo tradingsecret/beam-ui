@@ -145,8 +145,8 @@
         <translation>Select the wallet database file</translation>
     </message>
     <message id="general-restore-wallet">
-        <source>Restore your wallet</source>
-        <translation>Restore your wallet</translation>
+        <source>RESTORE WALLET</source>
+        <translation>RESTORE WALLET</translation>
     </message>
     <message id="general-start-using">
         <source>next =></source>
@@ -459,6 +459,16 @@
     <message id="start-restore-message-line">
         <source>Restore an existing Imperium Protocol Wallet. Please note that if you use your wallet on another device, your balance will be up to date, but transaction history and addresses will be kept separately on each device.</source>
         <translation>Restore an existing Imperium Protocol Wallet. Please note that if you use your wallet on another device, your balance will be up to date, but transaction history and addresses will be kept separately on each device.</translation>
+    </message>
+    <message id="start-restore-message-line-1-new">
+        <source>You are going to restore an existing Imperium Protocol Wallet.
+
+IMPORTANT: If you are restoring your wallet on another device then your transaction history and saved addresses won't be restored.
+</source>
+        <translation>You are going to restore an existing Imperium Protocol Wallet.
+
+IMPORTANT: If you are restoring your wallet on another device then your transaction history and saved addresses won't be restored.
+        </translation>
     </message>
     <message id="start-migration-message">
         <source>Your wallet will be migrated to v </source>
