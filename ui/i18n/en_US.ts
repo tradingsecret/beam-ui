@@ -909,12 +909,12 @@ IMPORTANT: If you are restoring your wallet on another device then your transact
         <translation>I understand</translation>
     </message>
     <message id="restore-finish-alert-title">
-        <source>Do not simultaneously run two wallets initiated from the same seed phrase</source>
-        <translation>Do not simultaneously run two wallets initiated from the same seed phrase</translation>
+        <source>DON&apos;T RUN THE SAME WALLETS ON MULTIPLE DEVICES AT THE SAME TIME</source>
+        <translation>DON&apos;T RUN THE SAME WALLETS ON MULTIPLE DEVICES AT THE SAME TIME</translation>
     </message>
     <message id="restore-finish-alert-message-line">
-        <source>Don’t use same seed phrase on several devices, your balance and transaction list won’t be synchronized.</source>
-        <translation>Don’t use same seed phrase on several devices, your balance and transaction list won’t be synchronized.</translation>
+        <source>Don&apos;t use the same wallet&apos;s seed phrase on several devices, because your transaction list and the funds&apos; balances won&apos;t be synced.</source>
+        <translation>Don&apos;t use the same wallet&apos;s seed phrase on several devices, because your transaction list and the funds&apos; balances won&apos;t be synced.</translation>
     </message>
     <message id="tx-failure-subtx-failed">
         <source>Subtransaction has failed</source>
