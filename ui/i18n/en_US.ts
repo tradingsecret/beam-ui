@@ -530,8 +530,8 @@ IMPORTANT: If you are restoring your wallet on another device then your transact
         <translation>Proceed</translation>
     </message>
     <message id="start-confirm-seed-phrase-message">
-        <source>We recommend writing down the seed phrase on paper. Don’t store the file with your wallet seed phrase on your computer due to possible cyber attacks.</source>
-        <translation type="unfinished">We recommend writing down the seed phrase on paper. Don’t store the file with your wallet seed phrase on your computer due to possible cyber attacks.</translation>
+        <source>Please save this seed phrase for further wallet restoration in case of lose access to this device. Don’t store the seed phrase on your computer to avoid possible cyber-attacks and wallet hijack.</source>
+        <translation type="unfinished">Please save this seed phrase for further wallet restoration in case of lose access to this device. Don’t store the seed phrase on your computer to avoid possible cyber-attacks and wallet hijack.</translation>
     </message>
     <message id="start-check-seed-phrase-message">
         <source>Please fill in the words from the seed phrase under specific numbers according to the numeric value in the seed phrase.</source>

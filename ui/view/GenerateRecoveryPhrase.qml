@@ -65,9 +65,40 @@ Component {
                 cancelButtonVisible: false
                 width: 460
                 //% "It is strictly recommended to write down the seed phrase on a paper. Storing it in a file makes it prone to cyber attacks and, therefore, less secure."
-                text: qsTrId("start-confirm-seed-phrase-message")
+                //text: qsTrId("start-confirm-seed-phrase-message")
                 onAccepted: {
                     onClicked: startWizzardView.push(checkRecoveryPhrase);
+                }
+                topPadding: 30
+
+
+                contentItem: Column {
+                    width: parent.width
+                    //height: confirRecoveryPhrasesDialog.implicitHeight + restoreWalletConfirmationMessage.implicitHeight
+                    SFText {
+                        id: restoreWalletConfirmationTitle
+                        topPadding: 20
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        horizontalAlignment: Qt.AlignHCenter
+                        //% "Restore wallet"
+                        text: "SAVE YOUR SEED PHRASE"
+                        color: Style.content_main
+                        font.pixelSize: 18
+                        font.styleName: "Bold"
+                        font.weight: Font.Bold
+                    }
+
+                    SFText {
+                        id: restoreWalletConfirmationMessage
+                        padding: 20
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        horizontalAlignment : Text.AlignHCenter
+                        width: parent.width
+                        text: qsTrId("start-confirm-seed-phrase-message")
+                        color: Style.content_main
+                        font.pixelSize: 14
+                        wrapMode: Text.Wrap
+                    }
                 }
             }
             SeedValidationHelper {
