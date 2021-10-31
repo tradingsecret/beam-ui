@@ -615,8 +615,8 @@
         <translation>Connection timed out</translation>
     </message>
     <message id="wallet-model-connection-refused-error">
-        <source>Connection to %1 node lost</source>
-        <translation>Connection to %1 node lost</translation>
+        <source>Imperium node connection problems</source>
+        <translation>Imperium node connection problems</translation>
     </message>
     <message id="wallet-model-connection-host-unreach-error">
         <source>Node is unreachable</source>
@@ -963,8 +963,8 @@
         <translation>%1 Transaction fee rate</translation>
     </message>
     <message id="general-change-settings">
-        <source>Change settings</source>
-        <translation>Change settings</translation>
+        <source>OK</source>
+        <translation>OK</translation>
     </message>
     <message id="general-swap">
         <source>Swap</source>

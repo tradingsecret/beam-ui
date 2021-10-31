@@ -202,7 +202,7 @@ void StatusbarViewModel::onNodeConnectionChanged(bool isNodeConnected)
 
     if (!m_isFailedStatus)
     {
-        setWalletStatusErrorMsg(qtTrId("wallet-model-connection-refused-error").arg("BEAM"));
+        setWalletStatusErrorMsg(qtTrId("wallet-model-connection-refused-error"));
         setIsFailedStatus(true);
     }
 }
