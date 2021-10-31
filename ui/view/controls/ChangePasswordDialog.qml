@@ -25,7 +25,7 @@ CustomDialog {
 
     contentItem: Column {
     	anchors.fill: parent
-        anchors.margins: 60
+        anchors.margins: 70
 
     	spacing: 30
 

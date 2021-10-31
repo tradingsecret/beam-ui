@@ -1467,9 +1467,8 @@ know all your funds (UTXO). Make sure that you
 deploy the key at the node you trust completely.</translation>
     </message>
     <message id="settings-general-require-pwd-to-show-owner-key">
-        <source>Show owner key</source>
-        <extracomment>settings tab, general section, Show owner key button and dialog title</extracomment>
-        <translation>Show owner key</translation>
+        <source>Access to private key</source>
+        <translation>Access to private key</translation>
     </message>
     <message id="settings-general-require-pwd-to-show-owner-key-message">
         <source>Password verification is required to see the owner key</source>
