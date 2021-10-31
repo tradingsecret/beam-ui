@@ -526,8 +526,8 @@ IMPORTANT: If you are restoring your wallet on another device then your transact
         <translation>Please save your seed phrase as it’s the access to your Imperium Protocol Wallet address. For easy saving please use the Print Seed Phrase button down below. Keep your printed seed phrase in a secured vault. If you lose access to your Imperium Protocol Wallet you can access it by Restoring your wallet using the seed phrase, otherwise, you might lose the access and stored funds in it.</translation>
     </message>
     <message id="start-confirm-seed-phrase-button">
-        <source>Proceed</source>
-        <translation>Proceed</translation>
+        <source>Got it</source>
+        <translation>Got it</translation>
     </message>
     <message id="start-confirm-seed-phrase-message">
         <source>Please save this seed phrase for further wallet restoration in case of lose access to this device. Don’t store the seed phrase on your computer to avoid possible cyber-attacks and wallet hijack.</source>
