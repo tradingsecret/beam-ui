@@ -1453,18 +1453,12 @@ Please check the swap token and try again.</translation>
         <translation>%1 Estimated transaction fee</translation>
     </message>
     <message id="settings-show-owner-key-title">
-        <source>Owner key</source>
-        <extracomment>settings tab, show owner key dialog title</extracomment>
-        <translation>Owner key</translation>
+        <source>Private key</source>
+        <translation>Private key</translation>
     </message>
     <message id="settings-show-owner-key-message">
-        <source>Please notice, that knowing your owner key allows to
-know all your funds (UTXO). Make sure that you
-deploy the key at the node you trust completely.</source>
-        <extracomment>settings tab, show owner key message</extracomment>
-        <translation>Please notice, that knowing your owner key allows to
-know all your funds (UTXO). Make sure that you
-deploy the key at the node you trust completely.</translation>
+        <source>IMPORTANT: Don&apos;t share your private key with anyone. This private key allows access to your wallet funds.</source>
+        <translation>IMPORTANT: Don&apos;t share your private key with anyone. This private key allows access to your wallet funds.</translation>
     </message>
     <message id="settings-general-require-pwd-to-show-owner-key">
         <source>REVEAL THE PRIVATE KEY</source>
