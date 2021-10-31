@@ -391,13 +391,14 @@ ConfirmationDialog {
         }
 
         SFText {
+            visible: false
             id:                     onlineMessageText
             horizontalAlignment:    Text.AlignHCenter
             Layout.maximumWidth:    420
             font.pixelSize:         14
             color:                  Style.content_disabled
             wrapMode:               Text.WordWrap
-            visible:                isEnough && isOnline
+            //visible:                isEnough && isOnline
             //% "For the transaction to complete, the recipient must get online within the next 12 hours and you should get online within 2 hours afterwards."
             text:                   qsTrId("send-confirmation-pwd-text-online-time")
         }

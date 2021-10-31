@@ -433,12 +433,12 @@
         <translation>Can&apos;t send to the expired address.</translation>
     </message>
     <message id="send-confirmation-title">
-        <source>Confirm transaction details</source>
-        <translation>Confirm transaction details</translation>
+        <source>Transaction confirmation</source>
+        <translation>Transaction confirmation</translation>
     </message>
     <message id="send-confirmation-recipient-label">
-        <source>Recipient</source>
-        <translation>Recipient</translation>
+        <source>Send to</source>
+        <translation>Send to</translation>
     </message>
     <message id="send-confirmation-pwd-require-message">
         <source>To approve the transaction please enter your password</source>
@@ -1809,9 +1809,8 @@ Your version is: %2. Please, check for updates.</translation>
         <translation type="unfinished">Regular</translation>
     </message>
     <message id="tx-max-privacy">
-        <source>Max Anonymity Set</source>
-        <oldsource>Max Privacy</oldsource>
-        <translation type="unfinished">Max privacy</translation>
+        <source>Anonymous</source>
+        <translation>Anonymous</translation>
     </message>
     <message id="error-peer-exists">
         <source>Peer already exists</source>
@@ -1830,8 +1829,8 @@ Your version is: %2. Please, check for updates.</translation>
         <translation>%1 %2</translation>
     </message>
     <message id="send-regular-fee">
-        <source>Transaction Fee</source>
-        <translation>Transaction Fee</translation>
+        <source>Transaction Cost</source>
+        <translation>Transaction Cost</translation>
     </message>
     <message id="settings-swap-clear">
         <source>clear</source>
@@ -2052,8 +2051,8 @@ Your version is: %2. Please, check for updates.</translation>
         <translation>Regular</translation>
     </message>
     <message id="tx-address-max-privacy">
-        <source>Max privacy</source>
-        <translation>Max privacy</translation>
+        <source>Anonymous</source>
+        <translation>Anonymous</translation>
     </message>
     <message id="wallet-txs-status-in-progress-public-offline">
         <source>in progress
