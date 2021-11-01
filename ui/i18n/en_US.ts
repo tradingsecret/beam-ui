@@ -778,8 +778,12 @@ IMPORTANT: If you are restoring your wallet on another device then your transact
         <translation>External link</translation>
     </message>
     <message id="open-external-message">
-        <source>Imperium Protocol Wallet app requires permission to open external link in the browser. This action will expose your IP to the web server. To avoid it, choose &quot;Cancel&quot;. You can change your choice in app setting anytime.</source>
-        <translation>Imperium Protocol Wallet app requires permission to open external link in the browser. This action will expose your IP to the web server. To avoid it, choose &quot;Cancel&quot;. You can change your choice in app setting anytime.</translation>
+        <source>Imperium Protocol Wallet app requests to open the external link via browser.
+Note: External links will expose your IP address to the opening websites. If you don&apos;t want to reveal your IP address press CANCEL.
+</source>
+        <translation>Imperium Protocol Wallet app requests to open the external link via browser.
+Note: External links will expose your IP address to the opening websites. If you don&apos;t want to reveal your IP address press CANCEL.
+        </translation>
     </message>
     <message id="start-open-change-wallet-message">
         <source>If you&apos;ll restore a wallet all transaction history and addresses will be lost.</source>
@@ -900,9 +904,8 @@ IMPORTANT: If you are restoring your wallet on another device then your transact
         <translation>Don’t ask password on every Send</translation>
     </message>
     <message id="settings-general-require-pwd-to-spend-confirm-pwd-message">
-        <source>Password verification is required to change that setting</source>
-        <extracomment>settings tab, general section, ask password to send, confirm password dialog, message</extracomment>
-        <translation>Password verification is required to change that setting</translation>
+        <source>Enter your wallet’s password to change settings:</source>
+        <translation>Enter your wallet’s password to change settings:</translation>
     </message>
     <message id="restore-finish-alert-button">
         <source>I understand</source>
@@ -1501,9 +1504,8 @@ Please check the swap token and try again.</translation>
         <translation>It is taking longer than usual. In case the transaction could not be completed it will be canceled automatically in %1.</translation>
     </message>
     <message id="settings-general-no-require-pwd-to-spend-confirm-pwd-title">
-        <source>Ask password on every Send</source>
-        <extracomment>settings tab, general section, ask password to send, confirm password dialog, title if unchecked</extracomment>
-        <translation>Ask password on every Send</translation>
+        <source>Password request on every send</source>
+        <translation>Password request on every send</translation>
     </message>
     <message id="tx-failure-kernel-min-height">
         <source>Kernel&apos;s min height is unacceptable</source>

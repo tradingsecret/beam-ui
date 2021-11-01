@@ -309,7 +309,7 @@ ColumnLayout {
                             confirmPasswordDialog.dialogMessage = qsTrId("settings-general-require-pwd-to-spend-confirm-pwd-message")
                             confirmPasswordDialog.okButtonIcon = "qrc:/assets/icon-done.svg"
                             //% "Proceed"
-                            confirmPasswordDialog.okButtonText = qsTrId("general-proceed")
+                            confirmPasswordDialog.okButtonText = "SAVE"
                             confirmPasswordDialog.onDialogAccepted = onDialogAcceptedTrue
                             confirmPasswordDialog.open()
                         }
