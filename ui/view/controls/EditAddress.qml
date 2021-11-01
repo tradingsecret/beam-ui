@@ -13,7 +13,7 @@ CustomDialog {
     padding: 80
     leftPadding: 60
     width: 700
-    height: 310
+    height: 450
 
     property var  viewModel
     property var  addressItem

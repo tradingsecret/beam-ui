@@ -262,7 +262,8 @@ CustomDialog {
                 color:                  Style.content_secondary
                 //% "Address type"
                 text:                   qsTrId("address-info-type") + ":"
-                visible:                addrTypeText.visible
+                //visible:                addrTypeText.visible
+                visible: false
             }
                 
             SFText {
@@ -272,7 +273,8 @@ CustomDialog {
                 font.pixelSize:         14
                 text:                   dialog.addressType
                 color:                  Style.content_main
-                visible:                !dialog.isContractTx && stm.state == "tx_info"
+                //visible:                !dialog.isContractTx && stm.state == "tx_info"
+                visible: false
             }
 
             SFText {
@@ -330,11 +332,11 @@ CustomDialog {
                             prefix:       this.amount == "0" ? "" : (dialog.assetIncome[index] ? "+ " : "- ")
                             rate:         dialog.assetRates ? (dialog.assetRates[index] || "") : ""
                             rateUnit:     this.rate != "0" ? dialog.rateUnit : ""
-                            ratePostfix:  this.rate != "0"
+                            ratePostfix:  "" /*this.rate != "0"
                                 //% "calculated with the exchange rate at the time of the transaction"
                                 ? "(" + qsTrId("tx-details-rate-notice") + ")"
                                 //% "exchange rate was not available at the time of the transaction"
-                                : "(" + qsTrId("tx-details-exchange-rate-not-available") + ")"
+                                : "(" + qsTrId("tx-details-exchange-rate-not-available") + ")"*/
                             rateFontSize:     12
                             showTip:          false
                             maxUnitChars:     25
@@ -521,10 +523,12 @@ CustomDialog {
                 color: Style.content_secondary
                 //% "Kernel ID"
                 text: qsTrId("general-kernel-id") + ":"
-                visible: kernelID.parent.visible
+                //visible: kernelID.parent.visible
+                visible: false
             }
             RowLayout {
-                visible: !Utils.isZeroed(dialog.kernelID)
+                //visible: !Utils.isZeroed(dialog.kernelID)
+                visible: false
                 SFLabel {
                     Layout.fillWidth: true
                     id: kernelID

@@ -100,8 +100,8 @@
         <translation>Paste</translation>
     </message>
     <message id="general-fee">
-        <source>Transaction fee</source>
-        <translation>Transaction fee</translation>
+        <source>Transaction cost</source>
+        <translation>Transaction cost</translation>
     </message>
     <message id="general-ok">
         <source>Ok</source>
@@ -441,8 +441,8 @@
         <translation>Send to</translation>
     </message>
     <message id="send-confirmation-pwd-require-message">
-        <source>To approve the transaction please enter your password</source>
-        <translation>To approve the transaction please enter your password</translation>
+        <source>Please enter your password to complete the transaction</source>
+        <translation>Please enter your password to complete the transaction</translation>
     </message>
     <message id="wallet-title">
         <source>Wallet</source>
@@ -2789,16 +2789,16 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="tx-details-sending-addr-label">
-        <source>Sending address</source>
-        <translation type="unfinished"></translation>
+        <source>From</source>
+        <translation>From</translation>
     </message>
     <message id="tx-details-sender-identity">
         <source>Sender&apos;s wallet signature</source>
         <translation>Sender&apos;s wallet signature</translation>
     </message>
     <message id="tx-details-receiving-addr-label">
-        <source>Receiving address</source>
-        <translation type="unfinished"></translation>
+        <source>To</source>
+        <translation>To</translation>
     </message>
     <message id="tx-details-receiver-identity">
         <source>Receiver&apos;s wallet signature</source>
@@ -2817,8 +2817,8 @@ Update your settings and try again.</source>
         <translation>exchange rate was not available at the time of the transaction</translation>
     </message>
     <message id="tx-details-tx-id-label">
-        <source>Transaction ID</source>
-        <translation type="unfinished">Transaction ID</translation>
+        <source>TXID</source>
+        <translation>TXID</translation>
     </message>
     <message id="open-in-explorer">
         <source>Open in Blockchain Explorer</source>
@@ -2857,16 +2857,16 @@ Update your settings and try again.</source>
         <translation>Anonymous Address</translation>
     </message>
     <message id="edit-addr-title">
-        <source>Edit address</source>
-        <translation type="unfinished">Edit address</translation>
+        <source>Address details</source>
+        <translation>Address details</translation>
     </message>
     <message id="edit-addr-addr">
         <source>Address</source>
         <translation type="unfinished">Address</translation>
     </message>
     <message id="edit-addr-expires-label">
-        <source>Expires on</source>
-        <translation type="unfinished">Expires on</translation>
+        <source>Address expiration date</source>
+        <translation>Address expiration date</translation>
     </message>
     <message id="edit-addr-expire-now">
         <source>Expire now</source>
@@ -3088,8 +3088,8 @@ Allow to proceed ? You can always update your choice in Settings later.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="tx-details-popup-title">
-        <source>Transaction info</source>
-        <translation>Transaction info</translation>
+        <source>Transaction details</source>
+        <translation>Transaction details</translation>
     </message>
     <message id="send-no-funds-for-fee">
         <source>Insufficient funds to pay transaction fee.</source>
