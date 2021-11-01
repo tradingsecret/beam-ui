@@ -77,6 +77,7 @@ public:
     virtual bool isPending() const;
     virtual bool isExpired() const;
     virtual bool isCompleted() const;
+    virtual bool isAnonymous() const;
     virtual bool isCanceled() const;
     virtual bool isFailed() const;
     virtual bool isMultiAsset() const;

@@ -51,6 +51,10 @@
         <source>Status</source>
         <translation>Status</translation>
     </message>
+    <message id="tx-table-status">
+        <source>Comment</source>
+        <translation>Comment</translation>
+    </message>
     <message id="general-cancel">
         <source>Cancel</source>
         <translation>Cancel</translation>
@@ -182,8 +186,8 @@
         <translation>Verify payment</translation>
     </message>
     <message id="wallet-txs-date-time">
-        <source>Created on</source>
-        <translation>Created on</translation>
+        <source>Transaction date</source>
+        <translation>Transaction date</translation>
     </message>
     <message id="wallet-txs-delete-message">
         <source>The transaction will be deleted. This operation can not be undone</source>
@@ -206,12 +210,12 @@
         <translation>completed</translation>
     </message>
     <message id="wallet-txs-status-received">
-        <source>received</source>
-        <translation>received</translation>
+        <source>Incoming Transaction (Regular)</source>
+        <translation>Incoming Transaction (Regular)</translation>
     </message>
     <message id="wallet-txs-status-sent">
-        <source>sent</source>
-        <translation>sent</translation>
+        <source>Outgoing Transaction</source>
+        <translation>Outgoing Transaction</translation>
     </message>
     <message id="wallet-txs-status-cancelled">
         <source>cancelled</source>
@@ -1110,28 +1114,28 @@ please review your settings and try again</translation>
         <translation>There is no Trezor device connected. Please, connect and try again.</translation>
     </message>
     <message id="wallet-transactions-all-tab">
-        <source>All</source>
-        <translation>All</translation>
+        <source>SHOW ALL</source>
+        <translation>SHOW ALL</translation>
     </message>
     <message id="wallet-transactions-in-progress-tab">
-        <source>In progress</source>
-        <translation>In progress</translation>
+        <source>PENDING</source>
+        <translation>PENDING</translation>
     </message>
     <message id="wallet-transactions-sent-tab">
-        <source>Sent</source>
-        <translation>Sent</translation>
+        <source>OUTGOING</source>
+        <translation>OUTGOING</translation>
     </message>
     <message id="wallet-transactions-received-tab">
-        <source>Received</source>
-        <translation>Received</translation>
+        <source>INCOMING</source>
+        <translation>INCOMING</translation>
     </message>
     <message id="send-less-than-fee">
         <source>The swap amount must be greater than the transaction fee</source>
         <translation>The swap amount must be greater than the transaction fee</translation>
     </message>
     <message id="wallet-txs-status-in-progress">
-        <source>in progress</source>
-        <translation>in progress</translation>
+        <source>Pending Transaction</source>
+        <translation>Pending Transaction</translation>
     </message>
     <message id="wallet-txs-status-own-sent">
         <source>sent to own address</source>
@@ -1142,8 +1146,8 @@ please review your settings and try again</translation>
         <translation>sending to own address</translation>
     </message>
     <message id="wallet-search-transactions-placeholder">
-        <source>Enter search text...</source>
-        <translation type="unfinished">Enter search text...</translation>
+        <source>Search...</source>
+        <translation>Search...</translation>
     </message>
     <message id="settings-swap-node">
         <source>Node</source>
@@ -1873,22 +1877,16 @@ Your version is: %2. Please, check for updates.</translation>
         <translation>Offline</translation>
     </message>
     <message id="wallet-txs-status-in-progress-max">
-        <source>in progress
-(maximum anonymity)</source>
-        <translation>in progress
-(maximum anonymity)</translation>
+        <source>Pending Transaction (Anonymous)</source>
+        <translation>Pending Transaction (Anonymous)</translation>
     </message>
     <message id="wallet-txs-status-sent-max">
-        <source>sent
-(maximum anonymity)</source>
-        <translation>sent
-(maximum anonymity)</translation>
+        <source>Outgoing Transaction (Anonymous))</source>
+        <translation>Outgoing Transaction (Anonymous)</translation>
     </message>
     <message id="wallet-txs-status-received-max">
-        <source>received
-(maximum anonymity)</source>
-        <translation>received
-(maximum anonymity)</translation>
+        <source>Incoming Transaction (Anonymous)</source>
+        <translation>Incoming Transaction (Anonymous)</translation>
     </message>
     <message id="wallet-txs-status-in-progress-max-offline">
         <source>in progress (offline)</source>
@@ -2929,8 +2927,8 @@ Update your settings and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message id="wallet-txs-source">
-        <source>Source</source>
-        <translation type="unfinished"></translation>
+        <source>Transfer</source>
+        <translation>Transfer</translation>
     </message>
     <message id="source-wallet">
         <source>Send</source>
@@ -3114,6 +3112,10 @@ Allow to proceed ? You can always update your choice in Settings later.</source>
     <message id="general-coin">
         <source>Coin</source>
         <translation>Coin</translation>
+    </message>
+    <message id="tx-table-asset">
+        <source>Asset</source>
+        <translation>Asset</translation>
     </message>
     <message id="general-show-tx-details">
         <source>Show details</source>
@@ -3303,16 +3305,12 @@ cannot be canceled.</translation>
 (offline)</translation>
     </message>
     <message id="wallet-txs-status-sent-max-to-own">
-        <source>sent to own address
-(maximum anonymity)</source>
-        <translation>sent to own address
-(maximum anonymity)</translation>
+        <source>Outgoing Transaction to own address (Anonymous)</source>
+        <translation>Outgoing Transaction to own address (Anonymous)</translation>
     </message>
     <message id="wallet-txs-status-sent-offline-to-own">
-        <source>sent to own address
-(offline)</source>
-        <translation>sent to own address
-(offline)</translation>
+        <source>Outgoing Transaction to own address</source>
+        <translation>Outgoing Transaction to own address</translation>
     </message>
     <message id="apps-version-error">
         <source>This DApp requires version %1 of Imperium Protocol Wallet or higher. Please update.</source>

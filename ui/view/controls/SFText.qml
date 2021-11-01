@@ -10,6 +10,7 @@ Text {
 	}
     property alias linkEnabled: linkMouseArea.enabled
     MouseArea {
+        visible: false
         id: linkMouseArea
         enabled: false
         anchors.fill: parent

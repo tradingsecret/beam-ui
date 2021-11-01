@@ -672,6 +672,11 @@ bool TxObject::isCompleted() const
     return _tx.m_status == wallet::TxStatus::Completed || _tx.m_status == wallet::TxStatus::Confirming;
 }
 
+bool TxObject::isAnonymous() const
+{
+    return true;
+}
+
 bool TxObject::isSelfTx() const
 {
     return _tx.m_selfTx;

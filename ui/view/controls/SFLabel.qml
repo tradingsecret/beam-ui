@@ -29,6 +29,7 @@ Label {
     }
 
     MouseArea {
+        visible: false
         enabled: control.copyMenuEnabled
         anchors.left: control.left
         anchors.top: control.top

@@ -242,6 +242,7 @@ Control {
             }
 
             CustomToolButton {
+                visible: false
                 Layout.alignment: Qt.AlignVCenter
                 icon.source: "qrc:/assets/icon-proof.svg"
                 //% "Verify payment"
@@ -538,7 +539,7 @@ Control {
                 id: coinColumn
 
                 //% "Coin"
-                title:     qsTrId("general-coin")
+                title:     qsTrId("tx-table-asset")
                 //width:     100
                 width:     130 * transactionsTable.columnResizeRatio
                 movable:   false
@@ -560,7 +561,7 @@ Control {
                     width:    parent.width
                     height:   transactionsTable.rowHeight
                     icons:    model ? model.assetIcons : undefined
-                    names:    model ? model.assetNames : undefined
+                    names:    model ? ["Arctis (ARC)"] : undefined //model ? model.assetNames : undefined
                     verified: model ? model.assetVerified: undefined
                 }}
             }
@@ -589,7 +590,7 @@ Control {
 
                     SFText {
                         text:              parent.displayText
-                        color:             parent.isIncome ? Style.accent_incoming : Style.accent_outgoing
+                        color:             parent.isIncome ? "green" : "red" //Style.accent_incoming : Style.accent_outgoing
                         Layout.fillWidth:  true
                         Layout.leftMargin: 20
                         elide:             Text.ElideRight
@@ -667,7 +668,7 @@ Control {
                 id: statusColumn
                 role: "status"
                 //% "Status"
-                title: qsTrId("general-status")
+                title: qsTrId("tx-table-status")
                 // width: transactionsTable.getAdjustedColumnWidth(statusColumn) // 100 * transactionsTable.columnResizeRatio
                 width: 130 * transactionsTable.columnResizeRatio
                 movable: false
@@ -686,6 +687,7 @@ Control {
                             spacing: 10
 
                             SvgImage {
+                                visible: false
                                 id: statusIcon;
                                 Layout.alignment: Qt.AlignLeft
 
@@ -752,11 +754,17 @@ Control {
                                     if (!model || model.isExpired) {
                                         return Style.content_secondary;
                                     }
-                                    if (model.isInProgress || model.isCompleted) {
-                                        if (model.isSelfTransaction) {
-                                            return Style.content_main;
-                                        }
-                                        return model.isIncome ? Style.accent_incoming : Style.accent_outgoing;
+                                    if (model.isInProgress) {
+                                        return 'yellow';
+                                    }
+                                    if (model.isCompleted && model.isIncome) {
+                                        return model.isShieldedTx ? 'purple' : 'white';
+                                    }
+                                    if (model.isCompleted && !model.isIncome) {
+                                        //if (model.isSelfTransaction) {
+                                        //    return Style.content_main;
+                                        //}
+                                        return model.isShieldedTx ? 'purple' : 'white';
                                     } else if (model.isFailed) {
                                         return Style.accent_fail;
                                     }
@@ -782,16 +790,16 @@ Control {
             function showContextMenu(row) {
                 if (transactionsTable.model.getRoleValue(row, "isContractTx"))
                 {
-                    contractTxContextMenu.deleteEnabled = transactionsTable.model.getRoleValue(row, "isDeleteAvailable");
-                    contractTxContextMenu.txID = transactionsTable.model.getRoleValue(row, "rawTxID");
-                    contractTxContextMenu.popup();
+                    //contractTxContextMenu.deleteEnabled = transactionsTable.model.getRoleValue(row, "isDeleteAvailable");
+                    //contractTxContextMenu.txID = transactionsTable.model.getRoleValue(row, "rawTxID");
+                    //contractTxContextMenu.popup();
                 }
                 else
                 {
-                    txContextMenu.cancelEnabled = transactionsTable.model.getRoleValue(row, "isCancelAvailable");
-                    txContextMenu.deleteEnabled = transactionsTable.model.getRoleValue(row, "isDeleteAvailable");
-                    txContextMenu.txID = transactionsTable.model.getRoleValue(row, "rawTxID");
-                    txContextMenu.popup();
+                    //txContextMenu.cancelEnabled = transactionsTable.model.getRoleValue(row, "isCancelAvailable");
+                    //txContextMenu.deleteEnabled = transactionsTable.model.getRoleValue(row, "isDeleteAvailable");
+                    //txContextMenu.txID = transactionsTable.model.getRoleValue(row, "rawTxID");
+                    //txContextMenu.popup();
                 }
             }
 
@@ -825,6 +833,7 @@ Control {
 
             ContextMenu {
                 id: txContextMenu
+                visible: false
                 modal: true
                 dim: false
                 property bool cancelEnabled
