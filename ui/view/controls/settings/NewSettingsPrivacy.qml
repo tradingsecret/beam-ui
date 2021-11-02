@@ -48,8 +48,10 @@ ColumnLayout {
                 color: '#5fe795'
                 font.pixelSize: 16
                 font.capitalization: Font.AllUppercase
-                font.underline: true
+                font.underline: !walletPasswordMouseArea.containsMouse
                 MouseArea {
+                    id: walletPasswordMouseArea
+                    hoverEnabled: true
                     anchors.fill: parent
                     acceptedButtons: Qt.LeftButton
                     cursorShape: Qt.PointingHandCursor
@@ -68,8 +70,10 @@ ColumnLayout {
                 color: '#5fe795'
                 font.pixelSize: 16
                 font.capitalization: Font.AllUppercase
-                font.underline: true
+                font.underline: !showWalletPrivateKeyMouseArea.containsMouse
                 MouseArea {
+                    id: showWalletPrivateKeyMouseArea
+                    hoverEnabled: true
                     anchors.fill: parent
                     acceptedButtons: Qt.LeftButton
                     cursorShape: Qt.PointingHandCursor

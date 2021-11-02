@@ -162,7 +162,7 @@ Component {
                     }
                 }
 
-                PrimaryButton {
+                CustomButton {
                     //% "I will do it later"
                     text: "          " + qsTrId("general-do-later") + "          "
                     font.capitalization: Font.AllUppercase

@@ -236,7 +236,7 @@ Item
                                 }
                             }
 
-                            PrimaryButton {
+                            CustomButton {
                                 id: createNewWallet
                                 //% "Create new wallet"
                                 text: qsTrId("general-create-wallet")
@@ -789,7 +789,7 @@ Item
                             onClicked: startWizzardView.pop();
                         }
 
-                        PrimaryButton {
+                        CustomButton {
                             id: generateRecoveryPhraseButton
                             //% "Generate seed phrase"
                             text: qsTrId("start-generate-seed-phrase-button")

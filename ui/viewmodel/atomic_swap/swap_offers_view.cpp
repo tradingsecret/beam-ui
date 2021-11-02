@@ -237,6 +237,17 @@ QString SwapOffersViewModel::beamAvailable() const
     return beamui::AmountToUIString(available);
 }
 
+QString SwapOffersViewModel::beamFullAvailable() const
+{
+    auto available = m_walletModel.getAvailable(beam::Asset::s_BeamID);
+
+    auto locked = m_walletModel.getMaturing(beam::Asset::s_BeamID);
+    locked += m_walletModel.getMatutingMP(beam::Asset::s_BeamID);
+    locked += m_walletModel.getReceivingChange(beam::Asset::s_BeamID);
+
+    return beamui::AmountToUIString(beam::AmountBig::get_Lo(available) + beam::AmountBig::get_Lo(locked));
+}
+
 QAbstractItemModel* SwapOffersViewModel::getTransactions()
 {
     return &m_transactionsList;

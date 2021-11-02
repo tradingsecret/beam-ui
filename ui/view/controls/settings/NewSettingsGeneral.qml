@@ -210,6 +210,7 @@ ColumnLayout {
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
                         //viewModel.currentLanguage = viewModel.supportedLanguages[index]
+                        languagePanelVisible = !languagePanelVisible
                     }
                 }
             }

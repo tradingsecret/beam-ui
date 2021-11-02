@@ -424,5 +424,7 @@
 		<file>assets/outline_info_white_48dp.png</file>
 		<file>assets/address_icon_default.png</file>
 		<file>assets/address_icon_hover.png</file>
+		<file>assets/Incoming_sound.mp3</file>
+		<file>assets/Incoming_sound.wav</file>
     </qresource>
 </RCC>

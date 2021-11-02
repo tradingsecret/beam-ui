@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls.Styles 1.2
 import QtGraphicalEffects 1.0
 import QtQuick.Window 2.2
+import QtMultimedia 5.15
 import "controls"
 import Beam.Wallet 1.0
 import "utils.js" as Utils
@@ -12,11 +13,39 @@ import "utils.js" as Utils
 Rectangle {
     id: main
 
+    SwapOffersViewModel {
+        id: viewModelSwapSound
+    }
+
+    AssetsViewModel {
+        id: assetViewModelSound
+    }
+
     property var    openedNotifications: 0
     property var    notificationOffset: 0
     property alias  hasNewerVersion : updateInfoProvider.hasNewerVersion
     readonly property bool devMode: viewModel.isDevMode
+    property var oldBeamAvailable: viewModelSwapSound.beamFullAvailable
     anchors.fill:   parent
+
+    SoundEffect {
+        id: soundIncomeMoney
+        source: "qrc:/assets/Incoming_sound.wav"
+    }
+
+    Timer {
+        id: checkIncomeMoney
+        running: true
+        repeat: true
+        interval: 1000
+        onTriggered: {
+            if (viewModelSwapSound.beamFullAvailable > oldBeamAvailable) {
+                soundIncomeMoney.play();
+            }
+
+            oldBeamAvailable = viewModelSwapSound.beamFullAvailable;
+        }
+    }
 
     function increaseNotificationOffset(popup) {
         popup.verticalOffset = main.notificationOffset

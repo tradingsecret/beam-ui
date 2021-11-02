@@ -43,8 +43,10 @@ ColumnLayout {
                 rightPadding: 75
                 font.pixelSize: 16
                 font.capitalization: Font.AllUppercase
-                font.underline: true
+                font.underline: !importWalletMouseArea.containsMouse
                 MouseArea {
+                    id: importWalletMouseArea
+                    hoverEnabled: true
                     anchors.fill: parent
                     acceptedButtons: Qt.LeftButton
                     cursorShape: Qt.PointingHandCursor
@@ -59,8 +61,10 @@ ColumnLayout {
                 color: '#5fe795'
                 font.pixelSize: 16
                 font.capitalization: Font.AllUppercase
-                font.underline: true
+                font.underline: !exportWalletMouseArea.containsMouse
                 MouseArea {
+                    id: exportWalletMouseArea
+                    hoverEnabled: true
                     anchors.fill: parent
                     acceptedButtons: Qt.LeftButton
                     cursorShape: Qt.PointingHandCursor
@@ -120,7 +124,7 @@ ColumnLayout {
                         visible: !showAddress
                         horizontalAlignment: Text.horizontalCenter
                         Layout.alignment: Qt.AlignCenter
-                        text: "Show me offline address (public)"
+                        text: "SHOW ME PUBLIC WALLET ADDRESS"
                         //Layout.alignment: Qt.AlignCenter
                         color: '#5f5f5f'
                         font.pixelSize: 18
