@@ -353,6 +353,14 @@ QString NotificationItem::wallet(AssetsManager::Ptr amgr) const
     return std::to_string(wid).c_str();
 }
 
+QString NotificationItem::txid() const
+{
+    auto p = getTxParameters(m_notification);
+
+    return std::to_string(*p.GetTxID()).c_str();
+}
+
+
 QString NotificationItem::message(AssetsManager::Ptr amgr) const
 {
     using namespace beam::wallet;

@@ -244,7 +244,7 @@ ColumnLayout {
                                 }
 
                                 SFText {
-                                    text: type == 'maxpReceived' || type == 'maxpSent' || type == 'maxpFailedToSend' ? 'Anonymous transaction' : model.wallet
+                                    text: type == 'maxpReceived' || type == 'maxpSent' || type == 'maxpFailedToSend' ? 'Anonymous transaction' :  "TXID: " + model.txid
                                     font.pixelSize: 18
                                     color: '#fff'
                                 }

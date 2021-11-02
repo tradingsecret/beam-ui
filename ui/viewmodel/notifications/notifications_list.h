@@ -33,6 +33,7 @@ public:
         Amount,
         Coin,
         Wallet,
+        TxID,
         Type,
         State,
         RawID,

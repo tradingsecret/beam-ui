@@ -106,7 +106,7 @@ CustomDialog {
         RowLayout {
             Layout.alignment: Qt.AlignHCenter
             Layout.topMargin: 30
-            visible:          dialog.hasPaymentProof && !dialog.isSelfTx
+            visible:          false//dialog.hasPaymentProof && !dialog.isSelfTx
 
             Row {
                 TxFilter {
@@ -550,10 +550,10 @@ CustomDialog {
 
             Item {
                 height: 16
-                visible: dialog.isCompleted && kernelID.parent.visible
+                visible: dialog.isCompleted//dialog.isCompleted && kernelID.parent.visible
             }
             OpenInBlockchainExplorer {
-                visible: dialog.isCompleted && kernelID.parent.visible
+                visible: dialog.isCompleted //dialog.isCompleted && kernelID.parent.visible
                 onTriggered: function(kernelID) {
                     openExternal(dialog.kernelID);
                 }
