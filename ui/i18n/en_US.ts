@@ -2687,8 +2687,8 @@ Update your settings and try again.</source>
         <translation>Enter recipient address</translation>
     </message>
     <message id="wallet-send-invalid-address-or-token">
-        <source>Invalid wallet address</source>
-        <translation type="unfinished"></translation>
+        <source>Non-existent address</source>
+        <translation>Non-existent address</translation>
     </message>
     <message id="tx-offline">
         <source>Offline</source>

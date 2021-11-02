@@ -26,7 +26,8 @@ StatusbarViewModel::StatusbarViewModel()
     , m_isOnline(false)
     , m_isSyncInProgress(!m_model.isSynced())
     , m_isFailedStatus(false)
-    , m_isConnectionTrusted(false)
+    , m_isConnectionTrusted(true)
+    //, m_isConnectionTrusted(false)
     , m_nodeSyncProgress(0)
     , m_nodeDone(0)
     , m_nodeTotal(0)
@@ -157,7 +158,7 @@ void StatusbarViewModel::setIsConnectionTrusted(bool value)
 {
     if (m_isConnectionTrusted != value)
     {
-        m_isConnectionTrusted = value;
+        m_isConnectionTrusted = true; //value;
         emit isConnectionTrustedChanged();
     }
 }

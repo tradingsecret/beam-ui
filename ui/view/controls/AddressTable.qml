@@ -132,7 +132,7 @@ CustomTableView {
             Rectangle {
                 anchors.fill: parent
 
-                color: styleData.row % 2 == 0 ?  '#14141e' : 'transparent'
+                color: styleData.row % 2 == 0 ?  '#40404a' : 'transparent'
                 //color: styleData.selected ? Style.row_selected :
                 //        (styleData.alternate ? 'transparent' : '#14141e')
             }
@@ -172,7 +172,7 @@ CustomTableView {
             Rectangle {
                 anchors.fill: parent
 
-                color: styleData.row % 2 == 0 ?  '#14141e' : 'transparent'
+                color: styleData.row % 2 == 0 ?  '#40404a' : 'transparent'
                 //color: styleData.selected ? Style.row_selected :
                 //        (styleData.alternate ? 'transparent' : '#14141e')
             }
@@ -184,7 +184,7 @@ CustomTableView {
                 anchors.right: parent.right
                 anchors.leftMargin: 20
                 anchors.rightMargin: 20
-                elide: Text.ElideLeft
+                elide: Text.ElideMiddle
                 anchors.verticalCenter: parent.verticalCenter
                 text: styleData.value
                 color: Style.content_main
@@ -220,7 +220,7 @@ CustomTableView {
                 anchors.fill: parent
                 anchors.rightMargin: 15
 
-                color: styleData.row % 2 == 0 ?  '#14141e' : 'transparent'
+                color: styleData.row % 2 == 0 ?  '#40404a' : 'transparent'
                 //color: styleData.selected ? Style.row_selected :
                 //        (styleData.alternate ? 'transparent' : '#14141e')
             }
@@ -232,7 +232,7 @@ CustomTableView {
                 anchors.right: parent.right
                 anchors.leftMargin: 20
                 anchors.rightMargin: 70
-                elide: Text.ElideLeft
+                elide: Text.ElideMiddle
                 anchors.verticalCenter: parent.verticalCenter
                 text: styleData.value
                 color: Style.content_main
@@ -269,7 +269,7 @@ CustomTableView {
                         anchors.fill: parent
                         fillMode: Image.Stretch
                         source: {
-                             actionButton.hovered ? "qrc:/assets/gear-hover.png" :  "qrc:/assets/gear-default.png"
+                             actionButton.hovered ? "qrc:/assets/address_icon_hover.png" :  "qrc:/assets/address_icon_default.png"
                         }
                     }
                 }
