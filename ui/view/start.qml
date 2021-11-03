@@ -193,6 +193,7 @@ Item
             {
                 property Item defaultFocusItem: createNewWallet
                 showNetworkLabel: true
+                playVideo: startWizzardView.depth == 1
 
                 ColumnLayout {
                     id: startColumn
