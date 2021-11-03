@@ -27,7 +27,7 @@ Rectangle
         fillMode: VideoOutput.Stretch
         //width: 1200
         //height: 800
-        autoPlay: true
+        autoPlay: playVideo
         source: "qrc:/assets/wallet_video.avi"
         visible: playVideo
         onStopped: function() {
