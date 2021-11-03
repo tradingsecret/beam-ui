@@ -139,6 +139,23 @@ Item
             //Layout.bottomMargin: 150
             id: bar
             value: viewModel.progress
+            visible: false
+        }
+
+        Image {
+            Layout.alignment: Qt.AlignHCenter
+            source: {
+                var progress = Math.ceil((viewModel.progress*100));
+
+                if (progress < 10) {
+                    return 'qrc:/assets/progress_bar_sequence/00'+progress+'.png';
+                }
+                else if(progress < 100) {
+                    return 'qrc:/assets/progress_bar_sequence/0'+progress+'.png';
+                }
+
+                return 'qrc:/assets/progress_bar_sequence/'+progress+'.png';
+            }
         }
 
         //SFText {

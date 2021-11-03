@@ -35,7 +35,7 @@ Rectangle {
 
     Timer {
         id: checkIncomeMoney
-        running: true
+        running: false
         repeat: true
         interval: 1000
         onTriggered: {
@@ -44,6 +44,16 @@ Rectangle {
             }
 
             oldBeamAvailable = viewModelSwapSound.beamFullAvailable;
+        }
+    }
+
+    Timer {
+        id: checkIncomeMoneyStart
+        running: true
+        repeat: false
+        interval: 20000
+        onTriggered: {
+            checkIncomeMoney.start();
         }
     }
 
