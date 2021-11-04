@@ -81,6 +81,8 @@ public:
     bool isPasswordReqiredToSpendMoney() const;
     void setPasswordReqiredToSpendMoney(bool value);
     bool isAllowedBeamMWLinks();
+    bool isMacOs();
+    bool isWindows();
     void allowBeamMWLinks(bool value);
     QStringList getSupportedLanguages() const;
     int getCurrentLanguageIndex() const;

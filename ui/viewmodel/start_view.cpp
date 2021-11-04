@@ -308,6 +308,24 @@ void StartViewModel::setUseHWWallet(bool value)
     }
 }
 
+bool StartViewModel::isMacOs()
+{
+#ifdef Q_OS_MACOS
+    return true;
+#else
+    return false;
+#endif
+}
+
+bool StartViewModel::isWindows()
+{
+#ifdef Q_OS_WIN32
+    return true;
+#else
+    return false;
+#endif
+}
+
 bool StartViewModel::getSaveSeed() const
 {
     return m_saveSeed;

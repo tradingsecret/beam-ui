@@ -28,7 +28,7 @@ Rectangle
         //width: 1200
         //height: 800
         autoPlay: playVideo
-        source: "qrc:/assets/wallet_video.avi"
+        source: "qrc:/assets/Imperium_Wallet.avi"
         visible: playVideo
         onStopped: function() {
             playVideo = false

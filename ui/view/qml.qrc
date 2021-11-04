@@ -425,7 +425,6 @@
 		<file>assets/address_icon_default.png</file>
 		<file>assets/address_icon_hover.png</file>
 		<file>assets/Incoming_sound.wav</file>
-		<file>assets/wallet_video.avi</file>
 		<file>assets/progress_bar_sequence/000.png</file>
 		<file>assets/progress_bar_sequence/001.png</file>
 		<file>assets/progress_bar_sequence/002.png</file>
@@ -526,5 +525,6 @@
 		<file>assets/progress_bar_sequence/098.png</file>
 		<file>assets/progress_bar_sequence/099.png</file>
 		<file>assets/progress_bar_sequence/100.png</file>
+		<file>assets/Imperium_Wallet.avi</file>
     </qresource>
 </RCC>

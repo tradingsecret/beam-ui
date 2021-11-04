@@ -15,7 +15,6 @@ Window  {
     maximumHeight: 800
     maximumWidth: 1200
 
-
     function cellResize() {
         if(appWindow.visibility != ApplicationWindow.Maximized) {
             var minWidth = Math.min(1200, appWindow.screen.width - 10);

@@ -127,6 +127,8 @@ class StartViewModel : public QObject
     Q_PROPERTY(bool isTrezorEnabled READ isTrezorEnabled CONSTANT)
     Q_PROPERTY(bool useHWWallet READ useHWWallet WRITE setUseHWWallet NOTIFY isUseHWWalletChanged)
     Q_PROPERTY(bool saveSeed    READ getSaveSeed WRITE setSaveSeed NOTIFY saveSeedChanged)
+    Q_PROPERTY(bool         isMacOs                         READ isMacOs                        CONSTANT)
+    Q_PROPERTY(bool         isWindows                       READ isWindows                        CONSTANT)
 
 #if defined(BEAM_HW_WALLET)
     Q_PROPERTY(bool isTrezorConnected READ isTrezorConnected NOTIFY isTrezorConnectedChanged)
@@ -152,6 +154,8 @@ public:
     void setUseHWWallet(bool value);
     bool getSaveSeed() const;
     void setSaveSeed(bool value);
+    bool isMacOs();
+    bool isWindows();
 
 #if defined(BEAM_HW_WALLET)
     bool isTrezorConnected() const;
