@@ -6,6 +6,9 @@ import "."
 CustomDialog {
     id: control
 
+    FontLoader { id: agency_b;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyB.ttf" }
+    FontLoader { id: agency_r;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyR.otf" }
+
     property alias text: messageText.text
     property alias okButton: okButton
     property alias okButtonEnable: okButton.enabled
@@ -25,6 +28,7 @@ CustomDialog {
     property var   beforeAccept: function(){return true}
     property int footerBottomPadding: 60
     property int cancelButtonWidth: undefined
+    property int okButtonWidth: undefined
 
     x: (parent.width - width) / 2
     y: (parent.height - height) / 2
@@ -37,12 +41,15 @@ CustomDialog {
 
     header: SFText {
         text: control.title
-        topPadding: 60
+        topPadding: 100
         visible: control.title.length > 0
         horizontalAlignment : Text.AlignHCenter
-        font.pixelSize: 18
-        font.styleName: "Bold"; font.weight: Font.Bold
+        font.pixelSize: 30
+        font.family: agency_b.name
+        font.letterSpacing: 4
+        font.weight: Font.Bold
         color: Style.content_main
+        font.capitalization: Font.AllUppercase
     }
 
     SFText {
@@ -80,6 +87,7 @@ CustomDialog {
                 }
 
                 CustomButton {
+                    width: okButtonWidth ? okButtonWidth : implicitWidth
                     id: okButton
                     palette.button: Style.active
 

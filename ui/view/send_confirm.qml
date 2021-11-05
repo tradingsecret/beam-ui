@@ -7,6 +7,9 @@ import "./utils.js" as Utils
 
 ConfirmationDialog {
 
+    FontLoader { id: agency_b;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyB.ttf" }
+    FontLoader { id: agency_r;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyR.otf" }
+
     onVisibleChanged: {
         if (!this.visible) {
             this.destroy();
@@ -113,178 +116,221 @@ ConfirmationDialog {
         return true
     }
 
-    topPadding: 10
+    topPadding: 50
+    backgroundImage: "qrc:/assets/popups/popup-6.png"
+    width: 710
+    height: 490
+    footerBottomPadding: 95
+    cancelButtonWidth: 140
+    okButtonWidth: 140
+
     contentItem: Item { ColumnLayout {
         spacing: 22
         //margins: 20
         Layout.margins: 40
+        Layout.fillWidth: true
 
-        GridLayout {
-            Layout.alignment:  Qt.AlignHCenter
-            Layout.fillWidth:  false
-            Layout.fillHeight: false
-            columnSpacing:     typeLabel.visible ? 14 : 30
-            rowSpacing:        14
-            columns:           2
+        ColumnLayout {
 
-            //
-            // Recipient/Address
-            //
-            SFText {
-                font.pixelSize:         14
-                color:                  Style.content_disabled
-                //% "Recipient"
-                text:                   qsTrId("send-confirmation-recipient-label") + ":"
-                verticalAlignment:      Text.AlignTop
-                visible:                addressLabel.visible
-            }
+            width: 400
+            Layout.maximumWidth: 400
+            Layout.preferredWidth: 400
 
-            SFLabel {
-                id:                     addressLabel
-                Layout.maximumWidth:    290
-                wrapMode:               Text.NoWrap
-                elide:                  Text.ElideMiddle
-                font.pixelSize:         14
-                color:                  Style.content_main
-                copyMenuEnabled:        true
-                onCopyText:             BeamGlobals.copyToClipboard(text)
-                visible:                !!text
-            }
+            Layout.alignment: Qt.AlignCenter
+            anchors.horizontalCenter: parent.horizontalCenter
+            Layout.leftMargin: 220
 
-            //
-            // Comment
-            //
-            SFText {
-                font.pixelSize:    14
-                color:             Style.content_disabled
-                //% "Comment"
-                text:              qsTrId("general-comment") + ":"
-                visible:           commentCtrl.visible
-            }
+            GridLayout {
+                width: 400
+                Layout.maximumWidth: 400
+                Layout.preferredWidth: 400
+                Layout.alignment:  Qt.AlignHCenter
+                Layout.fillWidth:  false
+                Layout.fillHeight: false
+                columnSpacing:     typeLabel.visible ? 14 : 30
+                rowSpacing:        14
+                columns:           2
 
-            SFLabel {
-                id:                   commentCtrl
-                Layout.maximumWidth:  290
-                wrapMode:             Text.Wrap
-                elide:                Text.ElideRight
-                font.pixelSize:       14
-                color:                Style.content_main
-                copyMenuEnabled:      true
-                onCopyText:           BeamGlobals.copyToClipboard(text)
-                maximumLineCount:     4
-                visible:              !!text
-            }
-
-            //
-            // Address type
-            //
-            SFText {
-                font.pixelSize:         14
-                color:                  Style.content_disabled
-                //% "Transaction type"
-                text:                   qsTrId("send-type-label") + ":"
-                verticalAlignment:      Text.AlignTop
-                visible:                typeLabel.visible
-            }
-
-            SFText {
-                id:                     typeLabel
-                Layout.maximumWidth:    290
-                wrapMode:               Text.Wrap
-                maximumLineCount:       2
-                font.pixelSize:         14
-                color:                  Style.content_main
-                visible:                text.length > 0
-            }
-
-            //
-            // Amounts
-            //
-            SFText {
-                Layout.alignment: Qt.AlignTop
-                font.pixelSize: 14
-                color: Style.content_disabled
-                //% "Amount"
-                text: qsTrId("general-amount") + ":"
-            }
-
-            SFText {
-                Layout.alignment:  Qt.AlignTop
-                Layout.leftMargin: 27
-                font.pixelSize:    14
-                color:   Style.content_main
-                visible: !control.hasAmounts
-
-                font {
-                    pixelSize: 14
-                    styleName: "Bold"
-                    weight:    Font.Bold
+                //
+                // Recipient/Address
+                //
+                SFText {
+                    font.pixelSize:         18
+                    font.family:            agency_r.name
+                    color:                  'white'
+                    font.capitalization: Font.AllUppercase
+                    //% "Recipient"
+                    text:                   qsTrId("send-confirmation-recipient-label") + ":"
+                    verticalAlignment:      Text.AlignTop
+                    visible:                addressLabel.visible
                 }
 
-                text: "-"
-            }
+                SFLabel {
+                    id:                     addressLabel
+                    Layout.maximumWidth:    290
+                    wrapMode:               Text.NoWrap
+                    elide:                  Text.ElideMiddle
+                    font.pixelSize:         18
+                    font.family:            agency_b.name
+                    color:                  'white'
+                    font.capitalization: Font.AllUppercase
+                    copyMenuEnabled:        true
+                    onCopyText:             BeamGlobals.copyToClipboard(text)
+                    visible:                !!text
+                }
 
-            ColumnLayout {
-                Layout.maximumWidth: 290
-                visible:  control.hasAmounts
-                spacing:  8
+                //
+                // Comment
+                //
+                SFText {
+                    font.pixelSize:         18
+                    font.family:            agency_r.name
+                    color:                  'white'
+                    font.capitalization: Font.AllUppercase
+                    //% "Comment"
+                    text:              qsTrId("general-comment") + ":"
+                    visible:           commentCtrl.visible
+                }
 
-                Repeater {
-                    model: control.amounts
+                SFLabel {
+                    id:                   commentCtrl
+                    Layout.maximumWidth:  290
+                    wrapMode:             Text.Wrap
+                    elide:                Text.ElideRight
+                    font.pixelSize:         18
+                    font.family:            agency_b.name
+                    color:                  'white'
+                    font.capitalization: Font.AllUppercase
+                    copyMenuEnabled:      true
+                    onCopyText:           BeamGlobals.copyToClipboard(text)
+                    maximumLineCount:     4
+                    visible:              !!text
+                }
+
+                //
+                // Address type
+                //
+                SFText {
+                    font.pixelSize:         18
+                    font.family:            agency_r.name
+                    color:                  'white'
+                    font.capitalization: Font.AllUppercase
+                    //% "Transaction type"
+                    text:                   qsTrId("send-type-label") + ":"
+                    verticalAlignment:      Text.AlignTop
+                    visible:                typeLabel.visible
+                }
+
+                SFText {
+                    id:                     typeLabel
+                    Layout.maximumWidth:    290
+                    wrapMode:               Text.Wrap
+                    maximumLineCount:       2
+                    font.pixelSize:         18
+                    font.family:            agency_b.name
+                    color:                  'white'
+                    font.capitalization: Font.AllUppercase
+                    visible:                text.length > 0
+                }
+
+                //
+                // Amounts
+                //
+                SFText {
+                    Layout.alignment: Qt.AlignTop
+                    font.pixelSize:         18
+                    font.family:            agency_r.name
+                    color:                  'white'
+                    font.capitalization: Font.AllUppercase
+                    //% "Amount"
+                    text: qsTrId("general-amount") + ":"
+                }
+
+                SFText {
+                    Layout.alignment:  Qt.AlignTop
+                    Layout.leftMargin: 27
+                    font.pixelSize:         18
+                    font.family:            agency_b.name
+                    color:                  'white'
+                    font.capitalization: Font.AllUppercase
+                    visible: !control.hasAmounts
+
+                    text: "-"
+                }
+
+                ColumnLayout {
+                    Layout.maximumWidth: 290
+                    visible:  control.hasAmounts
+                    spacing:  8
+
+                    Repeater {
+                        model: control.amounts
+
+                        BeamAmount  {
+                            amount:           modelData.amount
+                            unitName:         (assetsProvider ? assetsProvider.assets[modelData.assetID] : modelData).unitName
+                            rate:             (assetsProvider ? assetsProvider.assets[modelData.assetID] : modelData).rate
+                            prefix:           control.showPrefix ? (modelData.spend ? "- " : "+ ") : ""
+                            rateUnit:         control.rateUnit
+                            maxPaintedWidth:  false
+                            maxUnitChars:     7
+                            font.pixelSize:   18
+                            font.family:      agency_b.name
+                            color: 'white'
+                            iconSize:         Qt.size(20, 20)
+                            iconSource:       (assetsProvider ? assetsProvider.assets[modelData.assetID] : modelData).icon || ""
+                            iconAnchorCenter: false
+                            verified:         !!(assetsProvider ? assetsProvider.assets[modelData.assetID] : modelData).verified
+
+                            rateFontSize:     12
+                            copyMenuEnabled:  true
+                        }
+                    }
+                }
+
+                //
+                // Fee
+                //
+                SFText {
+                    Layout.alignment: Qt.AlignTop
+                    font.pixelSize:         18
+                    font.family:            agency_r.name
+                    color:                  'white'
+                    font.capitalization: Font.AllUppercase
+                    //% "Fee"
+                    text:             [qsTrId("send-regular-fee"), ":"].join("")
+                }
+
+                ColumnLayout {
+                    Layout.maximumWidth: 290
+                    spacing:  8
 
                     BeamAmount  {
-                        amount:           modelData.amount
-                        unitName:         (assetsProvider ? assetsProvider.assets[modelData.assetID] : modelData).unitName
-                        rate:             (assetsProvider ? assetsProvider.assets[modelData.assetID] : modelData).rate
+                        amount:           control.fee
+                        unitName:         control.feeUnit
+                        rate:             control.feeRate
                         prefix:           control.showPrefix ? (modelData.spend ? "- " : "+ ") : ""
                         rateUnit:         control.rateUnit
                         maxPaintedWidth:  false
                         maxUnitChars:     7
-                        color:            modelData.spend ? Style.accent_outgoing : Style.accent_incoming
+                        font.pixelSize:   18
                         iconSize:         Qt.size(20, 20)
-                        iconSource:       (assetsProvider ? assetsProvider.assets[modelData.assetID] : modelData).icon || ""
+                        iconSource:       assetsProvider ? assetsProvider.assets[0].icon : ""
                         iconAnchorCenter: false
-                        verified:         !!(assetsProvider ? assetsProvider.assets[modelData.assetID] : modelData).verified
-
-                        font.pixelSize:   14
-                        font.styleName:   "DemiBold"
-                        font.weight:      Font.DemiBold
+                        color:            'white'
+                        font.capitalization: Font.AllUppercase
+                        font.family:            agency_b.name
                         rateFontSize:     12
                         copyMenuEnabled:  true
                     }
                 }
             }
 
-            //
-            // Fee
-            //
-            SFText {
-                Layout.alignment: Qt.AlignTop
-                font.pixelSize:   14
-                color:            Style.content_disabled
-                //% "Fee"
-                text:             [qsTrId("send-regular-fee"), ":"].join("")
-            }
-
-            BeamAmount  {
-                Layout.maximumWidth: 290
-
-                amount:           control.fee
-                unitName:         control.feeUnit
-                rate:             control.feeRate
-                rateUnit:         control.rateUnit
-                maxPaintedWidth:  false
-                maxUnitChars:     7
-                color:            Style.content_main
-                iconSize:         Qt.size(20, 20)
-                iconSource:       assetsProvider ? assetsProvider.assets[0].icon : ""
-                iconAnchorCenter: false
-
-                font.pixelSize:   14
-                font.styleName:   "DemiBold"
-                font.weight:      Font.DemiBold
-                rateFontSize:     12
-                copyMenuEnabled:  true
+            Rectangle {
+                anchors.fill: parent
+                //border.width: 3
+                //border.color: 'yellow'
+                color: 'transparent'
             }
         }
 
@@ -402,5 +448,13 @@ ConfirmationDialog {
             //% "For the transaction to complete, the recipient must get online within the next 12 hours and you should get online within 2 hours afterwards."
             text:                   qsTrId("send-confirmation-pwd-text-online-time")
         }
-    }}
+    }
+
+        Rectangle {
+            anchors.fill: parent
+            //border.width: 1
+            //border.color: 'purple'
+            color: 'transparent'
+        }
+    }
 }
