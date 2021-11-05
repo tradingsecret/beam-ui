@@ -16,6 +16,9 @@ Item
     property alias isCreating: viewModel.isCreating
     property var cancelCallback: undefined
 
+    FontLoader { id: agency_b;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyB.ttf" }
+    FontLoader { id: agency_r;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyR.otf" }
+
     ConfirmationDialog {
         id: confirmationDialog
         okButtonColor: Style.active
@@ -25,42 +28,60 @@ Item
         //% "Change settings"
         cancelButtonText: qsTrId("general-change-settings")
         cancelButtonIconSource: "qrc:/assets/icon-settings-white.svg"
+        backgroundImage: "qrc:/assets/popups/popup-1.png"
+        width: 612
+        height: 366
+        footerBottomPadding: 95
+        cancelButtonWidth: 140
 
         property alias titleText: title.text
         property alias messageText: message.text
-        property var rejectedCallback: undefined
+        property var rejectedCallback
 
         contentItem: Item {
             id: confirmationContent
             ColumnLayout {
                 anchors.fill: parent
-                spacing: 18
+                //spacing: 10
 
                 SFText {
                     id: title
                     Layout.alignment: Qt.AlignHCenter
-                    Layout.minimumHeight: 21
+                    //Layout.minimumHeight: 21
                     Layout.leftMargin: 68
                     Layout.rightMargin: 68
-                    Layout.topMargin: 30
-                    font.pixelSize: 18
-                    font.styleName: "Bold";
-                    font.weight: Font.Bold
-                    color: Style.content_main
+                    Layout.topMargin: 70
+                    font.pixelSize: 30
+                    font.bold: true
+                    font.letterSpacing: 2
+                    font.family: agency_b.name
+                    font.capitalization: Font.AllUppercase
+                    color: 'red'
                 }
 
                 SFText {
                     id: message
                     Layout.alignment: Qt.AlignHCenter
-                    Layout.minimumHeight: 18
+                    //Layout.minimumHeight: 18
+                    Layout.topMargin: 35
                     Layout.leftMargin: 60
                     Layout.rightMargin: 60
-                    Layout.bottomMargin: 30
-                    font.pixelSize: 14
+                    //Layout.bottomMargin: 50
+                    font.family: agency_r.name;
+                    font.capitalization: Font.AllUppercase
+                    font.pixelSize: 20
+                    font.bold: true
+                    font.letterSpacing: 2
                     color: Style.content_main
+                }
+
+                Rectangle {
+                    anchors.fill: parent
+                    color: 'transparent'
                 }
             }
         }
+
         onRejected: {
             if (rejectedCallback) rejectedCallback();
         }
@@ -81,7 +102,7 @@ Item
             confirmationDialog.okButtonVisible  = false;
             confirmationDialog.okButtonEnable   = false;
             confirmationDialog.closePolicy      = Popup.NoAutoClose;
-            confirmationDialog.rejectedCallback = isCreating ? cancelCreating : changeNodeSettings;
+            confirmationDialog.rejectedCallback = cancelCreating //isCreating ? cancelCreating : changeNodeSettings;
             confirmationDialog.open();
         }
 

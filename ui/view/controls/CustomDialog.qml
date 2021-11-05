@@ -4,6 +4,8 @@ import QtGraphicalEffects 1.15
 import "."
 
 Dialog { 
+    property var backgroundImage: "qrc:/assets/popup-window.png"
+
     //topPadding: 20
     leftPadding: 40
     rightPadding: 40
@@ -23,9 +25,7 @@ Dialog {
             fillMode: Image.Stretch
             anchors.fill: parent
 
-            source: {
-                 "qrc:/assets/popup-window.png"
-            }
+            source: backgroundImage
         }
     }
 

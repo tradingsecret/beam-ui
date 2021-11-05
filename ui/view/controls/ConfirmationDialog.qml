@@ -23,6 +23,8 @@ CustomDialog {
     property alias cancelButtonAllLowercase: cancelButton.allLowercase
     property var   defaultFocusItem: cancelButton
     property var   beforeAccept: function(){return true}
+    property int footerBottomPadding: 60
+    property int cancelButtonWidth: undefined
 
     x: (parent.width - width) / 2
     y: (parent.height - height) / 2
@@ -66,9 +68,11 @@ CustomDialog {
                 height: 40
                 leftPadding: 30
                 rightPadding: 30
-                bottomPadding: 60
+                bottomPadding: footerBottomPadding
                 CustomButton {
+                    width: cancelButtonWidth ? cancelButtonWidth : implicitWidth
                     id: cancelButton
+                    //width: 60
                     focus: true
                     //% "Cancel"
                     text: qsTrId("general-cancel")
