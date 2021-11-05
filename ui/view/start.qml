@@ -46,64 +46,108 @@ Item
         okButtonText: qsTrId("start-restore-confirm-button")
         okButtonAllLowercase: false
         cancelButtonVisible: false
-        width: 460
-        height: contentItem.implicitHeight + footer.implicitHeight
-        topPadding: 30
+        //width: 460
+        //height: contentItem.implicitHeight + footer.implicitHeight
+        backgroundImage: "qrc:/assets/popups/popup-2.png"
+        width: 710
+        height: 490
+        footerBottomPadding: 90
 
-        contentItem: Column {
-            width: parent.width
-            height: restoreWalletConfirmationTitle.implicitHeight + restoreWalletConfirmationMessage.implicitHeight
-            SFText {
-                id: restoreWalletConfirmationTitle
-                topPadding: 20
+        contentItem: Item {
+            ColumnLayout {
+                anchors.fill: parent
+                //height: restoreWalletConfirmationTitle.implicitHeight + restoreWalletConfirmationMessage.implicitHeight
+
                 anchors.horizontalCenter: parent.horizontalCenter
-                horizontalAlignment: Qt.AlignHCenter
-                //% "Restore wallet"
-                text: qsTrId("general-restore-wallet")
-                color: Style.content_main
-                font.pixelSize: 18
-                font.styleName: "Bold"
-                font.weight: Font.Bold
-            }
-
-            SFText {
-                id: restoreWalletConfirmationMessage
-                padding: 20
-                bottomPadding: 40
-                anchors.horizontalCenter: parent.horizontalCenter
-                horizontalAlignment : Text.AlignHCenter
-                width: parent.width
-                //% "You are trying to restore an existing Beam Wallet. Please notice that if you use your wallet on another device, your balance will be up to date, but  transaction history and addresses will be kept separately on each device."
-                text: qsTrId("start-restore-message-line-1-new")
-                color: Style.content_main
-                font.pixelSize: 14
-                wrapMode: Text.Wrap
-            }
-
-            RowLayout {
-                width: parent.width
-                visible: false
+                Layout.alignment: Qt.AlignVCenter
 
                 SFText {
-                    bottomPadding: 40
                     anchors.horizontalCenter: parent.horizontalCenter
-                    horizontalAlignment : Text.AlignHCenter
-                    text: "IMPORTANT: "
+                    Layout.alignment: Qt.AlignVCenter
+                    id: restoreWalletConfirmationTitle
+                    Layout.topMargin: 70
+                    //% "Restore wallet"
+                    text: qsTrId("general-restore-wallet")
                     color: Style.content_main
-                    font.pixelSize: 14
-                    font.bold: true
+                    font.family: agency_b.name
+                    font.capitalization: Font.AllUppercase
+                    font.pixelSize: 30
+                    font.weight: Font.Bold
+                }
+
+                SFText {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.topMargin: 30
+                    text: "You are going to restore an existing"
+                    color: Style.content_main
+                    font.family: agency_r.name
+                    font.capitalization: Font.AllUppercase
+                    font.pixelSize: 20
                     wrapMode: Text.Wrap
                 }
 
                 SFText {
-                    padding: 20
-                    bottomPadding: 40
                     anchors.horizontalCenter: parent.horizontalCenter
-                    horizontalAlignment : Text.AlignHCenter
-                    text: qsTrId("start-restore-message-line-2-new")
+                    Layout.alignment: Qt.AlignVCenter
+                    bottomPadding: 30
+                    text: "Imperium Protocol Wallet."
                     color: Style.content_main
-                    font.pixelSize: 14
+                    font.family: agency_r.name
+                    font.capitalization: Font.AllUppercase
+                    font.pixelSize: 20
                     wrapMode: Text.Wrap
+                }
+
+                RowLayout {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Layout.alignment: Qt.AlignVCenter
+
+                    SFText {
+                        text: "IMPORTANT: "
+                        color: Style.content_main
+                        font.pixelSize: 20
+                        font.bold: true
+                        font.family: agency_b.name
+                        font.capitalization: Font.AllUppercase
+                        wrapMode: Text.Wrap
+                    }
+
+                    SFText {
+                        text: "If you are restoring your wallet "
+                        color: Style.content_main
+                        font.pixelSize: 20
+                        font.family: agency_r.name
+                        font.capitalization: Font.AllUppercase
+                        wrapMode: Text.Wrap
+                    }
+                }
+
+                SFText {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Layout.alignment: Qt.AlignVCenter
+                    text: "on another device then your transaction"
+                    color: Style.content_main
+                    font.pixelSize: 20
+                    font.family: agency_r.name
+                    font.capitalization: Font.AllUppercase
+                    wrapMode: Text.Wrap
+                }
+
+                SFText {
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Layout.alignment: Qt.AlignVCenter
+                    text: "history and saved addresses won't be restored."
+                    color: Style.content_main
+                    font.pixelSize: 20
+                    font.family: agency_r.name
+                    font.capitalization: Font.AllUppercase
+                    wrapMode: Text.Wrap
+                }
+
+                Rectangle {
+                    color: 'transparent'
+                    anchors.fill: parent
                 }
             }
         }
