@@ -12,6 +12,9 @@ Component {
     Rectangle {
         id: generateRecoveryPhraseRectangle
 
+        FontLoader { id: agency_b;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyB.ttf" }
+        FontLoader { id: agency_r;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyR.otf" }
+
         Image {
             fillMode: Image.PreserveAspectCrop
             anchors.fill: parent
@@ -63,40 +66,67 @@ Component {
                 okButtonText: qsTrId("start-confirm-seed-phrase-button")
                 okButtonIconSource: "qrc:/assets/icon-done.svg"
                 cancelButtonVisible: false
-                width: 460
+                //width: 460
                 //% "It is strictly recommended to write down the seed phrase on a paper. Storing it in a file makes it prone to cyber attacks and, therefore, less secure."
                 //text: qsTrId("start-confirm-seed-phrase-message")
                 onAccepted: {
                     onClicked: startWizzardView.push(checkRecoveryPhrase);
                 }
                 topPadding: 30
+                backgroundImage: "qrc:/assets/popups/popup-4.png"
+                width: 710
+                height: 490
+                footerBottomPadding: 95
 
 
                 contentItem: Column {
                     width: parent.width
                     //height: confirRecoveryPhrasesDialog.implicitHeight + restoreWalletConfirmationMessage.implicitHeight
+
+                    SFText {
+                        topPadding: 60
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        width: 400
+                        horizontalAlignment: Qt.AlignHCenter
+                        text: "NOTICE!"
+                        color: Style.content_main
+                        font.pixelSize: 30
+                        font.letterSpacing: 3
+                        font.family: agency_b.name
+                        font.weight: Font.Bold
+                        wrapMode: Text.Wrap
+                    }
+
                     SFText {
                         id: restoreWalletConfirmationTitle
-                        topPadding: 20
+                        topPadding: 30
                         anchors.horizontalCenter: parent.horizontalCenter
                         horizontalAlignment: Qt.AlignHCenter
                         //% "Restore wallet"
                         text: "SAVE YOUR SEED PHRASE"
                         color: Style.content_main
-                        font.pixelSize: 18
-                        font.styleName: "Bold"
-                        font.weight: Font.Bold
+                        font.family: agency_b.name;
+                        font.underline: true
+                        font.capitalization: Font.AllUppercase
+                        font.pixelSize: 30
+                        font.bold: true
+                        font.letterSpacing: 2
                     }
 
                     SFText {
                         id: restoreWalletConfirmationMessage
+                        topPadding: 30
                         padding: 20
                         anchors.horizontalCenter: parent.horizontalCenter
                         horizontalAlignment : Text.AlignHCenter
-                        width: parent.width
+                        width: parent.width - 100
                         text: qsTrId("start-confirm-seed-phrase-message")
                         color: Style.content_main
-                        font.pixelSize: 14
+                        font.family: agency_b.name;
+                        font.capitalization: Font.AllUppercase
+                        font.pixelSize: 20
+                        font.bold: true
+                        font.letterSpacing: 2
                         wrapMode: Text.Wrap
                     }
                 }
