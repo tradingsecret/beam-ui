@@ -165,16 +165,35 @@ Item
         //% "I understand"
         okButtonText: qsTrId("restore-finish-alert-button")
         cancelButtonVisible: false
-        width: 460
-        height: contentItem.implicitHeight + footer.implicitHeight + 60
-        topPadding: 30
+        //width: 460
+        //height: contentItem.implicitHeight + footer.implicitHeight + 60
+        backgroundImage: "qrc:/assets/popups/popup-3.png"
+        width: 710
+        height: 490
+        footerBottomPadding: 100
+
 
         contentItem: Column {
             width: parent.width
             height: seedPhraseSubmitAllertTitle.implicitHeight + seedPhraseSubmitAllertMessage.implicitHeight
+
+            SFText {
+                topPadding: 70
+                anchors.horizontalCenter: parent.horizontalCenter
+                width: 400
+                height: 42
+                horizontalAlignment: Qt.AlignHCenter
+                text: "NOTICE"
+                color: Style.content_main
+                font.pixelSize: 30
+                font.family: agency_b.name
+                font.weight: Font.Bold
+                wrapMode: Text.Wrap
+            }
+
             SFText {
                 id: seedPhraseSubmitAllertTitle
-                topPadding: 30
+                topPadding: 100
                 anchors.horizontalCenter: parent.horizontalCenter
                 width: 400
                 height: 42
@@ -182,14 +201,14 @@ Item
                 //% "Do not simultaneously run two wallets initiated from the same seed phrase"
                 text: qsTrId("restore-finish-alert-title")
                 color: Style.content_main
-                font.pixelSize: 18
-                font.styleName: "Bold"
+                font.pixelSize: 20
+                font.family: agency_r.name
                 font.weight: Font.Bold
                 wrapMode: Text.Wrap
             }
 
             Item {
-                height: 30
+                height: 120
                 width: parent.width
             }
 
@@ -204,7 +223,9 @@ Item
                 //% "Don’t use same seed phrase on several devices, your balance and transaction list won’t be synchronized."
                 text: qsTrId("restore-finish-alert-message-line")
                 color: Style.content_main
-                font.pixelSize: 14
+                font.pixelSize: 20
+                font.family: agency_r.name
+                font.weight: Font.Bold
                 wrapMode: Text.Wrap
             }
 
@@ -1205,7 +1226,7 @@ Item
                             }
                             onClicked: {
                                 viewModel.validateDictionary = true;
-                                onClicked: seedPhraseSubmitAllert.open();
+                                seedPhraseSubmitAllert.open();
                             }
                         }
                     }
