@@ -65,8 +65,13 @@ ColumnLayout
         //color: 'transparent'
         //border.color: 'pink'
 
+        Image {
+            Layout.alignment: Qt.AlignCenter
+            source: "qrc:/assets/imperium_main.png"
+        }
 
         ColumnLayout {
+            visible: false
             SFText {
                 //Layout.alignment:               Qt.AlignHCenter
                 horizontalAlignment:            Text.AlignHCenter
@@ -89,6 +94,7 @@ ColumnLayout
         }
 
         ColumnLayout {
+            visible: false
             width: parent.width
             Layout.topMargin: -50
             Layout.leftMargin: -17

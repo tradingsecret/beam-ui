@@ -222,7 +222,7 @@ ColumnLayout {
                                         source: {
                                              "qrc:/assets/completed-icon.png"
                                         }
-                                        sourceSize: Qt.size(25, 25)
+                                        sourceSize: Qt.size(40, 40)
                                     }
 
                                     Item {

@@ -181,12 +181,12 @@ int main (int argc, char* argv[])
             appDataDir.setPath(newPath);
         }
 
-        int logLevel = getLogLevel(cli::LOG_LEVEL, vm, LOG_LEVEL_DEBUG);
-        int fileLogLevel = getLogLevel(cli::FILE_LOG_LEVEL, vm, LOG_LEVEL_DEBUG);
+        int logLevel = getLogLevel(cli::LOG_LEVEL, vm, LOG_LEVEL_CRITICAL);
+        int fileLogLevel = getLogLevel(cli::FILE_LOG_LEVEL, vm, LOG_LEVEL_CRITICAL);
 
         beam::Crash::InstallHandler(appDataDir.filePath(QMLGlobals::getAppName()).toStdString().c_str());
 
-#define LOG_FILES_PREFIX "beam_ui_"
+#define LOG_FILES_PREFIX "imperium_ui_"
 
         const auto logFilesPath = appDataDir.filePath(WalletSettings::LogsFolder).toStdString();
         auto logger = beam::Logger::create(logLevel, logLevel, fileLogLevel, LOG_FILES_PREFIX, logFilesPath);
@@ -198,7 +198,7 @@ int main (int argc, char* argv[])
         try
         {
             Rules::get().UpdateChecksum();
-            LOG_INFO() << "Beam Wallet UI " << PROJECT_VERSION << " (" << BRANCH_NAME << ")";
+            LOG_INFO() << "Imperium Wallet UI " << PROJECT_VERSION << " (" << BRANCH_NAME << ")";
             LOG_INFO() << "Beam Core " << BEAM_VERSION << " (" << BEAM_BRANCH_NAME << ")";
             LOG_INFO() << "Rules signature: " << Rules::get().get_SignatureStr();
 
