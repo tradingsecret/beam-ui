@@ -228,7 +228,7 @@ ConfirmationDialog {
                     maximumLineCount:       2
                     font.pixelSize:         18
                     font.family:            agency_b.name
-                    color:                  'white'
+                    color:                  typeLabel.text.toUpperCase() == 'ANONYMOUS' ? '#17d266' : 'white'
                     font.capitalization: Font.AllUppercase
                     visible:                text.length > 0
                 }

@@ -80,7 +80,7 @@ ColumnLayout {
                     onClicked: {
                         //: settings tab, general section, Show owner key button and dialog title
                         //% "Show owner key"
-                        confirmPasswordDialog.dialogTitle = qsTrId("settings-general-require-pwd-to-show-owner-key")
+                        confirmPasswordDialog.dialogTitle = "Access to private key " //qsTrId("settings-general-require-pwd-to-show-owner-key")
                         //: settings tab, general section, ask password to Show owner key, message
                         //% "Password verification is required to see the owner key"
                         confirmPasswordDialog.dialogMessage = qsTrId("settings-general-require-pwd-to-show-owner-key-message")

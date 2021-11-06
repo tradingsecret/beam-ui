@@ -8,6 +8,9 @@ ConfirmationDialog {
     id: thisDialog
     property string pwd: ""
 
+    FontLoader { id: agency_b;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyB.ttf" }
+    FontLoader { id: agency_r;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyR.otf" }
+
     property var settingsViewModel: function() {
 		return {
 			getOwnerKey: function() {
@@ -25,43 +28,82 @@ ConfirmationDialog {
     cancelButtonIconSource: "qrc:/assets/icon-cancel-white.svg"
     cancelButtonText: qsTrId("general-close")
     cancelButtonVisible: true
-    width: 460
+    //width: 460
+    backgroundImage: "qrc:/assets/popups/popup-9.png"
+    width: 720
+    height: 572
+    footerBottomPadding: 95
 
     contentItem: Item {
         ColumnLayout {
             anchors.fill: parent
-            spacing: 20
+            spacing: 0
             SFLabel {
                 id: ownerKeyValue
                 Layout.fillWidth: true
-                leftPadding: 20
-                rightPadding: 20
+                leftPadding: 60
+                rightPadding: 60
                 topPadding: 15
-                font.pixelSize: 14
-                color: Style.content_secondary
+                font.pixelSize: 18
+                color: '#44f56a'
+                font.family: agency_r.name
+                font.capitalization: Font.AllUppercase
+                font.letterSpacing: 2
                 wrapMode: Text.WrapAnywhere
                 horizontalAlignment : Text.AlignHCenter
                 text: ""
                 copyMenuEnabled: true
                 onCopyText: BeamGlobals.copyToClipboard(text)
             }
-            SFText {
-                Layout.fillWidth: true
-                Layout.alignment: Qt.AlignBottom
+
+            ColumnLayout {
+                spacing: 10
                 width: parent.width
-                leftPadding: 20
-                rightPadding: 20
-                bottomPadding: 30
-                font.pixelSize: 14
-                font.italic:    true
-                color: Style.content_main
-                wrapMode: Text.Wrap
-                horizontalAlignment : Text.AlignHCenter
-                //: settings tab, show owner key message
-/*% "Please notice, that knowing your owner key allows to
-know all your funds (UTXO). Make sure that you
-deploy the key at the node you trust completely."*/
-                text: qsTrId("settings-show-owner-key-message")
+
+                RowLayout {
+                    width: parent.width
+                    Layout.alignment: Qt.AlignCenter
+
+                    SFText {
+                        leftPadding: 60
+                        color: Style.content_main
+                        font.pixelSize: 18
+                        font.family: agency_b.name
+                        font.capitalization: Font.AllUppercase
+                        font.letterSpacing: 2
+                        wrapMode: Text.Wrap
+                        horizontalAlignment : Text.AlignHCenter
+                        text: "IMPORTANT: "
+                    }
+
+                    SFText {
+                        rightPadding: 60
+                        color: Style.content_main
+                        font.pixelSize: 18
+                        font.family: agency_r.name
+                        font.capitalization: Font.AllUppercase
+                        font.letterSpacing: 2
+                        wrapMode: Text.Wrap
+                        horizontalAlignment : Text.AlignHCenter
+                        text: "Don't share your private key with anyone."
+                    }
+                }
+
+                SFText {
+                    Layout.fillWidth: true
+                    Layout.alignment: Qt.AlignBottom
+                    width: parent.width
+                    leftPadding: 60
+                    rightPadding: 60
+                    color: Style.content_main
+                    font.pixelSize: 18
+                    font.family: agency_r.name
+                    font.capitalization: Font.AllUppercase
+                    font.letterSpacing: 2
+                    wrapMode: Text.Wrap
+                    horizontalAlignment : Text.AlignHCenter
+                    text: "This private key allows access to your wallet funds."
+                }
             }
         }
     }

@@ -6,6 +6,9 @@ import Beam.Wallet 1.0
 CustomDialog {
 	id: control
 
+    FontLoader { id: agency_b;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyB.ttf" }
+    FontLoader { id: agency_r;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyR.otf" }
+
 	property var settingsViewModel: function() {
 		var checkWalletPassword = function() {
 			console.log("settingsViewModel::checkWalletPassword undefined");
@@ -17,15 +20,17 @@ CustomDialog {
 
 	modal: true
 
-	width: 520
-    height: 520
+    backgroundImage: "qrc:/assets/popups/popup-7.png"
+
+    width: 720
+    height: 572
 	x: (parent.width - width) / 2
 	y: (parent.height - height) / 2
 	visible: false
 
     contentItem: Column {
     	anchors.fill: parent
-        anchors.margins: 70
+        anchors.margins: 100
 
     	spacing: 30
 
@@ -34,8 +39,10 @@ CustomDialog {
 			//% "Change wallet password"
 			text: qsTrId("general-change-pwd")
 			color: Style.content_main
-			font.pixelSize: 24
-			font.styleName: "Bold"; font.weight: Font.Bold
+            font.pixelSize: 30
+            font.family: agency_b.name
+            font.capitalization: Font.AllUppercase
+            font.letterSpacing: 4
 		}
 
     	Column
@@ -46,8 +53,10 @@ CustomDialog {
 				//% "Enter old password"
 				text: qsTrId("change-pwd-old-pwd-label")
 				color: Style.content_main
-				font.pixelSize: 12
-				font.styleName: "Bold"; font.weight: Font.Bold
+                font.pixelSize: 18
+                font.family: agency_r.name
+                font.capitalization: Font.AllUppercase
+                font.letterSpacing: 2
 			}
 
 			SFTextInput {
@@ -55,9 +64,12 @@ CustomDialog {
 
 				width: parent.width
 
-				font.pixelSize: 12
+                font.pixelSize: 18
+                font.family: agency_r.name
+                font.capitalization: Font.AllUppercase
 				color: Style.content_main
 				echoMode: TextInput.Password
+                dottedBorderColor: 'white'
 			}    		
     	}
 
@@ -68,9 +80,11 @@ CustomDialog {
 			SFText {
 				//% "Enter new password"
 				text: qsTrId("change-pwd-new-pwd-label")
-				color: Style.content_main
-				font.pixelSize: 12
-				font.styleName: "Bold"; font.weight: Font.Bold
+                color: Style.content_main
+                font.pixelSize: 18
+                font.family: agency_r.name
+                font.capitalization: Font.AllUppercase
+                font.letterSpacing: 2
 			}
 
 			SFTextInput {
@@ -78,9 +92,12 @@ CustomDialog {
 
 				width: parent.width
 
-				font.pixelSize: 12
+                font.pixelSize: 18
+                font.family: agency_r.name
+                font.capitalization: Font.AllUppercase
 				color: Style.content_main
 				echoMode: TextInput.Password
+                dottedBorderColor: 'white'
 			}    		
     	}
 
@@ -91,9 +108,11 @@ CustomDialog {
 			SFText {
 				//% "Confirm new password"
 				text: qsTrId("change-pwd-confirm-pwd-label")
-				color: Style.content_main
-				font.pixelSize: 12
-				font.styleName: "Bold"; font.weight: Font.Bold
+                color: Style.content_main
+                font.pixelSize: 18
+                font.family: agency_r.name
+                font.capitalization: Font.AllUppercase
+                font.letterSpacing: 2
 			}
 
 			SFTextInput {
@@ -101,21 +120,27 @@ CustomDialog {
 
 				width: parent.width
 
-				font.pixelSize: 12
+                font.pixelSize: 18
+                font.family: agency_r.name
+                font.capitalization: Font.AllUppercase
 				color: Style.content_main
 				echoMode: TextInput.Password
+                dottedBorderColor: 'white'
 			}
 
     	}
 
 		Column  {
 			width: parent.width
-			height: error.height
+            //height: error.heigt
 
 			SFText {
 				id: error
-				color: Style.validator_error
-				font.pixelSize: 12
+                color: Style.validator_error
+                font.pixelSize: 12
+                font.family: agency_r.name
+                font.capitalization: Font.AllUppercase
+                font.letterSpacing: 2
 			}			
 		}    	
 
@@ -129,7 +154,7 @@ CustomDialog {
 				onClicked: control.close()
 			}
 
-			PrimaryButton {
+            CustomButton {
 				//% "Change password"
 				text: qsTrId("change-pwd-ok")
 				onClicked: {

@@ -14,6 +14,9 @@ CustomDialog {
 		}
 	}
 
+    FontLoader { id: agency_b;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyB.ttf" }
+    FontLoader { id: agency_r;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyR.otf" }
+
 	property string dialogTitle: "title"
 	property string dialogMessage: "message"
 	property alias okButtonText: okButton.text
@@ -44,20 +47,31 @@ CustomDialog {
 	y: (parent.height - height) / 2
 	visible:        false
 	parent:         Overlay.overlay
-    padding:        50
-    bottomPadding:  60
+    topPadding: 80
+    bottomPadding: 80
+    leftPadding: 100
+    rightPadding: 100
+
+    backgroundImage: "qrc:/assets/popups/popup-8.png"
+    width: 710
+    height: 426
 
     contentItem: ColumnLayout {
         spacing: 30
+        Layout.leftMargin: 50
+        Layout.rightMargin: 50
 
 		SFText {
 			Layout.alignment: Qt.AlignHCenter
             Layout.fillWidth: true
 			text: dialogTitle
 			color: Style.content_main
-			horizontalAlignment: Text.AlignHCenter
-			font.pixelSize: 18
-			font.styleName: "Bold"; font.weight: Font.Bold
+            horizontalAlignment: Text.AlignHCenter
+            font.letterSpacing: 4
+            font.family: agency_b.name
+            font.capitalization: Font.AllUppercase
+            font.pixelSize: 30
+            font.bold: true
 		}
 
 		ColumnLayout {
@@ -66,8 +80,11 @@ CustomDialog {
                 Layout.fillWidth:		true
 				Layout.alignment:		Qt.AlignHCenter
                 text:					dialogMessage
-				color:					Style.content_main
-				font.pixelSize:			14
+                color:					Style.content_main
+                font.letterSpacing: 2
+                font.family: agency_r.name
+                font.capitalization: Font.AllUppercase
+                font.pixelSize: 18
 				wrapMode:				Text.Wrap
 			}
 
@@ -99,6 +116,7 @@ CustomDialog {
 					Layout.alignment: Qt.AlignHCenter
 					color: Style.validator_error
 					font.pixelSize: 12
+                    font.family: agency_r.nameы
 					//% "Please, enter password"
 					text: qsTrId("general-pwd-empty-error")
 					visible: showError && !pwd.text.length
@@ -108,6 +126,7 @@ CustomDialog {
 					Layout.alignment: Qt.AlignHCenter
 					color: Style.validator_error
 					font.pixelSize: 12
+                    font.family: agency_r.name
 					//% "Invalid password provided"
 					text: qsTrId("general-pwd-invalid")
 					visible: showError && pwd.text.length
@@ -127,7 +146,7 @@ CustomDialog {
 				onClicked: reject()
 			}
 
-			PrimaryButton {
+            CustomButton {
 				id: okButton
 				//: confirm password dialog, ok button
 				//% "Proceed"
