@@ -18,7 +18,7 @@ CustomDialog {
 
     backgroundImage: "qrc:/assets/popups/popup-12.png"
     width: 718
-    height: 528
+    height: control.isOldAddr ? 420 : 528
 
     FontLoader { id: agency_b;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyB.ttf" }
     FontLoader { id: agency_r;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyR.otf" }

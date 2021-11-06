@@ -117,9 +117,9 @@ ConfirmationDialog {
     }
 
     topPadding: 50
-    backgroundImage: "qrc:/assets/popups/popup-6.png"
-    width: 710
-    height: 490
+    backgroundImage: (isEnough && BeamGlobals.needPasswordToSpend()) ? "qrc:/assets/popups/popup-14.png" : "qrc:/assets/popups/popup-6.png"
+    width: (isEnough && BeamGlobals.needPasswordToSpend()) ? 704 : 710
+    height: (isEnough && BeamGlobals.needPasswordToSpend()) ? 564 : 490
     footerBottomPadding: 95
     cancelButtonWidth: 140
     okButtonWidth: 140
@@ -376,63 +376,55 @@ ConfirmationDialog {
             }
         }
 
-        //
-        // Password confirmation
-        //
-        Rectangle {
-            Layout.fillWidth:  true
-            height:   1
-            color:    Qt.rgba(1, 1, 1, 0.1)
-            visible:  isEnough && BeamGlobals.needPasswordToSpend()
-        }
-
-        SFText {
-            id:                   requirePasswordLabel
-            visible:              isEnough && BeamGlobals.needPasswordToSpend()
-            horizontalAlignment:  Text.AlignHCenter
-            Layout.fillWidth:     true
-            font.pixelSize:       14
-            color:                Style.content_disabled
-            //% "To approve the transaction please enter your password"
-            text:                 qsTrId("send-confirmation-pwd-require-message")
-        }
-
-        Column {
-            Layout.fillWidth:    true
-            Layout.minimumWidth: 340
-            spacing: 0
-            visible: isEnough && BeamGlobals.needPasswordToSpend()
-
-            SFTextInput {
-                id:               requirePasswordInput
-                width:            parent.width
-                font.pixelSize:   14
-                color:            requirePasswordError.text ? Style.validator_error : Style.content_main
-                backgroundColor:  requirePasswordError.text ? Style.validator_error : Style.content_main
-                echoMode:         TextInput.Password
-                leftPadding:      14
-                rightPadding:     14
-
-                onAccepted: function () {
-                    control.okButton.clicked()
-                }
-
-                onTextChanged: function () {
-                    requirePasswordError.text = ""
-                }
-
-                background: Rectangle  {
-                    color:        Qt.rgba(1, 1, 1, 0.05)
-                    radius:       10
-
-                }
+        ColumnLayout {
+            SFText {
+                id:                   requirePasswordLabel
+                visible:              isEnough && BeamGlobals.needPasswordToSpend()
+                horizontalAlignment:  Text.AlignHCenter
+                Layout.fillWidth:     true
+                font.pixelSize:       18
+                font.capitalization: Font.AllUppercase
+                font.family:      agency_r.name
+                font.letterSpacing: 2
+                color:                'white'
+                //% "To approve the transaction please enter your password"
+                text:                 "enter your password to complete the transaction:"
             }
 
-            SFText {
-                id:              requirePasswordError
-                color:           Style.validator_error
-                font.pixelSize:  12
-                font.italic:     true
+            Column {
+                Layout.alignment: Qt.AlignCenter
+                width: 400
+                Layout.maximumWidth: 400
+                Layout.preferredWidth: 400
+                spacing: 0
+                visible: isEnough && BeamGlobals.needPasswordToSpend()
+
+                SFTextInput {
+                    Layout.fillWidth: true
+                    id:               requirePasswordInput
+                    width:            parent.width
+                    font.pixelSize:   14
+                    color:            requirePasswordError.text ? Style.validator_error : Style.content_main
+                    echoMode:         TextInput.Password
+                    dottedBorderColor: 'white'
+                    font.family:      agency_r.name
+
+                    onAccepted: function () {
+                        control.okButton.clicked()
+                    }
+
+                    onTextChanged: function () {
+                        requirePasswordError.text = ""
+                    }
+                }
+
+                SFText {
+                    id:              requirePasswordError
+                    color:           Style.validator_error
+                    font.pixelSize:  12
+                    font.family:            agency_r.name
+                    font.italic:     true
+                }
             }
         }
 
