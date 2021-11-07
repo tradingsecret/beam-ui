@@ -20,7 +20,7 @@ ToolButton {
 
     icon.width: 16
     icon.height: 16
-    icon.color: visualFocus ? control.palette.highlight : control.palette.buttonText
+    //icon.color: visualFocus ? control.palette.highlight : control.palette.buttonText
 
     contentItem: IconLabel {
 		id: icon
@@ -31,7 +31,7 @@ ToolButton {
         icon: control.icon
         text: control.text
         font: control.font
-        color: control.visualFocus ? control.palette.highlight : control.palette.buttonText
+        //color: control.visualFocus ? control.palette.highlight : control.palette.buttonText
     }
 
     background: Rectangle {
@@ -40,7 +40,7 @@ ToolButton {
         implicitHeight: 32
 		radius:16
 
-        opacity: control.down ? 1.0 : 0.5
+        //opacity: control.down ? 1.0 : 0.5
         color: "transparent"// control.down || control.checked || control.highlighted || control.hovered ? control.palette.mid : control.palette.button
     }
 
@@ -48,8 +48,8 @@ ToolButton {
 		anchors.fill: icon
 		radius: 7
 		samples: 9
-		color: "white"
+        color: "transparent" //white
 		source: icon
-		visible: control.visualFocus || control.hovered
+        visible: control.visualFocus || control.hovered
 	}
 }

@@ -131,7 +131,7 @@ Control {
         }
     }
 
-    TransactionDetailsPopup {
+    TransactionDetailsPopupNotifications {
         id: txDetails
         onTextCopied: function(text) {
             BeamGlobals.copyToClipboard(text);

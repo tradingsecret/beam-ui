@@ -4,6 +4,7 @@ import QtQuick.Controls 2.4
 import QtQuick.Controls.Styles 1.2
 import QtQuick.Layouts 1.12
 import "controls"
+import "wallet"
 import "utils.js" as Utils
 import Beam.Wallet 1.0
 
@@ -12,8 +13,20 @@ ColumnLayout {
     anchors.fill: parent
     spacing: 0
 
+
     NotificationsViewModel {
         id: viewModel
+    }
+
+    TransactionDetailsPopupNotifications {
+        id: txDetails
+        onTextCopied: function(text) {
+            BeamGlobals.copyToClipboard(text);
+        }
+        onOpenExternal: function(kernelID) {
+            var url = BeamGlobals.getExplorerUrl() + "block?kernel_id=" + kernelID;
+            Utils.openExternalWithConfirmation(url);
+        };
     }
     
     /*CustomButton {
@@ -362,7 +375,24 @@ ColumnLayout {
                             onClicked: {
                                 if (enabled) {
                                     viewModel.markItemAsRead(model.rawID);
-                                    control.notifications[type].action(model.rawID);
+                                    //control.notifications[type].action(model.rawID);
+
+                                    txDetails.txID = model.txid;
+                                    txDetails.sendAddress = model.sender;
+                                    txDetails.receiveAddress = model.receiver;
+                                    txDetails.token = model.token;
+                                    txDetails.assetAmounts = [model.amount];
+                                    txDetails.fee = model.fee;
+                                    txDetails.feeUnit = 'ARC';
+                                    txDetails.comment = model.comment;
+
+                                    console.log(type);
+                                    console.log(isReceivedType(type));
+
+                                    txDetails.assetIncome = [isReceivedType(type) ? 1 : 0];
+                                    txDetails.assetNames = ['ARC'];
+                                    txDetails.assetIDs = ['0'];
+                                    txDetails.open();
                                 }
                             }
                             onPressed : { // avoid Flickable drag effect
@@ -598,6 +628,14 @@ ColumnLayout {
             icon:       "qrc:/assets/icon-contract-failed.svg"
         }
     })
+
+    function isReceivedType(type) {
+        return type == 'received' ||
+                type == 'offlineReceived' ||
+                type == 'pubOfflineReceived' ||
+                type == 'maxpReceived' ||
+                type == 'failedToReceive'
+    }
 
     function updateClient(id) {
         Utils.navigateToDownloads();

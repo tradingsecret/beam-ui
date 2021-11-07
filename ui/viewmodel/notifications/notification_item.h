@@ -35,8 +35,13 @@ public:
     QString title() const;
     QString message(AssetsManager::Ptr amgr) const;
     QString amount(AssetsManager::Ptr amgr) const;
+    QString fee(AssetsManager::Ptr amgr) const;
     QString coin(AssetsManager::Ptr amgr) const;
     QString wallet(AssetsManager::Ptr amgr) const;
+    QString receiver(AssetsManager::Ptr amgr) const;
+    QString sender(AssetsManager::Ptr amgr) const;
+    QString token(AssetsManager::Ptr amgr) const;
+    QString comment(AssetsManager::Ptr amgr) const;
     QString txid() const;
     QString type() const;
     QString state() const;

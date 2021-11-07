@@ -26,6 +26,19 @@ namespace {
         return beamui::AmountToUIString(*p.GetParameter<Amount>(beam::wallet::TxParameterID::Amount));
     }
 
+    QString getFee(const beam::wallet::TxParameters& p)
+    {
+        return beamui::AmountToUIString(*p.GetParameter<Amount>(beam::wallet::TxParameterID::Fee));
+    }
+
+    QString getComment(const beam::wallet::TxParameters& p)
+    {
+        ByteBuffer message = *p.GetParameter<ByteBuffer>(beam::wallet::TxParameterID::Message);
+
+        std::string str{ message.begin(), message.end() };
+        return QString(str.c_str()).trimmed();
+    }
+
     QString getSwapAmount(const beam::wallet::TxParameters &p)
     {
         using namespace beam::wallet;
@@ -333,6 +346,13 @@ QString NotificationItem::amount(AssetsManager::Ptr amgr) const
     return getAmount(p);
 }
 
+QString NotificationItem::fee(AssetsManager::Ptr amgr) const
+{
+    auto p = getTxParameters(m_notification);
+
+    return getFee(p);
+}
+
 QString NotificationItem::coin(AssetsManager::Ptr amgr) const
 {
     auto p = getTxParameters(m_notification);
@@ -360,6 +380,33 @@ QString NotificationItem::txid() const
     return std::to_string(*p.GetTxID()).c_str();
 }
 
+QString NotificationItem::receiver(AssetsManager::Ptr amgr) const
+{
+    auto p = getTxParameters(m_notification);
+
+    return QString::fromStdString(beam::wallet::TxDescription(p).getReceiver());
+}
+
+QString NotificationItem::sender(AssetsManager::Ptr amgr) const
+{
+    auto p = getTxParameters(m_notification);
+
+    return QString::fromStdString(beam::wallet::TxDescription(p).getSender());
+}
+
+QString NotificationItem::token(AssetsManager::Ptr amgr) const
+{
+    auto p = getTxParameters(m_notification);
+
+    return QString::fromStdString(beam::wallet::TxDescription(p).getToken());
+}
+
+QString NotificationItem::comment(AssetsManager::Ptr amgr) const
+{
+    auto p = getTxParameters(m_notification);
+
+    return getComment(p);
+}
 
 QString NotificationItem::message(AssetsManager::Ptr amgr) const
 {

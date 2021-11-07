@@ -106,6 +106,7 @@
         <file>wallet/AssetInfo.qml</file>
         <file>wallet/AssetTip.qml</file>
         <file>wallet/TransactionDetailsPopup.qml</file>
+		<file>wallet/TransactionDetailsPopupNotifications.qml</file>
         <file>wallet/TransactionsSearchHighlighter.qml</file>
         <file>wallet/CoinsList.qml</file>
         <file>dex/MarketPanel.qml</file>

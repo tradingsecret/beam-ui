@@ -406,7 +406,7 @@ ColumnLayout {
                                         acceptedButtons: Qt.LeftButton
                                         cursorShape: control.isValid() ? Qt.PointingHandCursor : Qt.ArrowCursor
                                         onClicked: function () {
-                                                control.copyAndSave()
+                                            control.copyAndSave();
                                         }
                                     }
                                 }

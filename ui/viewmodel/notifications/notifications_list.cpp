@@ -30,9 +30,14 @@ QHash<int, QByteArray> NotificationsList::roleNames() const
         { static_cast<int>(Roles::Title), "title" },
         { static_cast<int>(Roles::Message), "message" },
         { static_cast<int>(Roles::Amount), "amount" },
+        { static_cast<int>(Roles::Fee), "fee" },
         { static_cast<int>(Roles::Coin), "coin" },
         { static_cast<int>(Roles::Wallet), "wallet" },
         { static_cast<int>(Roles::TxID), "txid" },
+        { static_cast<int>(Roles::Receiver), "receiver" },
+        { static_cast<int>(Roles::Sender), "sender" },
+        { static_cast<int>(Roles::Token), "token" },
+        { static_cast<int>(Roles::Comment), "comment" },
         { static_cast<int>(Roles::Type), "type" },
         { static_cast<int>(Roles::State), "state" },
         { static_cast<int>(Roles::RawID), "rawID" },
@@ -74,6 +79,9 @@ QVariant NotificationsList::data(const QModelIndex &index, int role) const
         case Roles::Amount:
             return value->amount(_amgr);
 
+        case Roles::Fee:
+            return value->fee(_amgr);
+
         case Roles::Coin:
             return value->coin(_amgr);
 
@@ -82,6 +90,18 @@ QVariant NotificationsList::data(const QModelIndex &index, int role) const
 
         case Roles::TxID:
             return value->txid();
+
+        case Roles::Receiver:
+            return value->receiver(_amgr);
+
+        case Roles::Sender:
+            return value->sender(_amgr);
+
+        case Roles::Token:
+            return value->token(_amgr);
+
+        case Roles::Comment:
+            return value->comment(_amgr);
 
         case Roles::Type:
             return value->type();
