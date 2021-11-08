@@ -127,75 +127,106 @@ Item {
                 visible: false
             }
 
-            Row {
-                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                Layout.topMargin: 30
-                Layout.leftMargin: 10
-                spacing: 20
-                visible: true
+            ColumnLayout {
+                Layout.minimumWidth: 440
+                Layout.maximumWidth: 440
+                width: 440
 
-                SFText {
-                    text: "Balance:"
-                    color: '#5fe795'
-                    font.pixelSize: 16
-                    font.capitalization: Font.AllUppercase
-                }
-            }
+                ColumnLayout {
+                    Layout.minimumHeight: 65
+                    Layout.maximumHeight: 65
+                    Layout.minimumWidth: parent.width
+                    Layout.maximumWidth: parent.width
+                    width: parent.width
+                    height: 65
+                    Layout.topMargin: 30
 
-            Row {
-                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                Layout.topMargin: 10
-                Layout.leftMargin: 10
-                spacing: 20
-                visible: true
+                    ColumnLayout {
+                        Layout.leftMargin: 10
 
-                SFText {
-                    text: viewModelSwap.beamAvailable + ' ARC'
-                    color: '#5fe795'
-                    font.pixelSize: 30
-                    font.capitalization: Font.AllUppercase
-                }
-            }
+                        Row {
+                            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                            //spacing: 20
+                            visible: true
 
-            Row {
-                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                Layout.topMargin: 30
-                spacing: 40
+                            SFText {
+                                text: "Balance:"
+                                color: '#5fe795'
+                                font.pixelSize: 16
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
 
-                CustomButton {
-                    height: 45
-                    id: sendButton
-                    palette.button: Style.accent_outgoing
-                    palette.buttonText: Style.content_opposite
-                    hoveredBorderColor: '#1aa853'
-                    //% "Send"
-                    text: qsTrId("general-send")
-                    onClicked: {
-                        navigateSend(assets.selectedId);
+                        Row {
+                            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                            Layout.topMargin: 5
+                            //spacing: 20
+                            visible: true
+
+                            SFText {
+                                text: viewModelSwap.beamAvailable + ' ARC'
+                                color: '#5fe795'
+                                font.pixelSize: 30
+                                font.capitalization: Font.AllUppercase
+                            }
+                        }
                     }
-                    width: 200
-                }
 
-                CustomButton {
-                    height: 45
-                    palette.button: Style.accent_incoming
-                    palette.buttonText: Style.content_opposite
-                    hoveredBorderColor: '#1aa853'
-                    //% "Receive"
-                    text: qsTrId("wallet-receive-button")
-                    onClicked: {
-                        navigateReceive(assets.selectedId);
+                    Rectangle {
+                        visible: true
+                        anchors.fill: parent
+                        color: 'transparent'
+                        //border.width: 2
+                        //border.color: 'pink'
                     }
-                    width: 200
                 }
-            }
 
-            Row {
-                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                Layout.topMargin: 15
+                Row {
+                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                    Layout.topMargin: 25
+                    spacing: 40
+
+                    CustomButton {
+                        height: 43
+                        id: sendButton
+                        Layout.alignment: Qt.AlignLeft
+                        palette.button: Style.accent_outgoing
+                        palette.buttonText: Style.content_opposite
+                        hoveredBorderColor: '#1aa853'
+                        //% "Send"
+                        text: qsTrId("general-send")
+                        enabled: true
+                        onClicked: {
+                            navigateSend(assets.selectedId);
+                        }
+                        width: 200
+                    }
+
+                    Item {
+                        Layout.fillWidth: true
+                    }
+
+                    CustomButton {
+                        height: 43
+                        Layout.alignment: Qt.AlignRight
+                        palette.button: Style.accent_incoming
+                        palette.buttonText: Style.content_opposite
+                        hoveredBorderColor: '#1aa853'
+                        //% "Receive"
+                        text: qsTrId("wallet-receive-button")
+                        enabled: true
+                        onClicked: {
+                            navigateReceive(assets.selectedId);
+                        }
+                        width: 200
+                    }
+                }
 
                 CustomButton {
-                    height: 45
+                    height: 43
+                    width: 440
+                    Layout.fillWidth: true
+                    Layout.topMargin: 10
                     palette.button: Style.accent_incoming
                     palette.buttonText: Style.content_opposite
                     hoveredBorderColor: '#1aa853'
@@ -204,166 +235,21 @@ Item {
                     onClicked: {
                         Utils.getFaucet();
                     }
-                    width: 440
+                }
+
+
+                Rectangle {
+                    visible: true
+                    anchors.fill: parent
+                    color: 'transparent'
+                    //border.width: 3
+                    //border.color: 'yellow'
                 }
             }
 
-            RowLayout {
-                visible: false
-                Layout.fillWidth: true
 
-                ColumnLayout {
-                    width: parent.width / 2
-
-
-                }
-
-                Item {
-                    Layout.fillWidth: true
-                }
-
-                Repeater {
-                    model: viewModelAssets.assets
-                    Layout.topMargin: 30
-
-                    Grid {
-                        columns: 2
-                        visible: index == 0
-                        anchors.top: parent.top
-                        anchors.right: parent.right
-
-                        Row {
-                            //Layout.topMargin: 30
-
-                            SFText {
-                                Layout.alignment: Qt.AlignLeft
-                                rightPadding: 20
-                                text: "Available:"
-                                color: '#5fe795'
-                                font.pixelSize: 16
-                                font.capitalization: Font.AllUppercase
-                            }
-                        }
-
-                        Row {
-                            //Layout.topMargin: 30
-
-                            SFText {
-                                Layout.alignment: AlignLeft
-                                text: model.amount + ' ARC'
-                                color: '#5fe795'
-                                font.pixelSize: 16
-                                font.capitalization: Font.AllUppercase
-                            }
-                        }
-
-                        /*
-                        Row {
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                            spacing: 20
-                            visible: true
-
-                            SFText {
-                                text: "Regular:"
-                                color: '#5fe795'
-                                font.pixelSize: 16
-                                font.capitalization: Font.AllUppercase
-                            }
-                        }
-
-                        Row {
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                            spacing: 20
-                            visible: true
-
-                            SFText {
-                                text: model.amountRegular + ' ARC'
-                                color: '#5fe795'
-                                font.pixelSize: 30
-                                font.capitalization: Font.AllUppercase
-                            }
-                        }
-
-                        Row {
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                            spacing: 20
-                            visible: true
-
-                            SFText {
-                                text: "Anonymous:"
-                                color: '#5fe795'
-                                font.pixelSize: 16
-                                font.capitalization: Font.AllUppercase
-                            }
-                        }
-
-                        Row {
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                            spacing: 20
-                            visible: true
-
-                            SFText {
-                                text: model.amountShielded + ' ARC'
-                                color: '#5fe795'
-                                font.pixelSize: 30
-                                font.capitalization: Font.AllUppercase
-                            }
-                        }
-
-                        Row {
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                            spacing: 20
-                            visible: true
-
-                            SFText {
-                                text: "Locked:"
-                                color: '#5fe795'
-                                font.pixelSize: 16
-                                font.capitalization: Font.AllUppercase
-                            }
-                        }
-
-                        Row {
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                            spacing: 20
-                            visible: true
-
-                            SFText {
-                                text: model.locked + ' ARC'
-                                color: '#5fe795'
-                                font.pixelSize: 30
-                                font.capitalization: Font.AllUppercase
-                            }
-                        }
-
-                        Row {
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                            spacing: 20
-                            visible: true
-
-                            SFText {
-                                text: "Maturing:"
-                                color: '#5fe795'
-                                font.pixelSize: 16
-                                font.capitalization: Font.AllUppercase
-                            }
-                        }
-
-                        Row {
-                            Layout.alignment: Qt.AlignVCenter | Qt.AlignLeft
-                            spacing: 20
-                            visible: true
-
-                            SFText {
-                                text: model.maturingRegular + ' ARC'
-                                color: '#5fe795'
-                                font.pixelSize: 30
-                                font.capitalization: Font.AllUppercase
-                            }
-                        }
-                        */
-                    }
-                }
+            Item {
+                Layout.fillHeight: true
             }
 
             ColumnLayout {
@@ -378,7 +264,6 @@ Item {
                         pixelSize: 18
                     }
 
-                    opacity: 0.5
                     color: '#585858'
                     //% "Transactions"
                     text: qsTrId("wallet-transactions-title")
