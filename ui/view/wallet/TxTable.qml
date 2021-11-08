@@ -13,6 +13,8 @@ Control {
     id: control
 
     FontLoader { id: tomorrow_semibold;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowSemiBold.ttf" }
+    FontLoader { id: tomorrow_extralight;  source: "qrc:/assets/fonts/Tomorrow-ExtraLight.ttf" }
+    FontLoader { id: tomorrow_light;  source: "qrc:/assets/fonts/Tomorrow-Light.ttf" }
 
     TxTableViewModel {
         id: tableViewModel
@@ -184,8 +186,14 @@ Control {
 
         RowLayout {
             Layout.fillWidth:    true
-            Layout.bottomMargin: 10
+            Layout.topMargin: 15
+            Layout.bottomMargin: 15
             visible:             tableViewModel.transactions.rowCount() > 0
+
+            Item {
+                Layout.fillWidth: true
+            }
+
             TxFilter {
                 id: allTab
                 Layout.alignment: Qt.AlignVCenter
@@ -208,6 +216,7 @@ Control {
                 //% "Sent"
                 label: qsTrId("wallet-transactions-sent-tab")
                 onClicked: control.state = "sent"
+                visible: false
             }
 
             TxFilter {
@@ -216,6 +225,7 @@ Control {
                 //% "Received"
                 label: qsTrId("wallet-transactions-received-tab")
                 onClicked: control.state = "received"
+                visible: false
             }
 
             Item {
@@ -228,6 +238,7 @@ Control {
                Layout.alignment: Qt.AlignVCenter
                //% "Enter search text..."
                placeholderText: qsTrId("wallet-search-transactions-placeholder")
+               visible: false
             }
 
             CustomToolButton {
@@ -239,6 +250,7 @@ Control {
                 onClicked: {
                     tableViewModel.exportTxHistoryToCsv();
                 }
+                visible: false
             }
 
             CustomToolButton {
@@ -258,7 +270,6 @@ Control {
             Layout.topMargin: emptyMessageMargin
             Layout.alignment: Qt.AlignHCenter
             visible: transactionsTable.model.count == 0
-
             /*SvgImage {
                 Layout.alignment: Qt.AlignHCenter
                 source: "qrc:/assets/icon-wallet-empty.svg"
@@ -285,6 +296,7 @@ Control {
 
         CustomTableView {
             id: transactionsTable
+            headerTextLeftMargin: 0
 
             //Rectangle { anchors.top: parent.top; height: 1; width: parent.width; color: 'purple'}
             //Rectangle { anchors.bottom: parent.bottom; height: 1; width: parent.width;  color: 'purple'}
@@ -522,16 +534,39 @@ Control {
 
 
             itemDelegate: Item {
-                Item {
-                    width: parent.width
-                    height: transactionsTable.rowHeight
 
-                    TableItem {
+                width: parent.width
+                Layout.fillWidth: true
+
+                RowLayout {
+                    height:   transactionsTable.rowHeight
+                    anchors.horizontalCenter: parent.horizontalCenter
+
+                    SFText {
                         text:  styleData.value || ""
                         elide: styleData.elideMode
-                        onCopyText: BeamGlobals.copyToClipboard(styleData.value)
+                        color:             '#ffffff'
+                        Layout.fillWidth:  true
+                        //Layout.leftMargin: 20
+                        font {
+                            family: tomorrow_extralight.name
+                            pixelSize: 13
+                        }
                     }
                 }
+            }
+
+            TableViewColumn {
+                role: "timeCreated"
+                id: timeColumn
+
+                //% "Created on"
+                title:      qsTrId("wallet-txs-date-time")
+                elideMode:  Text.ElideRight
+                //width:      105 * transactionsTable.columnResizeRatio
+                width: 130 * transactionsTable.columnResizeRatio
+                movable:    false
+                resizable:  false
             }
 
             TableViewColumn {
@@ -541,29 +576,24 @@ Control {
                 //% "Coin"
                 title:     qsTrId("tx-table-asset")
                 //width:     100
-                width:     130 * transactionsTable.columnResizeRatio
+                width:     80 * transactionsTable.columnResizeRatio
                 movable:   false
                 resizable: false
                 elideMode:  Text.ElideNone
 
+                delegate: Item {
+                    width: parent.width
+                    Layout.fillWidth: true
 
-                /*Rectangle {
-                   anchors {
-                       right: parent.right
-                       top: parent.top
-                       bottom: parent.bottom
-                   }
-                   width: 1
-                   color: "red"
-               }*/
-
-                delegate: Item { CoinsList {
-                    width:    parent.width
-                    height:   transactionsTable.rowHeight
-                    icons:    model ? model.assetIcons : undefined
-                    names:    model ? ["Arctis (ARC)"] : undefined //model ? model.assetNames : undefined
-                    verified: model ? model.assetVerified: undefined
-                }}
+                    CoinsList {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        //Layout.alignment: Qt.AlignCenter | Qt.AlignHCenter
+                        height:   transactionsTable.rowHeight
+                        icons:    model ? model.assetIcons : undefined
+                        names:    model ? ["Arctis (ARC)"] : undefined //model ? model.assetNames : undefined
+                        verified: model ? model.assetVerified: undefined
+                    }
+                }
             }
 
             TableViewColumn {
@@ -573,34 +603,38 @@ Control {
                 title:     qsTrId("general-amount")
                 elideMode: Text.ElideRight
                 //width:     115 * transactionsTable.columnResizeRatio
-                width: 130 * transactionsTable.columnResizeRatio
+                width: 100 * transactionsTable.columnResizeRatio
                 movable:   false
                 resizable: false
 
-                delegate: Item { RowLayout {
-                    width:  parent.width
-                    height: transactionsTable.rowHeight
+                delegate: Item {
+                    width: parent.width
+                    Layout.fillWidth: true
 
-                    property var isIncome:    model && model.isIncome
-                    property var prefix:      model && model.amountGeneral == "0" ? "" : (isIncome ? "+ " : "- ")
-                    property var amountText:  model && model.amountGeneral ? [prefix, Utils.uiStringToLocale(BeamGlobals.roundWithPrecision(model.amountGeneral, 6))].join('') : "0"
+                    RowLayout {
+                        anchors.horizontalCenter: parent.horizontalCenter
+                        height: transactionsTable.rowHeight
 
-                    //% "Multiple assets"
-                    property var displayText: model && model.isMultiAsset ? qsTrId("general-multiple-assets") : amountText
+                        property var isIncome:    model && model.isIncome
+                        property var prefix:      model && model.amountGeneral == "0" ? "" : (isIncome ? "+ " : "- ")
+                        property var amountText:  model && model.amountGeneral ? [prefix, Utils.uiStringToLocale(BeamGlobals.roundWithPrecision(model.amountGeneral, 6))].join('') : "0"
 
-                    SFText {
-                        text:              parent.displayText
-                        color:             parent.isIncome ? "green" : "red" //Style.accent_incoming : Style.accent_outgoing
-                        Layout.fillWidth:  true
-                        Layout.leftMargin: 20
-                        elide:             Text.ElideRight
-                        font {
-                            styleName: "Bold"
-                            weight:    Font.Bold
-                            pixelSize: 14
+                        //% "Multiple assets"
+                        property var displayText: model && model.isMultiAsset ? qsTrId("general-multiple-assets") : amountText
+
+                        SFText {
+                            text:              parent.displayText
+                            color:             parent.isIncome ? "#4cbd7b" : "#ff0000" //Style.accent_incoming : Style.accent_outgoing
+                            Layout.fillWidth:  true
+                            //Layout.leftMargin: 20
+                            elide:             Text.ElideRight
+                            font {
+                                family: tomorrow_light.name
+                                pixelSize: 15
+                            }
                         }
                     }
-                }}
+                }
             }
 
             /*TableViewColumn {
@@ -643,25 +677,34 @@ Control {
                 id: sourceColumn
 
                 //% "Source"
-                title:      qsTrId("wallet-txs-source")
+                title:      "Type" //qsTrId("wallet-txs-source")
                 elideMode:  Text.ElideRight
-                width:      130 * transactionsTable.columnResizeRatio
+                width:      80 * transactionsTable.columnResizeRatio
                 movable:    false
                 resizable:  false
                 visible:    sourceVisible
-            }
+                delegate: Item {
 
-            TableViewColumn {
-                role: "timeCreated"
-                id: timeColumn
+                    width: parent.width
+                    Layout.fillWidth: true
 
-                //% "Created on"
-                title:      qsTrId("wallet-txs-date-time")
-                elideMode:  Text.ElideRight
-                //width:      105 * transactionsTable.columnResizeRatio
-                width: 130 * transactionsTable.columnResizeRatio
-                movable:    false
-                resizable:  false
+                    RowLayout {
+                        height:   transactionsTable.rowHeight
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        SFText {
+                            text: model && model.isIncome ? 'RECEIVE' : 'SEND'
+                            elide: styleData.elideMode
+                            color:             '#ffffff'
+                            Layout.fillWidth:  true
+                            //Layout.leftMargin: 20
+                            font {
+                                family: tomorrow_extralight.name
+                                pixelSize: 13
+                            }
+                        }
+                    }
+                }
             }
 
             TableViewColumn {
@@ -670,107 +713,46 @@ Control {
                 //% "Status"
                 title: qsTrId("tx-table-status")
                 // width: transactionsTable.getAdjustedColumnWidth(statusColumn) // 100 * transactionsTable.columnResizeRatio
-                width: 130 * transactionsTable.columnResizeRatio
+                width: 310 * transactionsTable.columnResizeRatio
+                //width: implicitWidth
                 movable: false
                 resizable: false
                 delegate: Item {
                     property var myModel: model
-                    Item {
-                        width: parent.width
+
+                    width: parent.width
+                    Layout.fillWidth: true
+
+                    RowLayout {
+                        anchors.horizontalCenter: parent.horizontalCenter
                         height: transactionsTable.rowHeight
+                        id: statusRow
 
-                        RowLayout {
-                            id: statusRow
-                            Layout.alignment: Qt.AlignLeft
-                            anchors.fill: parent
-                            anchors.leftMargin: 10
-                            spacing: 10
-
-                            SvgImage {
-                                visible: false
-                                id: statusIcon;
-                                Layout.alignment: Qt.AlignLeft
-
-                                sourceSize: Qt.size(20, 20)
-                                source: getIconSource()
-                                function getIconSource() {
-                                    if (!model) {
-                                        return "";
-                                    }
-                                    if (model.isInProgress) {
-                                        if (model.isSelfTransaction) {
-                                            if (model.isOfflineToken || model.isPublicOffline)
-                                                return "qrc:/assets/icon-sending-own-offline.svg";
-                                            if (model.isShieldedTx)
-                                                return "qrc:/assets/icon-sending-max-privacy-own.svg";
-                                            return "qrc:/assets/icon-sending-own.svg";
-                                        }
-                                        return model.isIncome
-                                            ? !model.isShieldedTx ? "qrc:/assets/icon-receiving.svg" :
-                                                    model.isOfflineToken || model.isPublicOffline ? "qrc:/assets/icon-receiving-offline.svg" : "qrc:/assets/icon-receiving-max-online.svg"
-                                            : !model.isShieldedTx ? "qrc:/assets/icon-sending.svg" :
-                                                    model.isOfflineToken || model.isPublicOffline ? "qrc:/assets/icon-sending-offline.svg" : "qrc:/assets/icon-sending-max-online.svg";
-                                    }
-                                    else if (model.isCompleted) {
-                                        if (model.isSelfTransaction) {
-                                            if (model.isOfflineToken || model.isPublicOffline)
-                                                return "qrc:/assets/icon-sent-own-offline.svg";
-                                            if (model.isShieldedTx)
-                                                return "qrc:/assets/icon-sent-max-privacy-own.svg";
-                                            return "qrc:/assets/icon-sent-own.svg";
-                                        }
-                                        return model.isIncome
-                                            ? !model.isShieldedTx ? "qrc:/assets/icon-received.svg" :
-                                                    model.isOfflineToken || model.isPublicOffline ? "qrc:/assets/icon-received-offline.svg" : "qrc:/assets/icon-received-max-online.svg"
-                                            : !model.isShieldedTx ? "qrc:/assets/icon-sent.svg" :
-                                                    model.isOfflineToken || model.isPublicOffline ? "qrc:/assets/icon-sent-offline.svg" : "qrc:/assets/icon-sent-max-online.svg";
-                                    }
-                                    else if (model.isExpired) {
-                                        return "qrc:/assets/icon-expired.svg"
-                                    }
-                                    else if (model.isFailed) {
-                                        return model.isIncome
-                                            ? "qrc:/assets/icon-receive-failed.svg"
-                                            : !model.isShieldedTx ? "qrc:/assets/icon-send-failed.svg" :
-                                                    model.isOfflineToken ? "qrc:/assets/icon-send-failed-offline.svg" : "qrc:/assets/icon-failed-max-online.svg";
-                                    }
-                                    else {
-                                        return model.isIncome
-                                            ? "qrc:/assets/icon-receive-canceled.svg"
-                                            : !model.isShieldedTx ? "qrc:/assets/icon-send-canceled.svg" :
-                                                    model.isOfflineToken ? "qrc:/assets/icon-canceled-offline.svg" : "qrc:/assets/icon-canceled-max-online.svg";
-                                    }
+                        SFLabel {
+                            font.pixelSize:  13
+                            font.family:  tomorrow_extralight.name
+                            wrapMode: Text.WordWrap
+                            text: styleData && styleData.value ? styleData.value : ""
+                            color: {
+                                if (!model || model.isExpired) {
+                                    color:  '#ffffff'
                                 }
-                            }
-                            SFLabel {
-                                Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
-                                Layout.fillWidth: true
-                                font.pixelSize: 14
-                                font.italic: true
-                                wrapMode: Text.WordWrap
-                                text: styleData && styleData.value ? styleData.value : ""
-                                verticalAlignment: Text.AlignBottom
-                                color: {
-                                    if (!model || model.isExpired) {
-                                        return Style.content_secondary;
-                                    }
-                                    if (model.isInProgress) {
-                                        return 'yellow';
-                                    }
-                                    if (model.isCompleted && model.isIncome) {
-                                        return model.isShieldedTx ? 'purple' : 'white';
-                                    }
-                                    if (model.isCompleted && !model.isIncome) {
-                                        //if (model.isSelfTransaction) {
-                                        //    return Style.content_main;
-                                        //}
-                                        return model.isShieldedTx ? 'purple' : 'white';
-                                    } else if (model.isFailed) {
-                                        return Style.accent_fail;
-                                    }
-                                    else {
-                                        return Style.content_secondary;
-                                    }
+                                if (model.isInProgress) {
+                                    return 'yellow';
+                                }
+                                if (model.isCompleted && model.isIncome) {
+                                    return model.isShieldedTx ? 'purple' : 'white';
+                                }
+                                if (model.isCompleted && !model.isIncome) {
+                                    //if (model.isSelfTransaction) {
+                                    //    return Style.content_main;
+                                    //}
+                                    return model.isShieldedTx ? 'purple' : 'white';
+                                } else if (model.isFailed) {
+                                    return Style.accent_fail;
+                                }
+                                else {
+                                    color: '#ffffff'
                                 }
                             }
                         }
@@ -894,6 +876,53 @@ Control {
                         transactionsTable.showDeleteTransactionDialog(contractTxContextMenu.txID);
                     }
                 }
+            }
+        }
+
+        Item {
+            visible:              transactionsTable.model.count > 0
+
+            Rectangle {
+                id: line
+                anchors.fill: transactionsTable
+                y: 50
+                x: 130 * transactionsTable.columnResizeRatio
+                height: transactionsTable.height
+                width: 1
+                color: '#112a26'
+            }
+
+
+            Rectangle {
+                id: line1
+                anchors.fill: transactionsTable
+                y: 50
+                x: (210 * transactionsTable.columnResizeRatio)
+                height: transactionsTable.height
+                width: 1
+                color: '#112a26'
+            }
+
+
+            Rectangle {
+                id: line2
+                anchors.fill: transactionsTable
+                y: 50
+                x: (310 * transactionsTable.columnResizeRatio)
+                height: transactionsTable.height
+                width: 1
+                color: '#112a26'
+            }
+
+
+            Rectangle {
+                id: line3
+                anchors.fill: transactionsTable
+                y: 50
+                x: (390 * transactionsTable.columnResizeRatio)
+                height: transactionsTable.height
+                width: 1
+                color: '#112a26'
             }
         }
     }

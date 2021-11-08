@@ -17,8 +17,8 @@ Item  {
     state: "normal"
     signal clicked()
 
-    property var activeColor: Style.content_main
-    property var inactiveColor: Style.section
+    property var activeColor: '#4cbd7b'
+    property var inactiveColor: '#585858'
 
     SFText {
         id: text_label
@@ -53,20 +53,20 @@ Item  {
         color: Style.active
         source: led
 
-        visible: led.visible
+        visible: false
+        //visible: led.visible
     }
 
     states: [
         State {
             name: "normal"
-            PropertyChanges {target: text_label; font.weight: showLed ? Font.Normal : Font.Bold}
-            PropertyChanges {target: text_label; font.styleName: showLed ? "Regular" : "Bold"}
+            //PropertyChanges {target: text_label; font.weight: showLed ? Font.Normal : Font.Bold}
             PropertyChanges {target: text_label; color: root.inactiveColor}
         },
         State {
             name: "active"
-            PropertyChanges {target: led; visible: showLed}
-            PropertyChanges {target: text_label; opacity: 1.0}
+            //PropertyChanges {target: led; visible: showLed}
+            //PropertyChanges {target: text_label; opacity: 1.0}
             PropertyChanges {target: text_label; color: root.activeColor}
         }
     ]

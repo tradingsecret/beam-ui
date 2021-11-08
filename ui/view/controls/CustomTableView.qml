@@ -8,6 +8,9 @@ import "."
 
 TableView {
     id: tableView
+
+    FontLoader { id: tomorrow_regular;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowRegular.ttf" }
+
     property int headerHeight: 46
     property int headerTextFontSize: 14
     property int headerTextLeftMargin: 20
@@ -61,6 +64,13 @@ TableView {
     frameVisible: false
     backgroundVisible: false
     horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
+
+    Rectangle {
+        anchors.bottom: parent.top
+        width: tableView.width
+        height: 1
+        color: '#112a26'
+    }
 
     headerDelegate: Rectangle {
         id: rect
@@ -131,20 +141,28 @@ TableView {
         IconLabel {
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
+            anchors.right: parent.right
             anchors.leftMargin: headerTextLeftMargin
             font.pixelSize: headerTextFontSize
-            color: tableView.sortIndicatorColumn == styleData.column ? Style.content_main : Style.content_secondary
-            font.weight: tableView.sortIndicatorColumn == styleData.column ? Font.Bold : Font.Normal
-            font.family: "SF Pro Display"
-            font.styleName: "Regular"
+            color: '#585858' //tableView.sortIndicatorColumn == styleData.column ? Style.content_main : Style.content_secondary
+            //font.weight: tableView.sortIndicatorColumn == styleData.column ? Font.Bold : Font.Normal
+            font.family: tomorrow_regular.name
+            font.capitalization: Font.AllUppercase
 
-            icon.source: styleData.value == "" ? "" : tableView.sortIndicatorColumn == styleData.column ? "qrc:/assets/icon-sort-active.svg" : "qrc:/assets/icon-sort.svg"
-            icon.width: 5
-            icon.height: 8
+            //icon.source: styleData.value == "" ? "" : tableView.sortIndicatorColumn == styleData.column ? "qrc:/assets/icon-sort-active.svg" : "qrc:/assets/icon-sort.svg"
+            //icon.width: 5
+            //icon.height: 8
             spacing: 6
             mirrored: true
 
             text: styleData.value
+        }
+
+        Rectangle {
+            anchors.bottom: parent.bottom
+            width: tableView.width
+            height: 1
+            color: '#112a26'
         }
     }
 

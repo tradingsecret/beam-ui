@@ -5,6 +5,8 @@ import "../controls"
 RowLayout {
     id: control
 
+    FontLoader { id: tomorrow_extralight;  source: "qrc:/assets/fonts/Tomorrow-ExtraLight.ttf" }
+
     property var icons
     property var names
     property var verified
@@ -30,23 +32,21 @@ RowLayout {
         visible: count > 3
 
         text:            ["+", count - 3].join("")
-        font.pixelSize:  12
-        font.styleName:  "Regular"
-        font.weight:     Font.Normal
-        color:           Style.content_main
+        font.pixelSize:  13
+        font.family:  tomorrow_extralight.name
+        color:             '#ffffff'
     }
 
     SFText {
         id: coinName
         Layout.fillWidth: true
-        Layout.leftMargin: 10
+        //Layout.leftMargin: 10
         visible: count == 1
 
         text:            control.names ? control.names[0] : ""
-        font.pixelSize:  14
-        font.styleName:  "Regular"
-        font.weight:     Font.Normal
-        color:           Style.content_main
+        font.pixelSize:  13
+        font.family:  tomorrow_extralight.name
+        color:             '#ffffff'
         elide:           Text.ElideRight
     }
 

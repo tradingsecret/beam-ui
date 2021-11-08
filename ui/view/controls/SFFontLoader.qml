@@ -23,4 +23,6 @@ Item {
     FontLoader { id: agency_r;   source: "qrc:/assets/fonts/SF-Pro-Display-AgencyR.otf" }
     FontLoader { id: tomorrow_regular;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowRegular.ttf" }
     FontLoader { id: tomorrow_semibold;  source: "qrc:/assets/fonts/SF-Pro-Display-TomorrowSemiBold.ttf" }
+    FontLoader { id: tomorrow_extralight;  source: "qrc:/assets/fonts/Tomorrow-ExtraLight.ttf" }
+    FontLoader { id: tomorrow_light;  source: "qrc:/assets/fonts/Tomorrow-Light.ttf" }
 }
