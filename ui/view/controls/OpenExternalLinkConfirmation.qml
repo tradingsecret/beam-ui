@@ -52,8 +52,9 @@ ConfirmationDialog {
                     Layout.topMargin: 70
                     font.pixelSize: 30
                     font.bold: true
-                    font.letterSpacing: 2
+                    font.letterSpacing: 4
                     font.family: agency_b.name
+                    font.weight: Font.Bold
                     font.capitalization: Font.AllUppercase
                     color: Style.content_main
                     text: qsTrId("open-external-title")

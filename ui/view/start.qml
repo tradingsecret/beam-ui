@@ -73,6 +73,7 @@ Item
                     font.capitalization: Font.AllUppercase
                     font.pixelSize: 30
                     font.weight: Font.Bold
+                    font.letterSpacing: 4
                 }
 
                 SFText {
@@ -85,6 +86,7 @@ Item
                     font.capitalization: Font.AllUppercase
                     font.pixelSize: 20
                     wrapMode: Text.Wrap
+                    font.letterSpacing: 2
                 }
 
                 SFText {
@@ -97,6 +99,7 @@ Item
                     font.capitalization: Font.AllUppercase
                     font.pixelSize: 20
                     wrapMode: Text.Wrap
+                    font.letterSpacing: 2
                 }
 
                 RowLayout {
@@ -109,6 +112,8 @@ Item
                         font.pixelSize: 20
                         font.bold: true
                         font.family: agency_b.name
+                        font.weight: Font.bold
+                        font.letterSpacing: 2
                         font.capitalization: Font.AllUppercase
                         wrapMode: Text.Wrap
                     }
@@ -120,6 +125,7 @@ Item
                         font.family: agency_r.name
                         font.capitalization: Font.AllUppercase
                         wrapMode: Text.Wrap
+                        font.letterSpacing: 2
                     }
                 }
 
@@ -132,6 +138,7 @@ Item
                     font.family: agency_r.name
                     font.capitalization: Font.AllUppercase
                     wrapMode: Text.Wrap
+                    font.letterSpacing: 2
                 }
 
                 SFText {
@@ -143,6 +150,7 @@ Item
                     font.family: agency_r.name
                     font.capitalization: Font.AllUppercase
                     wrapMode: Text.Wrap
+                    font.letterSpacing: 2
                 }
 
                 Rectangle {
@@ -183,9 +191,10 @@ Item
                 width: 400
                 height: 42
                 horizontalAlignment: Qt.AlignHCenter
-                text: "NOTICE"
+                text: "NOTICE!"
                 color: Style.content_main
                 font.pixelSize: 30
+                font.letterSpacing: 4
                 font.family: agency_b.name
                 font.weight: Font.Bold
                 wrapMode: Text.Wrap
@@ -203,6 +212,7 @@ Item
                 color: Style.content_main
                 font.pixelSize: 20
                 font.family: agency_r.name
+                font.letterSpacing: 2
                 font.weight: Font.Bold
                 wrapMode: Text.Wrap
             }
@@ -224,6 +234,7 @@ Item
                 text: qsTrId("restore-finish-alert-message-line")
                 color: Style.content_main
                 font.pixelSize: 20
+                font.letterSpacing: 2
                 font.family: agency_r.name
                 font.weight: Font.Bold
                 wrapMode: Text.Wrap
@@ -2057,33 +2068,44 @@ Item
                         //% "Proceed"
                         okButtonText: qsTrId("general-proceed")
                         cancelButtonVisible: true
-                        width: 460
-                        height: 250
+
+                        backgroundImage: "qrc:/assets/popups/popup-2.png"
+                        width: 612
+                        height: 366
+                        footerBottomPadding: 75
+
                         contentItem: Column {
                             anchors.fill: parent
-                            anchors.margins: 30
-                            anchors.topMargin: 60
+                            anchors.topMargin: 80
                             spacing: 20
 
                             SFText {
+                                width: parent.width - 200
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 horizontalAlignment: Qt.AlignHCenter
                                 //% "Restore wallet or create a new one"
                                 text: qsTrId("general-restore-or-create-wallet")
                                 color: Style.content_main
-                                font.pixelSize: 18
-                                font.styleName: "Bold"
+                                font.pixelSize: 30
+                                font.family: agency_b.name
+                                font.capitalization: Font.AllUppercase
                                 font.weight: Font.Bold
+                                font.letterSpacing: 4
+                                wrapMode: Text.Wrap
                             }
 
                             SFText {
+                                anchors.horizontalCenter: parent.horizontalCenter
                                 horizontalAlignment : Text.AlignHCenter
-                                width: parent.width
+                                width: parent.width - 200
                                 //% "If you'll restore a wallet all transaction history and addresses will be lost."
                                 text: qsTrId("start-open-change-wallet-message")
                                 color: Style.content_main
-                                font.pixelSize: 14
+                                font.pixelSize: 18
+                                font.family: agency_r.name
+                                font.capitalization: Font.AllUppercase
                                 wrapMode: Text.Wrap
+                                font.letterSpacing: 2
                             }
                         }
                         onAccepted: {

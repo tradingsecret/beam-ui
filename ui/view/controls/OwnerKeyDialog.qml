@@ -74,6 +74,7 @@ ConfirmationDialog {
                         wrapMode: Text.Wrap
                         horizontalAlignment : Text.AlignHCenter
                         text: "IMPORTANT: "
+                        font.weight: Font.Bold
                     }
 
                     SFText {

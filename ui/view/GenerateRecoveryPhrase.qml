@@ -91,7 +91,7 @@ Component {
                         text: "NOTICE!"
                         color: Style.content_main
                         font.pixelSize: 30
-                        font.letterSpacing: 3
+                        font.letterSpacing: 4
                         font.family: agency_b.name
                         font.weight: Font.Bold
                         wrapMode: Text.Wrap
@@ -109,7 +109,7 @@ Component {
                         font.underline: true
                         font.capitalization: Font.AllUppercase
                         font.pixelSize: 30
-                        font.bold: true
+                        font.weight: Font.Bold
                         font.letterSpacing: 2
                     }
 

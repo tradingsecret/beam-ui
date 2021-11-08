@@ -71,7 +71,7 @@ CustomDialog {
             font.family: agency_b.name
             font.capitalization: Font.AllUppercase
             font.pixelSize: 30
-            font.bold: true
+            font.weight: Font.Bold
 		}
 
 		ColumnLayout {

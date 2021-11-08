@@ -42,6 +42,7 @@ CustomDialog {
             font.pixelSize: 30
             font.family: agency_b.name
             font.capitalization: Font.AllUppercase
+            font.weight: Font.Bold
             font.letterSpacing: 4
 		}
 

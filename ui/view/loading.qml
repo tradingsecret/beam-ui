@@ -56,6 +56,7 @@ Item
                     font.letterSpacing: 2
                     font.family: agency_b.name
                     font.capitalization: Font.AllUppercase
+                    font.weight: Font.Bold;
                     color: 'red'
                 }
 

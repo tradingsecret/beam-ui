@@ -86,6 +86,7 @@ CustomDialog {
             horizontalAlignment: Text.AlignHCenter
             font.pixelSize: 30
             font.family: agency_b.name
+            font.letterSpacing: 4
             font.weight: Font.Bold
             font.capitalization: Font.AllUppercase
             //% "Transaction info"
@@ -160,6 +161,7 @@ CustomDialog {
                 //% "Transaction ID"
                 text: qsTrId("tx-details-tx-id-label") + ":"
                 visible: transactionID.parent.visible
+                font.letterSpacing: 2
             }
             RowLayout {
                 visible: !Utils.isZeroed(dialog.txID) && stm.state == "tx_info"
@@ -175,6 +177,7 @@ CustomDialog {
                     text: getHighlitedText(dialog.txID)
                     elide: Text.ElideMiddle
                     onCopyText: textCopied(dialog.txID)
+                    font.letterSpacing: 2
                 }
                 CustomToolButton {
                     visible: false
@@ -212,6 +215,7 @@ CustomDialog {
                 //% "Sending address"
                 text: qsTrId("tx-details-sending-addr-label") + ":"
                 visible: sendAddressField.parent.visible
+                font.letterSpacing: 2
             }
             RowLayout {
                 visible: stm.state == "tx_info" && dialog.sendAddress.length && !(isIncome && isShieldedTx)
@@ -227,6 +231,7 @@ CustomDialog {
                     elide: Text.ElideMiddle
                     text: getHighlitedText(dialog.sendAddress)
                     onCopyText: textCopied(dialog.sendAddress)
+                    font.letterSpacing: 2
                 }
                 CustomToolButton {
                     Layout.alignment: Qt.AlignRight
@@ -264,6 +269,7 @@ CustomDialog {
                 //% "Sender's wallet signature"
                 text: qsTrId("tx-details-sender-identity") + ":"
                 visible: senderIdentityField.parent.visible
+                font.letterSpacing: 2
             }
             RowLayout {
                 visible: stm.state == "payment_proof" && dialog.senderIdentity.length > 0 && (dialog.receiverIdentity.length > 0 || dialog.isShieldedTx )
@@ -279,6 +285,7 @@ CustomDialog {
                     elide: Text.ElideMiddle
                     text: getHighlitedText(dialog.senderIdentity)
                     onCopyText: textCopied(dialog.senderIdentity)
+                    font.letterSpacing: 2
                 }
                 CustomToolButton {
                     Layout.alignment: Qt.AlignRight
@@ -297,6 +304,7 @@ CustomDialog {
                 //% "Receiving address"
                 text: qsTrId("tx-details-receiving-addr-label") + ":"
                 visible: receiveAddressField.parent.visible
+                font.letterSpacing: 2
             }
             RowLayout {
                 visible: stm.state == "tx_info" && !dialog.isContractTx && receiveAddressField.receiveAddressOrToken.length
@@ -313,6 +321,7 @@ CustomDialog {
                     elide: Text.ElideMiddle
                     text: getHighlitedText(receiveAddressOrToken)
                     onCopyText: textCopied(receiveAddressOrToken)
+                    font.letterSpacing: 2
                 }
                 CustomToolButton {
                     visible: false
@@ -350,6 +359,7 @@ CustomDialog {
                 //% "Receiver's wallet signature"
                 text: qsTrId("tx-details-receiver-identity") + ":"
                 visible: receiverIdentityField.parent.visible
+                font.letterSpacing: 2
             }
             RowLayout {
                 visible: stm.state == "payment_proof" && dialog.senderIdentity.length > 0 && dialog.receiverIdentity.length > 0
@@ -365,6 +375,7 @@ CustomDialog {
                     elide: Text.ElideMiddle
                     text: getHighlitedText(dialog.receiverIdentity)
                     onCopyText: textCopied(dialog.receiverIdentity)
+                    font.letterSpacing: 2
                 }
                 CustomToolButton {
                     Layout.alignment: Qt.AlignRight
@@ -386,6 +397,7 @@ CustomDialog {
                 text:                   qsTrId("address-info-type") + ":"
                 //visible:                addrTypeText.visible
                 visible: false
+                font.letterSpacing: 2
             }
                 
             SFText {
@@ -400,6 +412,7 @@ CustomDialog {
                 color:                  Style.content_main
                 //visible:                !dialog.isContractTx && stm.state == "tx_info"
                 visible: false
+                font.letterSpacing: 2
             }
 
             SFText {
@@ -411,6 +424,7 @@ CustomDialog {
                 //% "Confirmation status"
                 text: qsTrId("tx-details-confirmation-status-label") + ":"
                 visible:          minConfirmationsField.visible
+                font.letterSpacing: 2
             }
 
             SFLabel {
@@ -423,6 +437,7 @@ CustomDialog {
                 //% "Confirmed (%1)"
                 text:             qsTrId("tx-details-confirmation-progress-label").arg(dialog.confirmationsProgress)
                 visible:          dialog.minConfirmations && stm.state == "tx_info"
+                font.letterSpacing: 2
             }
 
             SFText {
@@ -434,6 +449,7 @@ CustomDialog {
                 //% "Amount"
                 text: qsTrId("tx-details-amount-label") + ":"
                 visible: !dialog.feeOnly
+                font.letterSpacing: 2
             }
 
             ColumnLayout {
@@ -477,6 +493,7 @@ CustomDialog {
                             font.pixelSize: 18
                             font.family: agency_b.name
                             font.capitalization: Font.AllUppercase
+                            font.letterSpacing: 2
                         }
 
                         SFText {
@@ -489,6 +506,7 @@ CustomDialog {
                             text: qsTrId("general-ca-id") + ":"
                             font.weight: Font.bold
                             visible: assetIdField.visible
+                            font.letterSpacing: 2
                         }
                         SFLabel {
                             id: assetIdField
@@ -502,6 +520,7 @@ CustomDialog {
                             text: dialog.assetIDs[index] || ""
                             onCopyText: textCopied(dialog.assetIDs[index])
                             visible: dialog.assetIDs[index] != "0"
+                            font.letterSpacing: 2
                         }
                         CustomToolButton {
                             Layout.alignment: Qt.AlignRight | Qt.AlignTop
@@ -524,6 +543,7 @@ CustomDialog {
                 text: qsTrId("general-fee") + ": "
                 visible: feeField.parent.visible
                 font.capitalization: Font.AllUppercase
+                font.letterSpacing: 2
             }
 
             RowLayout {
@@ -547,6 +567,7 @@ CustomDialog {
                     font.pixelSize: 18
                     font.family: agency_b.name
                     font.capitalization: Font.AllUppercase
+                    font.letterSpacing: 2
                 }
             }
 
@@ -560,6 +581,7 @@ CustomDialog {
                 //% "DAPP name"
                 text:                   qsTrId("address-info-dapp") + ":"
                 visible:                dappNameText.visible
+                font.letterSpacing: 2
             }
 
             SFLabel {
@@ -573,6 +595,7 @@ CustomDialog {
                 copyMenuEnabled:  false
                 visible:          dialog.isContractTx && stm.state == "tx_info"
                 font.weight: Font.bold
+                font.letterSpacing: 2
             }
 
             // CID
@@ -584,6 +607,7 @@ CustomDialog {
                 //% "Application shader ID"
                 text:                   qsTrId("address-info-cid") + ":"
                 visible:                cidText.parent.visible
+                font.letterSpacing: 2
             }
 
             RowLayout {
@@ -600,6 +624,7 @@ CustomDialog {
                     copyMenuEnabled:  true
                     onCopyText:       textCopied(text)
                     font.weight: Font.bold
+                    font.letterSpacing: 2
                 }
                 CustomToolButton {
                     Layout.alignment: Qt.AlignRight
@@ -616,6 +641,7 @@ CustomDialog {
                 font.family: agency_r.name
                 color: 'white'
                 font.capitalization: Font.AllUppercase
+                font.letterSpacing: 2
 
                 text: isContractTx ?
                     //% "Description"
@@ -640,6 +666,7 @@ CustomDialog {
                 elide: Text.ElideRight
                 onCopyText: textCopied(dialog.comment)
                 visible: stm.state == "tx_info" && dialog.comment.length
+                font.letterSpacing: 2
             }
             SFText {
                 font.pixelSize: 18
@@ -650,6 +677,7 @@ CustomDialog {
                 text: qsTrId("general-kernel-id") + ":"
                 //visible: kernelID.parent.visible
                 visible: false
+                font.letterSpacing: 2
             }
             RowLayout {
                 //visible: !Utils.isZeroed(dialog.kernelID)
@@ -666,6 +694,7 @@ CustomDialog {
                     text: getHighlitedText(dialog.kernelID)
                     elide: Text.ElideMiddle
                     onCopyText: textCopied(dialog.kernelID)
+                    font.letterSpacing: 2
                 }
                 CustomToolButton {
                     Layout.alignment: Qt.AlignRight
@@ -709,6 +738,7 @@ CustomDialog {
                     elide: Text.ElideMiddle
                     text: dialog.stateDetails
                     onCopyText: textCopied(text)
+                    font.letterSpacing: 2
                 }
             }
             
@@ -721,6 +751,7 @@ CustomDialog {
                 //% "Error"
                 text: qsTrId("tx-details-error-label") + ":"
                 visible: dialog.failureReason.length
+                font.letterSpacing: 2
             }
             SFLabel {
                 id: failureReason
@@ -736,6 +767,7 @@ CustomDialog {
                 text: dialog.failureReason.length > 0 ? dialog.failureReason : ""
                 elide: Text.ElideRight
                 onCopyText: textCopied(text)
+                font.letterSpacing: 2
             }
 
             Rectangle {
@@ -755,6 +787,7 @@ CustomDialog {
                 //% "Code"
                 text: qsTrId("payment-info-proof-code-label") + ":"
                 visible: proofField.visible
+                font.letterSpacing: 2
             }
 
             RowLayout {
@@ -776,6 +809,7 @@ CustomDialog {
                         font.capitalization: Font.AllUppercase
                         text:               paymentInfo ? paymentInfo.paymentProof : ""
                         color:              Style.content_main
+                        font.letterSpacing: 2
                     }
                 }
 

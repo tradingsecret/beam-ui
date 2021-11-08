@@ -163,6 +163,7 @@ ConfirmationDialog {
                     text:                   qsTrId("send-confirmation-recipient-label") + ":"
                     verticalAlignment:      Text.AlignTop
                     visible:                addressLabel.visible
+                    font.letterSpacing: 2
                 }
 
                 SFLabel {
@@ -177,6 +178,7 @@ ConfirmationDialog {
                     copyMenuEnabled:        true
                     onCopyText:             BeamGlobals.copyToClipboard(text)
                     visible:                !!text
+                    font.letterSpacing: 2
                 }
 
                 //
@@ -190,6 +192,7 @@ ConfirmationDialog {
                     //% "Comment"
                     text:              qsTrId("general-comment") + ":"
                     visible:           commentCtrl.visible
+                    font.letterSpacing: 2
                 }
 
                 SFLabel {
@@ -205,6 +208,7 @@ ConfirmationDialog {
                     onCopyText:           BeamGlobals.copyToClipboard(text)
                     maximumLineCount:     4
                     visible:              !!text
+                    font.letterSpacing: 2
                 }
 
                 //
@@ -219,6 +223,7 @@ ConfirmationDialog {
                     text:                   qsTrId("send-type-label") + ":"
                     verticalAlignment:      Text.AlignTop
                     visible:                typeLabel.visible
+                    font.letterSpacing: 2
                 }
 
                 SFText {
@@ -231,6 +236,7 @@ ConfirmationDialog {
                     color:                  typeLabel.text.toUpperCase() == 'ANONYMOUS' ? '#17d266' : 'white'
                     font.capitalization: Font.AllUppercase
                     visible:                text.length > 0
+                    font.letterSpacing: 2
                 }
 
                 //
@@ -244,6 +250,7 @@ ConfirmationDialog {
                     font.capitalization: Font.AllUppercase
                     //% "Amount"
                     text: qsTrId("general-amount") + ":"
+                    font.letterSpacing: 2
                 }
 
                 SFText {
@@ -254,6 +261,7 @@ ConfirmationDialog {
                     color:                  'white'
                     font.capitalization: Font.AllUppercase
                     visible: !control.hasAmounts
+                    font.letterSpacing: 2
 
                     text: "-"
                 }
@@ -284,6 +292,7 @@ ConfirmationDialog {
 
                             rateFontSize:     12
                             copyMenuEnabled:  true
+                            font.letterSpacing: 2
                         }
                     }
                 }
@@ -299,6 +308,7 @@ ConfirmationDialog {
                     font.capitalization: Font.AllUppercase
                     //% "Fee"
                     text:             [qsTrId("send-regular-fee"), ":"].join("")
+                    font.letterSpacing: 2
                 }
 
                 ColumnLayout {
@@ -322,6 +332,7 @@ ConfirmationDialog {
                         font.family:            agency_b.name
                         rateFontSize:     12
                         copyMenuEnabled:  true
+                        font.letterSpacing: 2
                     }
                 }
             }
@@ -347,6 +358,7 @@ ConfirmationDialog {
                 italic: true
                 pixelSize: 14
             }
+            font.letterSpacing: 2
 
             text: {
                 //% "There is not enough funds to complete the transaction"
@@ -408,6 +420,7 @@ ConfirmationDialog {
                     echoMode:         TextInput.Password
                     dottedBorderColor: 'white'
                     font.family:      agency_r.name
+                    font.letterSpacing: 2
 
                     onAccepted: function () {
                         control.okButton.clicked()
@@ -424,6 +437,7 @@ ConfirmationDialog {
                     font.pixelSize:  12
                     font.family:            agency_r.name
                     font.italic:     true
+                    font.letterSpacing: 2
                 }
             }
         }
@@ -439,6 +453,7 @@ ConfirmationDialog {
             //visible:                isEnough && isOnline
             //% "For the transaction to complete, the recipient must get online within the next 12 hours and you should get online within 2 hours afterwards."
             text:                   qsTrId("send-confirmation-pwd-text-online-time")
+            font.letterSpacing: 2
         }
     }
 
