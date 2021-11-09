@@ -21,6 +21,10 @@ Rectangle {
         id: assetViewModelSound
     }
 
+    MainViewModel {
+        id: viewModel
+    }
+
     property var    openedNotifications: 0
     property var    notificationOffset: 0
     property alias  hasNewerVersion : updateInfoProvider.hasNewerVersion

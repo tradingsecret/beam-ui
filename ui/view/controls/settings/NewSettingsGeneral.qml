@@ -235,6 +235,7 @@ ColumnLayout {
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
                         viewModel.lockTimeout = index
+                        autoLockPanelVisible = !autoLockPanelVisible
                     }
                 }
             }

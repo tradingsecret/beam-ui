@@ -731,6 +731,7 @@ Control {
                         SFLabel {
                             font.pixelSize:  13
                             font.family:  tomorrow_extralight.name
+                            font.capitalization: Font.AllUppercase
                             wrapMode: Text.WordWrap
                             text: styleData && styleData.value ? styleData.value : ""
                             color: {

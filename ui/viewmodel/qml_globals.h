@@ -31,6 +31,7 @@ public:
     Q_INVOKABLE static bool isToken(const QString& text);
     Q_INVOKABLE static bool isSwapToken(const QString& text);
     Q_INVOKABLE static QString getLocaleName();
+    Q_INVOKABLE static int  getLockTimeout();
     Q_INVOKABLE static int  maxCommentLength();
     Q_INVOKABLE static bool needPasswordToSpend();
     Q_INVOKABLE static bool isFork3();

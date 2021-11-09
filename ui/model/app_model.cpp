@@ -69,7 +69,7 @@ AppModel& AppModel::getInstance()
 // static
 std::string AppModel::getMyName()
 {
-    return "Beam Wallet UI";
+    return "Imperium Wallet UI";
 }
 
 const std::string& AppModel::getMyVersion()

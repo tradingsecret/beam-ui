@@ -97,14 +97,14 @@ QString QMLGlobals::getAppName()
 #ifdef APP_NAME
 static const char* AppName = APP_NAME;
 #else
-static const char* AppName = "Beam Wallet Masternet";
+static const char* AppName = "Imperium Wallet Testnet";
 #endif
     return AppName;
 }
 
 void QMLGlobals::showMessage(const QString& message)
 {
-    QMessageBox::information(nullptr, "BeamWalletUI", message);
+    QMessageBox::information(nullptr, "ImperiumWalletUI", message);
 }
 
 void QMLGlobals::logInfo(const QString& message)
@@ -137,6 +137,12 @@ QString QMLGlobals::getLocaleName()
 {
     const auto& settings = AppModel::getInstance().getSettings();
     return settings.getLocale();
+}
+
+int QMLGlobals::getLockTimeout()
+{
+    const auto& settings = AppModel::getInstance().getSettings();
+    return settings.getLockTimeout();
 }
 
 int QMLGlobals::maxCommentLength()

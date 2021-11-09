@@ -198,12 +198,12 @@
         <translation>pending</translation>
     </message>
     <message id="wallet-txs-status-waiting-sender">
-        <source>waiting for sender</source>
-        <translation>waiting for sender</translation>
+        <source>Waiting for sender</source>
+        <translation>Waiting for sender</translation>
     </message>
     <message id="wallet-txs-status-waiting-receiver">
-        <source>waiting for receiver</source>
-        <translation>waiting for receiver</translation>
+        <source>Waiting for receiver</source>
+        <translation>Waiting for receiver</translation>
     </message>
     <message id="wallet-txs-status-completed">
         <source>completed</source>
@@ -1138,12 +1138,12 @@ please review your settings and try again</translation>
         <translation>Pending Transaction</translation>
     </message>
     <message id="wallet-txs-status-own-sent">
-        <source>sent to own address</source>
-        <translation>sent to own address</translation>
+        <source>Outgoing Transaction to own address (Regular)</source>
+        <translation>Outgoing Transaction to own address (Regular)</translation>
     </message>
     <message id="wallet-txs-status-own-sending">
-        <source>sending to own address</source>
-        <translation>sending to own address</translation>
+        <source>Processing Outgoing Transaction to own address (Regular)</source>
+        <translation>Processing Outgoing Transaction to own address (Regular)</translation>
     </message>
     <message id="wallet-search-transactions-placeholder">
         <source>Search...</source>
@@ -3291,10 +3291,8 @@ cannot be canceled.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message id="wallet-txs-status-in-progress-max-to-own">
-        <source>sending to own address
-(maximum anonymity)</source>
-        <translation>sending to own address
-(maximum anonymity)</translation>
+        <source>Processing Outgoing Transaction to own address (Anonymous)</source>
+        <translation>Processing Outgoing Transaction to own address (Anonymous)</translation>
     </message>
     <message id="wallet-txs-status-in-progress-offline-to-own">
         <source>sending to own address
