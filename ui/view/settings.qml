@@ -35,7 +35,7 @@ ColumnLayout {
         {name: "notification_settings", title: "Notification Settings", header: "Notification Settings", enabled: false},
         {name: "dapps_settings", title: "DAPPS Settings", header: "DAPPS Settings", enabled: true},
         {name: "found_bug", title: "Found a bug ?", header: "Found a bug ?", enabled: true},
-        {name: "hall_of_fame", title: "Hall of fame", header: "Hall of fame", enabled: true},
+        //{name: "hall_of_fame", title: "Hall of fame", header: "Hall of fame", enabled: true},
     ]
 
     ScrollView {

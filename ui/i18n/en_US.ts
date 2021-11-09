@@ -226,8 +226,8 @@
         <translation>expired</translation>
     </message>
     <message id="wallet-txs-status-failed">
-        <source>failed</source>
-        <translation>failed</translation>
+        <source>Failed to Send (Regular)</source>
+        <translation>Failed to Send (Regular)</translation>
     </message>
     <message id="wallet-txs-status-unknown">
         <source>unknown</source>
@@ -2095,10 +2095,8 @@ Your version is: %2. Please, check for updates.</translation>
         <translation>canceled (offline)</translation>
     </message>
     <message id="wallet-txs-status-failed-max">
-        <source>failed
-(maximum anonymity)</source>
-        <translation>failed
-(maximum anonymity)</translation>
+        <source>Failed to Send (Anonymous)</source>
+        <translation>Failed to Send (Anonymous)</translation>
     </message>
     <message id="wallet-txs-status-failed-max-offline">
         <source>failed (offline)</source>

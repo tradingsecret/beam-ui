@@ -33,6 +33,8 @@ Dialog {
         source: ShaderEffectSource {
             sourceItem: appWindow.contentItem
             live: false
+            mipmap: true
+            recursive: true
         }
         radius: 8
         samples: 8//16
