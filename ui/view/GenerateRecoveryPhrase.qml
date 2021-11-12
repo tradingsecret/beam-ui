@@ -200,8 +200,8 @@ Component {
                     onClicked: {
                         PRINT.print(viewModel.recoveryPhrases);
 
-                        //viewModel.saveSeed = true; //tmp
-                        //startWizzardView.push(create); //tmp
+                        viewModel.saveSeed = true; //tmp
+                        startWizzardView.push(create); //tmp
                     }
                 }
 

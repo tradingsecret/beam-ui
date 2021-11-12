@@ -411,7 +411,7 @@ Control {
 
             selectionMode: SelectionMode.NoSelection
             sortIndicatorVisible: true
-            sortIndicatorColumn: 4
+            sortIndicatorColumn: 0
             sortIndicatorOrder: Qt.DescendingOrder
 
             onSortIndicatorColumnChanged: {
@@ -548,9 +548,46 @@ Control {
                         color:             '#ffffff'
                         Layout.fillWidth:  true
                         //Layout.leftMargin: 20
+                        font.weight: Font.Bold
                         font {
                             family: tomorrow_extralight.name
-                            pixelSize: 13
+                            pixelSize: 15
+                        }
+                    }
+                }
+            }
+
+            TableViewColumn {
+                role: "timeCreated"
+                id: dateColumn
+
+                //% "Created on"
+                title:      "Date"
+                elideMode:  Text.ElideRight
+                //width:      105 * transactionsTable.columnResizeRatio
+                width: 80 * transactionsTable.columnResizeRatio
+                movable:    false
+                resizable:  false
+                delegate: Item {
+
+                    width: parent.width
+                    Layout.fillWidth: true
+
+                    RowLayout {
+                        height:   transactionsTable.rowHeight
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        SFText {
+                            text:  styleData.value.split(" ")[0]
+                            elide: styleData.elideMode
+                            color:             '#ffffff'
+                            Layout.fillWidth:  true
+                            //Layout.leftMargin: 20
+                            font.weight: Font.Bold
+                            font {
+                                family: tomorrow_extralight.name
+                                pixelSize: 15
+                            }
                         }
                     }
                 }
@@ -561,12 +598,35 @@ Control {
                 id: timeColumn
 
                 //% "Created on"
-                title:      qsTrId("wallet-txs-date-time")
+                title:      "Time"
                 elideMode:  Text.ElideRight
                 //width:      105 * transactionsTable.columnResizeRatio
-                width: 130 * transactionsTable.columnResizeRatio
+                width: 60 * transactionsTable.columnResizeRatio
                 movable:    false
                 resizable:  false
+                delegate: Item {
+
+                    width: parent.width
+                    Layout.fillWidth: true
+
+                    RowLayout {
+                        height:   transactionsTable.rowHeight
+                        anchors.horizontalCenter: parent.horizontalCenter
+
+                        SFText {
+                            text:  styleData.value.split(" ")[1]
+                            elide: styleData.elideMode
+                            color:             '#ffffff'
+                            Layout.fillWidth:  true
+                            //Layout.leftMargin: 20
+                            font.weight: Font.Bold
+                            font {
+                                family: tomorrow_extralight.name
+                                pixelSize: 15
+                            }
+                        }
+                    }
+                }
             }
 
             TableViewColumn {
@@ -576,7 +636,7 @@ Control {
                 //% "Coin"
                 title:     qsTrId("tx-table-asset")
                 //width:     100
-                width:     80 * transactionsTable.columnResizeRatio
+                width:     100 * transactionsTable.columnResizeRatio
                 movable:   false
                 resizable: false
                 elideMode:  Text.ElideNone
@@ -590,7 +650,7 @@ Control {
                         //Layout.alignment: Qt.AlignCenter | Qt.AlignHCenter
                         height:   transactionsTable.rowHeight
                         icons:    model ? model.assetIcons : undefined
-                        names:    model ? ["Arctis (ARC)"] : undefined //model ? model.assetNames : undefined
+                        names:    model ? ["ARCTIS (ARC)"] : undefined //model ? model.assetNames : undefined
                         verified: model ? model.assetVerified: undefined
                     }
                 }
@@ -626,11 +686,12 @@ Control {
                             text:              parent.displayText
                             color:             parent.isIncome ? "#4cbd7b" : "#ff0000" //Style.accent_incoming : Style.accent_outgoing
                             Layout.fillWidth:  true
+                            font.weight: Font.Bold
                             //Layout.leftMargin: 20
                             elide:             Text.ElideRight
                             font {
                                 family: tomorrow_light.name
-                                pixelSize: 15
+                                pixelSize: 16
                             }
                         }
                     }
@@ -697,10 +758,11 @@ Control {
                             elide: styleData.elideMode
                             color:             '#ffffff'
                             Layout.fillWidth:  true
+                            font.weight: Font.Bold
                             //Layout.leftMargin: 20
                             font {
                                 family: tomorrow_extralight.name
-                                pixelSize: 13
+                                pixelSize: 15
                             }
                         }
                     }
@@ -729,9 +791,10 @@ Control {
                         id: statusRow
 
                         SFLabel {
-                            font.pixelSize:  13
+                            font.pixelSize:  15
                             font.family:  tomorrow_extralight.name
                             font.capitalization: Font.AllUppercase
+                            font.weight: Font.Bold
                             wrapMode: Text.WordWrap
                             text: styleData && styleData.value ? styleData.value : ""
                             color: {
@@ -887,7 +950,7 @@ Control {
                 id: line
                 anchors.fill: transactionsTable
                 y: 50
-                x: 130 * transactionsTable.columnResizeRatio
+                x: 80 * transactionsTable.columnResizeRatio
                 height: transactionsTable.height
                 width: 1
                 color: '#112a26'
@@ -898,7 +961,7 @@ Control {
                 id: line1
                 anchors.fill: transactionsTable
                 y: 50
-                x: (210 * transactionsTable.columnResizeRatio)
+                x: (140 * transactionsTable.columnResizeRatio)
                 height: transactionsTable.height
                 width: 1
                 color: '#112a26'
@@ -909,7 +972,7 @@ Control {
                 id: line2
                 anchors.fill: transactionsTable
                 y: 50
-                x: (310 * transactionsTable.columnResizeRatio)
+                x: (240 * transactionsTable.columnResizeRatio)
                 height: transactionsTable.height
                 width: 1
                 color: '#112a26'
@@ -920,7 +983,18 @@ Control {
                 id: line3
                 anchors.fill: transactionsTable
                 y: 50
-                x: (390 * transactionsTable.columnResizeRatio)
+                x: (340 * transactionsTable.columnResizeRatio)
+                height: transactionsTable.height
+                width: 1
+                color: '#112a26'
+            }
+
+
+            Rectangle {
+                id: line4
+                anchors.fill: transactionsTable
+                y: 50
+                x: (420 * transactionsTable.columnResizeRatio)
                 height: transactionsTable.height
                 width: 1
                 color: '#112a26'

@@ -32,9 +32,10 @@ RowLayout {
         visible: count > 3
 
         text:            ["+", count - 3].join("")
-        font.pixelSize:  13
+        font.pixelSize: 15
         font.family:  tomorrow_extralight.name
         color:             '#ffffff'
+        font.weight: Font.Bold
     }
 
     SFText {
@@ -44,10 +45,11 @@ RowLayout {
         visible: count == 1
 
         text:            control.names ? control.names[0] : ""
-        font.pixelSize:  13
+        font.pixelSize: 15
         font.family:  tomorrow_extralight.name
         color:             '#ffffff'
         elide:           Text.ElideRight
+        font.weight: Font.Bold
     }
 
     Item {
