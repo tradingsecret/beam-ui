@@ -141,7 +141,7 @@ ColumnLayout {
                                     horizontalAlignment: Text.AlignHCenter
                                     width: 360
                                     text: 'Address'
-                                    font.pixelSize: 16
+                                    font.pixelSize: 18
                                     color: '#646464'
                                 }
                             }
@@ -153,7 +153,7 @@ ColumnLayout {
                                     horizontalAlignment: Text.AlignHCenter
                                     width: 360
                                     text: 'Signature'
-                                    font.pixelSize: 16
+                                    font.pixelSize: 18
                                     color: '#646464'
                                 }
                             }
@@ -165,7 +165,7 @@ ColumnLayout {
                                     horizontalAlignment: Text.AlignHCenter
                                     width: 360
                                     text: 'Transaction note'
-                                    font.pixelSize: 16
+                                    font.pixelSize: 18
                                     color: '#646464'
                                 }
                             }

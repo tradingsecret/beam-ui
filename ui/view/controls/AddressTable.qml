@@ -138,7 +138,8 @@ CustomTableView {
             }
 
             SFLabel {
-                font.pixelSize: 14
+                font.pixelSize: 16
+                color: '#a2a2a2'
                 horizontalAlignment: Text.AlignHCenter
                 anchors.left: parent.left
                 anchors.right: parent.right
@@ -147,7 +148,6 @@ CustomTableView {
                 elide: Text.ElideLeft
                 anchors.verticalCenter: parent.verticalCenter
                 text: styleData.value
-                color: Style.content_main
                 copyMenuEnabled: true
                 onCopyText: BeamGlobals.copyToClipboard(text)
             }
@@ -178,16 +178,16 @@ CustomTableView {
             }
 
             SFLabel {
-                font.pixelSize: 14
+                font.pixelSize: 16
+                color: '#a2a2a2'
                 horizontalAlignment: Text.AlignHCenter
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 20
                 anchors.rightMargin: 20
-                elide: Text.ElideMiddle
+                elide: Text.ElideLeft
                 anchors.verticalCenter: parent.verticalCenter
                 text: styleData.value
-                color: Style.content_main
                 copyMenuEnabled: true
                 onCopyText: BeamGlobals.copyToClipboard(text)
 
@@ -226,16 +226,16 @@ CustomTableView {
             }
 
             SFLabel {
-                font.pixelSize: 14
+                font.pixelSize: 16
+                color: '#a2a2a2'
                 horizontalAlignment: Text.AlignHCenter
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 20
                 anchors.rightMargin: 70
-                elide: Text.ElideMiddle
+                elide: Text.ElideLeft
                 anchors.verticalCenter: parent.verticalCenter
                 text: styleData.value
-                color: Style.content_main
                 copyMenuEnabled: true
                 onCopyText: BeamGlobals.copyToClipboard(text)
             }
@@ -269,7 +269,7 @@ CustomTableView {
                         anchors.fill: parent
                         fillMode: Image.Stretch
                         source: {
-                             actionButton.hovered ? "qrc:/assets/address_icon_hover.png" :  "qrc:/assets/address_icon_default.png"
+                             actionButton.hovered ? "qrc:/assets/gear-hover.png" :  "qrc:/assets/gear-default.png"
                         }
                     }
                 }
