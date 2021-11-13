@@ -1,5 +1,6 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.3
+import QtQuick.Layouts 1.12
 import "."
 import Beam.Wallet 1.0
 
@@ -22,11 +23,14 @@ CustomDialog {
 
     backgroundImage: "qrc:/assets/popups/popup-7.png"
 
+
     width: 720
     height: 572
 	x: (parent.width - width) / 2
 	y: (parent.height - height) / 2
 	visible: false
+
+    property int footerBottomPadding: 95
 
     contentItem: Column {
     	anchors.fill: parent
@@ -84,6 +88,7 @@ CustomDialog {
                 color: Style.content_main
                 font.pixelSize: 18
                 font.family: agency_r.name
+                font.weight: Font.Bold
                 font.capitalization: Font.AllUppercase
                 font.letterSpacing: 2
 			}
@@ -102,19 +107,35 @@ CustomDialog {
 			}    		
     	}
 
-    	Column
+        Column
     	{
     		width: parent.width
 
-			SFText {
-				//% "Confirm new password"
-				text: qsTrId("change-pwd-confirm-pwd-label")
-                color: Style.content_main
-                font.pixelSize: 18
-                font.family: agency_r.name
-                font.capitalization: Font.AllUppercase
-                font.letterSpacing: 2
-			}
+            RowLayout {
+                spacing: 0
+
+                SFText {
+                    //% "Confirm new password"
+                    text: "RE-ENTER "
+                    color: Style.content_main
+                    font.pixelSize: 18
+                    font.family: agency_r.name
+                    font.capitalization: Font.AllUppercase
+                    font.letterSpacing: 2
+                }
+
+                SFText {
+                    //% "Confirm new password"
+                    text: "NEW PASSWORD"
+                    color: Style.content_main
+                    font.pixelSize: 18
+                    Layout.topMargin: -1
+                    font.family: agency_r.name
+                    font.weight: Font.Bold
+                    font.capitalization: Font.AllUppercase
+                    font.letterSpacing: 2
+                }
+            }
 
 			SFTextInput {
 				id: confirmPass
@@ -143,60 +164,73 @@ CustomDialog {
                 font.capitalization: Font.AllUppercase
                 font.letterSpacing: 2
 			}			
-		}    	
+        }
+    }
 
-		Row {
-			anchors.horizontalCenter: parent.horizontalCenter
-			spacing: 30
+    footer: Control {
+        contentItem: RowLayout {
+            Item {
+                Layout.fillWidth: true
+            }
 
-			CustomButton {
-				//% "Cancel"
-				text: qsTrId("general-cancel")
-				onClicked: control.close()
-			}
+            Row {
+                bottomPadding: footerBottomPadding
+                spacing: 30
 
-            CustomButton {
-				//% "Change password"
-				text: qsTrId("change-pwd-ok")
-				onClicked: {
-					if(oldPass.text.length == 0)
-					{
-						//% "Please, enter old password"
-						error.text = qsTrId("change-pwd-old-empty");
-					}
-					else if(newPass.text.length == 0)
-					{
-						//% "Please, enter new password"
-						error.text = qsTrId("change-pwd-new-empty");
-					}
-					else if(confirmPass.text.length == 0)
-					{
-						//% "Please, confirm new password"
-						error.text = qsTrId("change-pwd-confirm-empty");
-					}
-					else if(!settingsViewModel.checkWalletPassword(oldPass.text))
-					{
-						//% "The old password you have entered is incorrect"
-						error.text = qsTrId("change-pwd-old-fail");
-					}
-					else if(newPass.text == oldPass.text)
-					{
-						//% "New password cannot be the same as old"
-						error.text = qsTrId("change-pwd-new-same-as-old");
-					}
-					else if(newPass.text != confirmPass.text)
-					{
-						//% "New password doesn't match the confirm password"
-						error.text = qsTrId("change-pwd-confirm-fail");
-					}
-					else
-					{
-						settingsViewModel.changeWalletPassword(newPass.text)
-						control.close()
-					}
-				}
-			}
-		}
+                CustomButton {
+                    //% "Cancel"
+                    text: qsTrId("general-cancel")
+                    onClicked: control.close()
+                }
+
+                CustomButton {
+                    //% "Change password"
+                    text: qsTrId("change-pwd-ok")
+                    onClicked: {
+                        if(oldPass.text.length == 0)
+                        {
+                            //% "Please, enter old password"
+                            error.text = qsTrId("change-pwd-old-empty");
+                        }
+                        else if(newPass.text.length == 0)
+                        {
+                            //% "Please, enter new password"
+                            error.text = qsTrId("change-pwd-new-empty");
+                        }
+                        else if(confirmPass.text.length == 0)
+                        {
+                            //% "Please, confirm new password"
+                            error.text = qsTrId("change-pwd-confirm-empty");
+                        }
+                        else if(!settingsViewModel.checkWalletPassword(oldPass.text))
+                        {
+                            //% "The old password you have entered is incorrect"
+                            error.text = qsTrId("change-pwd-old-fail");
+                        }
+                        else if(newPass.text == oldPass.text)
+                        {
+                            //% "New password cannot be the same as old"
+                            error.text = qsTrId("change-pwd-new-same-as-old");
+                        }
+                        else if(newPass.text != confirmPass.text)
+                        {
+                            //% "New password doesn't match the confirm password"
+                            error.text = qsTrId("change-pwd-confirm-fail");
+                        }
+                        else
+                        {
+                            settingsViewModel.changeWalletPassword(newPass.text)
+                            control.close()
+                        }
+                    }
+                }
+            }
+
+
+            Item {
+                Layout.fillWidth: true
+            }
+        }
     }
 
 	onOpened: {

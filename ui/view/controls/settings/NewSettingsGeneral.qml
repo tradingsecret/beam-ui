@@ -61,7 +61,7 @@ ColumnLayout {
                 horizontalAlignment: Text.AlignHCenter
                 text: viewModel.supportedLanguages[viewModel.currentLanguageIndex]
                 color: '#5fe795'
-                font.pixelSize: 16
+                font.pixelSize: 18
                 font.capitalization: Font.AllUppercase
                 MouseArea {
                     anchors.fill: parent
@@ -123,7 +123,7 @@ ColumnLayout {
                 horizontalAlignment: Text.AlignHCenter
                 text: lockItems[viewModel.lockTimeout]
                 color: '#5fe795'
-                font.pixelSize: 16
+                font.pixelSize: 18
                 font.capitalization: Font.AllUppercase
                 MouseArea {
                     anchors.fill: parent
@@ -282,7 +282,7 @@ ColumnLayout {
                                 return '#5fe795';
                             }
                         }
-                        font.pixelSize: 16
+                        font.pixelSize: 24
                         font.capitalization: Font.AllUppercase
                         MouseArea {
                             id: mouseAreaConfirmations
@@ -347,18 +347,23 @@ ColumnLayout {
         }
 
         ColumnLayout {
-            Layout.preferredWidth: 300
+            Layout.preferredWidth: 600
+            Layout.maximumWidth: 600
             spacing: 10
             Layout.preferredHeight: spacing + folderText.height + folderButton.height
 
             SFText {
+                Layout.preferredWidth: 600
+                Layout.maximumWidth: 600
                 Layout.topMargin: 15
                 id: folderText
-                font.pixelSize: 16
+                font.pixelSize: 18
+                font.capitalization: Font.AllUppercase
                 bottomPadding: 5
                 color: '#5fe795'
                 text: viewModel.walletLocation
-                wrapMode: Text.Wrap
+                wrapMode: Text.WrapAnywhere
+                maximumLineCount: 1
                 MouseArea {
                     anchors.fill: parent
                     acceptedButtons: Qt.LeftButton
