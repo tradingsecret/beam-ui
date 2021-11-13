@@ -38,6 +38,7 @@ public:
         Receiver,
         Sender,
         Token,
+        KernelID,
         Comment,
         Type,
         State,

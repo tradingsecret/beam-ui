@@ -37,6 +37,7 @@ QHash<int, QByteArray> NotificationsList::roleNames() const
         { static_cast<int>(Roles::Receiver), "receiver" },
         { static_cast<int>(Roles::Sender), "sender" },
         { static_cast<int>(Roles::Token), "token" },
+        { static_cast<int>(Roles::KernelID), "kernelID" },
         { static_cast<int>(Roles::Comment), "comment" },
         { static_cast<int>(Roles::Type), "type" },
         { static_cast<int>(Roles::State), "state" },
@@ -99,6 +100,9 @@ QVariant NotificationsList::data(const QModelIndex &index, int role) const
 
         case Roles::Token:
             return value->token(_amgr);
+
+        case Roles::KernelID:
+            return value->kernelID(_amgr);
 
         case Roles::Comment:
             return value->comment(_amgr);

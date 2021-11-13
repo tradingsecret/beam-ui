@@ -381,6 +381,7 @@ ColumnLayout {
                                     txDetails.assetIncome = [isReceivedType(type) ? 1 : 0];
                                     txDetails.assetNames = ['ARC'];
                                     txDetails.assetIDs = ['0'];
+                                    txDetails.kernelID = model.kernelID;
                                     txDetails.open();
                                 }
                             }

@@ -41,6 +41,7 @@ public:
     QString receiver(AssetsManager::Ptr amgr) const;
     QString sender(AssetsManager::Ptr amgr) const;
     QString token(AssetsManager::Ptr amgr) const;
+    QString kernelID(AssetsManager::Ptr amgr) const;
     QString comment(AssetsManager::Ptr amgr) const;
     QString txid() const;
     QString type() const;

@@ -39,6 +39,13 @@ namespace {
         return QString(str.c_str()).trimmed();
     }
 
+    QString getKernelID(const beam::wallet::TxParameters& p)
+    {
+        Merkle::Hash kernelID = *p.GetParameter<Merkle::Hash>(beam::wallet::TxParameterID::KernelID);
+
+        return QString(kernelID.str().c_str()).trimmed();
+    }
+
     QString getSwapAmount(const beam::wallet::TxParameters &p)
     {
         using namespace beam::wallet;
@@ -399,6 +406,13 @@ QString NotificationItem::token(AssetsManager::Ptr amgr) const
     auto p = getTxParameters(m_notification);
 
     return QString::fromStdString(beam::wallet::TxDescription(p).getToken());
+}
+
+QString NotificationItem::kernelID(AssetsManager::Ptr amgr) const
+{
+    auto p = getTxParameters(m_notification);
+
+    return getKernelID(p);
 }
 
 QString NotificationItem::comment(AssetsManager::Ptr amgr) const
