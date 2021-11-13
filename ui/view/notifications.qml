@@ -370,16 +370,13 @@ ColumnLayout {
                                     //control.notifications[type].action(model.rawID);
 
                                     txDetails.txID = model.txid;
-                                    txDetails.sendAddress = model.sender;
+                                    txDetails.sendAddress = model.sender || "";
                                     txDetails.receiveAddress = model.receiver;
                                     txDetails.token = model.token;
                                     txDetails.assetAmounts = [model.amount];
                                     txDetails.fee = model.fee;
                                     txDetails.feeUnit = 'ARC';
                                     txDetails.comment = model.comment;
-
-                                    console.log(type);
-                                    console.log(isReceivedType(type));
 
                                     txDetails.assetIncome = [isReceivedType(type) ? 1 : 0];
                                     txDetails.assetNames = ['ARC'];
