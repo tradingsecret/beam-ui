@@ -788,6 +788,7 @@ Control {
                     RowLayout {
                         anchors.horizontalCenter: parent.horizontalCenter
                         height: transactionsTable.rowHeight
+                        width: parent.width
                         id: statusRow
 
                         SFLabel {
@@ -795,6 +796,12 @@ Control {
                             font.family:  tomorrow_extralight.name
                             font.capitalization: Font.AllUppercase
                             font.weight: Font.Bold
+                            width: 200 * transactionsTable.columnResizeRatio
+                            Layout.preferredWidth: 200 * transactionsTable.columnResizeRatio
+                            Layout.maximumWidth: 200 * transactionsTable.columnResizeRatio
+                            Layout.alignment: Qt.AlignCenter
+                            horizontalAlignment: Text.AlignHCenter
+                            anchors.horizontalCenter: parent.horizontalCenter
                             wrapMode: Text.WordWrap
                             text: styleData && styleData.value ? styleData.value : ""
                             color: {

@@ -109,7 +109,7 @@ ColumnLayout {
                     boundsMovement: Flickable.StopAtBounds
                     boundsBehavior: Flickable.StopAtBounds
 
-                    property var loadedCnt: 5
+                    property var loadedCnt: 4
 
                     model: SortFilterProxyModel {
                         source: viewModel.notifications
@@ -140,12 +140,12 @@ ColumnLayout {
                         contentItem: Rectangle {
                                 radius: implicitHeight/2
                                 color: "#307451"
-                                width: 10 // This will be overridden by the width of the scrollbar
+                                width: 15 // This will be overridden by the width of the scrollbar
                                 height: 10 // This will be overridden based on the size of the scrollbar
                             }
 
                             //size: (songGrid.height) / (songGrid.flickableItem.contentItem.height)
-                            width: 10
+                            width: 15
                     }
 
                     section.property: "state"
@@ -178,9 +178,9 @@ ColumnLayout {
 
                         Rectangle {
                             id: itemRect
-                            anchors.topMargin: index == 0 ? 3 : 0
+                            anchors.topMargin: index == 0 ? 2 : 0
                             anchors.bottomMargin: 10
-                            anchors.rightMargin: 20
+                            anchors.rightMargin: 18
                             radius: 0
                             anchors.fill: parent
                             //color: parent.isUnread ? '#effdf4' : 'transparent'
@@ -215,64 +215,50 @@ ColumnLayout {
                             }
                         }
 
-                        Item {
-                            anchors.fill: itemRect
+                        RowLayout {
+                            anchors.top: itemRect.top
+                            anchors.left: itemRect.left
+                            anchors.topMargin: 10
+                            anchors.leftMargin: 10
+                           // Layout.bottomMargin: 5
 
-                            ColumnLayout {
-                                anchors.fill: parent
-                                anchors.topMargin: 20
-                                anchors.bottomMargin: 20
-                                anchors.leftMargin: 20
-                                anchors.rightMargin: actionButton.width + 20
-
-                                spacing: 3
-
-                                RowLayout {
-                                    Layout.bottomMargin: 5
-
-                                    Image {
-                                        fillMode: Image.Stretch
-                                        source: {
-                                             "qrc:/assets/completed-icon.png"
-                                        }
-                                        sourceSize: Qt.size(40, 40)
-                                    }
-
-                                    Item {
-                                        width: 5
-                                    }
-
-                                    SFText {
-                                        text: 'Completed'
-                                        font.capitalization: Font.AllUppercase
-                                        font.pixelSize: 18
-                                        color: '#0b7d3b'
-                                    }
+                            Image {
+                                fillMode: Image.Stretch
+                                source: {
+                                     "qrc:/assets/completed-icon.png"
                                 }
+                                sourceSize: Qt.size(40, 40)
+                            }
 
-                                SFText {
-                                    text: model.amount + " " + model.coin
-                                    font.pixelSize: 18
-                                    color: '#fff'
-                                }
+                            Item {
+                                width: 3
+                            }
 
-                                SFText {
-                                    text: type == 'maxpReceived' || type == 'maxpSent' || type == 'maxpFailedToSend' ? 'Anonymous transaction' :  "TXID: " + model.txid
-                                    font.pixelSize: 18
-                                    color: '#fff'
-                                }
+                            SFText {
+                                text: 'Completed'
+                                font.capitalization: Font.AllUppercase
+                                font.pixelSize: 18
+                                color: '#0b7d3b'
+                            }
+                        }
 
-                               /* SFText {
-                                    Layout.fillWidth: true
-                                    text: model.message.charAt(0).toUpperCase() + model.message.slice(1)
-                                    font.pixelSize: 14
-                                    color: Style.content_main
-                                    elide: Text.ElideMiddle
-                                }*/
+                        ColumnLayout {
+                            anchors.bottom: itemRect.bottom
+                            anchors.left: itemRect.left
+                            anchors.bottomMargin: 10
+                            anchors.leftMargin: 10
+                            spacing: 0
 
-                                Item {
-                                    Layout.fillHeight: true
-                                }
+                            SFText {
+                                text: model.amount + " " + model.coin
+                                font.pixelSize: 18
+                                color: '#fff'
+                            }
+
+                            SFText {
+                                text: type == 'maxpReceived' || type == 'maxpSent' || type == 'maxpFailedToSend' ? 'Anonymous transaction' :  "TXID: " + model.txid
+                                font.pixelSize: 18
+                                color: '#fff'
                             }
                         }
 
@@ -300,12 +286,14 @@ ColumnLayout {
                             anchors.top: itemRect.top
                             anchors.right: itemRect.right
                             anchors.topMargin: 10
-                            anchors.rightMargin: 20
+                            anchors.rightMargin: 10
+                            spacing: 0
 
                             SFText {
                                 Layout.alignment: Qt.AlignRight
                                 text: dateCreated
                                 font.pixelSize: 16
+                                font.letterSpacing: 2
                                 color: '#767676'
                                 //opacity: 0.5
                             }
@@ -314,6 +302,7 @@ ColumnLayout {
                                 Layout.alignment: Qt.AlignRight
                                 text: timeCreated
                                 font.pixelSize: 16
+                                font.letterSpacing: 2
                                 color: '#767676'
                                 //opacity: 0.5
                             }
@@ -325,7 +314,7 @@ ColumnLayout {
                         Image {
                             anchors.top: itemRect.top
                             anchors.right: itemRect.right
-                            anchors.rightMargin: 170
+                            anchors.rightMargin: 190
                             anchors.topMargin: 20
                             fillMode: Image.Stretch
                             source: {
@@ -339,14 +328,17 @@ ColumnLayout {
                             id:             actionButton
                             anchors.bottom: itemRect.bottom
                             anchors.right: itemRect.right
-                            anchors.bottomMargin: 20
-                            anchors.rightMargin: 20
+                            anchors.bottomMargin: 10
+                            anchors.rightMargin: 15
+                            width: 150
 
                             height: 36
                             palette.button: Style.background_second
                             palette.buttonText : Style.content_main
                             text: 'Show info'//getActionButtonLabel(type)
                             font.pixelSize: 13
+                            font.weight: Font.Bold
+                            font.letterSpacing: 1
                             customColor: '#b4b4b4'
 
                             border.color: '#b6f4ce'
