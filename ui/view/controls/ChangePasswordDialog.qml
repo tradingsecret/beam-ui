@@ -150,21 +150,22 @@ CustomDialog {
                 dottedBorderColor: 'white'
 			}
 
+            Column  {
+                width: parent.width
+                //height: error.heigt
+
+                SFText {
+                    topPadding: 15
+                    id: error
+                    color: Style.validator_error
+                    font.pixelSize: 12
+                    font.family: agency_r.name
+                    font.capitalization: Font.AllUppercase
+                    font.letterSpacing: 2
+                }
+            }
+
     	}
-
-		Column  {
-			width: parent.width
-            //height: error.heigt
-
-			SFText {
-				id: error
-                color: Style.validator_error
-                font.pixelSize: 12
-                font.family: agency_r.name
-                font.capitalization: Font.AllUppercase
-                font.letterSpacing: 2
-			}			
-        }
     }
 
     footer: Control {

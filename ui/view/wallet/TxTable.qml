@@ -140,7 +140,7 @@ Control {
         }
         onOpenExternal: function(kernelID) {
             var url = BeamGlobals.getExplorerUrl() + "block?kernel_id=" + kernelID;
-            Utils.openExternalWithConfirmation(url);
+            Utils.openExternalWithConfirmation(url, undefined, true);
         };
     }
 

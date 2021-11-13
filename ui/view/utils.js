@@ -87,7 +87,7 @@ function isSqueezedHeight(parentHeight) {
     return parentHeight <= 768;
 }
 
-function openExternal(externalLink, settings, dialog, onFinish) {
+function openExternal(externalLink, settings, dialog, onFinish, disableGauss) {
     var onFinishCallback = onFinish && (typeof onFinish === "function")
         ? onFinish
         : function () {};
@@ -103,17 +103,18 @@ function openExternal(externalLink, settings, dialog, onFinish) {
     dialog.onCancelClicked = function() {
         onFinishCallback();
     };
+    dialog.disableGauss = disableGauss
     dialog.open();
 }
 
-function openExternalWithConfirmation(externalLink, onFinish) {
+function openExternalWithConfirmation(externalLink, onFinish, disableGauss) {
     var settingsViewModel = Qt.createQmlObject("import Beam.Wallet 1.0; SettingsViewModel {}", main);
     var component = Qt.createComponent("controls/OpenExternalLinkConfirmation.qml");
     var externalLinkConfirmation = component.createObject(main);
     Utils.openExternal(
         externalLink,
         settingsViewModel,
-        externalLinkConfirmation, onFinish);
+        externalLinkConfirmation, onFinish, disableGauss);
 }
 
 function navigateToDownloads() {

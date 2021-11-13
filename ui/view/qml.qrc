@@ -545,5 +545,6 @@
 		<file>assets/popups/popup-14.png</file>
 		<file>assets/imperium_main.png</file>
 		<file>assets/wallet/bg.png</file>
+		<file>assets/wallet/table.png</file>
     </qresource>
 </RCC>

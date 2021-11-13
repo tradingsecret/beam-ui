@@ -255,6 +255,22 @@ Item {
             ColumnLayout {
                 Layout.topMargin: assets.folded ? 25 : 35
 
+                Rectangle {
+                    anchors.fill: parent
+                    border.color: '#112a26'
+                    border.width: 1
+                    color: '#000000'
+
+                    Image {
+                        anchors.fill: parent
+                        anchors.leftMargin: 1
+                        anchors.topMargin: 1
+                        anchors.rightMargin: 1
+                        anchors.bottomMargin: 1
+                        source: 'qrc:/assets/wallet/bg.png'
+                    }
+                }
+
                 SFText {
                     Layout.topMargin: 10
                     //Layout.fillWidth: true
@@ -279,13 +295,17 @@ Item {
                     //Layout.topMargin:  12
                     Layout.fillWidth:  true
                     Layout.fillHeight: true
-                }
 
-                Rectangle {
-                    anchors.fill: parent
-                    border.color: '#112a26'
-                    border.width: 1
-                    color: 'transparent'
+                    Rectangle {
+                        visible: false
+                        anchors.fill: parent
+                        color: '#000000'
+
+                        //Image {
+                        //    anchors.fill: parent
+                        //    source: 'qrc:/assets/wallet/bg.png'
+                        //}
+                    }
                 }
             }
         }

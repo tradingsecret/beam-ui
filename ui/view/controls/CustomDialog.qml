@@ -5,6 +5,7 @@ import "."
 
 Dialog { 
     property var backgroundImage: "qrc:/assets/popup-window.png"
+    property var disableGauss: false
 
     //topPadding: 20
     leftPadding: 40
@@ -30,6 +31,7 @@ Dialog {
     }
 
     Overlay.modal: GaussianBlur {
+        visible: disableGauss != true
         source: ShaderEffectSource {
             sourceItem: appWindow.contentItem
             live: false
