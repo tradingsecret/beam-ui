@@ -179,6 +179,7 @@ ConfirmationDialog {
                     onCopyText:             BeamGlobals.copyToClipboard(text)
                     visible:                !!text
                     font.letterSpacing: 2
+                    font.weight: Font.Bold
                 }
 
                 //
@@ -209,6 +210,7 @@ ConfirmationDialog {
                     maximumLineCount:     4
                     visible:              !!text
                     font.letterSpacing: 2
+                    font.weight: Font.Bold
                 }
 
                 //
@@ -237,6 +239,7 @@ ConfirmationDialog {
                     font.capitalization: Font.AllUppercase
                     visible:                text.length > 0
                     font.letterSpacing: 2
+                    font.weight: Font.Bold
                 }
 
                 //
@@ -262,6 +265,7 @@ ConfirmationDialog {
                     font.capitalization: Font.AllUppercase
                     visible: !control.hasAmounts
                     font.letterSpacing: 2
+                    font.weight: Font.Bold
 
                     text: "-"
                 }
@@ -293,6 +297,7 @@ ConfirmationDialog {
                             rateFontSize:     12
                             copyMenuEnabled:  true
                             font.letterSpacing: 2
+                            font.weight: Font.Bold
                         }
                     }
                 }
@@ -333,6 +338,7 @@ ConfirmationDialog {
                         rateFontSize:     12
                         copyMenuEnabled:  true
                         font.letterSpacing: 2
+                        font.weight: Font.Bold
                     }
                 }
             }

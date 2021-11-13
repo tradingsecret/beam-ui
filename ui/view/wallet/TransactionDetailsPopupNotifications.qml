@@ -50,6 +50,7 @@ CustomDialog {
     property var assetVerified: []
     property string rateUnit
     readonly property int assetCount: assetNames ? assetNames.length : 0
+    property int footerBottomPadding: 95
 
     property alias initialState: stm.state
     property var getPaymentProof: function (rawTxId) { return null; }
@@ -143,7 +144,7 @@ CustomDialog {
 
         GridLayout {
             id: grid
-            Layout.leftMargin: 30
+            Layout.leftMargin: 50
             Layout.rightMargin: 30
             Layout.topMargin: dialog.hasPaymentProof && !dialog.isSelfTx ? 30 : 40
             Layout.alignment: Qt.AlignTop
@@ -196,7 +197,7 @@ CustomDialog {
                         //Layout.topMargin: 5
 
                         source: "qrc:/assets/copy-icon.png"
-                        sourceSize: Qt.size(16, 16)
+                        sourceSize: Qt.size(25, 25)
                         //opacity: control.isValid() ? 1.0 : 0.45
 
                         MouseArea {
@@ -256,7 +257,7 @@ CustomDialog {
                         //Layout.topMargin: 5
 
                         source: "qrc:/assets/copy-icon.png"
-                        sourceSize: Qt.size(16, 16)
+                        sourceSize: Qt.size(25, 25)
                         //opacity: control.isValid() ? 1.0 : 0.45
 
                         MouseArea {
@@ -358,7 +359,7 @@ CustomDialog {
                         //Layout.topMargin: 5
 
                         source: "qrc:/assets/copy-icon.png"
-                        sourceSize: Qt.size(16, 16)
+                        sourceSize: Qt.size(25, 25)
                         //opacity: control.isValid() ? 1.0 : 0.45
 
                         MouseArea {
@@ -597,7 +598,7 @@ CustomDialog {
                 }
 
                 RowLayout {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -3
                     visible: dialog.fee.length && stm.state == "tx_info"
                     Layout.maximumHeight: !dialog.feeRate.length || dialog.feeRate == "0" ? 20 : 34
                     BeamAmount {
@@ -924,7 +925,8 @@ CustomDialog {
     }
 
     footer: ColumnLayout {
-        RowLayout {
+        Row {
+            bottomPadding: footerBottomPadding
             Layout.alignment: Qt.AlignHCenter
             //Layout.topMargin: 60
             spacing: 20
@@ -941,10 +943,6 @@ CustomDialog {
                     openExternal(dialog.kernelID);
                 }
             }
-        }
-
-        Item {
-            height: 80
         }
     }
 

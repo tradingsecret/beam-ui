@@ -371,16 +371,15 @@ ColumnLayout {
 
                                     txDetails.txID = model.txid;
                                     txDetails.sendAddress = model.sender || "";
-                                    txDetails.receiveAddress = model.receiver;
+                                    txDetails.receiveAddress = model.receiver || "";
                                     txDetails.token = model.token;
                                     txDetails.assetAmounts = [model.amount];
                                     txDetails.fee = model.fee;
-                                    txDetails.feeUnit = 'ARC';
-                                    txDetails.comment = model.comment;
-
                                     txDetails.assetIncome = [isReceivedType(type) ? 1 : 0];
                                     txDetails.assetNames = ['ARC'];
                                     txDetails.assetIDs = ['0'];
+                                    txDetails.feeUnit = 'ARC';
+                                    //txDetails.comment = model.comment || "";
                                     txDetails.kernelID = model.kernelID;
                                     txDetails.open();
                                 }
