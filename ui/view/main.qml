@@ -253,7 +253,7 @@ Rectangle {
                             id: menu_item
                             leftPadding: 15
                             rightPadding: 15
-                            topPadding: 15
+                            topPadding: 13
                             bottomPadding: 20
                             text:             modelData.title
                             font.pixelSize: 14
