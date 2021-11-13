@@ -39,6 +39,7 @@ T.TextField {
     verticalAlignment: TextInput.AlignVCenter
 
     property bool  focusablePlaceholder: false
+    property bool  disableBorder: false
     property bool  dottedBorder: false
     property var   dottedBorderColor: "#5fe795"
     property alias backgroundColor : backgroundRect.color
@@ -72,6 +73,7 @@ T.TextField {
         width: control.width - (control.leftPadding + control.rightPadding)
         height: dottedBorder ? 0 : 1 //control.activeFocus || control.hovered ? 1 : 1
         opacity: dottedBorder ? 1 : ((control.activeFocus || control.hovered)? 0.3 : 0.1)
+        visible: !disableBorder
 
         Shape {
             anchors.fill: parent

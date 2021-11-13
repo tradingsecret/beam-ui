@@ -40,12 +40,45 @@ ColumnLayout {
                 font.capitalization: Font.AllUppercase
             }
 
-            SFText {
+            SFTextInput {
                 text: "SUPPORT@IMPERIUMPROTOCOL.COM"
                 color: '#5e5cb3'
                 font.pixelSize: 16
                 font.capitalization: Font.AllUppercase
+                disableBorder: true
+                readOnly: true
+                selectByMouse: true
+
+                MouseArea {
+                    id: mouseArea
+                    anchors.fill: parent
+                    enabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: {
+                        Utils.openUrl("mailto:support@imperiumprotocol.com");
+                    }
+                    hoverEnabled: true
+                }
+            }
+
+            Image {
+                Layout.alignment: Qt.AlignRight
+                //Layout.topMargin: 5
+
+                source: "qrc:/assets/copy-icon.png"
+                sourceSize: Qt.size(25, 25)
+                //opacity: control.isValid() ? 1.0 : 0.45
+
+                MouseArea {
+                    anchors.fill: parent
+                    acceptedButtons: Qt.LeftButton
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: function () {
+                        BeamGlobals.copyToClipboard("support@imperiumprotocol.com");
+                    }
+                }
             }
         }
     }
 }
+
