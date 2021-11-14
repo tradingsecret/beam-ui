@@ -159,6 +159,14 @@ TableView {
         }
 
         Rectangle {
+            visible: false
+            anchors.fill: parent
+            color: 'transparent'
+            border.width: 1
+            border.color: 'pink'
+        }
+
+        Rectangle {
             anchors.bottom: parent.bottom
             width: tableView.width
             height: 1

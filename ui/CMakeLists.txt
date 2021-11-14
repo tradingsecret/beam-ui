@@ -542,7 +542,7 @@ else()
         
         install(FILES ${OPENSSL_ROOT_DIR}/bin/libcrypto-1_1-x64.dll DESTINATION .)
         install(FILES ${OPENSSL_ROOT_DIR}/bin/libssl-1_1-x64.dll DESTINATION .)
-        install(FILES beam-wallet.cfg DESTINATION .)
+        #install(FILES beam-wallet.cfg DESTINATION .)
         install(TARGETS ${TARGET_NAME} DESTINATION .)
     endif()
 

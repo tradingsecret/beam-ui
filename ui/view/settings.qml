@@ -60,6 +60,23 @@ ColumnLayout {
                 Layout.fillHeight: true
                 spacing: 25
 
+                Rectangle {
+                    anchors.fill: parent
+                    color: 'transparent'
+
+                    MouseArea {
+                        anchors.fill: parent
+                        acceptedButtons: Qt.LeftButton
+                        //propagateComposedEvents: true
+                        onClicked: function() {
+                            console.log('clicked outside');
+
+                            generalBlock.autoLockPanelVisible = false;
+                            generalBlock.languagePanelVisible = false;
+                        }
+                    }
+                }
+
                 ColumnLayout {
                     Layout.topMargin: 47
                     Layout.preferredWidth: 300

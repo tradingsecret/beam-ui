@@ -115,10 +115,13 @@ ColumnLayout {
 
             SFText {
                 id: lockSelect
-                //Layout.preferredWidth: 100
+                width: 150
+                Layout.preferredWidth: width
+                Layout.minimumWidth: width
+                Layout.maximumWidth: width
                 leftPadding: 50
                 rightPadding: 50
-                Layout.topMargin: 20
+                Layout.topMargin: 15
                 bottomPadding: 5
                 horizontalAlignment: Text.AlignHCenter
                 text: lockItems[viewModel.lockTimeout]
@@ -166,7 +169,7 @@ ColumnLayout {
     RowLayout {
         anchors.top: settings1.bottom
         anchors.left: settings1.left
-        Layout.topMargin: 5
+        anchors.topMargin: 6
 
         Rectangle {
             anchors.fill: parent
@@ -387,12 +390,5 @@ ColumnLayout {
                 }
             }
         }
-    }
-
-    Rectangle {
-        anchors.fill: parent
-        color: 'transparent'
-        border.width: 1
-        border.color: 'purple'
     }
 }

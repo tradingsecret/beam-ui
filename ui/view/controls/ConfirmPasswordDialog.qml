@@ -110,12 +110,12 @@ CustomDialog {
 
 			Item {
 				Layout.preferredHeight: 16
-				Layout.topMargin: -5
+                Layout.topMargin: 5
 				SFText {
 					Layout.fillWidth: true
 					Layout.alignment: Qt.AlignHCenter
 					color: Style.validator_error
-					font.pixelSize: 12
+                    font.pixelSize: 15
                     font.family: agency_r.nameы
 					//% "Please, enter password"
 					text: qsTrId("general-pwd-empty-error")
@@ -125,7 +125,7 @@ CustomDialog {
 					Layout.fillWidth: true
 					Layout.alignment: Qt.AlignHCenter
 					color: Style.validator_error
-					font.pixelSize: 12
+                    font.pixelSize: 15
                     font.family: agency_r.name
 					//% "Invalid password provided"
 					text: qsTrId("general-pwd-invalid")

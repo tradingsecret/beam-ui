@@ -330,14 +330,14 @@ ColumnLayout {
                             anchors.right: itemRect.right
                             anchors.bottomMargin: 10
                             anchors.rightMargin: 15
-                            width: 150
+                            width: 170
 
                             height: 36
                             palette.button: Style.background_second
                             palette.buttonText : Style.content_main
                             text: 'Show info'//getActionButtonLabel(type)
                             font.pixelSize: 13
-                            font.weight: Font.Bold
+                            //font.weight: Font.Bold
                             font.letterSpacing: 1
                             customColor: '#b4b4b4'
 

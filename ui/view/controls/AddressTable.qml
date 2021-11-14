@@ -135,6 +135,7 @@ CustomTableView {
                 color: styleData.row % 2 == 0 ?  '#40404a' : 'transparent'
                 //color: styleData.selected ? Style.row_selected :
                 //        (styleData.alternate ? 'transparent' : '#14141e')
+                opacity: 0.5
             }
 
             SFLabel {
@@ -175,6 +176,7 @@ CustomTableView {
                 color: styleData.row % 2 == 0 ?  '#40404a' : 'transparent'
                 //color: styleData.selected ? Style.row_selected :
                 //        (styleData.alternate ? 'transparent' : '#14141e')
+                opacity: 0.5
             }
 
             SFLabel {
@@ -223,6 +225,7 @@ CustomTableView {
                 color: styleData.row % 2 == 0 ?  '#40404a' : 'transparent'
                 //color: styleData.selected ? Style.row_selected :
                 //        (styleData.alternate ? 'transparent' : '#14141e')
+                opacity: 0.5
             }
 
             SFLabel {
@@ -235,7 +238,7 @@ CustomTableView {
                 anchors.rightMargin: 70
                 elide: Text.ElideLeft
                 anchors.verticalCenter: parent.verticalCenter
-                text: styleData.value
+                text: styleData.value == 'default' ? 'New wallet initiated' : styleData.value
                 copyMenuEnabled: true
                 onCopyText: BeamGlobals.copyToClipboard(text)
             }

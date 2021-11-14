@@ -167,7 +167,7 @@ CustomDialog {
                     font.letterSpacing: 2
                 }
                 RowLayout {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     visible: !Utils.isZeroed(dialog.txID) && stm.state == "tx_info"
                     SFLabel {
                         Layout.fillWidth: true
@@ -227,7 +227,7 @@ CustomDialog {
                     font.letterSpacing: 2
                 }
                 RowLayout {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     visible: stm.state == "tx_info" && dialog.sendAddress.length && !(isIncome && isShieldedTx)
                     SFLabel {
                         id: sendAddressField
@@ -287,7 +287,7 @@ CustomDialog {
                     font.letterSpacing: 2
                 }
                 RowLayout {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     visible: stm.state == "payment_proof" && dialog.senderIdentity.length > 0 && (dialog.receiverIdentity.length > 0 || dialog.isShieldedTx )
                     SFLabel {
                         id: senderIdentityField
@@ -328,7 +328,7 @@ CustomDialog {
                     font.letterSpacing: 2
                 }
                 RowLayout {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     visible: stm.state == "tx_info" && !dialog.isContractTx && receiveAddressField.receiveAddressOrToken.length
                     SFLabel {
                         property var receiveAddressOrToken : hasToken ? dialog.token : dialog.receiveAddress
@@ -389,7 +389,7 @@ CustomDialog {
                     font.letterSpacing: 2
                 }
                 RowLayout {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     visible: stm.state == "payment_proof" && dialog.senderIdentity.length > 0 && dialog.receiverIdentity.length > 0
                     SFLabel {
                         id: receiverIdentityField
@@ -433,7 +433,7 @@ CustomDialog {
                 }
 
                 SFText {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     id:                     addrTypeText
                     Layout.fillWidth:       true
                     wrapMode:               Text.Wrap
@@ -466,7 +466,7 @@ CustomDialog {
                 }
 
                 SFLabel {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     id:               minConfirmationsField
                     font.pixelSize: 18
                     font.family: agency_b.name
@@ -497,7 +497,7 @@ CustomDialog {
                 }
 
                 ColumnLayout {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     id: amountsList
                     Layout.fillWidth: true
                     spacing: 10
@@ -598,7 +598,7 @@ CustomDialog {
                 }
 
                 RowLayout {
-                    Layout.topMargin: -3
+                    Layout.topMargin: -4
                     visible: dialog.fee.length && stm.state == "tx_info"
                     Layout.maximumHeight: !dialog.feeRate.length || dialog.feeRate == "0" ? 20 : 34
                     BeamAmount {
@@ -642,7 +642,7 @@ CustomDialog {
                 }
 
                 SFLabel {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     id:               dappNameText
                     font.pixelSize: 18
                     font.family: agency_b.name
@@ -673,7 +673,7 @@ CustomDialog {
                 }
 
                 RowLayout {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     visible:          dialog.isContractTx && stm.state == "tx_info"
                     SFLabel {
                         id:               cidText
@@ -721,7 +721,7 @@ CustomDialog {
                 }
 
                 SFLabel {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     Layout.fillWidth: true
                     id: commentTx
                     copyMenuEnabled: true
@@ -754,7 +754,7 @@ CustomDialog {
                     font.letterSpacing: 2
                 }
                 RowLayout {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     //visible: !Utils.isZeroed(dialog.kernelID)
                     visible: false
                     SFLabel {
@@ -783,7 +783,7 @@ CustomDialog {
 
             Item {
                 height: 16
-                visible: dialog.isCompleted//dialog.isCompleted && kernelID.parent.visible
+                visible: false//dialog.isCompleted//dialog.isCompleted && kernelID.parent.visible
             }
             OpenInBlockchainExplorer {
                 visible: false
@@ -795,7 +795,7 @@ CustomDialog {
 
             RowLayout {
                 spacing: 14
-                visible: stm.state == "tx_info" && dialog.stateDetails.length
+                visible: false //stm.state == "tx_info" && dialog.stateDetails.length
 
                 RowLayout {
                     Layout.columnSpan: 2
@@ -823,7 +823,7 @@ CustomDialog {
                 }
 
                 SFText {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     Layout.alignment: Qt.AlignTop
                     font.pixelSize: 18
                     font.family: agency_r.name
@@ -858,7 +858,7 @@ CustomDialog {
                 }
 
                 Rectangle {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     width: parent.width
                     height: 1
                     color: Style.background_button
@@ -884,7 +884,7 @@ CustomDialog {
                 }
 
                 RowLayout {
-                    Layout.topMargin: -1
+                    Layout.topMargin: -2
                     id: proofField
                     visible: stm.state == "payment_proof" && dialog.hasPaymentProof
                     ScrollView {

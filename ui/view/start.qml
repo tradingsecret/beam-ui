@@ -236,6 +236,7 @@ Item
                 font.pixelSize: 20
                 font.letterSpacing: 2
                 font.family: agency_r.name
+                font.capitalization: Font.AllUppercase
                 font.weight: Font.Bold
                 wrapMode: Text.Wrap
             }
@@ -269,7 +270,7 @@ Item
             {
                 property Item defaultFocusItem: createNewWallet
                 showNetworkLabel: true
-                //playVideo: startWizzardView.depth == 1 && viewModel.isWindows
+                playVideo: startWizzardView.depth == 1 && viewModel.isWindows
 
                 ColumnLayout {
                     id: startColumn
@@ -1470,7 +1471,7 @@ Item
                                 color: Style.content_secondary
                                 visible: strengthChecker.strength > 0 && strengthChecker.strength < 6
                                 font.pixelSize: 14
-                                height: 80
+                                height: 100
                                 width: parent.width
                             }
                         }
@@ -1478,6 +1479,7 @@ Item
                         Column {
                             width: parent.width
                             anchors.bottomMargin: 6
+                            //strengthChecker.strength > 0 && strengthChecker.strength < 6 ? 20 : 0
                             spacing: 10
 
                             SFText {

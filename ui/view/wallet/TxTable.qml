@@ -405,7 +405,7 @@ Control {
             Layout.bottomMargin:  9
             visible:              transactionsTable.model.count > 0
 
-            property real rowHeight: 56
+            property real rowHeight: 35 //56
             property real resizableWidth: transactionsTable.width - 140
             property real columnResizeRatio: resizableWidth / (610 - (sourceVisible ? 0 : 140))
 
@@ -775,7 +775,7 @@ Control {
                 //% "Status"
                 title: qsTrId("tx-table-status")
                 // width: transactionsTable.getAdjustedColumnWidth(statusColumn) // 100 * transactionsTable.columnResizeRatio
-                width: 310 * transactionsTable.columnResizeRatio
+                width: 280 * transactionsTable.columnResizeRatio
                 //width: implicitWidth
                 movable: false
                 resizable: false
@@ -791,7 +791,54 @@ Control {
                         width: parent.width
                         id: statusRow
 
+                        SFTextInput {
+                            text: styleData && styleData.value ? styleData.value : ""
+                            color: {
+                                if (!model || model.isExpired) {
+                                    color:  '#ffffff'
+                                }
+                                if (model.isInProgress) {
+                                    return 'yellow';
+                                }
+                                if (model.isCompleted && model.isIncome) {
+                                    return model.isShieldedTx ? '#4cbd7b' : 'white';
+                                }
+                                if (model.isCompleted && !model.isIncome) {
+                                    //if (model.isSelfTransaction) {
+                                    //    return Style.content_main;
+                                    //}
+                                    return model.isShieldedTx ? '#4cbd7b' : 'white';
+                                } else if (model.isFailed) {
+                                    return Style.accent_fail;
+                                }
+                                else {
+                                    color: '#ffffff'
+                                }
+                            }
+                            font.pixelSize: 15
+                            font.capitalization: Font.AllUppercase
+                            font.weight: Font.Bold
+                            font.family:  tomorrow_extralight.name
+                            disableBorder: true
+                            readOnly: true
+                            selectByMouse: true
+                            leftPadding: 40
+                            rightPadding: 40
+                            width: 280 * transactionsTable.columnResizeRatio
+                            Layout.preferredWidth: width
+                            Layout.maximumWidth: width
+                            //Layout.alignment: Qt.AlignCenter
+                            horizontalAlignment: {
+                                console.log('contentWidth: ' + contentWidth);
+                                console.log('width: ' + width);
+
+
+                                return contentWidth > width ? Text.AlignRight : Text.AlignHCenter
+                            }
+                        }
+
                         SFLabel {
+                            visible: false
                             font.pixelSize:  15
                             font.family:  tomorrow_extralight.name
                             font.capitalization: Font.AllUppercase
@@ -812,13 +859,13 @@ Control {
                                     return 'yellow';
                                 }
                                 if (model.isCompleted && model.isIncome) {
-                                    return model.isShieldedTx ? 'purple' : 'white';
+                                    return model.isShieldedTx ? '#4cbd7b' : 'white';
                                 }
                                 if (model.isCompleted && !model.isIncome) {
                                     //if (model.isSelfTransaction) {
                                     //    return Style.content_main;
                                     //}
-                                    return model.isShieldedTx ? 'purple' : 'white';
+                                    return model.isShieldedTx ? '#4cbd7b' : 'white';
                                 } else if (model.isFailed) {
                                     return Style.accent_fail;
                                 }

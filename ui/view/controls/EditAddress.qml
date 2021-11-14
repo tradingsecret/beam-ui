@@ -124,7 +124,7 @@ CustomDialog {
                     font.capitalization: Font.AllUppercase
                     text:                     {
                         var address = isShieldedSupported ? control.token : control.walletID;
-                        return control.isOldAddr ? address : address.substring(0, address.length - 150);
+                        return control.isOldAddr ? address : address.substring(0, address.length - 250);
                     }
                     Layout.alignment: Qt.AlignCenter
 
