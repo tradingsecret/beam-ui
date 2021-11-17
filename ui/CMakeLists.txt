@@ -234,6 +234,8 @@ else()
     qt5_add_resources(QT_RESOURCES view/qml.qrc ${TRANSLATIONS_QRC_FILE})
 endif()
 
+qt5_add_resources(VIDEO_QT_RESOURCES view/video.qrc)
+
 if(WIN32)
     add_definitions(-DWIN32_LEAN_AND_MEAN)
 endif()
@@ -272,7 +274,7 @@ if(BEAM_USE_STATIC AND LINUX)
     set(CMAKE_C_FLAGS "-no-pie ${CMAKE_C_FLAGS}")
     set(CMAKE_CXX_FLAGS "-no-pie ${CMAKE_CXX_FLAGS}")
 endif()
-add_executable(${TARGET_NAME} ${SYSTEM_TYPE} ${UI_SRC} ${QT_RESOURCES} beam.rc "${CMAKE_CURRENT_SOURCE_DIR}/beam.icns")
+add_executable(${TARGET_NAME} ${SYSTEM_TYPE} ${UI_SRC} ${QT_RESOURCES} ${VIDEO_QT_RESOURCES} beam.rc "${CMAKE_CURRENT_SOURCE_DIR}/beam.icns")
 set_target_properties(${TARGET_NAME} PROPERTIES OUTPUT_NAME ${OUTPUT_NAME})
 
 if(BEAM_HW_WALLET)

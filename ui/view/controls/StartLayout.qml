@@ -29,6 +29,7 @@ Rectangle
         //height: 800
         autoPlay: playVideo
         source: "qrc:/assets/Imperium_Wallet.avi"
+        //source: "Imperium_Wallet.avi"
         visible: playVideo
         onStopped: function() {
             playVideo = false
