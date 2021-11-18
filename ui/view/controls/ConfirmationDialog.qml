@@ -27,8 +27,8 @@ CustomDialog {
     property var   defaultFocusItem: cancelButton
     property var   beforeAccept: function(){return true}
     property int footerBottomPadding: 60
-    property int cancelButtonWidth: undefined
-    property int okButtonWidth: undefined
+    property var cancelButtonWidth: undefined
+    property var okButtonWidth: undefined
 
     x: (parent.width - width) / 2
     y: (parent.height - height) / 2

@@ -74,10 +74,15 @@ Control {
     }
 
     function formatAmount (amount, uname) {
+        //return (prefix || '') + [Utils.uiStringToLocale(amount), uname].join("\u2000")
+
+        return (prefix || '') + [Utils.uiStringToLocale(amount), uname].join("\u2000");
+
+        /*
         if (parseFloat(amount) > 0 || showZero) {
             return (prefix || '') + [Utils.uiStringToLocale(amount), uname].join("\u2000") // 1/2 em space, EN QUAD Unicode char
         }
-        return "-"
+        return "-"*/
     }
 
     function calcMaxTextWidth () {
@@ -297,6 +302,7 @@ Control {
                 font.weight:     Font.Normal
                 color:           control.error ? Style.validator_error : Qt.rgba(Style.content_main.r, Style.content_main.g, Style.content_main.b, 0.5)
                 text:            formatRate()
+
                 onCopyText:      BeamGlobals.copyToClipboard(secondCurrencyAmountText.text)
                 copyMenuEnabled: true
             }

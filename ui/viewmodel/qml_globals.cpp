@@ -15,6 +15,8 @@
 #include <QMessageBox>
 #include <QApplication>
 #include <QClipboard>
+#include <QTcpSocket>
+#include <QtConcurrent/QtConcurrent>
 #include "version.h"
 #include "model/app_model.h"
 #include "wallet/core/common.h"
@@ -92,6 +94,8 @@ QMLGlobals::QMLGlobals(QQmlEngine& engine)
 {
 }
 
+bool QMLGlobals::_isOnlineStatus = true;
+
 QString QMLGlobals::getAppName()
 {
 #ifdef APP_NAME
@@ -121,6 +125,38 @@ void QMLGlobals::copyToClipboard(const QString& text)
 QString QMLGlobals::version()
 {
     return QString::fromStdString(PROJECT_VERSION);
+}
+
+void QMLGlobals::checkOnline()
+{
+    QTcpSocket* sock = new QTcpSocket();
+    sock->connectToHost("imperiumprotocol.com", 10000);
+    bool connected = sock->waitForConnected(3000);
+
+    if (!connected)
+    {
+        sock->abort();
+        setIsOnline(false);
+        return;
+    }
+
+    sock->close();
+    setIsOnline(true);
+}
+
+void QMLGlobals::checkOnlineThread()
+{
+    QtConcurrent::run(checkOnline);
+}
+
+bool QMLGlobals::isOnline()
+{
+    return _isOnlineStatus;
+}
+
+void QMLGlobals::setIsOnline(bool value)
+{
+    _isOnlineStatus = value;
 }
 
 bool QMLGlobals::isToken(const QString& text)

@@ -164,6 +164,21 @@ Rectangle {
         id: statusbarModel
     }
 
+    property bool isOnline: true
+
+    Timer {
+        id: checkConnection
+        running: true
+        repeat: true
+        interval: 5000
+        triggeredOnStart: true
+        onTriggered: {
+            BeamGlobals.checkOnlineThread();
+
+            isOnline = BeamGlobals.isOnline();
+        }
+    }
+
     property var backgroundRect: mainBackground
     property var backgroundLogo: mainBackgroundLogo
 
@@ -408,7 +423,7 @@ Rectangle {
                     Layout.alignment: Qt.AlignVCenter
 
                     source: {
-                         "qrc:/assets/status-online.png"
+                         isOnline ? "qrc:/assets/status-online.png" : "qrc:/assets/status-offline.png"
                     }
                 }
             }
@@ -416,10 +431,10 @@ Rectangle {
             ColumnLayout {
                 Layout.bottomMargin: 3
                 SFText {
+                    id: testneStatus
                     Layout.alignment: Qt.AlignVCenter
-
                     color: '#ffffff'
-                    text: 'Testnet online'
+                    text: isOnline ? 'Testnet online' : 'Testnet no connection'
                     font.capitalization: Font.AllUppercase
                     font.pixelSize: 12
                     font.letterSpacing: 1

@@ -511,18 +511,32 @@ CustomDialog {
                             Layout.maximumWidth : dialog.width - 60
                             Layout.maximumHeight: 34
 
+                            SFText {
+                                Layout.alignment: Qt.AlignTop
+                                Layout.fillWidth: true
+                                text: (dialog.isIncome ? '+' : '-') + ' ' + (dialog.assetAmounts ? (dialog.assetAmounts[index] || "") : "") + " ARC"
+                                font.pixelSize: 18
+                                font.family: agency_b.name
+                                font.weight: Font.Bold
+                                font.capitalization: Font.AllUppercase
+                                font.letterSpacing: 2
+                                color:        'white'
+                            }
+
                             BeamAmount {
                                 id: amountField
+                                visible: false
                                 Layout.fillWidth: true
 
-                                visible:      true
                                 amount:       dialog.assetAmounts ? (dialog.assetAmounts[index] || "") : ""
                                 unitName:     dialog.assetNames[index] || ""
                                 iconSource:   dialog.assetIcons[index] || ""
                                 verified:     dialog.assetVerified[index] || false
                                 iconSize:     Qt.size(20, 20)
                                 color:        'white'
-                                prefix:       this.amount == "0" ? "" : (dialog.assetIncome[index] ? "+ " : "- ")
+                                prefix:       {
+                                    return dialog.isIncome ? '+' : '-'; //this.amount == "0" ? "" : (dialog.assetIncome[index] ? "+ " : "- ")
+                                }
                                 rate:         dialog.assetRates ? (dialog.assetRates[index] || "") : ""
                                 rateUnit:     this.rate != "0" ? dialog.rateUnit : ""
                                 ratePostfix:  "" /*this.rate != "0"
@@ -628,6 +642,7 @@ CustomDialog {
             RowLayout {
                 spacing: 14
                 visible:                dappNameText.visible
+
                 // CID
                 SFText {
                     Layout.alignment:       Qt.AlignTop
@@ -660,6 +675,7 @@ CustomDialog {
             RowLayout {
                 spacing: 14
                 visible:                cidText.parent.visible
+
                 // CID
                 SFText {
                     font.pixelSize: 18
@@ -947,10 +963,14 @@ CustomDialog {
     }
 
     onOpened: {
-        dialog.height = grid.height + (dialog.hasPaymentProof && !dialog.isSelfTx ? 280 : 200);
+        //dialog.height = grid.height + (dialog.hasPaymentProof && !dialog.isSelfTx ? 280 : 200);
+
+        if (stm.state == "tx_info" && dialog.comment.length) {
+            dialog.height = 520;
+        }
     }
 
     onClosed: {
-        dialog.height = 650;
+        dialog.height = 490;
     }
 }

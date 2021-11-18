@@ -19,7 +19,7 @@ ColumnLayout {
     }
 
     TransactionDetailsPopupNotifications {
-        id: txDetails
+        id: txDetailsNotifications
         onTextCopied: function(text) {
             BeamGlobals.copyToClipboard(text);
         }
@@ -369,19 +369,24 @@ ColumnLayout {
                                     viewModel.markItemAsRead(model.rawID);
                                     //control.notifications[type].action(model.rawID);
 
-                                    txDetails.txID = model.txid;
-                                    txDetails.sendAddress = model.sender || "";
-                                    txDetails.receiveAddress = model.receiver || "";
-                                    txDetails.token = model.token;
-                                    txDetails.assetAmounts = [model.amount];
-                                    txDetails.fee = model.fee;
-                                    txDetails.assetIncome = [isReceivedType(type) ? 1 : 0];
-                                    txDetails.assetNames = ['ARC'];
-                                    txDetails.assetIDs = ['0'];
-                                    txDetails.feeUnit = 'ARC';
+                                    txDetailsNotifications.txID = model.txid;
+                                    txDetailsNotifications.sendAddress = model.sender || "";
+                                    txDetailsNotifications.receiveAddress = model.receiver || "";
+                                    txDetailsNotifications.token = model.token;
+                                    txDetailsNotifications.assetAmounts = [model.amount];
+                                    txDetailsNotifications.fee = model.fee;
+                                    txDetailsNotifications.assetIncome = [isReceivedType(type) ? 1 : 0];
+                                    txDetailsNotifications.isIncome = isReceivedType(type);
+                                    txDetailsNotifications.assetNames = ['ARC'];
+                                    txDetailsNotifications.assetIDs = ['0'];
+                                    txDetailsNotifications.feeUnit = 'ARC';
                                     //txDetails.comment = model.comment || "";
-                                    txDetails.kernelID = model.kernelID;
-                                    txDetails.open();
+                                    txDetailsNotifications.kernelID = model.kernelID;
+                                    txDetailsNotifications.open();
+
+                                    console.log('isReceivedType');
+                                    console.log(isReceivedType(type));
+                                    console.log(type);
                                 }
                             }
                             onPressed : { // avoid Flickable drag effect

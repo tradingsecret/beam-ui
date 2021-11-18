@@ -28,6 +28,10 @@ public:
     Q_INVOKABLE static void logInfo(const QString& message);
     Q_INVOKABLE static void copyToClipboard(const QString& text);
     Q_INVOKABLE QString version();
+    Q_INVOKABLE static void checkOnline();
+    Q_INVOKABLE static void checkOnlineThread();
+    Q_INVOKABLE static bool isOnline();
+    Q_INVOKABLE static void setIsOnline(bool value);
     Q_INVOKABLE static bool isToken(const QString& text);
     Q_INVOKABLE static bool isSwapToken(const QString& text);
     Q_INVOKABLE static QString getLocaleName();
@@ -74,6 +78,8 @@ public:
     Q_INVOKABLE static QString rawTxIdToStr(const QVariant& txId);
 
     Q_INVOKABLE static QString getExplorerUrl();
+
+    static bool _isOnlineStatus;
 
 private:
     QQmlEngine& _engine;
