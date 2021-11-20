@@ -398,7 +398,7 @@ Rectangle {
                     Layout.alignment: Qt.AlignVCenter
 
                     source: {
-                         "qrc:/assets/status-offline.png"
+                         "qrc:/assets/status-mainnet-offline.png"
                     }
                 }
             }
@@ -423,7 +423,7 @@ Rectangle {
                     Layout.alignment: Qt.AlignVCenter
 
                     source: {
-                         isOnline ? "qrc:/assets/status-online.png" : "qrc:/assets/status-offline.png"
+                         isOnline ? "qrc:/assets/status-online.png" : "qrc:/assets/status-no-connection.png"
                     }
                 }
             }

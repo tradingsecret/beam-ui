@@ -396,8 +396,6 @@
         <file>assets/blur.jpg</file>
         <file>assets/menu-line.png</file>
         <file>assets/ins-logo-2.png</file>
-		<file>assets/status-offline.png</file>
-		<file>assets/status-online.png</file>
 		<file>assets/ImperiumLogo.png</file>
 		<file>assets/tx_anonimity.png</file>
 		<file>assets/tx_public.png</file>
@@ -546,5 +544,8 @@
 		<file>assets/imperium_main.png</file>
 		<file>assets/wallet/bg.png</file>
 		<file>assets/wallet/table.png</file>
+		<file>assets/status-mainnet-offline.png</file>
+		<file>assets/status-no-connection.png</file>
+		<file>assets/status-online.png</file>
     </qresource>
 </RCC>
