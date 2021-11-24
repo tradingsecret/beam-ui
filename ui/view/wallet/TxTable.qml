@@ -754,7 +754,7 @@ Control {
                         anchors.horizontalCenter: parent.horizontalCenter
 
                         SFText {
-                            text: model && model.isIncome ? 'RECEIVE' : 'SEND'
+                            text: model && model.isIncome ? 'INCOMING' : 'OUTGOING'
                             elide: styleData.elideMode
                             color:             '#ffffff'
                             Layout.fillWidth:  true

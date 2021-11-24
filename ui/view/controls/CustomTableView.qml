@@ -30,7 +30,7 @@ TableView {
         handle: Rectangle {
             color: "white"
             radius: 3
-            opacity: __verticalScrollBar.handlePressed ? 0.12 : 0.5
+            opacity: __verticalScrollBar.handlePressed ? 0.5 : 0.12
             implicitWidth: 6
         }
 
