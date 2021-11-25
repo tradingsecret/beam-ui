@@ -327,8 +327,8 @@
         <translation>New password cannot be the same as old</translation>
     </message>
     <message id="change-pwd-confirm-fail">
-        <source>New password doesn&apos;t match the confirm password</source>
-        <translation>New password doesn&apos;t match the confirm password</translation>
+        <source>PASSWORDS DON&apos;T MATCH</source>
+        <translation>PASSWORDS DON&apos;T MATCH</translation>
     </message>
     <message id="change-pwd-old-fail">
         <source>The old password you have entered is incorrect</source>

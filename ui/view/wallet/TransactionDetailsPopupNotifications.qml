@@ -154,7 +154,68 @@ CustomDialog {
 
             RowLayout {
                 spacing: 14
-                visible: !Utils.isZeroed(dialog.txID) && stm.state == "tx_info"
+                visible: !Utils.isZeroed(dialog.kernelID)
+                SFText {
+                    font.pixelSize: 18
+                    font.family: agency_r.name
+                    color: 'white'
+                    font.capitalization: Font.AllUppercase
+                    //% "Kernel ID"
+                    text: "HASH:" //qsTrId("general-kernel-id") + ":"
+                    //visible: kernelID.parent.visible
+                    //visible: false
+                    font.letterSpacing: 2
+                }
+                RowLayout {
+                    Layout.topMargin: -2
+                    //visible: !Utils.isZeroed(dialog.kernelID)
+                    //visible: false
+                    SFLabel {
+                        Layout.fillWidth: true
+                        id: kernelID
+                        copyMenuEnabled: true
+                        font.pixelSize: 18
+                        font.family: agency_b.name
+                        font.capitalization: Font.AllUppercase
+                        font.weight: Font.Bold
+                        color: Style.content_main
+                        text: getHighlitedText(dialog.kernelID)
+                        elide: Text.ElideMiddle
+                        onCopyText: textCopied(dialog.kernelID)
+                        font.letterSpacing: 2
+                    }
+                    CustomToolButton {
+                        Layout.alignment: Qt.AlignRight
+                        icon.source: "qrc:/assets/copy-icon.png"
+                        onClicked: textCopied(kernelID.text)
+                        padding: 0
+                        background.implicitHeight: 16
+                        visible: false
+                    }
+                    Image {
+                        Layout.alignment: Qt.AlignRight
+                        //Layout.topMargin: 5
+
+                        source: "qrc:/assets/copy-icon.png"
+                        sourceSize: Qt.size(25, 25)
+                        //opacity: control.isValid() ? 1.0 : 0.45
+
+                        MouseArea {
+                            anchors.fill: parent
+                            acceptedButtons: Qt.LeftButton
+                            cursorShape: Qt.PointingHandCursor
+                            onClicked: function () {
+                                BeamGlobals.copyToClipboard(kernelID.text);
+                            }
+                        }
+                    }
+                }
+            }
+
+            RowLayout {
+                spacing: 14
+                visible: Utils.isZeroed(dialog.kernelID) && (!Utils.isZeroed(dialog.txID) && stm.state == "tx_info")
+                //visible: false
 
                 SFText {
                     font.pixelSize: 18
@@ -752,48 +813,6 @@ CustomDialog {
                     onCopyText: textCopied(dialog.comment)
                     visible: stm.state == "tx_info" && dialog.comment.length
                     font.letterSpacing: 2
-                }
-            }
-
-            RowLayout {
-                spacing: 14
-                visible: false
-                SFText {
-                    font.pixelSize: 18
-                    font.family: agency_r.name
-                    color: 'white'
-                    font.capitalization: Font.AllUppercase
-                    //% "Kernel ID"
-                    text: qsTrId("general-kernel-id") + ":"
-                    //visible: kernelID.parent.visible
-                    visible: false
-                    font.letterSpacing: 2
-                }
-                RowLayout {
-                    Layout.topMargin: -2
-                    //visible: !Utils.isZeroed(dialog.kernelID)
-                    visible: false
-                    SFLabel {
-                        Layout.fillWidth: true
-                        id: kernelID
-                        copyMenuEnabled: true
-                        font.pixelSize: 18
-                        font.family: agency_b.name
-                        font.capitalization: Font.AllUppercase
-                        font.weight: Font.Bold
-                        color: Style.content_main
-                        text: getHighlitedText(dialog.kernelID)
-                        elide: Text.ElideMiddle
-                        onCopyText: textCopied(dialog.kernelID)
-                        font.letterSpacing: 2
-                    }
-                    CustomToolButton {
-                        Layout.alignment: Qt.AlignRight
-                        icon.source: "qrc:/assets/copy-icon.png"
-                        onClicked: textCopied(kernelID.text)
-                        padding: 0
-                        background.implicitHeight: 16
-                    }
                 }
             }
 
