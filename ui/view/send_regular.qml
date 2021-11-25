@@ -710,7 +710,8 @@ ColumnLayout {
                         wrapMode:              Text.WordWrap
                         horizontalAlignment:   Text.AlignHCenter
                         text:                  viewModel.tokenTip2
-                        visible:               !!text
+                        //visible:               !!text
+                        visible: false
                     }
                 }
             }

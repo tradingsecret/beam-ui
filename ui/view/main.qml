@@ -132,7 +132,34 @@ Rectangle {
         //% "no"
         cancelButtonText:       qsTrId("atomic-swap-no-button")
         cancelButtonIconSource: "qrc:/assets/icon-cancel-16.svg"
-        
+
+        backgroundImage: "qrc:/assets/popups/popup-8.png"
+        width: 710
+        height: 380
+        footerBottomPadding: 95
+        cancelButtonWidth: 150
+        okButtonWidth: 150
+
+        contentItem: ColumnLayout {
+            spacing: 30
+            Layout.leftMargin: 50
+            Layout.rightMargin: 50
+
+            SFText {
+                bottomPadding: 20
+                topPadding: 15
+                leftPadding: 60
+                rightPadding: 60
+                text: qsTrId("app-close-text").arg(viewModel.unsafeTxCount)
+                font.pixelSize: 14
+                color: Style.content_main
+                wrapMode: Text.Wrap
+                horizontalAlignment : Text.AlignHCenter
+                anchors.fill: parent
+                font.capitalization: Font.AllUppercase
+            }
+        }
+
         onOpened: {
             closeDialog.visible = Qt.binding(function(){return viewModel.unsafeTxCount > 0;});
         }

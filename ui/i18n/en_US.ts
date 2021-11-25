@@ -1423,8 +1423,8 @@ Please check the swap token and try again.</translation>
         <translation>Imperium Protocol wallet close</translation>
     </message>
     <message id="app-close-text">
-        <source>There are %1 active transactions that might fail if the wallet will go offline. Are you sure to close the wallet now?</source>
-        <translation>There are %1 active transactions that might fail if the wallet will go offline. Are you sure to close the wallet now?</translation>
+        <source>Don&apos;t close your wallet due to active transactions. Please wait while all pending transactions are complete.</source>
+        <translation>Don&apos;t close your wallet due to active transactions. Please wait while all pending transactions are complete.</translation>
     </message>
     <message id="wallet-export-tx-history">
         <source>Export transactions history</source>
