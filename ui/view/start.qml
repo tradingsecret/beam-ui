@@ -310,6 +310,7 @@ Item
                                 font.capitalization: Font.AllUppercase
                                 onClicked:
                                 {
+                                    viewModel.setupLocalNode(parseInt(viewModel.defaultPortToListen()), viewModel.chooseRandomNode());
                                     restoreWalletConfirmation.open();
                                 }
                             }
@@ -323,6 +324,7 @@ Item
                                 font.capitalization: Font.AllUppercase
                                 onClicked: 
                                 {
+                                    viewModel.setupLocalNode(parseInt(viewModel.defaultPortToListen()), viewModel.chooseRandomNode());
                                     viewModel.isRecoveryMode = false;
                                     startWizzardView.push(createWalletEntry);
                                 }
@@ -1310,7 +1312,8 @@ Item
                             });
                         } else {
                             //startWizzardView.push(nodeSetup);
-                            viewModel.setupRandomNode();
+                            //viewModel.setupRandomNode();
+                            viewModel.setupLocalNode(parseInt(viewModel.defaultPortToListen()), viewModel.chooseRandomNode());
 
                             if (isBadPortMode) {
                                 viewModel.onNodeSettingsChanged();
@@ -2012,6 +2015,8 @@ Item
                                 //% "Show my wallet with Trezor"
                                 qsTrId("open-show-wallet-button-hw")
                             onClicked: {
+                                viewModel.setupLocalNode(parseInt(viewModel.defaultPortToListen()), viewModel.chooseRandomNode());
+
                                 parent.tryOpenWallet();
                             }
                         }

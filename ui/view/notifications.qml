@@ -137,9 +137,13 @@ ColumnLayout {
                     //! [transitions]
 
                     ScrollBar.vertical: ScrollBar {
+                        id: notificationScrollBar
+                        hoverEnabled: true
+                        policy: ScrollBar.AsNeeded
+
                         contentItem: Rectangle {
                                 radius: implicitHeight/2
-                                color: "#307451"
+                                color: notificationScrollBar.hovered || notificationScrollBar.pressed ? "#aff3ca"  : "#307451"
                                 width: 15 // This will be overridden by the width of the scrollbar
                                 height: 10 // This will be overridden based on the size of the scrollbar
                             }

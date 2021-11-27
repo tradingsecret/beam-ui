@@ -199,7 +199,7 @@ int main (int argc, char* argv[])
         {
             Rules::get().UpdateChecksum();
             LOG_INFO() << "Imperium Wallet UI " << PROJECT_VERSION << " (" << BRANCH_NAME << ")";
-            LOG_INFO() << "Beam Core " << BEAM_VERSION << " (" << BEAM_BRANCH_NAME << ")";
+            LOG_INFO() << "Imperium Core " << BEAM_VERSION << " (" << BEAM_BRANCH_NAME << ")";
             LOG_INFO() << "Rules signature: " << Rules::get().get_SignatureStr();
 
             // AppModel Model MUST BE created before the UI engine and destroyed after.

@@ -633,7 +633,7 @@ ColumnLayout {
                         //% "Transaction type"
                         title: qsTrId("general-tx-type")
                         Layout.fillWidth: true
-                        visible: false//viewModel.canChoose
+                        visible: viewModel.canChoose
                         backgroundColor: 'transparent'
                         rightPadding: 0
 
