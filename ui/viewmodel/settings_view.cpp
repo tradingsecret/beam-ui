@@ -38,7 +38,7 @@ using namespace std;
 namespace
 {
     const std::map<int, uint8_t> kMPAnonymitySetVariants = { {0, 64}, {1, 32}, {2, 16}, {3, 8}, {4, 4}, {5, 2} };
-    const std::map<int, uint8_t> kMPLockTimeLimits = {{0, 72}, {1, 48}, {2, 24},  {3, 16}, {4, 8}, {5, 4}, {6, 2} }; // removed {0, 0}
+    const std::map<int, uint8_t> kMPLockTimeLimits = {{0, 72}, {1, 48}, {2, 24},  {3, 16}, {4, 8}, {5, 4}, {6, 2}, {7, 1} }; // removed {0, 0}
 }  // namespace
 
 SettingsViewModel::SettingsViewModel()

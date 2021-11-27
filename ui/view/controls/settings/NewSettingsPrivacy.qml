@@ -21,6 +21,7 @@ ColumnLayout {
         '8H',
         '4H',
         '2H',
+        '1H',
     ]
 
     ConfirmPasswordDialog {
@@ -105,7 +106,7 @@ ColumnLayout {
 
         SFText {
             Layout.fillWidth: true
-            text: "ANONYMOUS MAX. TRANSACTION TIME (72H, 48H, 24H, 16H, 8H, 4H, 2H)"
+            text: "ANONYMOUS MAX. TRANSACTION TIME (72H, 48H, 24H, 16H, 8H, 4H, 2H, 1H)"
             color: '#fff'
             font.pixelSize: 18
             font.capitalization: Font.AllUppercase
