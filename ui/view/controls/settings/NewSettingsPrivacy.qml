@@ -147,7 +147,7 @@ ColumnLayout {
                             hoverEnabled: true
                             cursorShape: Qt.PointingHandCursor
                             onClicked: {
-                                //viewModel.maxPrivacyLockTimeLimit = index
+                                viewModel.maxPrivacyLockTimeLimit = index
                             }
                         }
                     }

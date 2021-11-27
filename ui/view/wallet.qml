@@ -127,126 +127,161 @@ Item {
                 visible: false
             }
 
-            ColumnLayout {
-                Layout.minimumWidth: 440
-                Layout.maximumWidth: 440
-                width: 440
+            RowLayout {
+                spacing: 230
 
                 ColumnLayout {
-                    Layout.minimumHeight: 65
-                    Layout.maximumHeight: 65
-                    Layout.minimumWidth: parent.width
-                    Layout.maximumWidth: parent.width
-                    width: parent.width
-                    height: 65
-                    Layout.topMargin: 30
+                    Layout.minimumWidth: 440
+                    Layout.maximumWidth: 440
+                    width: 440
 
                     ColumnLayout {
-                        Layout.leftMargin: 10
+                        Layout.minimumHeight: 65
+                        Layout.maximumHeight: 65
+                        Layout.minimumWidth: parent.width
+                        Layout.maximumWidth: parent.width
+                        width: parent.width
+                        height: 65
+                        Layout.topMargin: 30
 
-                        Row {
-                            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                            //spacing: 20
-                            visible: true
+                        ColumnLayout {
+                            Layout.leftMargin: 10
 
-                            SFText {
-                                text: "Balance:"
-                                color: '#5fe795'
-                                font.pixelSize: 16
-                                font.capitalization: Font.AllUppercase
+                            Row {
+                                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                                //spacing: 20
+                                visible: true
+
+                                SFText {
+                                    text: "Balance:"
+                                    color: '#5fe795'
+                                    font.pixelSize: 16
+                                    font.capitalization: Font.AllUppercase
+                                }
+                            }
+
+                            Row {
+                                Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                                Layout.topMargin: 5
+                                //spacing: 20
+                                visible: true
+
+                                SFText {
+                                    text: viewModelSwap.beamAvailable + ' ARC'
+                                    color: '#5fe795'
+                                    font.pixelSize: 30
+                                    font.capitalization: Font.AllUppercase
+                                }
                             }
                         }
 
-                        Row {
-                            Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                            Layout.topMargin: 5
-                            //spacing: 20
+                        Rectangle {
                             visible: true
-
-                            SFText {
-                                text: viewModelSwap.beamAvailable + ' ARC'
-                                color: '#5fe795'
-                                font.pixelSize: 30
-                                font.capitalization: Font.AllUppercase
-                            }
+                            anchors.fill: parent
+                            color: 'transparent'
+                            //border.width: 2
+                            //border.color: 'pink'
                         }
                     }
+
+                    Row {
+                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                        Layout.topMargin: 25
+                        spacing: 40
+
+                        CustomButton {
+                            height: 43
+                            id: sendButton
+                            Layout.alignment: Qt.AlignLeft
+                            palette.button: Style.accent_outgoing
+                            palette.buttonText: Style.content_opposite
+                            hoveredBorderColor: '#1aa853'
+                            //% "Send"
+                            text: qsTrId("general-send")
+                            enabled: true
+                            onClicked: {
+                                navigateSend(assets.selectedId);
+                            }
+                            width: 200
+                        }
+
+                        Item {
+                            Layout.fillWidth: true
+                        }
+
+                        CustomButton {
+                            height: 43
+                            Layout.alignment: Qt.AlignRight
+                            palette.button: Style.accent_incoming
+                            palette.buttonText: Style.content_opposite
+                            hoveredBorderColor: '#1aa853'
+                            //% "Receive"
+                            text: qsTrId("wallet-receive-button")
+                            enabled: true
+                            onClicked: {
+                                navigateReceive(assets.selectedId);
+                            }
+                            width: 200
+                        }
+                    }
+
+                    CustomButton {
+                        height: 43
+                        width: 440
+                        Layout.fillWidth: true
+                        Layout.topMargin: 10
+                        palette.button: Style.accent_incoming
+                        palette.buttonText: Style.content_opposite
+                        hoveredBorderColor: '#1aa853'
+                        //% "Receive"
+                        text: "Get testnet arcs"
+                        onClicked: {
+                            Utils.getFaucet();
+                        }
+                    }
+
 
                     Rectangle {
                         visible: true
                         anchors.fill: parent
                         color: 'transparent'
-                        //border.width: 2
-                        //border.color: 'pink'
+                        //border.width: 3
+                        //border.color: 'yellow'
                     }
                 }
 
-                Row {
-                    Layout.alignment: Qt.AlignTop | Qt.AlignLeft
-                    Layout.topMargin: 25
-                    spacing: 40
+                Repeater {
+                    model: viewModelAssets.assets
 
-                    CustomButton {
-                        height: 43
-                        id: sendButton
-                        Layout.alignment: Qt.AlignLeft
-                        palette.button: Style.accent_outgoing
-                        palette.buttonText: Style.content_opposite
-                        hoveredBorderColor: '#1aa853'
-                        //% "Send"
-                        text: qsTrId("general-send")
-                        enabled: true
-                        onClicked: {
-                            navigateSend(assets.selectedId);
+                    ColumnLayout {
+                        Layout.alignment: Qt.AlignTop | Qt.AlignLeft
+                        Layout.topMargin: 30
+
+                        SFText {
+                            text: "Locked balance:"
+                            color: '#5fe795'
+                            font.pixelSize: 16
+                            font.capitalization: Font.AllUppercase
                         }
-                        width: 200
-                    }
 
-                    Item {
-                        Layout.fillWidth: true
-                    }
-
-                    CustomButton {
-                        height: 43
-                        Layout.alignment: Qt.AlignRight
-                        palette.button: Style.accent_incoming
-                        palette.buttonText: Style.content_opposite
-                        hoveredBorderColor: '#1aa853'
-                        //% "Receive"
-                        text: qsTrId("wallet-receive-button")
-                        enabled: true
-                        onClicked: {
-                            navigateReceive(assets.selectedId);
+                        SFText {
+                            Layout.topMargin: 20
+                            text: model.locked + " ARC"
+                            color: '#4bd355'
+                            font.pixelSize: 16
+                            font.capitalization: Font.AllUppercase
                         }
-                        width: 200
+
+                        Rectangle {
+                            visible: true
+                            anchors.fill: parent
+                            color: 'transparent'
+                            //border.width: 2
+                            //border.color: 'pink'
+                        }
                     }
-                }
-
-                CustomButton {
-                    height: 43
-                    width: 440
-                    Layout.fillWidth: true
-                    Layout.topMargin: 10
-                    palette.button: Style.accent_incoming
-                    palette.buttonText: Style.content_opposite
-                    hoveredBorderColor: '#1aa853'
-                    //% "Receive"
-                    text: "Get testnet arcs"
-                    onClicked: {
-                        Utils.getFaucet();
-                    }
-                }
-
-
-                Rectangle {
-                    visible: true
-                    anchors.fill: parent
-                    color: 'transparent'
-                    //border.width: 3
-                    //border.color: 'yellow'
                 }
             }
-
 
             Item {
                 Layout.fillHeight: true
