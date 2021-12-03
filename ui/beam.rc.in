@@ -19,12 +19,12 @@ BEGIN
 		BEGIN
 			VALUE "CompanyName", "Imperium Protocol"
 			VALUE "FileDescription", "Imperium Protocol Testnet"
-			VALUE "FileVersion", "1.9.1505"
+                        VALUE "FileVersion", "@PROJECT_VERSION@"
 			VALUE "InternalName", "Imperium Protocol Testnet.exe"
 			VALUE "LegalCopyright", "https://imperiumprotocol.com (C) 2021"
 			VALUE "OriginalFilename", "Imperium Protocol Testnet.exe"
 			VALUE "ProductName", "Imperium Protocol"
-			VALUE "ProductVersion", "1.9.1505"
+                        VALUE "ProductVersion", "@PROJECT_VERSION@"
 		END
 	END
 	BLOCK "VarFileInfo"

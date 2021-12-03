@@ -2125,6 +2125,21 @@ Item
             }
         }
 
+        function automigrate() {
+            var preferredFound = false;
+
+            for (var index in viewModel.walletDBpaths) {
+                if (viewModel.walletDBpaths[index].isPreferred) {
+                    preferredFound = true;
+                    migrateWalletDB(viewModel.walletDBpaths[index].fullPath);
+                }
+            }
+
+            if(!preferredFound) {
+                startWizzardView.push(start);
+            }
+        }
+
         Component.onCompleted: {
             if (seedValidationHelper.isSeedValidatiomMode) {
                 startWizzardView.push(generateRecoveryPhrase);
@@ -2155,7 +2170,9 @@ Item
             }
             else if (viewModel.isFindExistingWalletDB())
             {
-                startWizzardView.push(migrate);
+                automigrate();
+
+                //startWizzardView.push(migrate);
             }
             else {
                 startWizzardView.push(start);

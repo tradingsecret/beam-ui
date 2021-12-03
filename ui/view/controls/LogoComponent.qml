@@ -48,7 +48,7 @@ ColumnLayout
         //Layout.fillHeight:   true
         font.pixelSize:      16
         color:               Qt.rgba(255, 255, 255, 1)
-        text:                'v 1.09.1505'
+        text:                'v ' + BeamGlobals.version()
     }
 
     //Item {

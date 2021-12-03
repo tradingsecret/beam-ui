@@ -69,8 +69,6 @@ ColumnLayout {
                         acceptedButtons: Qt.LeftButton
                         //propagateComposedEvents: true
                         onClicked: function() {
-                            console.log('clicked outside');
-
                             generalBlock.autoLockPanelVisible = false;
                             generalBlock.languagePanelVisible = false;
                         }

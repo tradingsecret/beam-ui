@@ -28,6 +28,16 @@ ColumnLayout {
             Utils.openExternalWithConfirmation(url, undefined, true);
         };
     }
+
+    property var notificationsList: SortFilterProxyModel {
+        source: viewModel.notifications
+        sortOrder: Qt.DescendingOrder
+        sortCaseSensitivity: Qt.CaseInsensitive
+        sortRole: "timeCreatedSort"
+    }
+
+
+    property var notificationsArray: [];
     
     /*CustomButton {
         Layout.alignment: Qt.AlignRight | Qt.AlignTop
@@ -43,6 +53,17 @@ ColumnLayout {
             viewModel.clearAll();
         }
     }*/
+
+    Repeater {
+        model: notificationsList
+
+        ColumnLayout {
+            Layout.maximumHeight: 0
+            Component.onCompleted: {
+                notificationsArray.push(model);
+            }
+        }
+    }
 
     ColumnLayout {
         Layout.fillWidth: true
@@ -104,19 +125,14 @@ ColumnLayout {
                 ListView {
                     id: notificationList
                     Layout.fillWidth: true
-                    Layout.fillHeight: notificationList.model.count <= notificationList.loadedCnt
+                    Layout.fillHeight: true //notificationList.model.count <= notificationList.loadedCnt
                     height: 525
                     boundsMovement: Flickable.StopAtBounds
                     boundsBehavior: Flickable.StopAtBounds
 
-                    property var loadedCnt: 4
+                    //property var loadedCnt: 4
 
-                    model: SortFilterProxyModel {
-                        source: viewModel.notifications
-                        sortOrder: Qt.DescendingOrder
-                        sortCaseSensitivity: Qt.CaseInsensitive
-                        sortRole: "timeCreatedSort"
-                    }
+                    model: notificationsList
                     spacing: 0 // we emulate spacings with margins to avoid Flickable drag effect
                     clip: true
 
@@ -173,10 +189,12 @@ ColumnLayout {
 
                     delegate: Item {
                         id: notification_item
-                        visible: index+1 <= notificationList.loadedCnt
+                        //visible: index+1 <= notificationList.loadedCnt
+                        visible: true
                         anchors.left: parent ? parent.left : 0
                         anchors.right: parent ? parent.right : 500
-                        height: index+1 <= notificationList.loadedCnt ? 121+10 : 0
+                        //height: index+1 <= notificationList.loadedCnt ? 121+10 : 0
+                        height: 121+10
 
                         property bool isUnread: model.state == "unread"
 
@@ -387,10 +405,6 @@ ColumnLayout {
                                     //txDetails.comment = model.comment || "";
                                     txDetailsNotifications.kernelID = model.kernelID;
                                     txDetailsNotifications.open();
-
-                                    console.log('isReceivedType');
-                                    console.log(isReceivedType(type));
-                                    console.log(type);
                                 }
                             }
                             onPressed : { // avoid Flickable drag effect
@@ -402,7 +416,7 @@ ColumnLayout {
                         }
                     }
                 }
-            }
+             }
 
             Item {
                 Layout.fillWidth: true
@@ -410,10 +424,12 @@ ColumnLayout {
             }
 
             CustomButton {
+                visible: false
                 id:             loadMoreButton
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: -18
-                visible: notificationList.model.count > notificationList.loadedCnt
+                //visible: notificationList.model.count > notificationList.loadedCnt
+                //visible: notificationsArray.length > notificationList.loadedCnt
 
                 height: 36
                 palette.button: Style.background_second

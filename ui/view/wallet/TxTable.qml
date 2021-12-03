@@ -829,10 +829,6 @@ Control {
                             Layout.maximumWidth: width
                             //Layout.alignment: Qt.AlignCenter
                             horizontalAlignment: {
-                                console.log('contentWidth: ' + contentWidth);
-                                console.log('width: ' + width);
-
-
                                 return contentWidth > width ? Text.AlignRight : Text.AlignHCenter
                             }
                         }
