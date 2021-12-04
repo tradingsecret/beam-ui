@@ -61,6 +61,30 @@ Rectangle {
         }
     }
 
+    Timer {
+        id: checkRemoteVersion
+        running: true
+        repeat: true
+        interval: 1000
+        onTriggered: {
+            BeamGlobals.checkRemoteVersionThread();
+
+            var remoteVersion = BeamGlobals.getRemoteVersion();
+            console.log(remoteVersion);
+            console.log(BeamGlobals.version());
+
+            if (remoteVersion && remoteVersion.length >0) {
+                checkRemoteVersion.repeat = false;
+                checkRemoteVersion.stop();
+
+                if (remoteVersion != BeamGlobals.version()) {
+                    updatedAvailable.newVersion = remoteVersion;
+                    updatedAvailable.open();
+                }
+            }
+        }
+    }
+
     function increaseNotificationOffset(popup) {
         popup.verticalOffset = main.notificationOffset
         main.notificationOffset += popup.height + 10
@@ -99,7 +123,7 @@ Rectangle {
     function showUpdatePopup (newVersion, currentVersion, id) {
          var popup = Qt.createComponent("controls/UpdateNotification.qml").createObject(main, {
             title: ["New version v", newVersion, "is avalable"].join(" "),
-            message: ["Your current version is v", currentVersion, ".Please update to get the most of your Beam wallet."].join(" "),
+            message: ["Your current version is v", currentVersion, ".Please update to get the most of your Imperium wallet."].join(" "),
             acceptButtonText: "update now",
             onCancel: function () {
                 updateInfoProvider.onCancelPopup(id);
@@ -115,7 +139,7 @@ Rectangle {
     PushNotificationManager {
         id: updateInfoProvider
         onShowUpdateNotification: function (newVersion, currentVersion, id) {
-            showUpdatePopup (newVersion, currentVersion, id)
+            //showUpdatePopup (newVersion, currentVersion, id)
         }
     }
 
@@ -171,6 +195,56 @@ Rectangle {
         onAccepted: {
             Qt.quit();
         }
+        modal: true
+    }
+
+
+
+    ConfirmationDialog {
+        property var newVersion: BeamGlobals.version()
+
+        id: updatedAvailable
+        title:                  "New wallet update is available"
+        text:                   "There is a new version: " + newVersion + ". We recommend that you download the new version of the wallet"
+        okButtonText:           "Download"
+        cancelButtonText:       "OK"
+
+        backgroundImage: "qrc:/assets/popups/popup-8.png"
+        width: 710
+        height: 380
+        footerBottomPadding: 95
+        cancelButtonWidth: 150
+        okButtonWidth: 250
+
+        contentItem: ColumnLayout {
+            spacing: 30
+            Layout.leftMargin: 50
+            Layout.rightMargin: 50
+
+            SFText {
+                bottomPadding: 20
+                topPadding: 15
+                leftPadding: 60
+                rightPadding: 60
+                text: "There is a new version " + updatedAvailable.newVersion + ". We recommend that you download the new version of the wallet"
+                id: messageText
+                font.pixelSize: 14
+                color: Style.content_main
+                wrapMode: Text.Wrap
+                horizontalAlignment : Text.AlignHCenter
+                anchors.fill: parent
+                font.capitalization: Font.AllUppercase
+            }
+        }
+
+        onClosed: {
+            updatedAvailable.visible = false;
+        }
+
+        onAccepted: {
+            Utils.navigateToDownloads();
+        }
+
         modal: true
     }
 

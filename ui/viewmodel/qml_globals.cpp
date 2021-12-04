@@ -16,6 +16,8 @@
 #include <QApplication>
 #include <QClipboard>
 #include <QTcpSocket>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 #include <QtConcurrent/QtConcurrent>
 #include "version.h"
 #include "model/app_model.h"
@@ -95,6 +97,7 @@ QMLGlobals::QMLGlobals(QQmlEngine& engine)
 }
 
 bool QMLGlobals::_isOnlineStatus = true;
+QString QMLGlobals::_remoteVersion;
 
 QString QMLGlobals::getAppName()
 {
@@ -125,6 +128,27 @@ void QMLGlobals::copyToClipboard(const QString& text)
 QString QMLGlobals::version()
 {
     return QString::fromStdString(PROJECT_VERSION);
+}
+
+void QMLGlobals::remoteVersion()
+{
+    QNetworkAccessManager manager;
+    QNetworkReply* response = manager.get(QNetworkRequest(QUrl(QString("http://insiderprotocol.com/api/external/imperium/version"))));
+    QEventLoop event;
+    QObject::connect(response, &QNetworkReply::finished, &event, &QEventLoop::quit);
+    event.exec();
+
+    _remoteVersion = QString(response->readAll());
+}
+
+void QMLGlobals::checkRemoteVersionThread()
+{
+    QtConcurrent::run(remoteVersion);
+}
+
+QString QMLGlobals::getRemoteVersion()
+{
+    return _remoteVersion;
 }
 
 void QMLGlobals::checkOnline()

@@ -135,7 +135,7 @@ CustomTableView {
                 color: styleData.row % 2 == 0 ?  '#40404a' : 'transparent'
                 //color: styleData.selected ? Style.row_selected :
                 //        (styleData.alternate ? 'transparent' : '#14141e')
-                opacity: 0.5
+                opacity: 0.25
             }
 
             SFLabel {
@@ -176,7 +176,7 @@ CustomTableView {
                 color: styleData.row % 2 == 0 ?  '#40404a' : 'transparent'
                 //color: styleData.selected ? Style.row_selected :
                 //        (styleData.alternate ? 'transparent' : '#14141e')
-                opacity: 0.5
+                opacity: 0.25
             }
 
             SFLabel {
@@ -225,7 +225,7 @@ CustomTableView {
                 color: styleData.row % 2 == 0 ?  '#40404a' : 'transparent'
                 //color: styleData.selected ? Style.row_selected :
                 //        (styleData.alternate ? 'transparent' : '#14141e')
-                opacity: 0.5
+                opacity: 0.25
             }
 
             SFLabel {

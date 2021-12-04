@@ -118,7 +118,7 @@ function openExternalWithConfirmation(externalLink, onFinish, disableGauss) {
 }
 
 function navigateToDownloads() {
-    openExternalWithConfirmation("https://imperiumprotocol.com/downloads")
+    openExternalWithConfirmation("https://testnet.imperiumprotocol.com")
 }
 
 function getFaucet() {

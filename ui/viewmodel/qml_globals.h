@@ -28,8 +28,11 @@ public:
     Q_INVOKABLE static void logInfo(const QString& message);
     Q_INVOKABLE static void copyToClipboard(const QString& text);
     Q_INVOKABLE QString version();
+    Q_INVOKABLE static QString getRemoteVersion();
+    Q_INVOKABLE static void remoteVersion();
     Q_INVOKABLE static void checkOnline();
     Q_INVOKABLE static void checkOnlineThread();
+    Q_INVOKABLE static void checkRemoteVersionThread();
     Q_INVOKABLE static bool isOnline();
     Q_INVOKABLE static void setIsOnline(bool value);
     Q_INVOKABLE static bool isToken(const QString& text);
@@ -80,6 +83,7 @@ public:
     Q_INVOKABLE static QString getExplorerUrl();
 
     static bool _isOnlineStatus;
+    static QString _remoteVersion;
 
 private:
     QQmlEngine& _engine;

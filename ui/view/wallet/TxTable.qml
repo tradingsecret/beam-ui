@@ -148,7 +148,8 @@ Control {
         spacing: 0
 
         ColumnLayout {
-            visible:             tableViewModel.transactions.rowCount() == 0
+            //visible:             tableViewModel.transactions.rowCount() == 0
+            visible: false
             Layout.fillHeight: true
             Layout.fillWidth: true
             height: parent.parent.height
@@ -269,7 +270,8 @@ Control {
         ColumnLayout {
             Layout.topMargin: emptyMessageMargin
             Layout.alignment: Qt.AlignHCenter
-            visible: transactionsTable.model.count == 0
+            //visible: transactionsTable.model.count == 0
+            visible: false
             /*SvgImage {
                 Layout.alignment: Qt.AlignHCenter
                 source: "qrc:/assets/icon-wallet-empty.svg"
@@ -403,7 +405,7 @@ Control {
             Layout.fillWidth:     true
             Layout.fillHeight:    true
             Layout.bottomMargin:  9
-            visible:              transactionsTable.model.count > 0
+            //visible:              transactionsTable.model.count > 0
 
             property real rowHeight: 35 //56
             property real resizableWidth: transactionsTable.width - 140
