@@ -996,7 +996,7 @@ Control {
         }
 
         Item {
-            visible:              transactionsTable.model.count > 0
+            //visible:              transactionsTable.model.count > 0
 
             Rectangle {
                 id: line
